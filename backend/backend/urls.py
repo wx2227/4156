@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from sharednote.views import GoogleLogin, UserView
+from sharednote.views import GoogleLogin
 from django.views.decorators.csrf import csrf_exempt
 
 

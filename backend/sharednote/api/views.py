@@ -1,25 +1,44 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
-
-from sharednote.models import User, Note
-from .serializers import UserSerializer, NoteSerializer
 from rest_framework import viewsets
+from sharednote.api.serializers import *
+from ..models import *
 
 
-class UserListView(ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetailView(RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserViewSet(viewsets.ModelViewSet):
+class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
-class NoteViewSet(viewsets.ModelViewSet):
+class CommentView(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()
+
+
+class CommentedView(viewsets.ModelViewSet):
+    serializer_class = CommentedSerializer
+    queryset = Commented.objects.all()
+
+
+class NoteView(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
-    queryset = Note.objects.all()
+    queryset = User.objects.all()
+
+
+class VoteView(viewsets.ModelViewSet):
+    serializer_class = VoteSerializer
+    queryset = Vote.objects.all()
+
+
+class CourseView(viewsets.ModelViewSet):
+    serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+
+
+class CourseNoteView(viewsets.ModelViewSet):
+    serializer_class = CourseNoteSerializer
+    queryset = CourseNote.objects.all()
+
+
+class UploadView(viewsets.ModelViewSet):
+    serializer_class = UploadSerializer
+    queryset = Upload.objects.all()
+
