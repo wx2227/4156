@@ -3,42 +3,42 @@ from sharednote.api.serializers import *
 from ..models import *
 
 
-class UserView(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
-class CommentView(viewsets.ModelViewSet):
+class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
 
 
-class CommentedView(viewsets.ModelViewSet):
+class CommentedViewSet(viewsets.ModelViewSet):
     serializer_class = CommentedSerializer
     queryset = Commented.objects.all()
 
 
-class NoteView(viewsets.ModelViewSet):
+class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     queryset = User.objects.all()
 
 
-class VoteView(viewsets.ModelViewSet):
+class VoteViewSet(viewsets.ModelViewSet):
     serializer_class = VoteSerializer
     queryset = Vote.objects.all()
 
 
-class CourseView(viewsets.ModelViewSet):
+class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
 
 
-class CourseNoteView(viewsets.ModelViewSet):
+class CourseNoteViewSet(viewsets.ModelViewSet):
     serializer_class = CourseNoteSerializer
     queryset = CourseNote.objects.all()
 
 
-class UploadView(viewsets.ModelViewSet):
+class UploadViewSet(viewsets.ModelViewSet):
     serializer_class = UploadSerializer
     queryset = Upload.objects.all()
 
