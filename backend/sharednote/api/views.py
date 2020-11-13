@@ -5,7 +5,13 @@ from ..models import *
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+
+    def get_queryset(self):
+        queryset = User.objects.all()
+        lion_mail = self.request.query_params.get('lion_mail')
+        if lion_mail:
+            queryset = queryset.filter(lion_mail=lion_mail)
+        return queryset
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -13,20 +19,15 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
 
 
-# class CommentedViewSet(viewsets.ModelViewSet):
-#     serializer_class = CommentedSerializer
-#
-#     def get_queryset(self):
-#         queryset = Commented.objects.all()
-#         note_id = self.request.query_params.get('note_id', None)
-#         if note_id is not None:
-#             queryset = queryset.filter(note_id=note_id)
-#         return queryset
-
-
 class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteDynamicSerializer
-    queryset = Note.objects.all()
+
+    def get_queryset(self):
+        queryset = Note.objects.all()
+        course_number = self.request.query_params.get('course_number')
+        if course_number:
+            queryset = queryset.filter(course_number=course_number)
+        return queryset
 
 
 class UpVoteViewSet(viewsets.ModelViewSet):
@@ -41,7 +42,13 @@ class DownVoteViewSet(viewsets.ModelViewSet):
 
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
-    queryset = Course.objects.all()
+
+    def get_queryset(self):
+        queryset = Course.objects.all()
+        course_name = self.request.query_params.get('course_name')
+        if course_name:
+            queryset = queryset.filter(course_name=course_name)
+        return queryset
 
 
 

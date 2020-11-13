@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 def validate_lion_mail(email):
     if not email.endswith('@columbia.edu'):
-        raise ValidationError("Only .edu email address is allowed.")
+        raise ValidationError("Only @columbia.edu email address is allowed.")
 
 
 class User(models.Model):
@@ -17,7 +17,7 @@ class User(models.Model):
 
 
 class Course(models.Model):
-    course_number = models.CharField(max_length=20)
+    course_number = models.CharField(max_length=20, primary_key=True)
     course_name = models.CharField(max_length=50)
     department_name = models.CharField(max_length=50)
     term = models.CharField(max_length=10)
@@ -28,8 +28,6 @@ class Note(models.Model):
     course_number = models.ForeignKey(Course, related_name='notes', on_delete=models.CASCADE)
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
-    # up_votes = models.IntegerField(default=0)
-    # down_votes = models.IntegerField(default=0)
     description = models.TextField(default="")
 
 

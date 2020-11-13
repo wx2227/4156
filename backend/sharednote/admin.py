@@ -33,10 +33,6 @@ class DownVoteAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'note_id')
 
 
-class UploadAdmin(admin.ModelAdmin):
-    list_display = ('user_id', 'note_id', 'course_number', 'time')
-
-
 admin.site.register(User, UserAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Note, NoteAdmin)
