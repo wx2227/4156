@@ -13,19 +13,30 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
 
 
-class CommentedViewSet(viewsets.ModelViewSet):
-    serializer_class = CommentedSerializer
-    queryset = Commented.objects.all()
+# class CommentedViewSet(viewsets.ModelViewSet):
+#     serializer_class = CommentedSerializer
+#
+#     def get_queryset(self):
+#         queryset = Commented.objects.all()
+#         note_id = self.request.query_params.get('note_id', None)
+#         if note_id is not None:
+#             queryset = queryset.filter(note_id=note_id)
+#         return queryset
 
 
 class NoteViewSet(viewsets.ModelViewSet):
-    serializer_class = NoteSerializer
-    queryset = User.objects.all()
+    serializer_class = NoteDynamicSerializer
+    queryset = Note.objects.all()
 
 
-class VoteViewSet(viewsets.ModelViewSet):
-    serializer_class = VoteSerializer
-    queryset = Vote.objects.all()
+class UpVoteViewSet(viewsets.ModelViewSet):
+    serializer_class = UpVoteSerializer
+    queryset = UpVote.objects.all()
+
+
+class DownVoteViewSet(viewsets.ModelViewSet):
+    serializer_class = DownVoteSerializer
+    queryset = DownVote.objects.all()
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -33,12 +44,4 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
 
 
-class CourseNoteViewSet(viewsets.ModelViewSet):
-    serializer_class = CourseNoteSerializer
-    queryset = CourseNote.objects.all()
-
-
-class UploadViewSet(viewsets.ModelViewSet):
-    serializer_class = UploadSerializer
-    queryset = Upload.objects.all()
 
