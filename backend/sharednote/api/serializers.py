@@ -1,50 +1,62 @@
-from rest_framework import serializers
-from sharednote.models import User, Note, Comment, Commented, Course, CourseNote, Upload, Vote
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, SerializerMethodField, IntegerField
+from sharednote.models import User, Note, Comment, Course, UpVote, DownVote
 
 
-class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ('id', 'user_name', 'lion_mail', 'avartar', 'credits')
-
-
-class CommentSerializer(serializers.ModelSerializer):
+class CommentSerializer(ModelSerializer):
   class Meta:
     model = Comment
-    fields = ('id', 'content')
+    fields = ('id', 'user_id', 'note_id', 'content', 'time')
 
 
-class CommentedSerializer(serializers.ModelSerializer):
+class UpVoteSerializer(ModelSerializer):
   class Meta:
-    model = Commented
-    fields = ('id', 'user_id', 'comment_id', 'time')
+    model = UpVote
+    fields = ('id', 'user_id', 'note_id')
 
 
-class NoteSerializer(serializers.ModelSerializer):
+class DownVoteSerializer(ModelSerializer):
+  class Meta:
+    model = UpVote
+    fields = ('id', 'user_id', 'note_id')
+
+
+class UserSerializer(ModelSerializer):
+  notes = PrimaryKeyRelatedField(many=True, read_only=True)
+  class Meta:
+    model = User
+    fields = ('id', 'user_name', 'lion_mail', 'avartar', 'credits', 'notes')
+
+
+class NoteSerializer(ModelSerializer):
+  comments = CommentSerializer(many=True)
+  ups = UpVoteSerializer(many=True)
+  downs = UpVoteSerializer(many=True)
+  up_votes = IntegerField(
+    source='ups.count',
+    read_only=True
+  )
+  down_votes = IntegerField(
+    source='downs.count',
+    read_only=True
+  )
+
   class Meta:
     model = Note
-    fields = ('id', 'file_name', 'file_url', 'up_votes', 'down_votes')
+    fields = ('id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'ups', 'downs', 'up_votes', 'down_votes')
 
 
-class VoteSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Vote
-    fields = ('id', 'user_id', 'note_id', 'up')
+class NoteDynamicSerializer(NoteSerializer):
+
+    class Meta:
+        model = Note
+        fields = ('id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'up_votes', 'down_votes')
 
 
-class CourseSerializer(serializers.ModelSerializer):
+class CourseSerializer(ModelSerializer):
+  notes = PrimaryKeyRelatedField(many=True, read_only=True)
   class Meta:
     model = Course
-    fields = ('course_number', 'course_name', 'department_name', 'term')
+    fields = ('course_number', 'course_name', 'department_name', 'term', 'notes')
 
 
-class CourseNoteSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = CourseNote
-    fields = ('id', 'course_number', 'note_id')
 
-
-class UploadSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = Upload
-    fields = ('id', 'user_id', 'note_id', 'course_number', 'time')
