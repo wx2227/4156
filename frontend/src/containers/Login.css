@@ -1,0 +1,29 @@
+#UltraBox {
+    height:100vh;
+    width:100%;
+    margin: 0;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #outerBox{
+    padding-top:10%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  #title {
+    text-align: center;
+    font-style: italic;
+    font-size: 140px;
+    color: white;
+  }
+  
+   
+  
+  #gLogin {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+  }
