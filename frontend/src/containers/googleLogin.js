@@ -2,6 +2,7 @@
 import React, { Component, useState } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistor} from "react-router-dom";
+import axios from 'axios';
 
 import './Login.css'
 
@@ -15,6 +16,28 @@ function GoogleButton(props) {
     const [email, setEmail] = useState("");
 
     let history = useHistory();
+
+    /**
+     *
+     * @param {*} accesstoken This is the access token of the user obtained from Google
+     */
+    const googleLogin = async (accesstoken) => {
+        // either sent to server to verify lion email or we check here
+        // TODO: verify the email is lionmails
+        //history.push('/tmp', {name: 'Hello'});
+        // GOTO another page
+
+        // get the exchanged token from server
+        // then the info of user can be accessed through /api/user/ (contained email address)
+        let res = await axios.post(
+            "http://localhost:8000/rest-auth/google/",
+            {
+                access_token: accesstoken,
+            }
+        );
+        console.log(res);
+        return await res.status;
+    };
 
     const login = (response) => {
         
@@ -53,7 +76,7 @@ function GoogleButton(props) {
                         </GoogleLogout>: <GoogleLogin
                         clientId={ CLIENT_ID }
                         buttonText='Login with Google'
-                        onSuccess={ login }
+                        onSuccess={ googleLogin }
                         onFailure={ handleLoginFailure }
                         cookiePolicy={ 'single_host_origin' }
                         responseType='code,token'
