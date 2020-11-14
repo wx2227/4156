@@ -37,16 +37,16 @@ function Mainpage(props) {
     }
 
     return (
-        <div class = "outerBody">
+        <div className = "outerBody">
             <div id="nav">
-                <a class="active" href="javascript:void(0)">Home</a>
-                <div class="search-container">
+                <a className="active" href="javascript:void(0)">Home</a>
+                <div className="search-container">
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                          <input id="search_input" type="text" placeholder="Search.." name="search"></input>
-                         <button type="submit" onClick={handleClick}><i class="fa fa-search"></i></button>
+                         <button type="submit" onClick={handleClick}><i className="fa fa-search"></i></button>
                  </div>
             </div>
-            <div class="content">
+            <div className="content">
             </div>
         </div>
 
