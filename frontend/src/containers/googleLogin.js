@@ -5,6 +5,7 @@ import { useHistory} from "react-router-dom";
 import axios from 'axios';
 
 import './Login.css'
+import googleLogin from "../services/googleLoginService";
 
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com';
 
@@ -21,25 +22,14 @@ function GoogleButton(props) {
      *
      * @param {*} accesstoken This is the access token of the user obtained from Google
      */
-    const googleLogin = async (accesstoken) => {
-        // either sent to server to verify lion email or we check here
-        // TODO: verify the email is lionmails
-        //history.push('/tmp', {name: 'Hello'});
-        // GOTO another page
+    const responseGoogle = async(response) => {
+        let googleResponse  = await googleLogin(response.accessToken)
+        console.log(googleResponse);
+        console.log(response);
+        history.push("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
+    }
 
-        // get the exchanged token from server
-        // then the info of user can be accessed through /api/user/ (contained email address)
-        let res = await axios.post(
-            "http://localhost:8000/rest-auth/google/",
-            {
-                access_token: accesstoken,
-            }
-        );
-        console.log(res);
-        return await res.status;
-    };
-
-    const login = (response) => {
+    const login = async (response) => {
         
         // either sent to server to verify lion email or we check here 
         // TODO: verify the email is lionmails
@@ -77,10 +67,11 @@ function GoogleButton(props) {
                         onLogoutSuccess={ logout }
                         onFailure={ handleLogoutFailure }
                         >
-                        </GoogleLogout>: <GoogleLogin
+                        </GoogleLogout>:
+                            <GoogleLogin
                         clientId={ CLIENT_ID }
                         buttonText='Login with Google'
-                        onSuccess={ login }
+                        onSuccess={responseGoogle }
                         onFailure={ handleLoginFailure }
                         cookiePolicy={ 'single_host_origin' }
                         responseType='code,token'
