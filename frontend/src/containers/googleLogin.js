@@ -1,7 +1,7 @@
 
 import React, { Component, useState } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { useHistor} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import axios from 'axios';
 
 import './Login.css'
@@ -46,6 +46,10 @@ function GoogleButton(props) {
         //history.push('/tmp', {name: 'Hello'});
         // GOTO another page 
 
+        // navigate to main page and pass states
+        history.push("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
+
+
     }
 
     const logout = (response) => {
@@ -76,7 +80,7 @@ function GoogleButton(props) {
                         </GoogleLogout>: <GoogleLogin
                         clientId={ CLIENT_ID }
                         buttonText='Login with Google'
-                        onSuccess={ googleLogin }
+                        onSuccess={ login }
                         onFailure={ handleLoginFailure }
                         cookiePolicy={ 'single_host_origin' }
                         responseType='code,token'
