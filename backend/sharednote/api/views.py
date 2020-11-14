@@ -1,17 +1,26 @@
 from rest_framework import viewsets
 from sharednote.api.serializers import *
 from ..models import *
+from django.contrib.auth import get_user_model
+from drf_multiple_model.viewsets import FlatMultipleModelAPIViewSet
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    serializer_class = UserSerializer
+    serializer_class = CustomizeUserSerializer
+    queryset = CustomizeUser.objects.all()
 
     def get_queryset(self):
-        queryset = User.objects.all()
-        lion_mail = self.request.query_params.get('lion_mail')
-        if lion_mail:
-            queryset = queryset.filter(lion_mail=lion_mail)
+        queryset = CustomizeUser.objects.all()
+        email = self.request.query_params.get('email')
+        if email:
+            queryset = queryset.filter(user__email=email)
         return queryset
+
+    # def get_queryset_base(self):
+    #     return get_user_model().obkects.all()
+    #
+    # def get_queryset_customize(self):
+    #     return CustomizeUser.objects.all()
 
 
 class CommentViewSet(viewsets.ModelViewSet):

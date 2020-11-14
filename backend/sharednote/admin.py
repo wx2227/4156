@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
+from .models import CustomizeUser
 from .models import Comment
 from .models import Note
 from .models import UpVote
@@ -9,8 +11,14 @@ from .models import Course
 # Register your models here.
 
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('user_name', 'lion_mail', 'avartar', 'credits')
+# class UserInline(admin.StackedInline):
+#     model = CustomizeUser
+#     can_delete = False
+#     verbose_name_plural = 'user'
+
+
+class UserAdmin(BaseUserAdmin):
+    list_display = ('id', 'email')
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -33,6 +41,7 @@ class DownVoteAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'note_id')
 
 
+admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Note, NoteAdmin)

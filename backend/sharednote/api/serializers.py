@@ -1,5 +1,7 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, SerializerMethodField, IntegerField, SlugRelatedField
-from sharednote.models import User, Note, Comment, Course, UpVote, DownVote
+from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, IntegerField, HyperlinkedModelSerializer
+from sharednote.models import Note, Comment, Course, UpVote, DownVote, CustomizeUser
+from django.contrib.auth import get_user_model
 
 
 class CommentSerializer(ModelSerializer):
@@ -16,15 +18,22 @@ class UpVoteSerializer(ModelSerializer):
 
 class DownVoteSerializer(ModelSerializer):
   class Meta:
-    model = UpVote
+    model = DownVote
     fields = ('id', 'user_id', 'note_id')
 
 
 class UserSerializer(ModelSerializer):
   notes = PrimaryKeyRelatedField(many=True, read_only=True)
   class Meta:
-    model = User
-    fields = ('id', 'user_name', 'lion_mail', 'avartar', 'credits', 'notes')
+    model = get_user_model()
+    fields = ('id', 'email', 'notes')
+
+
+class CustomizeUserSerializer(ModelSerializer):
+  user = UserSerializer()
+  class Meta:
+    model = CustomizeUser
+    fields = ('avartar', 'credits', 'user')
 
 
 class NoteSerializer(ModelSerializer):

@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -9,10 +11,9 @@ def validate_lion_mail(email):
         raise ValidationError("Only @columbia.edu email address is allowed.")
 
 
-class User(models.Model):
-    user_name = models.CharField(max_length=120)
-    lion_mail = models.EmailField(validators=[validate_lion_mail])
-    avartar = models.CharField(max_length=200)
+class CustomizeUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avartar = models.TextField(max_length=200, default="")
     credits = models.IntegerField(default=0)
 
 
@@ -24,7 +25,7 @@ class Course(models.Model):
 
 
 class Note(models.Model):
-    user_id = models.ForeignKey(User, related_name='notes', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), related_name='notes', on_delete=models.CASCADE)
     course_number = models.ForeignKey(Course, related_name='notes', on_delete=models.CASCADE)
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
@@ -32,18 +33,18 @@ class Note(models.Model):
 
 
 class Comment(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()
     time = models.DateTimeField()
 
 
 class UpVote(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='ups', on_delete=models.CASCADE)
 
 
 class DownVote(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='downs', on_delete=models.CASCADE)
 
