@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from drf_multiple_model.viewsets import FlatMultipleModelAPIViewSet
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class CustomizeUserViewSet(viewsets.ModelViewSet):
     serializer_class = CustomizeUserSerializer
     queryset = CustomizeUser.objects.all()
 

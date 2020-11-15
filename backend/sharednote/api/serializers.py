@@ -30,7 +30,7 @@ class UserSerializer(ModelSerializer):
 
 
 class CustomizeUserSerializer(ModelSerializer):
-  user = UserSerializer()
+  user = UserSerializer(read_only=True)
   class Meta:
     model = CustomizeUser
     fields = ('avartar', 'credits', 'user')

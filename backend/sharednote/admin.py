@@ -17,8 +17,8 @@ from .models import Course
 #     verbose_name_plural = 'user'
 
 
-class UserAdmin(BaseUserAdmin):
-    list_display = ('id', 'email')
+class CustomizeUserAdmin(admin.ModelAdmin):
+    list_display = ('avartar', 'credits', 'user')
 
 
 class CommentAdmin(admin.ModelAdmin):
@@ -41,8 +41,7 @@ class DownVoteAdmin(admin.ModelAdmin):
     list_display = ('user_id', 'note_id')
 
 
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(CustomizeUser, CustomizeUserAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Note, NoteAdmin)
 admin.site.register(UpVote, UpVoteAdmin)

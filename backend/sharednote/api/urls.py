@@ -4,7 +4,7 @@ from .views import *
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'user', UserViewSet, basename='user')
+router.register(r'user', CustomizeUserViewSet, basename='user')
 router.register(r'note', NoteViewSet, basename='note')
 router.register(r'comment', CommentViewSet, basename='comment')
 router.register(r'upvote', UpVoteViewSet, basename='upvote')

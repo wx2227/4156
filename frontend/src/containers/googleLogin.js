@@ -25,7 +25,6 @@ function GoogleButton(props) {
     const responseGoogle = async(response) => {
         let googleResponse  = await googleLogin(response.accessToken)
         console.log(googleResponse);
-        console.log(response);
         history.push("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
     }
 

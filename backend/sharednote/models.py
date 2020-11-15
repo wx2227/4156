@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -13,8 +15,19 @@ def validate_lion_mail(email):
 
 class CustomizeUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avartar = models.TextField(max_length=200, default="")
+    avartar = models.TextField(max_length=200, default="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")
     credits = models.IntegerField(default=0)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        CustomizeUser.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.customizeuser.save()
 
 
 class Course(models.Model):
