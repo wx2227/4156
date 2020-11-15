@@ -1,11 +1,10 @@
 import React from 'react';
 import {Button, Card, Form, Statistic} from "antd";
 import axios from 'axios';
-import CustomForm from "../components/Form";
 import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
-import CommentList from "../components/CommentListView";
+import CommentList from "./CommentListView";
 
-class NoteDetailPage extends React.Component {
+class NoteDetailView extends React.Component {
     state = {
         note: []
     }
@@ -30,17 +29,9 @@ class NoteDetailPage extends React.Component {
                     <Statistic value={this.state.note.down_votes} prefix={<DislikeOutlined />} />
                 </Card>
                 <CommentList comments={this.state.note.comments}/>
-
-                {/*<CustomForm*/}
-                {/*    requestType="put"*/}
-                {/*    noteID={this.props.match.params.noteID}*/}
-                {/*    btnText="Update"/>*/}
-                {/*<Form onFinish={this.handleDelete}>*/}
-                {/*    <Button type={"danger"} htmlType={"submit"}>Delete</Button>*/}
-                {/*</Form>*/}
             </div>
         );
     }
 }
 
-export default NoteDetailPage;
+export default NoteDetailView;

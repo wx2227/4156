@@ -4,7 +4,7 @@ import {List, Statistic} from "antd";
 import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
 
 
-class Note extends React.Component {
+class Notes extends React.Component {
     state = {
         notes: []
     }
@@ -57,4 +57,4 @@ class Note extends React.Component {
     }
 }
 
-export default Note;
+export default Notes;
