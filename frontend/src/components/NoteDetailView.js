@@ -17,6 +17,7 @@ class NoteDetailView extends React.Component {
                 this.setState({
                     note: res.data
                 })
+                console.log(res.data)
             })
     }
 
@@ -37,7 +38,7 @@ class NoteDetailView extends React.Component {
                     </ul>
                     <label>{this.state.note.description}</label>
                 </div>
-                <Preview />
+                <Preview url={this.state.note.file_url}/>
                 <CommentListView comments={this.state.note.comments}/>
             </div>
         );
