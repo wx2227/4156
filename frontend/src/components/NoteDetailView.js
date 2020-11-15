@@ -1,11 +1,8 @@
 import React from 'react';
-import {Button, Card, Form, Statistic} from "antd";
 import axios from 'axios';
-import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
 import CommentListView from "./CommentListView";
 import './NoteDetailView.css';
 import Preview from "./Preview";
-import CommentEditor from "./CommentEditor";
 
 class NoteDetailView extends React.Component {
     state = {

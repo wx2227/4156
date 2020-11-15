@@ -26,12 +26,11 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     </>
 );
 
-// console.log(this.props.)
 
 class CommentListView extends React.Component {
 
     state = {
-        comments: this.props.comments,
+        comments: [],
         submitting: false,
         value: '',
     };
@@ -70,10 +69,9 @@ class CommentListView extends React.Component {
 
     render() {
         const { comments, submitting, value } = this.state;
-        console.log(comments);
         return (
             <div>
-                {comments.length > 0 && <CommentList comments={comments} />}
+                <CommentList comments={this.props.comments} />
                 <CommentAnt
                     avatar={
                         <Avatar
