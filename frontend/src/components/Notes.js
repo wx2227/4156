@@ -2,59 +2,54 @@ import React from 'react'
 import axios from 'axios'
 import {List, Statistic} from "antd";
 import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
+import { Card, Row, Col } from 'antd';
+import 'antd/dist/antd.css';
+import './Notes.css';
 
+const { Meta } = Card;
 
-class Notes extends React.Component {
-    state = {
-        notes: []
-    }
-
-    componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/note/')
-            .then(res => {
-                this.setState({
-                    notes: res.data
-                });
-            })
-    }
-
-    render() {
-        return (
+function Notes(props) {
+    let noteRows = []
+    props.notes.map((note, i) =>{
+        const rows = [...Array( Math.ceil(props.notes.length / 4) )];
+        // chunk the products into the array of rows
+        noteRows = rows.map( (row, idx) => props.notes.slice(idx * 4, idx * 4 + 4) );
+    })
+    return (
+        <div>
             <List
                 itemLayout="vertical"
-                size="large"
+                dataSource={noteRows}
                 pagination={{
                     onChange: page => {
                         console.log(page);
                     },
-                    pageSize: 5
+                    pageSize: 5,
                 }}
-                dataSource={this.props.notes}
                 renderItem={item => (
-                    <List.Item
-                        key={item.title}
-                        actions={[
-                            <Statistic value={item.up_votes} prefix={<LikeOutlined />} />,
-                            <Statistic value={item.down_votes} prefix={<DislikeOutlined />} />,
-                        ]}
-                        extra={
-                            <img
-                                width={272}
-                                alt="logo"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                            />
-                        }
-                    >
-                        <List.Item.Meta
-                            // avatar={<Avatar src={item.file_name} />}
-                            title={<a href={`/note/${item.id}`}> {item.file_name} </a>}
-                            description={item.description}
-                        />
+                    <List.Item>
+                        <Row gutter={16}>
+                            { item.map( note =>
+                                <Col span={4} offset={1}>
+                                    <Card
+                                        title={note.file_name}
+                                        cover={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
+                                        actions={[
+                                            <Statistic value={note.up_votes} prefix={<LikeOutlined/>}/>,
+                                            <Statistic value={note.down_votes} prefix={<DislikeOutlined/>}/>,
+                                        ]}
+                                        extra={<a href={`/note/${note.id}`}>More</a>}
+                                    >
+                                        <Meta description={note.file_description} />
+                                    </Card>
+                                </Col>
+                            )}
+                        </Row>
                     </List.Item>
                 )}
             />
-        )
-    }
+        </div>
+    );
 }
 
 export default Notes;

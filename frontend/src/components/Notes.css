@@ -1,0 +1,16 @@
+.container {
+    width:80%;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.site-card-wrapper {
+    padding: 30px;
+    width:100%;
+}
+
+.gutter-box {
+    padding: 8px 0;
+}

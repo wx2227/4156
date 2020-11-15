@@ -15,15 +15,14 @@ const Comment = (props) => {
             avatar={
                 <Avatar
                     src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                    alt="Han Solo"
                 />
             }
             content={
                 <Text>{props.comment.content}</Text>
             }
             datetime={
-                <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-                    <span>{moment().fromNow()}</span>
+                <Tooltip title={moment(props.comment.time).format('YYYY-MM-DD HH:mm:ss')}>
+                    <span>{moment(props.comment.time).fromNow()}</span>
                 </Tooltip>
             }
         />

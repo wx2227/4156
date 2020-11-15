@@ -2,7 +2,10 @@ import React from 'react';
 import {Button, Card, Form, Statistic} from "antd";
 import axios from 'axios';
 import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
-import CommentList from "./CommentListView";
+import CommentListView from "./CommentListView";
+import './NoteDetailView.css';
+import Preview from "./Preview";
+import CommentEditor from "./CommentEditor";
 
 class NoteDetailView extends React.Component {
     state = {
@@ -22,13 +25,23 @@ class NoteDetailView extends React.Component {
 
     render() {
         return (
-            <div>
-                <Card name={this.state.note.file_name}>
-                    <p>{this.state.note.file_url}</p>
-                    <Statistic value={this.state.note.up_votes} prefix={<LikeOutlined />} />,
-                    <Statistic value={this.state.note.down_votes} prefix={<DislikeOutlined />} />
-                </Card>
-                <CommentList comments={this.state.note.comments}/>
+            <div className={"bdp_body_container"}>
+                <div>
+                    <div className={"title_container"}>
+                        <h1>{this.state.note.file_name}</h1>
+                    </div>
+                    <ul>
+                        <li>
+                            <label>Course Number   </label>
+                            <span>
+                                <span>{this.state.note.course_number}</span>
+                            </span>
+                        </li>
+                    </ul>
+                    <label>{this.state.note.description}</label>
+                </div>
+                <Preview />
+                <CommentListView comments={this.state.note.comments}/>
             </div>
         );
     }
