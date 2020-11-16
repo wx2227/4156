@@ -22,7 +22,10 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class NoteViewSet(viewsets.ModelViewSet):
-    serializer_class = NoteDynamicSerializer
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return NoteDynamicSerializer
+        return NoteBaseSerializer
 
     def get_queryset(self):
         queryset = Note.objects.all()
