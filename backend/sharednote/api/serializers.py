@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, IntegerField, SerializerMethodField, ListSerializer
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, IntegerField
 from sharednote.models import Note, Comment, Course, Vote, CustomizeUser
 from django.contrib.auth import get_user_model
 
@@ -27,6 +27,15 @@ class VoteSerializer(ModelSerializer):
   class Meta:
     model = Vote
     fields = '__all__'
+    validators = []
+
+  def create(self, validated_data):
+    vote = validated_data.pop('vote')
+    obj, created = Vote.objects.update_or_create(
+      **validated_data,
+      defaults={'vote': vote},
+    )
+    return obj
 
 
 class NoteBaseSerializer(ModelSerializer):
@@ -49,7 +58,7 @@ class NoteDynamicSerializer(NoteSerializer):
     down_votes = IntegerField()
     class Meta:
         model = Note
-        fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'votes', 'up_votes', 'down_votes')
+        fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'up_votes', 'down_votes')
 
 
 class CourseSerializer(ModelSerializer):
@@ -62,7 +71,7 @@ class CourseSerializer(ModelSerializer):
 class CourseBaseSerializer(ModelSerializer):
   class Meta:
     model = Course
-    fields = ('course_number', 'course_name', 'department_name', 'term')
+    fields = '__all__'
 
 
 
