@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import User
 from .models import CustomizeUser
 from .models import Comment
 from .models import Note
@@ -9,12 +7,6 @@ from .models import DownVote
 from .models import Course
 
 # Register your models here.
-
-
-# class UserInline(admin.StackedInline):
-#     model = CustomizeUser
-#     can_delete = False
-#     verbose_name_plural = 'user'
 
 
 class CustomizeUserAdmin(admin.ModelAdmin):

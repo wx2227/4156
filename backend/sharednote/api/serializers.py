@@ -1,5 +1,4 @@
-from rest_framework import serializers
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, IntegerField, HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, IntegerField
 from sharednote.models import Note, Comment, Course, UpVote, DownVote, CustomizeUser
 from django.contrib.auth import get_user_model
 
@@ -36,6 +35,12 @@ class CustomizeUserSerializer(ModelSerializer):
     fields = ('avartar', 'credits', 'user')
 
 
+class NoteBaseSerializer(ModelSerializer):
+  class Meta:
+    model = Note
+    fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url', 'description')
+
+
 class NoteSerializer(ModelSerializer):
   comments = CommentSerializer(many=True)
   ups = UpVoteSerializer(many=True)
@@ -49,16 +54,11 @@ class NoteSerializer(ModelSerializer):
     read_only=True
   )
 
-  class Meta:
-    model = Note
-    fields = ('id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'ups', 'downs', 'up_votes', 'down_votes')
-
 
 class NoteDynamicSerializer(NoteSerializer):
-
     class Meta:
         model = Note
-        fields = ('id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'up_votes', 'down_votes')
+        fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url', 'description', 'comments', 'up_votes', 'down_votes')
 
 
 class CourseSerializer(ModelSerializer):
@@ -66,6 +66,12 @@ class CourseSerializer(ModelSerializer):
   class Meta:
     model = Course
     fields = ('course_number', 'course_name', 'department_name', 'term', 'notes')
+
+
+class CourseBaseSerializer(ModelSerializer):
+  class Meta:
+    model = Course
+    fields = ('course_number', 'course_name', 'department_name', 'term')
 
 
 

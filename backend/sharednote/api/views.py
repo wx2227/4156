@@ -1,8 +1,6 @@
 from rest_framework import viewsets
 from sharednote.api.serializers import *
 from ..models import *
-from django.contrib.auth import get_user_model
-from drf_multiple_model.viewsets import FlatMultipleModelAPIViewSet
 
 
 class CustomizeUserViewSet(viewsets.ModelViewSet):
@@ -16,12 +14,6 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(user__email=email)
         return queryset
 
-    # def get_queryset_base(self):
-    #     return get_user_model().obkects.all()
-    #
-    # def get_queryset_customize(self):
-    #     return CustomizeUser.objects.all()
-
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
@@ -29,7 +21,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class NoteViewSet(viewsets.ModelViewSet):
-    serializer_class = NoteDynamicSerializer
 
     def get_queryset(self):
         queryset = Note.objects.all()
@@ -37,6 +28,11 @@ class NoteViewSet(viewsets.ModelViewSet):
         if course_number:
             queryset = queryset.filter(course_number=course_number)
         return queryset
+
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return NoteDynamicSerializer
+        return NoteBaseSerializer
 
 
 class UpVoteViewSet(viewsets.ModelViewSet):
@@ -50,7 +46,6 @@ class DownVoteViewSet(viewsets.ModelViewSet):
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    serializer_class = CourseSerializer
 
     def get_queryset(self):
         queryset = Course.objects.all()
@@ -59,5 +54,9 @@ class CourseViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(course_name=course_name)
         return queryset
 
+    def get_serializer_class(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return CourseSerializer
+        return CourseBaseSerializer
 
 
