@@ -49,9 +49,9 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Course.objects.all()
-        course_name = self.request.query_params.get('course_name')
-        if course_name:
-            queryset = queryset.filter(course_name=course_name)
+        course_num = self.request.query_params.get('course_number')
+        if course_num:
+            queryset = queryset.filter(course_num=course_num)
         return queryset
 
     def get_serializer_class(self):
