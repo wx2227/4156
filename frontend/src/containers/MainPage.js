@@ -4,10 +4,14 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./MainPage.css";
+import axios from 'axios';
 
 function Mainpage(props) {
     let location = useLocation();
     let history = useHistory();
+
+    const [courses, setCourses] = useState(null);
+    const [couerse, setCourse] = useState(null); // Is user setting course? we re-render the current page if so
 
     // make search bar sticky on top
     useEffect(
@@ -17,12 +21,23 @@ function Mainpage(props) {
                 let sticky = navbar.offsetTop;
 
                 if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky")
+                    navbar.classList.add("sticky");
                   } else {
                     navbar.classList.remove("sticky");
                 }
             }
-            window.addEventListener('scroll', onScroll)
+            window.addEventListener('scroll', onScroll);
+            
+            // fetch courses
+            fetch("http://localhost:8000/api/course/")
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        setCourses(result);
+                    }).catch(err => {alert("Cannot retrieve course info")}); 
+                
+
+
             return () => {
                 window.removeEventListener('scroll', onScroll) // clean up function
             }
@@ -30,10 +45,21 @@ function Mainpage(props) {
         []
     );
 
-    // TODO:
-    // add search bar handler 
-    const handleClick = () => {
-        alert(document.getElementById("search_input").value);
+
+    const showCourses = () => {
+        return (<div>We currently have the notes for following available courses: {courses && <ol>{courses.map((course) => <li>{course.course_number}</li>)} </ol>} </div>);
+    }
+
+    const handleClick = async () => {
+       const course_number = document.getElementById("search_input").value;
+       const request = "http://localhost:8000/api/course/?course_number=" + course_number;
+       fetch(request)
+       .then(res => res.json())
+       .then(
+           (result) => {
+               console.log(result);
+           }).catch(err => {alert("Cannot retrieve course info")}); 
+       
     }
 
     return (
@@ -47,6 +73,7 @@ function Mainpage(props) {
                  </div>
             </div>
             <div className="content">
+                {showCourses()}
             </div>
         </div>
 
