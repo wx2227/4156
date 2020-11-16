@@ -5,13 +5,16 @@ import { useHistory} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./MainPage.css";
 import axios from 'axios';
+import NoteList from '../components/NotesListView';
 
 function Mainpage(props) {
     let location = useLocation();
     let history = useHistory();
 
     const [courses, setCourses] = useState(null);
-    const [couerse, setCourse] = useState(null); // Is user setting course? we re-render the current page if so
+    const [course, setCourse] = useState(null); // Is user setting course? we re-render the current page if so
+    const [isMain, setMain] = useState(true);
+    const [notes, setNotes] = useState([]);
 
     // make search bar sticky on top
     useEffect(
@@ -29,14 +32,7 @@ function Mainpage(props) {
             window.addEventListener('scroll', onScroll);
             
             // fetch courses
-            fetch("http://localhost:8000/api/course/")
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        setCourses(result);
-                    }).catch(err => {alert("Cannot retrieve course info")}); 
-                
-
+            updateCourses();
 
             return () => {
                 window.removeEventListener('scroll', onScroll) // clean up function
@@ -45,27 +41,87 @@ function Mainpage(props) {
         []
     );
 
+    async function updateCourses() {      
+        // fetch courses
+        await fetch("http://localhost:8000/api/course/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setCourses(result);
+                }).catch(err => {alert("Cannot retrieve course info")}); 
+            
+    }
+    
+
 
     const showCourses = () => {
         return (<div>We currently have the notes for following available courses: {courses && <ol>{courses.map((course) => <li>{course.course_number}</li>)} </ol>} </div>);
     }
 
-    const handleClick = async () => {
+    async function handleClick() {
+        // fetch course
+       let course_requested = null;
+       let notes_requested = [];
        const course_number = document.getElementById("search_input").value;
-       const request = "http://localhost:8000/api/course/?course_number=" + course_number;
-       fetch(request)
-       .then(res => res.json())
-       .then(
-           (result) => {
-               console.log(result);
-           }).catch(err => {alert("Cannot retrieve course info")}); 
-       
+       if (course_number != "") {
+            const request = "http://localhost:8000/api/course/?course_number=" + course_number;
+    
+            await fetch(request)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    if (result.length == 0) {
+                        setCourse(null);
+                        setNotes([]);
+                    } else {
+                        course_requested = result[0];
+                    }
+                }).catch(err => {alert("Cannot retrieve course info")}); 
+
+            // fetch notes 
+            // if the course is not empty 
+            if (course_requested) {
+                const note_request = "http://localhost:8000/api/note/?course_number=" + course_number;
+                await fetch(note_request)
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            notes_requested = result;
+                        }).catch(err => {alert("Cannot retrieve notes info")}); 
+            }
+            setCourse(course_requested);
+            setNotes(notes_requested);
+            setMain(false);
+        } else {
+            alert("Please input the course number");
+        }
+    }
+
+    // navigate back to main
+    const handleClickHome = () => {
+        updateCourses();
+        setCourse(null);
+        setNotes([]);
+        setMain(true);
+    }
+
+    const showNotes = () => {
+        if (course) {
+            let num = course.course_number;
+            if (notes.length == 0) {
+                return (<b>The course has no notes available</b>)
+            } else {
+                return (<NoteList notes={notes} />);
+            }
+        } else {
+            return (<b>The course does not exists</b>);
+        }
     }
 
     return (
         <div className = "outerBody">
             <div id="nav">
-                <a className="active" href="javascript:void(0)">Home</a>
+                <a className="active" onClick = {handleClickHome}>Home</a>
                 <div className="search-container">
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                          <input id="search_input" type="text" placeholder="Search.." name="search"></input>
@@ -73,7 +129,7 @@ function Mainpage(props) {
                  </div>
             </div>
             <div className="content">
-                {showCourses()}
+                {isMain ? showCourses() : showNotes()}
             </div>
         </div>
 
