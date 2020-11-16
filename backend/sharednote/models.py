@@ -52,15 +52,18 @@ class Comment(models.Model):
     time = models.DateTimeField()
 
 
-class UpVote(models.Model):
+class Vote(models.Model):
+    UPVOTE = 1
+    NOVOTE = 0
+    DOWNVOTE = -1
+    VOTE_CHOICES = [
+        (1, UPVOTE),
+        (0, NOVOTE),
+        (-1, DOWNVOTE),
+    ]
     user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    note_id = models.ForeignKey(Note, related_name='ups', on_delete=models.CASCADE)
-    class Meta:
-        unique_together = ('user_id', 'note_id',)
+    note_id = models.ForeignKey(Note, related_name='votes', on_delete=models.CASCADE)
+    vote = models.IntegerField(choices=VOTE_CHOICES, default=0)
 
-
-class DownVote(models.Model):
-    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    note_id = models.ForeignKey(Note, related_name='downs', on_delete=models.CASCADE)
     class Meta:
         unique_together = ('user_id', 'note_id',)
