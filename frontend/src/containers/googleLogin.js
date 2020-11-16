@@ -24,7 +24,7 @@ function GoogleButton(props) {
      */
     const responseGoogle = async(response) => {
         // use this as accessToken from google: response.accessToken
-        history.push("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
+        history.replace("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
     }
     
 

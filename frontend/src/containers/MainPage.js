@@ -8,7 +8,6 @@ import axios from 'axios';
 import NoteList from '../components/NotesListView';
 
 function Mainpage(props) {
-    let location = useLocation();
     let history = useHistory();
 
     const [courses, setCourses] = useState(null);
@@ -63,14 +62,14 @@ function Mainpage(props) {
        let course_requested = null;
        let notes_requested = [];
        const course_number = document.getElementById("search_input").value;
-       if (course_number != "") {
+       if (course_number !== "") {
             const request = "http://localhost:8000/api/course/?course_number=" + course_number;
     
             await fetch(request)
             .then(res => res.json())
             .then(
                 (result) => {
-                    if (result.length == 0) {
+                    if (result.length === 0) {
                         setCourse(null);
                         setNotes([]);
                     } else {
@@ -108,7 +107,7 @@ function Mainpage(props) {
     const showNotes = () => {
         if (course) {
             let num = course.course_number;
-            if (notes.length == 0) {
+            if (notes.length === 0) {
                 return (<b>The course has no notes available</b>)
             } else {
                 return (<NoteList notes={notes} />);
@@ -116,6 +115,12 @@ function Mainpage(props) {
         } else {
             return (<b>The course does not exists</b>);
         }
+        
+    }
+
+    const handleLogout = () => {
+        // clear history 
+        history.replace("/");
     }
 
     return (
@@ -126,6 +131,7 @@ function Mainpage(props) {
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                          <input id="search_input" type="text" placeholder="Search.." name="search"></input>
                          <button type="submit" onClick={handleClick}><i className="fa fa-search"></i></button>
+                         <button onClick={handleLogout} >Logout</button>
                  </div>
             </div>
             <div className="content">
