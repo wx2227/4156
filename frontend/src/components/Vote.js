@@ -58,7 +58,7 @@ class Vote extends React.Component {
                 this.setState({
                     likes: this.props.note.up_votes,
                     dislikes: this.props.note.down_votes+1,
-                    action: 'liked'});
+                    action: 'disliked'});
             }).catch(err => {alert("Cannot post vote info")});
     };
 

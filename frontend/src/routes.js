@@ -1,22 +1,20 @@
-//@flow
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import React from "react";
+import { Route } from "react-router-dom";
+
 import LoginPage from './containers/googleLogin'
 import main from './containers/main'
 import NotesView from "./components/NotesListView"
 import NoteDetailView from "./components/NoteDetailView";
-import CommentParent from "./components/CommentParent";
+import Vote from "./components/Vote";
 
-function App() {
-  return (
-    <Router>
-      <Switch>
+const BaseRouter = () => (
+    <div>
         <Route exact path="/" component={LoginPage}/>
         <Route path="/main" component={main}/>
         <Route exact path="/note/:noteID" component={NoteDetailView}/>
         <Route exact path="/note" component={NotesView}/>
-      </Switch>
-    </Router>
-  );
-}
+        <Route exact path="/vote" component={Vote}/>
+    </div>
+);
 
-export default App;
+export default BaseRouter;

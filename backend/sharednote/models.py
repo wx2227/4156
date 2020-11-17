@@ -46,7 +46,7 @@ class Note(models.Model):
 
 
 class Comment(models.Model):
-    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), related_name="user_info",on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()
     time = models.DateTimeField()
