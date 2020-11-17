@@ -72,7 +72,7 @@ class UploadForm extends React.Component<Props> {
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <textarea class="form-control" placeholder="Description" id="description" rows="5" required />
+                    <textarea className="form-control" placeholder="Description" id="description" rows="5" required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="file">Upload your file</label>

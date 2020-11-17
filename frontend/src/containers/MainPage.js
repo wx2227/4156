@@ -136,10 +136,11 @@ function Mainpage(props : props) : React.Node {
             <div id="nav">
                 <a className="active" onClick = {handleClickHome}>Home</a>
                 <div className="search-container">
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                         <input id="search_input" type="text" placeholder="Search.." name="search"></input>
-                         <button type="submit" onClick={handleClick}><i className="fa fa-search"></i></button>
-                         <button onClick={handleLogout} >Logout</button>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                    <input id="search_input" type="text" placeholder="Search.." name="search"></input>
+                    <button type="submit" onClick={handleClick}><i className="fa fa-search"></i></button>
+                    <button onClick={()=> window.location.href = "/upload"}>Upload</button>
+                    <button onClick={handleLogout} >Logout</button>
                  </div>
             </div>
             <div className="content">
