@@ -1,0 +1,178 @@
+
+> frontend@0.1.0 flow /Users/michaelfang/Desktop/4156/4156/frontend
+> flow
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:84:24
+
+Property `@@iterator` is missing in undefined [1] but exists in `$Iterable` [2]. [incompatible-type]
+
+   src/components/CommentListView.js:84:24
+     84|                     ...this.State.comments,
+                                ^^^^^^^^^^^^^^^^^^^
+
+References:
+   src/components/CommentListView.js:11:16
+     11|     comments?: Array<any>,
+                        ^^^^^^^^^^ [1]
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/core.js:1639:11
+   1639| interface $Iterable<+Yield,+Return,-Next> {
+                   ^^^^^^^^^ [2]
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:20:34
+
+Property `extra` is missing in props [1]. [prop-missing]
+
+   src/components/NoteDetailTitle.js:20:34
+   20|     const Content = ({ children, extra }) => {
+                                        ^^^^^
+
+References:
+   src/components/NoteDetailTitle.js:56:17
+   56|                 <Content>{renderContent()}</Content>
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:38:22
+
+Cannot create `Vote` element because property `onDownVoteChange` is missing in props [1] but exists in `Props` [2].
+[prop-missing]
+
+   src/components/NoteDetailTitle.js:38:22
+   38|                     <Vote user_id={13} note={props.note}/>
+                            ^^^^
+
+References:
+   src/components/NoteDetailTitle.js:38:21
+   38|                     <Vote user_id={13} note={props.note}/>
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [1]
+   src/components/Vote.js:29:36
+   29| class Vote extends React.Component<Props, State> {
+                                          ^^^^^ [2]
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:38:22
+
+Cannot create `Vote` element because property `onUpVoteChange` is missing in props [1] but exists in `Props` [2].
+[prop-missing]
+
+   src/components/NoteDetailTitle.js:38:22
+   38|                     <Vote user_id={13} note={props.note}/>
+                            ^^^^
+
+References:
+   src/components/NoteDetailTitle.js:38:21
+   38|                     <Vote user_id={13} note={props.note}/>
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [1]
+   src/components/Vote.js:29:36
+   29| class Vote extends React.Component<Props, State> {
+                                          ^^^^^ [2]
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:38:46
+
+Cannot create `Vote` element because property `down_votes` is missing in `note` [1] but exists in `note` [2] in property
+`note`. [prop-missing]
+
+   src/components/NoteDetailTitle.js:38:46
+   38|                     <Vote user_id={13} note={props.note}/>
+                                                    ^^^^^^^^^^
+
+References:
+   src/components/NoteDetailTitle.js:13:12
+   13|     note : note 
+                  ^^^^ [1]
+   src/components/Vote.js:22:12
+   22|     note : note,
+                  ^^^^ [2]
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:38:46
+
+Cannot create `Vote` element because property `id` is missing in `note` [1] but exists in `note` [2] in property `note`.
+[prop-missing]
+
+   src/components/NoteDetailTitle.js:38:46
+   38|                     <Vote user_id={13} note={props.note}/>
+                                                    ^^^^^^^^^^
+
+References:
+   src/components/NoteDetailTitle.js:13:12
+   13|     note : note 
+                  ^^^^ [1]
+   src/components/Vote.js:22:12
+   22|     note : note,
+                  ^^^^ [2]
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:38:46
+
+Cannot create `Vote` element because property `up_votes` is missing in `note` [1] but exists in `note` [2] in property
+`note`. [prop-missing]
+
+   src/components/NoteDetailTitle.js:38:46
+   38|                     <Vote user_id={13} note={props.note}/>
+                                                    ^^^^^^^^^^
+
+References:
+   src/components/NoteDetailTitle.js:13:12
+   13|     note : note 
+                  ^^^^ [1]
+   src/components/Vote.js:22:12
+   22|     note : note,
+                  ^^^^ [2]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:47:42
+
+Cannot call `prev.item.map` because number [1] is not a function. [not-a-function]
+
+   src/components/NoteDetailView.js:47:42
+   47|             note: prev.item && prev.item.map(item => item['up_votes'] = up_votes)
+                                                ^^^
+
+References:
+   src/components/NoteDetailView.js:21:26
+   21|     item? : ?{[string] : number}
+                                ^^^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:53:42
+
+Cannot call `prev.item.map` because number [1] is not a function. [not-a-function]
+
+   src/components/NoteDetailView.js:53:42
+   53|             note: prev.item && prev.item.map(item => item['down_votes'] = down_votes)
+                                                ^^^
+
+References:
+   src/components/NoteDetailView.js:21:26
+   21|     item? : ?{[string] : number}
+                                ^^^^^^ [1]
+
+
+Error ------------------------------------------------------------------------------------ src/components/Notes.js:12:16
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   12| function Notes(props) : React.Node {
+                      ^^^^^
+
+
+Error ---------------------------------------------------------------------------- src/components/NotesListView.js:17:46
+
+Cannot get `this.props.notes` because property `notes` is missing in `Props` [1]. [prop-missing]
+
+   src/components/NotesListView.js:17:46
+   17|                     <Notes notes={this.props.notes}/>
+                                                    ^^^^^
+
+References:
+   src/components/NotesListView.js:10:45
+   10| class NotesListView extends React.Component<Props>{
+                                                   ^^^^^ [1]
+
+
+
+Found 11 errors
