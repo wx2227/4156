@@ -7,7 +7,11 @@ class NotesListView extends React.Component {
 
     render() {
         return (
-            <Notes notes={this.props.notes}/>
+            <div className="row d-flex justify-content-center">
+                <div className="col-md-12" align="center">
+                    <Notes notes={this.props.notes}/>
+                </div>
+            </div>
         );
     }
 }

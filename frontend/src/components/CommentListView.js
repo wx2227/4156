@@ -2,11 +2,18 @@ import React from 'react';
 import Comment from './Comment.js'
 import {List, Statistic, Form, Input, Button, Avatar, Comment as CommentAnt} from 'antd';
 import moment from 'moment';
+import axios from 'axios';
 
 const { TextArea } = Input;
 
 const CommentList = ({ comments }) => (
     <List
+        pagination={{
+            onChange: page => {
+                console.log(page);
+            },
+            pageSize: 5,
+        }}
         dataSource={comments}
         itemLayout="horizontal"
         renderItem={props => <Comment comment={props} />}
@@ -28,12 +35,20 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 
 class CommentListView extends React.Component {
-
     state = {
         comments: [],
         submitting: false,
         value: '',
-    };
+    }
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         comments: props.comments,
+    //         submitting: false,
+    //         value: '',
+    //     }
+    // }
 
     handleSubmit = () => {
         if (!this.state.value) {
@@ -68,10 +83,9 @@ class CommentListView extends React.Component {
     };
 
     render() {
-        const { comments, submitting, value } = this.state;
         return (
             <div>
-                <CommentList comments={this.props.comments} />
+                <CommentList comments={this.state.comments} />
                 <CommentAnt
                     avatar={
                         <Avatar
@@ -83,35 +97,14 @@ class CommentListView extends React.Component {
                         <Editor
                             onChange={this.handleChange}
                             onSubmit={this.handleSubmit}
-                            submitting={submitting}
-                            value={value}
+                            submitting={this.state.submitting}
+                            value={this.state.value}
                         />
                     }
                 />
             </div>
         );
     }
-
-    // render() {
-    //     return (
-    //         <div>
-    //             <List
-    //                 itemLayout="vertical"
-    //                 size="medium"
-    //                 pagination={{
-    //                     onChange: page => {
-    //                         console.log(page);
-    //                     },
-    //                     pageSize: 5
-    //                 }}
-    //                 dataSource={this.props.comments}
-    //                 renderItem={item => (
-    //                     <Comment comment={item}/>
-    //                 )}
-    //             />
-    //         </div>
-    //     );
-    // }
 }
 
 export default CommentListView;

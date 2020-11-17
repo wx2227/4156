@@ -1,23 +1,24 @@
 import React from 'react'
-import axios from 'axios'
 import {List, Statistic} from "antd";
 import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
-import { Card, Row, Col } from 'antd';
+import { Card, Row, Col, Divider } from 'antd';
 import 'antd/dist/antd.css';
 import './Notes.css';
+import Text from "antd/es/typography/Text";
 
 const { Meta } = Card;
 
 function Notes(props) {
     let noteRows = []
     props.notes.map((note, i) =>{
-        const rows = [...Array( Math.ceil(props.notes.length / 4) )];
-        // chunk the products into the array of rows
-        noteRows = rows.map( (row, idx) => props.notes.slice(idx * 4, idx * 4 + 4) );
+        const rows = [...Array( Math.ceil(props.notes.length / 5) )];
+        // chunk the notes into the array of rows
+        noteRows = rows.map( (row, idx) => props.notes.slice(idx * 5, idx * 5 + 5) );
     })
     return (
-        <div>
+        <div className={"notes-view-wrapper"}>
             <List
+                split={false}
                 itemLayout="vertical"
                 dataSource={noteRows}
                 pagination={{
@@ -28,19 +29,21 @@ function Notes(props) {
                 }}
                 renderItem={item => (
                     <List.Item>
-                        <Row gutter={16}>
+                        <Divider orientation="left"></Divider>
+                        <Row justify={"space-between"}>
                             { item.map( note =>
-                                <Col span={4} offset={1}>
+                                <Col flex="180px">
                                     <Card
+                                        hoverable
+                                        size="small"
                                         title={note.file_name}
                                         cover={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
                                         actions={[
-                                            <Statistic value={note.up_votes} prefix={<LikeOutlined/>}/>,
-                                            <Statistic value={note.down_votes} prefix={<DislikeOutlined/>}/>,
+                                            <Text type="secondary">{note.up_votes} likes</Text>,
+                                            <Text type="secondary">{note.up_votes} dislikes</Text>
                                         ]}
                                         extra={<a href={`/note/${note.id}`}>More</a>}
                                     >
-                                        <Meta description={note.file_description} />
                                     </Card>
                                 </Col>
                             )}

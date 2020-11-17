@@ -3,43 +3,55 @@ import axios from 'axios';
 import CommentListView from "./CommentListView";
 import './NoteDetailView.css';
 import Preview from "./Preview";
+import Vote from './Vote.js';
+import NoteDetailTitle from "./NoteDetailTitle";
 
 class NoteDetailView extends React.Component {
+
     state = {
         note: []
     }
 
-    componentDidMount() {
+    getData() {
         const noteID = this.props.match.params.noteID;
-        console.log(noteID);
         axios.get(`http://127.0.0.1:8000/api/note/${noteID}`)
             .then(res => {
                 this.setState({
                     note: res.data
                 })
-                console.log(res.data)
             })
+    }
+
+    async componentDidMount() {
+        this.getData()
+    }
+
+
+    handleUpVotes(up_votes) {
+        this.setState(prev => ({
+            note: prev.item && prev.item.map(item => item['up_votes'] = up_votes)
+        }))
+    }
+
+    handleDownVotes(down_votes) {
+        this.setState(prev => ({
+            note: prev.item && prev.item.map(item => item['down_votes'] = down_votes)
+        }))
     }
 
     render() {
         return (
-            <div className={"bdp_body_container"}>
-                <div>
-                    <div className={"title_container"}>
-                        <h1>{this.state.note.file_name}</h1>
+            <div className="row">
+                <div className="col-md-2"></div>
+                <div className="col-md-8">
+                    <div className={"detail-container"}>
+                            <NoteDetailTitle note={this.state.note}/>
+                            <Preview url={this.state.note.file_url}/>
+                        <div style={{width: "100%"}}>
+                            <CommentListView comments={this.state.note.comments}/>
+                        </div>
                     </div>
-                    <ul>
-                        <li>
-                            <label>Course Number   </label>
-                            <span>
-                                <span>{this.state.note.course_number}</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <label>{this.state.note.description}</label>
                 </div>
-                <Preview url={this.state.note.file_url}/>
-                <CommentListView comments={this.state.note.comments}/>
             </div>
         );
     }

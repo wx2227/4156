@@ -3,8 +3,7 @@ import LoginPage from './containers/googleLogin'
 import main from './containers/main'
 import NotesView from "./components/NotesListView"
 import NoteDetailView from "./components/NoteDetailView";
-// import Course from "./containers/Course";
-// import history from './history';
+import Vote from "./components/Vote";
 
 function App() {
   return (
@@ -12,10 +11,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={LoginPage}/>
         <Route path="/main" component={main}/>
-       
         <Route exact path="/note/:noteID" component={NoteDetailView}/>
-          <Route exact path="/note" component={NotesView}/>
-        {/*<Route exact path="/course" com/>*/}
+        <Route exact path="/note" component={NotesView}/>
       </Switch>
     </Router>
   );
