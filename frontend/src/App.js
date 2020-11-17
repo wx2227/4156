@@ -6,7 +6,6 @@ import main from './containers/main'
 import NotesView from "./components/NotesListView"
 import NoteDetailView from "./components/NoteDetailView";
 import UploadForm from "./components/UploadForm"
-import Vote from "./components/Vote";
 
 function App(): React.Node {
   return (

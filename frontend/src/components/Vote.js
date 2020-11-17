@@ -18,11 +18,12 @@ type note = {
     up_votes : number,
     down_votes: number
 }
+
 type Props = {
-    note : note,
+    note: note,
+    up_votes : number,
+    down_votes: number,
     user_id : number,
-    onDownVoteChange : (string) => void,
-    onUpVoteChange : (string) => void  
 }
 
 
@@ -35,10 +36,6 @@ class Vote extends React.Component<Props, State> {
             dislikes: 0,
             action: null
         }
-        // $FlowFixMe
-        this.handleUpVote = this.handleUpVote.bind(this);
-        // $FlowFixMe
-        this.handleDownVote = this.handleDownVote.bind(this);
     }
 
     componentDidMount() {
@@ -46,14 +43,6 @@ class Vote extends React.Component<Props, State> {
             likes: this.props.note.up_votes,
             dislikes: this.props.note.down_votes
         })
-    }
-
-    handleUpVote(e : SyntheticInputEvent<HTMLInputElement>) : void {
-        this.props.onUpVoteChange(e.target.value);
-    }
-
-    handleDownVote(e : SyntheticInputEvent<HTMLInputElement>) : void {
-        this.props.onDownVoteChange(e.target.value);
     }
 
     like() : void {
@@ -80,7 +69,7 @@ class Vote extends React.Component<Props, State> {
                 this.setState({
                     likes: this.props.note.up_votes,
                     dislikes: this.props.note.down_votes+1,
-                    action: 'liked'});
+                    action: 'disliked'});
             }).catch(err => {alert("Cannot post vote info")});
     }
 

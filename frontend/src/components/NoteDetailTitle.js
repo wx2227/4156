@@ -17,11 +17,10 @@ type props = {
 
 const NoteDetailTitle = (props : props) : React.Node => {
 
-    const Content = ({ children, extra }) => {
+    const Content = ({ children}) => {
         return (
             <div className="content">
                 <div className="main">{children}</div>
-                <div className="extra">{extra}</div>
             </div>
         );
     };
