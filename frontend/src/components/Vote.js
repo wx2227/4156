@@ -21,8 +21,6 @@ type note = {
 
 type Props = {
     note: note,
-    up_votes : number,
-    down_votes: number,
     user_id : number,
 }
 

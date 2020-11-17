@@ -8,12 +8,14 @@ import Vote from './Vote';
 type note = {
     course_number? : string,
     description? : string,
+    down_votes: number,
+    up_votes: number,
+    id: number
 }
+
 type props = {
     note : note 
 }
-
-
 
 const NoteDetailTitle = (props : props) : React.Node => {
 

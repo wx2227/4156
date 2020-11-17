@@ -17,7 +17,7 @@ function Mainpage(props : props) : React.Node {
     const [courses, setCourses] = useState(null);
     const [course, setCourse] = useState(null); // Is user setting course? we re-render the current page if so
     const [isMain, setMain] = useState(true);
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(null);
 
     // make search bar sticky on top
     useEffect(
@@ -54,8 +54,6 @@ function Mainpage(props : props) : React.Node {
                 }).catch(err => {alert("Cannot retrieve course info")});
 
     }
-
-
 
     const showCourses = () => {
         return (<div>We currently have the notes for following available courses: {courses && <ol>{courses.map((course) => <li>{course.course_number}</li>)} </ol>} </div>);
