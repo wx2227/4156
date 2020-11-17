@@ -5,6 +5,7 @@ import LoginPage from './containers/googleLogin'
 import main from './containers/main'
 import NotesView from "./components/NotesListView"
 import NoteDetailView from "./components/NoteDetailView";
+import UploadForm from "./components/UploadForm"
 import Vote from "./components/Vote";
 
 function App(): React.Node {
@@ -15,6 +16,7 @@ function App(): React.Node {
         <Route path="/main" component={main}/>
         <Route exact path="/note/:noteID" component={NoteDetailView}/>
         <Route exact path="/note" component={NotesView}/>
+        <Route exact path="/upload" component={UploadForm}/>
       </Switch>
     </Router>
   );
