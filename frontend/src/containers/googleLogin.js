@@ -1,5 +1,6 @@
 //@flow
-import React, { Component, useState } from 'react'
+import * as React from 'react';
+import { Component, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import axios from 'axios';
@@ -9,8 +10,9 @@ import googleLogin from "../services/googleLoginService";
 
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com';
 
+type props = {}
 
-function GoogleButton(props) {
+function GoogleButton(props : props) : React.Node {
 
     //const [isLogined, setLogin] = useState(false);
     //const [accessToken, setToken] = useState("");

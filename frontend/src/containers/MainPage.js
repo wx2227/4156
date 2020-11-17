@@ -1,5 +1,6 @@
 //@flow
-import react, { Component, useState, useEffect} from 'react'
+import * as React from 'react'
+import { Component, useState, useEffect} from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,7 +8,10 @@ import "./MainPage.css";
 import axios from 'axios';
 import NoteList from '../components/NotesListView';
 
-function Mainpage(props) {
+
+type props = {}
+
+function Mainpage(props : props) : React.Node {
     let history = useHistory();
 
     const [courses, setCourses] = useState(null);
@@ -19,13 +23,13 @@ function Mainpage(props) {
     useEffect(
         () => {
             const onScroll = () => {
-                let navbar = document.getElementById("nav");
-                let sticky = navbar.offsetTop;
+                let navbar = document && document.getElementById("nav");
+                let sticky = navbar && navbar.offsetTop;
 
                 if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky");
+                    navbar && navbar.classList.add("sticky");
                   } else {
-                    navbar.classList.remove("sticky");
+                    navbar && navbar.classList.remove("sticky");
                 }
             }
             window.addEventListener('scroll', onScroll);
@@ -61,8 +65,14 @@ function Mainpage(props) {
         // fetch course
        let course_requested = null;
        let notes_requested = [];
-       const course_number = document.getElementById("search_input").value;
-       if (course_number !== "") {
+       let course_number = "error";
+       let element = document && document.getElementById("search_input"); 
+       if (element instanceof HTMLInputElement) {
+            course_number =  element.value;
+       }
+       if (course_number === "error") {
+           alert("Cannot retrieve the input");
+       } else if (course_number !== "") {
             const request = "http://localhost:8000/api/course/?course_number=" + course_number;
 
             await fetch(request)
@@ -97,14 +107,14 @@ function Mainpage(props) {
     }
 
     // navigate back to main
-    const handleClickHome = () => {
+    const handleClickHome = () : void => {
         updateCourses();
         setCourse(null);
         setNotes([]);
         setMain(true);
     }
 
-    const showNotes = () => {
+    const showNotes = () : React.Node => {
         if (course) {
             let num = course.course_number;
             if (notes.length === 0) {
