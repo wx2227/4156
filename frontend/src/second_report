@@ -2,23 +2,6 @@
 > frontend@0.1.0 flow /Users/michaelfang/Desktop/4156/4156/frontend
 > flow
 
-Error -------------------------------------------------------------------------------------------------- src/App.js:9:15
-
-Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
-annotation at function return: [signature-verification-failure]
-
-   9| function App() {
-                    
-
-
-Error -------------------------------------------------------------------------------------------------- src/App.js:13:9
-
-Cannot resolve name `React`. [cannot-resolve-name]
-
-   13|         <Route exact path="/" component={LoginPage}/>
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
 Error ---------------------------------------------------------------------------------- src/components/Comment.js:11:18
 
 Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
@@ -707,8 +690,26 @@ References:
                                                     ^^^^ [1]
 
 
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:29:18
 
-... 29 more errors (only 50 out of 79 errors displayed)
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   29|     handleUpVote(e) {
+                        ^
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:33:20
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   33|     handleDownVote(e) {
+                          ^
+
+
+
+... 27 more errors (only 50 out of 77 errors displayed)
 To see all errors, re-run Flow with --show-all-errors
 
 Only showing the most relevant union/intersection branches.
