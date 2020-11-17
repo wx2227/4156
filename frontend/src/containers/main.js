@@ -1,5 +1,6 @@
-
-import React, { Component, useState} from 'react'
+//@flow
+import * as React from 'react';
+import { Component, useState} from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,7 +8,8 @@ import MainPage from "./MainPage";
 
 // an authentication wrapper, prevent the user from entering main page without login
 
-function Main(props) {
+type props = {}
+function Main(props : props) : React.Node {
     let location = useLocation();
     let history = useHistory();
 

@@ -1,0 +1,716 @@
+
+> frontend@0.1.0 flow /Users/michaelfang/Desktop/4156/4156/frontend
+> flow
+
+Error ---------------------------------------------------------------------------------- src/components/Comment.js:11:18
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   11| const Comment = (props) => {
+                        ^^^^^
+
+
+Error ---------------------------------------------------------------------------------- src/components/Comment.js:11:24
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   11| const Comment = (props) => {
+                              
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:39:13
+
+Cannot extend `React.Component` [1] with `CommentListView` because object literal [2] is incompatible with undefined [3]
+in property `state`. [incompatible-extend]
+
+   src/components/CommentListView.js:39:13
+                   v
+   39|     state = {
+   40|         comments: [],
+   41|         submitting: false,
+   42|         value: '',
+   43|     }
+           ^ [2]
+
+References:
+   src/components/CommentListView.js:38:31
+   38| class CommentListView extends React.Component {
+                                     ^^^^^^^^^^^^^^^ [1]
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [3]
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:38:31
+
+Cannot use `React.Component` [1] with fewer than 1 type argument. [missing-type-arg]
+
+   src/components/CommentListView.js:38:31
+   38| class CommentListView extends React.Component {
+                                     ^^^^^^^^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:30
+   26| declare class React$Component<Props, State = void> {
+                                    ^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/CommentListView.js:39:5
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at property `state`: [signature-verification-failure]
+
+           v--------
+   39|     state = {
+   40|         comments: [],
+   41|         submitting: false,
+   42|         value: '',
+   43|     }
+           ^
+
+
+Error --------------------------------------------------------------------------- src/components/CommentListView.js:54:5
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at property `handleSubmit`: [signature-verification-failure]
+
+           v---------------------
+   54|     handleSubmit = () => {
+   55|         if (!this.state.value) {
+   56|             return;
+   57|         }
+   58|
+   59|         this.setState({
+   60|             submitting: true,
+   61|         });
+   62|
+   63|         setTimeout(() => {
+   64|             this.setState({
+   65|                 submitting: false,
+   66|                 value: '',
+   67|                 comments: [
+   68|                     {
+   69|                         author: 'Han Solo',
+   70|                         avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+   71|                         content: <p>{this.state.value}</p>,
+   72|                         datetime: moment().fromNow(),
+   73|                     },
+   74|                     ...this.state.comments,
+   75|                 ],
+   76|             });
+   77|         }, 1000);
+   78|     };
+           -^
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:55:25
+
+Property `value` is missing in undefined [1]. [incompatible-type]
+
+   src/components/CommentListView.js:55:25
+   55|         if (!this.state.value) {
+                               ^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:59:23
+
+Cannot call `this.setState` with object literal bound to `partialState` because property `submitting` is missing in
+undefined [1] but exists in object literal [2]. [incompatible-call]
+
+   src/components/CommentListView.js:59:23
+                             v
+   59|         this.setState({
+   60|             submitting: true,
+   61|         });
+               ^ [2]
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:64:27
+
+Cannot call `this.setState` with object literal bound to `partialState` because property `comments` is missing in
+undefined [1] but exists in object literal [2]. [incompatible-call]
+
+   src/components/CommentListView.js:64:27
+                                 v
+   64|             this.setState({
+   65|                 submitting: false,
+   66|                 value: '',
+   67|                 comments: [
+   68|                     {
+   69|                         author: 'Han Solo',
+   70|                         avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+   71|                         content: <p>{this.state.value}</p>,
+   72|                         datetime: moment().fromNow(),
+   73|                     },
+   74|                     ...this.state.comments,
+   75|                 ],
+   76|             });
+                   ^ [2]
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:71:49
+
+Cannot get `this.state.value` because property `value` is missing in undefined [1]. [incompatible-use]
+
+   src/components/CommentListView.js:71:49
+   71|                         content: <p>{this.state.value}</p>,
+                                                       ^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:74:35
+
+Cannot get `this.state.comments` because property `comments` is missing in undefined [1]. [incompatible-use]
+
+   src/components/CommentListView.js:74:35
+   74|                     ...this.state.comments,
+                                         ^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/CommentListView.js:80:5
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at property `handleChange`: [signature-verification-failure]
+
+           v--------------------
+   80|     handleChange = e => {
+   81|         this.setState({
+   82|             value: e.target.value,
+   83|         });
+   84|     };
+           -^
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:81:23
+
+Cannot call `this.setState` with object literal bound to `partialState` because property `value` is missing in
+undefined [1] but exists in object literal [2]. [incompatible-call]
+
+   src/components/CommentListView.js:81:23
+                             v
+   81|         this.setState({
+   82|             value: e.target.value,
+   83|         });
+               ^ [2]
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:86:13
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   86|     render() {
+                   
+
+
+Error -------------------------------------------------------------------------- src/components/CommentListView.js:89:51
+
+Cannot get `this.state.comments` because property `comments` is missing in undefined [1]. [incompatible-use]
+
+   src/components/CommentListView.js:89:51
+   89|                 <CommentList comments={this.state.comments} />
+                                                         ^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error ------------------------------------------------------------------------- src/components/CommentListView.js:101:52
+
+Cannot get `this.state.submitting` because property `submitting` is missing in undefined [1]. [incompatible-use]
+
+   src/components/CommentListView.js:101:52
+   101|                             submitting={this.state.submitting}
+                                                           ^^^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+    26| declare class React$Component<Props, State = void> {
+                                                     ^^^^ [1]
+
+
+Error ------------------------------------------------------------------------- src/components/CommentListView.js:102:47
+
+Cannot get `this.state.value` because property `value` is missing in undefined [1]. [incompatible-use]
+
+   src/components/CommentListView.js:102:47
+   102|                             value={this.state.value}
+                                                      ^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+    26| declare class React$Component<Props, State = void> {
+                                                     ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailTitle.js:8:26
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   8| const NoteDetailTitle = (props) => {
+                               ^^^^^
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailTitle.js:8:32
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   8| const NoteDetailTitle = (props) => {
+                                     
+
+
+Error -------------------------------------------------------------------------- src/components/NoteDetailTitle.js:10:34
+
+Property `extra` is missing in props [1]. [prop-missing]
+
+   src/components/NoteDetailTitle.js:10:34
+   10|     const Content = ({ children, extra }) => {
+                                        ^^^^^
+
+References:
+   src/components/NoteDetailTitle.js:46:17
+   46|                 <Content>{renderContent()}</Content>
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:12:13
+
+Cannot extend `React.Component` [1] with `NoteDetailView` because object literal [2] is incompatible with undefined [3]
+in property `state`. [incompatible-extend]
+
+   src/components/NoteDetailView.js:12:13
+                   v
+   12|     state = {
+   13|         note: []
+   14|     }
+           ^ [2]
+
+References:
+   src/components/NoteDetailView.js:10:30
+   10| class NoteDetailView extends React.Component {
+                                    ^^^^^^^^^^^^^^^ [1]
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [3]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:10:30
+
+Cannot use `React.Component` [1] with fewer than 1 type argument. [missing-type-arg]
+
+   src/components/NoteDetailView.js:10:30
+   10| class NoteDetailView extends React.Component {
+                                    ^^^^^^^^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:30
+   26| declare class React$Component<Props, State = void> {
+                                    ^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error ---------------------------------------------------------------------------- src/components/NoteDetailView.js:12:5
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at property `state`: [signature-verification-failure]
+
+           v--------
+   12|     state = {
+   13|         note: []
+   14|     }
+           ^
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:20:31
+
+Cannot call `this.setState` with object literal bound to `partialState` because property `note` is missing in
+undefined [1] but exists in object literal [2]. [incompatible-call]
+
+   src/components/NoteDetailView.js:20:31
+                                     v
+   20|                 this.setState({
+   21|                     note: res.data
+   22|                 })
+                       ^ [2]
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:31:19
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   31|     handleUpVotes(up_votes) {
+                         ^^^^^^^^
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:32:23
+
+Cannot call `this.setState` with function bound to `partialState` because property `note` is missing in undefined [1]
+but exists in object literal [2] in the return value. [incompatible-use]
+
+   src/components/NoteDetailView.js:32:23
+                             v---------
+   32|         this.setState(prev => ({
+   33|             note: prev.item && prev.item.map(item => item['up_votes'] = up_votes)
+   34|         }))
+               -^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+   src/components/NoteDetailView.js:32:32
+                                      v
+   32|         this.setState(prev => ({
+   33|             note: prev.item && prev.item.map(item => item['up_votes'] = up_votes)
+   34|         }))
+               ^ [2]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:33:24
+
+Property `item` is missing in undefined [1]. [incompatible-type]
+
+   src/components/NoteDetailView.js:33:24
+   33|             note: prev.item && prev.item.map(item => item['up_votes'] = up_votes)
+                              ^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:37:21
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   37|     handleDownVotes(down_votes) {
+                           ^^^^^^^^^^
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:38:23
+
+Cannot call `this.setState` with function bound to `partialState` because property `note` is missing in undefined [1]
+but exists in object literal [2] in the return value. [incompatible-use]
+
+   src/components/NoteDetailView.js:38:23
+                             v---------
+   38|         this.setState(prev => ({
+   39|             note: prev.item && prev.item.map(item => item['down_votes'] = down_votes)
+   40|         }))
+               -^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+   src/components/NoteDetailView.js:38:32
+                                      v
+   38|         this.setState(prev => ({
+   39|             note: prev.item && prev.item.map(item => item['down_votes'] = down_votes)
+   40|         }))
+               ^ [2]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:39:24
+
+Property `item` is missing in undefined [1]. [incompatible-type]
+
+   src/components/NoteDetailView.js:39:24
+   39|             note: prev.item && prev.item.map(item => item['down_votes'] = down_votes)
+                              ^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:43:13
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   43|     render() {
+                   
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:49:63
+
+Cannot get `this.state.note` because property `note` is missing in undefined [1]. [incompatible-use]
+
+   src/components/NoteDetailView.js:49:63
+   49|                             <NoteDetailTitle note={this.state.note}/>
+                                                                     ^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:50:54
+
+Cannot get `this.state.note` because property `note` is missing in undefined [1]. [incompatible-use]
+
+   src/components/NoteDetailView.js:50:54
+   50|                             <Preview url={this.state.note.file_url}/>
+                                                            ^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:50:59
+
+Cannot get `this.state.note.file_url` because property `file_url` is missing in `Array` [1]. [prop-missing]
+
+   src/components/NoteDetailView.js:50:59
+    50|                             <Preview url={this.state.note.file_url}/>
+                                                                  ^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/core.js:863:15
+   863| declare class Array<T> extends $ReadOnlyArray<T> {
+                      ^^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:52:67
+
+Cannot get `this.state.note` because property `note` is missing in undefined [1]. [incompatible-use]
+
+   src/components/NoteDetailView.js:52:67
+   52|                             <CommentListView comments={this.state.note.comments}/>
+                                                                         ^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error --------------------------------------------------------------------------- src/components/NoteDetailView.js:52:72
+
+Cannot get `this.state.note.comments` because property `comments` is missing in `Array` [1]. [prop-missing]
+
+   src/components/NoteDetailView.js:52:72
+    52|                             <CommentListView comments={this.state.note.comments}/>
+                                                                               ^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/core.js:863:15
+   863| declare class Array<T> extends $ReadOnlyArray<T> {
+                      ^^^^^ [1]
+
+
+Error ------------------------------------------------------------------------------------ src/components/Notes.js:12:16
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   12| function Notes(props) {
+                      ^^^^^
+
+
+Error ------------------------------------------------------------------------------------ src/components/Notes.js:12:22
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   12| function Notes(props) {
+                            
+
+
+Error ----------------------------------------------------------------------------- src/components/NotesListView.js:7:29
+
+Cannot use `React.Component` [1] with fewer than 1 type argument. [missing-type-arg]
+
+   src/components/NotesListView.js:7:29
+    7| class NotesListView extends React.Component {
+                                   ^^^^^^^^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:30
+   26| declare class React$Component<Props, State = void> {
+                                    ^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error ----------------------------------------------------------------------------- src/components/NotesListView.js:9:13
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   9|     render() {
+                  
+
+
+Error ----------------------------------------------------------------------------------- src/components/Preview.js:5:23
+
+Cannot use `React.Component` [1] with fewer than 1 type argument. [missing-type-arg]
+
+   src/components/Preview.js:5:23
+    5| class Preview extends React.Component {
+                             ^^^^^^^^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:30
+   26| declare class React$Component<Props, State = void> {
+                                    ^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error ----------------------------------------------------------------------------------- src/components/Preview.js:6:13
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at function return: [signature-verification-failure]
+
+   6|     render() {
+                  
+
+
+Error -------------------------------------------------------------------------------------- src/components/Vote.js:9:20
+
+Cannot use `React.Component` [1] with fewer than 1 type argument. [missing-type-arg]
+
+   src/components/Vote.js:9:20
+    9| class Vote extends React.Component {
+                          ^^^^^^^^^^^^^^^
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:30
+   26| declare class React$Component<Props, State = void> {
+                                    ^^^^^^^^^^^^^^^^^^^^^ [1]
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:11:17
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   11|     constructor(props) {
+                       ^^^^^
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:13:22
+
+Cannot assign object literal to `this.state` because object literal [1] is incompatible with undefined [2].
+[incompatible-type]
+
+   src/components/Vote.js:13:22
+                            v
+   13|         this.state = {
+   14|             likes: 0,
+   15|             dislikes: 0,
+   16|             action: null
+   17|         }
+               ^ [1]
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [2]
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:18:14
+
+Cannot assign `this.handleUpVote.bind(...)` to `this.handleUpVote` because property `handleUpVote` is not writable.
+[cannot-write]
+
+   18|         this.handleUpVote = this.handleUpVote.bind(this);
+                    ^^^^^^^^^^^^
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:19:14
+
+Cannot assign `this.handleDownVote.bind(...)` to `this.handleDownVote` because property `handleDownVote` is not
+writable. [cannot-write]
+
+   19|         this.handleDownVote = this.handleDownVote.bind(this);
+                    ^^^^^^^^^^^^^^
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:23:23
+
+Cannot call `this.setState` with object literal bound to `partialState` because property `dislikes` is missing in
+undefined [1] but exists in object literal [2]. [incompatible-call]
+
+   src/components/Vote.js:23:23
+                             v
+   23|         this.setState({
+   24|             likes: this.props.note.up_votes,
+   25|             dislikes: this.props.note.down_votes
+   26|         })
+               ^ [2]
+
+References:
+   /private/tmp/flow/flowlib_c034af5b158fe6f6/react.js:26:46
+   26| declare class React$Component<Props, State = void> {
+                                                    ^^^^ [1]
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:29:18
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   29|     handleUpVote(e) {
+                        ^
+
+
+Error ------------------------------------------------------------------------------------- src/components/Vote.js:33:20
+
+Cannot build a typed interface for this module. You should annotate the exports of this module with types. Missing type
+annotation at array pattern: [signature-verification-failure]
+
+   33|     handleDownVote(e) {
+                          ^
+
+
+
+... 27 more errors (only 50 out of 77 errors displayed)
+To see all errors, re-run Flow with --show-all-errors
+
+Only showing the most relevant union/intersection branches.
+To see all branches, re-run Flow with --show-all-branches

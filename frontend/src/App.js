@@ -1,3 +1,5 @@
+//@flow
+import * as React from "react";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import LoginPage from './containers/googleLogin'
 import main from './containers/main'
@@ -5,7 +7,7 @@ import NotesView from "./components/NotesListView"
 import NoteDetailView from "./components/NoteDetailView";
 import Vote from "./components/Vote";
 
-function App() {
+function App(): React.Node {
   return (
     <Router>
       <Switch>

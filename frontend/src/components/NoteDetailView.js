@@ -1,4 +1,5 @@
-import React from 'react';
+//@flow
+import * as React from 'react';
 import axios from 'axios';
 import CommentListView from "./CommentListView";
 import './NoteDetailView.css';
@@ -6,9 +7,23 @@ import Preview from "./Preview";
 import Vote from './Vote.js';
 import NoteDetailTitle from "./NoteDetailTitle";
 
-class NoteDetailView extends React.Component {
+type params = {
+    noteID : string 
+}
+type match = {
+    params : params  
+}
+type Props = {
+    match : match
+}
+type State = {
+    note : any, 
+    item? : ?{[string] : number}
+}
 
-    state = {
+class NoteDetailView extends React.Component<Props, State> {
+
+    state : State = {
         note: []
     }
 
@@ -27,19 +42,19 @@ class NoteDetailView extends React.Component {
     }
 
 
-    handleUpVotes(up_votes) {
+    handleUpVotes(up_votes : number) : void {
         this.setState(prev => ({
             note: prev.item && prev.item.map(item => item['up_votes'] = up_votes)
         }))
     }
 
-    handleDownVotes(down_votes) {
+    handleDownVotes(down_votes : number) : void {
         this.setState(prev => ({
             note: prev.item && prev.item.map(item => item['down_votes'] = down_votes)
         }))
     }
 
-    render() {
+    render() : React.Node {
         return (
             <div className="row">
                 <div className="col-md-2"></div>

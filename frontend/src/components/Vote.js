@@ -1,20 +1,43 @@
-import React, { createElement, useState } from 'react';
+//@flow
+import * as React from 'react';
+import { createElement, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Tooltip, Comment } from 'antd';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import axios from 'axios';
 
 
-class Vote extends React.Component {
+type State = {
+    likes : number,
+    dislikes : number, 
+    action: ?string
+}
 
-    constructor(props) {
+type note = {
+    id : number,
+    up_votes : number,
+    down_votes: number
+}
+type Props = {
+    note : note,
+    user_id : number,
+    onDownVoteChange : (string) => void,
+    onUpVoteChange : (string) => void  
+}
+
+
+class Vote extends React.Component<Props, State> {
+
+    constructor(props : Props) {
         super(props);
-        this.state = {
+        this.state= {
             likes: 0,
             dislikes: 0,
             action: null
         }
+        // $FlowFixMe
         this.handleUpVote = this.handleUpVote.bind(this);
+        // $FlowFixMe
         this.handleDownVote = this.handleDownVote.bind(this);
     }
 
@@ -25,15 +48,15 @@ class Vote extends React.Component {
         })
     }
 
-    handleUpVote(e) {
+    handleUpVote(e : SyntheticInputEvent<HTMLInputElement>) : void {
         this.props.onUpVoteChange(e.target.value);
     }
 
-    handleDownVote(e) {
+    handleDownVote(e : SyntheticInputEvent<HTMLInputElement>) : void {
         this.props.onDownVoteChange(e.target.value);
     }
 
-    like = () => {
+    like() : void {
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: 1,
             user_id: this.props.user_id,
@@ -45,9 +68,9 @@ class Vote extends React.Component {
                     dislikes: this.props.note.down_votes,
                     action: 'liked'});
             }).catch(err => {alert("Cannot post vote info")});
-    };
+    }
 
-    dislike = () => {
+    dislike() : void {
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: -1,
             user_id: this.props.user_id,
@@ -59,10 +82,10 @@ class Vote extends React.Component {
                     dislikes: this.props.note.down_votes+1,
                     action: 'liked'});
             }).catch(err => {alert("Cannot post vote info")});
-    };
+    }
 
 
-    render() {
+    render() : React.Node {
 
         return (
             <div>

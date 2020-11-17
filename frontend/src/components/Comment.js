@@ -1,4 +1,6 @@
-import React, { createElement, useState } from 'react';
+//@flow
+import * as React from 'react';
+import { createElement, useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Comment as CommentDesign, Tooltip, Avatar, Typography } from 'antd';
@@ -7,7 +9,15 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 
 const { Text } = Typography;
 
-const Comment = (props) => {
+type comment = {
+    content: string,
+    time: any
+};
+type props = {
+    comment: comment
+};
+
+const Comment = (props : props) : React.Node => {
 
     return (
         <CommentDesign

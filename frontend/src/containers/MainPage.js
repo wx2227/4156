@@ -1,5 +1,6 @@
-
-import React, { Component, useState, useEffect} from 'react'
+//@flow
+import * as React from 'react'
+import { Component, useState, useEffect} from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,7 +8,10 @@ import "./MainPage.css";
 import axios from 'axios';
 import NoteList from '../components/NotesListView';
 
-function Mainpage(props) {
+
+type props = {}
+
+function Mainpage(props : props) : React.Node {
     let history = useHistory();
 
     const [courses, setCourses] = useState(null);
@@ -18,18 +22,18 @@ function Mainpage(props) {
     // make search bar sticky on top
     useEffect(
         () => {
-            const onScroll = () => { 
-                let navbar = document.getElementById("nav");
-                let sticky = navbar.offsetTop;
+            const onScroll = () => {
+                let navbar = document && document.getElementById("nav");
+                let sticky = navbar && navbar.offsetTop;
 
                 if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky");
+                    navbar && navbar.classList.add("sticky");
                   } else {
-                    navbar.classList.remove("sticky");
+                    navbar && navbar.classList.remove("sticky");
                 }
             }
             window.addEventListener('scroll', onScroll);
-            
+
             // fetch courses
             updateCourses();
 
@@ -40,17 +44,17 @@ function Mainpage(props) {
         []
     );
 
-    async function updateCourses() {      
+    async function updateCourses() {
         // fetch courses
         await fetch("http://localhost:8000/api/course/")
             .then(res => res.json())
             .then(
                 (result) => {
                     setCourses(result);
-                }).catch(err => {alert("Cannot retrieve course info")}); 
-            
+                }).catch(err => {alert("Cannot retrieve course info")});
+
     }
-    
+
 
 
     const showCourses = () => {
@@ -61,10 +65,16 @@ function Mainpage(props) {
         // fetch course
        let course_requested = null;
        let notes_requested = [];
-       const course_number = document.getElementById("search_input").value;
-       if (course_number !== "") {
+       let course_number = "error";
+       let element = document && document.getElementById("search_input"); 
+       if (element instanceof HTMLInputElement) {
+            course_number =  element.value;
+       }
+       if (course_number === "error") {
+           alert("Cannot retrieve the input");
+       } else if (course_number !== "") {
             const request = "http://localhost:8000/api/course/?course_number=" + course_number;
-    
+
             await fetch(request)
             .then(res => res.json())
             .then(
@@ -75,10 +85,10 @@ function Mainpage(props) {
                     } else {
                         course_requested = result[0];
                     }
-                }).catch(err => {alert("Cannot retrieve course info")}); 
+                }).catch(err => {alert("Cannot retrieve course info")});
 
-            // fetch notes 
-            // if the course is not empty 
+            // fetch notes
+            // if the course is not empty
             if (course_requested) {
                 const note_request = "http://localhost:8000/api/note/?course_number=" + course_number;
                 await fetch(note_request)
@@ -86,7 +96,7 @@ function Mainpage(props) {
                     .then(
                         (result) => {
                             notes_requested = result;
-                        }).catch(err => {alert("Cannot retrieve notes info")}); 
+                        }).catch(err => {alert("Cannot retrieve notes info")});
             }
             setCourse(course_requested);
             setNotes(notes_requested);
@@ -97,14 +107,14 @@ function Mainpage(props) {
     }
 
     // navigate back to main
-    const handleClickHome = () => {
+    const handleClickHome = () : void => {
         updateCourses();
         setCourse(null);
         setNotes([]);
         setMain(true);
     }
 
-    const showNotes = () => {
+    const showNotes = () : React.Node => {
         if (course) {
             let num = course.course_number;
             if (notes.length === 0) {
@@ -115,11 +125,11 @@ function Mainpage(props) {
         } else {
             return (<b>The course does not exists</b>);
         }
-        
+
     }
 
     const handleLogout = () => {
-        // clear history 
+        // clear history
         history.replace("/");
     }
 
@@ -139,7 +149,7 @@ function Mainpage(props) {
             </div>
         </div>
 
-        
+
     );
 }
 

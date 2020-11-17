@@ -1,10 +1,21 @@
-import React from 'react';
+//@flow
+import * as React from 'react';
 import Comment from './Comment.js'
 import {List, Statistic, Form, Input, Button, Avatar, Comment as CommentAnt} from 'antd';
 import moment from 'moment';
 import axios from 'axios';
 
 const { TextArea } = Input;
+
+type State = {
+    comments?: Array<any>,
+    submitting?: ?boolean,
+    value?: any
+};
+
+type Props = {
+    any?: any
+};
 
 const CommentList = ({ comments }) => (
     <List
@@ -34,11 +45,11 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 );
 
 
-class CommentListView extends React.Component {
-    state = {
+class CommentListView extends React.Component<Props, State> {
+    State : State = {
         comments: [],
         submitting: false,
-        value: '',
+        value: ''
     }
 
     // constructor(props) {
@@ -50,8 +61,8 @@ class CommentListView extends React.Component {
     //     }
     // }
 
-    handleSubmit = () => {
-        if (!this.state.value) {
+    handleSubmit() : void {
+        if (!this.State.value) {
             return;
         }
 
@@ -67,25 +78,25 @@ class CommentListView extends React.Component {
                     {
                         author: 'Han Solo',
                         avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                        content: <p>{this.state.value}</p>,
+                        content: <p>{this.State.value}</p>,
                         datetime: moment().fromNow(),
                     },
-                    ...this.state.comments,
+                    ...this.State.comments,
                 ],
             });
         }, 1000);
     };
 
-    handleChange = e => {
+    handleChange(e : any) : void {
         this.setState({
             value: e.target.value,
         });
     };
 
-    render() {
+    render() : React.Node {
         return (
             <div>
-                <CommentList comments={this.state.comments} />
+                <CommentList comments={this.State.comments} />
                 <CommentAnt
                     avatar={
                         <Avatar
@@ -97,8 +108,8 @@ class CommentListView extends React.Component {
                         <Editor
                             onChange={this.handleChange}
                             onSubmit={this.handleSubmit}
-                            submitting={this.state.submitting}
-                            value={this.state.value}
+                            submitting={this.State.submitting}
+                            value={this.State.value}
                         />
                     }
                 />
