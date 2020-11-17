@@ -57,7 +57,7 @@ class NoteDetailView extends React.Component<Props, State> {
     render() : React.Node {
         return (
             <div className="row">
-                <div className="col-md-2"></div>
+                <div className="col-md-2"> </div>
                 <div className="col-md-8">
                     <div className={"detail-container"}>
                             <NoteDetailTitle note={this.state.note}/>
