@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import Comment from './Comment.js'
 import {List, Statistic, Form, Input, Button, Avatar, Comment as CommentAnt} from 'antd';

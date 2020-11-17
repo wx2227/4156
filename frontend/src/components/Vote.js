@@ -1,3 +1,4 @@
+//@flow
 import React, { createElement, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Tooltip, Comment } from 'antd';

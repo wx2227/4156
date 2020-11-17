@@ -1,3 +1,4 @@
+//@flow
 import React from 'react'
 import {List, Statistic} from "antd";
 import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
