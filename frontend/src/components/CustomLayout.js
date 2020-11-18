@@ -10,8 +10,8 @@ class CustomLayout extends React.Component {
     render() {
         return (
             <Layout className="layout">
-                <Navbar bg="primary" variant="dark" style={{ position: "sticky", top: "0" }}>
-                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Navbar bg="primary" variant="dark" style={{ position: "sticky", top: "0", zIndex:"100"}}>
+                    <Navbar.Brand href="#home">AirNote</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/airnote/main">Home</Nav.Link>
                         <Nav.Link href="/airnote/notes">Notes</Nav.Link>
