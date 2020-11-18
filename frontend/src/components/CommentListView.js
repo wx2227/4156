@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Comment from './Comment.js'
 import {List, Form, Input, Button, Avatar, Comment as CommentAnt} from 'antd';
-import moment from 'moment';
 
 
 class CommentListView extends React.Component{
@@ -10,9 +9,9 @@ class CommentListView extends React.Component{
         console.log(this.props);
     }
 
-    render() : React.Node {
+    render(){
         return (
-            <div>
+            <>
                 {
                     <List
                         pagination={{
@@ -27,7 +26,7 @@ class CommentListView extends React.Component{
                     />
                 }
                 {/*<CommentList comments={this.props.comments} />*/}
-            </div>
+            </>
         );
     }
 }

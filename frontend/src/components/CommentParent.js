@@ -1,7 +1,6 @@
 import React from "react";
 import CommentListView from "./CommentListView";
 import CommentEditor from "./CommentEditor";
-import axios from 'axios';
 
 class CommentParent extends React.Component {
 
@@ -47,7 +46,7 @@ class CommentParent extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 <CommentListView
                     comments={this.state.comments}
                 />
@@ -56,7 +55,7 @@ class CommentParent extends React.Component {
                     note={this.state.note}
                     addComment={this.addComment}
                 />
-            </div>
+            </>
         );
     }
 }

@@ -5,15 +5,44 @@ import Notes from './Notes';
 import 'antd/dist/antd.css';
 
 
-// $FlowFixMe
-class NotesListView extends React.Component<Props>{
+class NotesListView extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes: []
+        }
+    }
+
+    componentDidMount(): void {
+        const course_number = this.props.match.params.course_number;
+        if (course_number === undefined) {
+            axios.get("http://localhost:8000/api/note/")
+                .then(res => {
+                    this.setState({
+                        notes: res.data
+                    })
+                }).catch(err => {
+                    alert("Cannot get note form server")
+                }
+            )
+        } else {
+            axios.get(`http://localhost:8000/api/note/?course_number=${course_number}`)
+                .then(res => {
+                    this.setState({
+                        notes: res.data
+                    })
+                }).catch(err => {
+                    alert("Please input a valid course number.")
+                }
+            )
+        }
+    }
 
     render() {
-        // $FlowFixMe
         return (
-            <div className="row d-flex justify-content-center">
+            <div className="row justify-content-center">
                 <div className="col-md-12" align="center">
-                    <Notes notes={this.props.notes}/>
+                    <Notes notes={this.state.notes}/>
                 </div>
             </div>
         );

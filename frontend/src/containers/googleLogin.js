@@ -25,7 +25,7 @@ function GoogleButton(props) {
      */
     const responseGoogle = async(response) => {
         // use this as accessToken from google: response.accessToken
-        history.replace("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
+        history.replace("/airnote/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
     }
     
 

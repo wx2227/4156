@@ -18,3 +18,4 @@ sqlparse==0.3.1
 urllib3==1.25.10
 coverage
 django-nose
+pylint==2.6.0
