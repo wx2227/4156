@@ -38,8 +38,10 @@ class Course(models.Model):
 
 
 class Note(models.Model):
-    user_id = models.ForeignKey(get_user_model(), related_name='notes', on_delete=models.CASCADE)
-    course_number = models.ForeignKey(Course, related_name='notes', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(
+        get_user_model(), related_name='notes', on_delete=models.CASCADE)
+    course_number = models.ForeignKey(
+        Course, related_name='notes', on_delete=models.CASCADE)
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
     description = models.TextField(default="")
