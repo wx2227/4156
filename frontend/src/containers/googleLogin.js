@@ -11,7 +11,7 @@ import googleLogin from "../services/googleLoginService";
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com';
 
 
-function GoogleButton(props) {
+function GoogleButton() {
 
     //const [isLogined, setLogin] = useState(false);
     //const [accessToken, setToken] = useState("");
@@ -25,11 +25,13 @@ function GoogleButton(props) {
      */
     const responseGoogle = async(response) => {
         // use this as accessToken from google: response.accessToken
+        let googleResponse  = await googleLogin(response.accessToken);
+        console.log(googleResponse);
         history.replace("/airnote/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
     }
     
 
-    const handleLoginFailure = (response) => {
+    const handleLoginFailure = () => {
         alert('Failed to log out')
     }
 
