@@ -13,7 +13,7 @@ class NotesListView extends React.Component{
         }
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         const course_number = this.props.match.params.course_number;
         if (course_number === undefined) {
             axios.get("http://localhost:8000/api/note/")

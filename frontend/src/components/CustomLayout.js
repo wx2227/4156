@@ -30,7 +30,7 @@ class CustomLayout extends React.Component {
 
     handleClick = () => {
         if (this.state.course) {
-            this.props.history.push("/airnote/main", {course: this.state.course, isMain: false});
+            window.location.href = "/airnote/notes/" + this.state.course;
         } else {
             alert("Please input valid course number");
         }
