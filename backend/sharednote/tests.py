@@ -5,7 +5,6 @@ class UnitTest(TestCase):
   def setUp(self):
     self.client = Client()
 
-
   def test_user_valid(self):
     response = self.client.get("/api/user/?email=niutian95@gmail.com", format='json')
     assert response.status_code == 200
@@ -38,14 +37,26 @@ class UnitTest(TestCase):
     response = self.client.get("/api/comment/100", follow=True)
     self.assertEqual(response.status_code, 404)
 
+  def test_add_comment(self):
+    response = self.client.post("/api/comment/", {'content': 'a lot of work', 'time': '2020-11-10T21:33:00Z', 'user_id': 13, 'note_id': 2}, follow=True)
+    self.assertEqual(response.status_code, 201)
+
   def test_vote_valid(self):
     response = self.client.get("/api/vote/4", follow=True)
     self.assertEqual(response.status_code, 200)
     self.assertEqual(response.json(), {'id': 4, 'vote': -1, 'user_id': 13, 'note_id': 2})
 
   def test_vote_not_exist(self):
-    response = self.client.get("/api/vote/10", follow=True)
+    response = self.client.get("/api/vote/saddc", follow=True)
     self.assertEqual(response.status_code, 404)
+
+  def test_upvote(self):
+    response = self.client.post("/api/vote", {'vote': 1, 'user_id': 13, 'note_id': 7}, follow=True)
+    self.assertEqual(response.status_code, 200)
+
+  def test_downvote(self):
+    response = self.client.post("/api/vote", {'vote': -1, 'user_id': 13, 'note_id': 4}, follow=True)
+    self.assertEqual(response.status_code, 200)
 
   def test_course_valid(self):
     response = self.client.get("/api/course/?course_number=4156")
