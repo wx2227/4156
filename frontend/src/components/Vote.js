@@ -7,27 +7,10 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 import axios from 'axios';
 
 
-type State = {
-    likes : number,
-    dislikes : number, 
-    action: ?string
-}
 
-type note = {
-    id : number,
-    up_votes : number,
-    down_votes: number
-}
+class Vote extends React.Component<props> {
 
-type Props = {
-    note: note,
-    user_id : number,
-}
-
-
-class Vote extends React.Component<Props, State> {
-
-    constructor(props : Props) {
+    constructor(props) {
         super(props);
         this.state= {
             likes: 0,
@@ -43,7 +26,7 @@ class Vote extends React.Component<Props, State> {
         })
     }
 
-    like() : void {
+    like() {
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: 1,
             user_id: this.props.user_id,
@@ -57,7 +40,7 @@ class Vote extends React.Component<Props, State> {
             }).catch(err => {alert("Cannot post vote info")});
     }
 
-    dislike() : void {
+    dislike(){
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: -1,
             user_id: this.props.user_id,
@@ -72,7 +55,7 @@ class Vote extends React.Component<Props, State> {
     }
 
 
-    render() : React.Node {
+    render() {
 
         return (
             <div>

@@ -1,5 +1,4 @@
-//@flow
-import * as React from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import LoginPage from './containers/googleLogin'
 import main from './containers/main'
@@ -7,7 +6,7 @@ import NotesView from "./components/NotesListView"
 import NoteDetailView from "./components/NoteDetailView";
 import UploadForm from "./components/UploadForm"
 
-function App(): React.Node {
+function App() {
   return (
     <Router>
       <Switch>

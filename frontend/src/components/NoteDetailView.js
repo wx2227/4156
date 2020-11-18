@@ -4,24 +4,11 @@ import axios from 'axios';
 import './NoteDetailView.css';
 import Preview from "./Preview";
 import NoteDetailTitle from "./NoteDetailTitle";
+ 
 
-type params = {
-    noteID : string 
-}
-type match = {
-    params : params  
-}
-type Props = {
-    match : match
-}
-type State = {
-    note : any, 
-    item? : ?{[string] : number}
-}
+class NoteDetailView extends React.Component<props, state> {
 
-class NoteDetailView extends React.Component<Props, State> {
-
-    state : State = {
+    state = {
         note: []
     }
 
@@ -39,7 +26,7 @@ class NoteDetailView extends React.Component<Props, State> {
         this.getData()
     }
 
-    render() : React.Node {
+    render()  {
         return (
             <div className="row">
                 <div className="col-md-2"> </div>

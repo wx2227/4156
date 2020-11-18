@@ -9,15 +9,8 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 
 const { Text } = Typography;
 
-type comment = {
-    content: string,
-    time: any
-};
-type props = {
-    comment: comment
-};
 
-const Comment = (props : props) : React.Node => {
+const Comment = (props) => {
 
     return (
         <CommentDesign

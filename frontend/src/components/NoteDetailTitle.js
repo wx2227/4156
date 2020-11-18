@@ -1,23 +1,11 @@
-//@flow
 import * as React from 'react';
 import 'antd/dist/antd.css';
 import {  PageHeader, Descriptions  } from 'antd';
 import Vote from './Vote';
 
 
-type note = {
-    course_number? : string,
-    description? : string,
-    down_votes: number,
-    up_votes: number,
-    id: number
-}
 
-type props = {
-    note : note 
-}
-
-const NoteDetailTitle = (props : props) : React.Node => {
+const NoteDetailTitle = (props) => {
 
     const Content = ({ children}) => {
         return (

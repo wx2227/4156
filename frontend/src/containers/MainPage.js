@@ -1,5 +1,4 @@
-//@flow
-import * as React from 'react'
+import React from 'react'
 import { Component, useState, useEffect} from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
@@ -9,9 +8,8 @@ import axios from 'axios';
 import NoteList from '../components/NotesListView';
 
 
-type props = {}
 
-function Mainpage(props : props) : React.Node {
+function Mainpage(props) {
     let history = useHistory();
 
     const [courses, setCourses] = useState(null);
@@ -105,14 +103,14 @@ function Mainpage(props : props) : React.Node {
     }
 
     // navigate back to main
-    const handleClickHome = () : void => {
+    const handleClickHome = () => {
         updateCourses();
         setCourse(null);
         setNotes([]);
         setMain(true);
     }
 
-    const showNotes = () : React.Node => {
+    const showNotes = () => {
         if (course) {
             let num = course.course_number;
             if (notes.length === 0) {

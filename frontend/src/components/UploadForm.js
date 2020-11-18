@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-type Props = {};
+import React from 'react';
 
 class UploadForm extends React.Component<Props> {
     toBase64 : String = file => new Promise((resolve, reject) => {
@@ -9,7 +7,7 @@ class UploadForm extends React.Component<Props> {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
-    async uploadFile() : Object {
+    async uploadFile() {
         if (document.getElementById("file").files.length === 0){
             return alert("Please Select File");
         }
@@ -32,7 +30,7 @@ class UploadForm extends React.Component<Props> {
         console.log(response)
         return response;
     }
-    async handleSubmit(event) : void {
+    async handleSubmit(event) {
         event.preventDefault();
         const userID = 1;
         const fileName = document.getElementById("fileName").value;
@@ -57,7 +55,7 @@ class UploadForm extends React.Component<Props> {
         })
         .catch(err => console.log(err));
     }
-    render() : React.Node {
+    render() {
         return (
             <form className="p-4 m-4" onSubmit={(event)=>this.handleSubmit(event)}>
                 <div className="form-row">
