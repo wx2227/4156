@@ -10,39 +10,48 @@ import NoteList from '../components/NotesListView';
 
 
 function Mainpage(props) {
-    let history = useHistory();
-
+    console.log("------");
+    console.log("are we here");
     const [courses, setCourses] = useState(null);
-    const [course, setCourse] = useState(null); // Is user setting course? we re-render the current page if so
+    const [course, setCourse] = useState(null); 
     const [isMain, setMain] = useState(true);
     const [notes, setNotes] = useState(null);
 
+    
     // make search bar sticky on top
     useEffect(
         () => {
-            const onScroll = () => {
-                let navbar = document && document.getElementById("nav");
-                let sticky = navbar && navbar.offsetTop;
-
-                if (window.pageYOffset >= sticky) {
-                    navbar && navbar.classList.add("sticky");
-                  } else {
-                    navbar && navbar.classList.remove("sticky");
-                }
-            }
-            window.addEventListener('scroll', onScroll);
-
             // fetch courses
             updateCourses();
-
-            return () => {
-                window.removeEventListener('scroll', onScroll) // clean up function
+            // update course notes if course is provided 
+            if (!isMain) {
+                updateNotes();
             }
-        },
-        []
+        }, []
     );
 
+    useEffect( 
+        () => {
+            if (props.location && props.location.state && props.location.state.course && (props.location.state.isMain !== undefined)) {
+                setCourse(props.location.state.course, setMain(props.location.state.isMain, updateNotes())); 
+            }
+            console.log("here");
+        }, [props.location]
+    );
+
+    async function updateNotes() {
+        console.log(course);
+        const note_request = "http://localhost:8000/api/note/?course_number=" + course;
+            await fetch(note_request)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        setNotes(notes_requested);
+                    }).catch(err => {alert("Cannot retrieve notes info")});
+    }
+
     async function updateCourses() {
+        console.log("update Courses");
         // fetch courses
         await fetch("http://localhost:8000/api/course/")
             .then(res => res.json())
@@ -57,62 +66,9 @@ function Mainpage(props) {
         return (<div>We currently have the notes for following available courses: {courses && <ol>{courses.map((course) => <li>{course.course_number}</li>)} </ol>} </div>);
     }
 
-    async function handleClick() {
-        // fetch course
-       let course_requested = null;
-       let notes_requested = [];
-       let course_number = "error";
-       let element = document && document.getElementById("search_input"); 
-       if (element instanceof HTMLInputElement) {
-            course_number =  element.value;
-       }
-       if (course_number === "error") {
-           alert("Cannot retrieve the input");
-       } else if (course_number !== "") {
-            const request = "http://localhost:8000/api/course/?course_number=" + course_number;
-
-            await fetch(request)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    if (result.length === 0) {
-                        setCourse(null);
-                        setNotes([]);
-                    } else {
-                        course_requested = result[0];
-                    }
-                }).catch(err => {alert("Cannot retrieve course info")});
-
-            // fetch notes
-            // if the course is not empty
-            if (course_requested) {
-                const note_request = "http://localhost:8000/api/note/?course_number=" + course_number;
-                await fetch(note_request)
-                    .then(res => res.json())
-                    .then(
-                        (result) => {
-                            notes_requested = result;
-                        }).catch(err => {alert("Cannot retrieve notes info")});
-            }
-            setCourse(course_requested);
-            setNotes(notes_requested);
-            setMain(false);
-        } else {
-            alert("Please input the course number");
-        }
-    }
-
-    // navigate back to main
-    const handleClickHome = () => {
-        updateCourses();
-        setCourse(null);
-        setNotes([]);
-        setMain(true);
-    }
-
     const showNotes = () => {
         if (course) {
-            let num = course.course_number;
+            let num = course
             if (notes.length === 0) {
                 return (<b>The course has no notes available</b>)
             } else {
@@ -124,18 +80,11 @@ function Mainpage(props) {
 
     }
 
-    const handleLogout = () => {
-        // clear history
-        history.replace("/");
-    }
 
     return (
         <div>
-                {isMain ? showCourses() : showNotes()}
+            {isMain ? showCourses() : showNotes()}
         </div>
-
-
-
     );
 }
 

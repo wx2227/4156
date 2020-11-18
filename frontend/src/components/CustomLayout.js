@@ -2,10 +2,39 @@ import React from 'react';
 import { Layout} from 'antd';
 import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import "../containers/MainPage.css";
-
+import {route, withRouter} from 'react-router-dom';
 const { Content, Footer} = Layout;
 
 class CustomLayout extends React.Component {
+
+    constructor( props ){
+        super(props);
+        this.state = {
+            course: null
+        }
+    }
+  
+
+   handleOnChange = (e) => {
+        let value = null;
+        if (e && e.target && e.target.value) {
+            value = e.target.value
+        } else {
+            return;
+        }
+
+        this.setState((props, state) => ({
+            course: value 
+        }));
+    } 
+
+    handleClick = () => {
+        if (this.state.course) {
+            this.props.history.push("/airnote/main", {course: this.state.course, isMain: false});
+        } else {
+            alert("Please input valid course number");
+        }
+    }
 
     render() {
         return (
@@ -18,7 +47,7 @@ class CustomLayout extends React.Component {
                         <Nav.Link href="/airnote/upload">Upload</Nav.Link>
                     </Nav>
                     <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleOnChange} />
                         <Button variant="outline-light" onClick={this.handleClick}>Search</Button>
                     </Form>
                 </Navbar>
@@ -33,4 +62,4 @@ class CustomLayout extends React.Component {
     }
 }
 
-export default CustomLayout;
+export default withRouter(CustomLayout);
