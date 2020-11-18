@@ -22,7 +22,7 @@ class NoteDetailTitle extends React.Component {
           {this.props.note.course_number}
         </Descriptions.Item>
         <Descriptions.Item label="Votes">
-          <Vote user_id={13} note={this.props.note}/>
+          <Vote note={this.props.note}/>
         </Descriptions.Item>
       </Descriptions>
       <Descriptions size="small" column={1}>

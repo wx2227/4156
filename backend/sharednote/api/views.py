@@ -77,7 +77,17 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 
 class VoteViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        """ Get a query set of a Vote, with query params user_id and note_id
+
+        :return: queryset: A queryset object containing courses of certain course number
+        """
+        queryset = Vote.objects.all()
+        user_id = self.request.query_params.get('user_id')
+        note_id = self.request.query_params.get('note_id')
+        if user_id and note_id:
+            queryset = queryset.filter(user_id=user_id, note_id=note_id)
+        return queryset
     serializer_class = VoteSerializer
-    queryset = Vote.objects.all()
 
 

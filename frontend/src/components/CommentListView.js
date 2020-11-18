@@ -2,8 +2,6 @@ import * as React from 'react';
 import Comment from './Comment.js'
 import {List, Form, Input, Button, Avatar, Comment as CommentAnt} from 'antd';
 import CommentEditor from './CommentEditor';
-import axios from 'axios';
-
 
 class CommentListView extends React.Component{
     constructor(props) {

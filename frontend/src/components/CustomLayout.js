@@ -2,8 +2,8 @@ import React from 'react';
 import { Layout} from 'antd';
 import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import "../containers/MainPage.css";
-import {route, withRouter} from 'react-router-dom';
-const { Content, Footer} = Layout;
+import {withRouter} from 'react-router-dom';
+const { Footer} = Layout;
 
 class CustomLayout extends React.Component {
 

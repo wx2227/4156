@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import NotesView from './components/NotesListView'
-import NoteDetailView from './components/NoteDetailView'
-import UploadForm from './components/UploadForm'
-import Mainpage from './containers/MainPage'
+import NotesView from "./components/NotesListView";
+import NoteDetailView from "./components/NoteDetailView";
+import UploadForm from "./components/UploadForm";
+import Mainpage from "./containers/MainPage";
 
 const BaseRouter = () => (
   <div>

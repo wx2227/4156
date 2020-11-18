@@ -21,7 +21,7 @@ class NotesListView extends React.Component{
                     this.setState({
                         notes: res.data
                     })
-                }).catch(err => {
+                }).catch(() => {
                     alert("Cannot get note form server")
                 }
             )
@@ -31,7 +31,7 @@ class NotesListView extends React.Component{
                     this.setState({
                         notes: res.data
                     })
-                }).catch(err => {
+                }).catch(() => {
                     alert("Please input a valid course number.")
                 }
             )

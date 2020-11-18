@@ -101,7 +101,6 @@ class CommentEditor extends React.Component {
     };
 
     render() {
-        const { comments, loading, value } = this.state;
 
         return (
             <>
@@ -116,8 +115,8 @@ class CommentEditor extends React.Component {
                         <Editor
                             onChange={this.handleChange}
                             onSubmit={this.handleSubmit}
-                            submitting={loading}
-                            value={value}
+                            submitting={this.state.loading}
+                            value={this.state.value}
                         />
                     }
                 />
