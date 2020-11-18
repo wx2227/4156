@@ -1,5 +1,4 @@
-//@flow
-import * as React from 'react'
+import React from 'react'
 import { Component, useState, useEffect} from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
@@ -9,15 +8,14 @@ import axios from 'axios';
 import NoteList from '../components/NotesListView';
 
 
-type props = {}
 
-function Mainpage(props : props) : React.Node {
+function Mainpage(props) {
     let history = useHistory();
 
     const [courses, setCourses] = useState(null);
     const [course, setCourse] = useState(null); // Is user setting course? we re-render the current page if so
     const [isMain, setMain] = useState(true);
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(null);
 
     // make search bar sticky on top
     useEffect(
@@ -54,8 +52,6 @@ function Mainpage(props : props) : React.Node {
                 }).catch(err => {alert("Cannot retrieve course info")});
 
     }
-
-
 
     const showCourses = () => {
         return (<div>We currently have the notes for following available courses: {courses && <ol>{courses.map((course) => <li>{course.course_number}</li>)} </ol>} </div>);
@@ -107,14 +103,14 @@ function Mainpage(props : props) : React.Node {
     }
 
     // navigate back to main
-    const handleClickHome = () : void => {
+    const handleClickHome = () => {
         updateCourses();
         setCourse(null);
         setNotes([]);
         setMain(true);
     }
 
-    const showNotes = () : React.Node => {
+    const showNotes = () => {
         if (course) {
             let num = course.course_number;
             if (notes.length === 0) {
@@ -138,10 +134,11 @@ function Mainpage(props : props) : React.Node {
             <div id="nav">
                 <a className="active" onClick = {handleClickHome}>Home</a>
                 <div className="search-container">
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                         <input id="search_input" type="text" placeholder="Search.." name="search"></input>
-                         <button type="submit" onClick={handleClick}><i className="fa fa-search"></i></button>
-                         <button onClick={handleLogout} >Logout</button>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                    <input id="search_input" type="text" placeholder="Search.." name="search"></input>
+                    <button type="submit" onClick={handleClick}><i className="fa fa-search"></i></button>
+                    <button onClick={()=> window.location.href = "/upload"}>Upload</button>
+                    <button onClick={handleLogout} >Logout</button>
                  </div>
             </div>
             <div className="content">

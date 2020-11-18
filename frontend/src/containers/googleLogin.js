@@ -10,9 +10,8 @@ import googleLogin from "../services/googleLoginService";
 
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com';
 
-type props = {}
 
-function GoogleButton(props : props) : React.Node {
+function GoogleButton(props) {
 
     //const [isLogined, setLogin] = useState(false);
     //const [accessToken, setToken] = useState("");

@@ -7,38 +7,16 @@ import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-d
 import axios from 'axios';
 
 
-type State = {
-    likes : number,
-    dislikes : number, 
-    action: ?string
-}
 
-type note = {
-    id : number,
-    up_votes : number,
-    down_votes: number
-}
-type Props = {
-    note : note,
-    user_id : number,
-    onDownVoteChange : (string) => void,
-    onUpVoteChange : (string) => void  
-}
+class Vote extends React.Component<props> {
 
-
-class Vote extends React.Component<Props, State> {
-
-    constructor(props : Props) {
+    constructor(props) {
         super(props);
         this.state= {
             likes: 0,
             dislikes: 0,
             action: null
         }
-        // $FlowFixMe
-        this.handleUpVote = this.handleUpVote.bind(this);
-        // $FlowFixMe
-        this.handleDownVote = this.handleDownVote.bind(this);
     }
 
     componentDidMount() {
@@ -48,15 +26,7 @@ class Vote extends React.Component<Props, State> {
         })
     }
 
-    handleUpVote(e : SyntheticInputEvent<HTMLInputElement>) : void {
-        this.props.onUpVoteChange(e.target.value);
-    }
-
-    handleDownVote(e : SyntheticInputEvent<HTMLInputElement>) : void {
-        this.props.onDownVoteChange(e.target.value);
-    }
-
-    like() : void {
+    like() {
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: 1,
             user_id: this.props.user_id,
@@ -70,7 +40,7 @@ class Vote extends React.Component<Props, State> {
             }).catch(err => {alert("Cannot post vote info")});
     }
 
-    dislike() : void {
+    dislike(){
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: -1,
             user_id: this.props.user_id,
@@ -80,12 +50,12 @@ class Vote extends React.Component<Props, State> {
                 this.setState({
                     likes: this.props.note.up_votes,
                     dislikes: this.props.note.down_votes+1,
-                    action: 'liked'});
+                    action: 'disliked'});
             }).catch(err => {alert("Cannot post vote info")});
     }
 
 
-    render() : React.Node {
+    render() {
 
         return (
             <div>
