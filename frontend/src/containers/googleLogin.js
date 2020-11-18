@@ -1,5 +1,6 @@
 //@flow
-import React, { Component, useState } from 'react'
+import * as React from 'react';
+import { Component, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import axios from 'axios';

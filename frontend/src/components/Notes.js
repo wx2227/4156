@@ -1,13 +1,11 @@
-//@flow
+
 import React from 'react'
-import {List, Statistic} from "antd";
-import {DislikeOutlined, LikeOutlined} from "@ant-design/icons";
+import { List } from "antd";
 import { Card, Row, Col, Divider } from 'antd';
 import 'antd/dist/antd.css';
 import './Notes.css';
 import Text from "antd/es/typography/Text";
 
-const { Meta } = Card;
 
 function Notes(props) {
     let noteRows = []

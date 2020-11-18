@@ -1,17 +1,16 @@
-//@flow
-import React from 'react';
+import * as React from 'react';
 import 'antd/dist/antd.css';
 import {  PageHeader, Descriptions  } from 'antd';
 import Vote from './Vote';
 
 
+
 const NoteDetailTitle = (props) => {
 
-    const Content = ({ children, extra }) => {
+    const Content = ({ children}) => {
         return (
             <div className="content">
                 <div className="main">{children}</div>
-                <div className="extra">{extra}</div>
             </div>
         );
     };

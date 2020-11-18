@@ -1,22 +1,22 @@
 //@flow
-import React, { createElement, useState } from 'react';
+import * as React from 'react';
+import { createElement, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Tooltip, Comment } from 'antd';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import axios from 'axios';
 
 
-class Vote extends React.Component {
+
+class Vote extends React.Component<props> {
 
     constructor(props) {
         super(props);
-        this.state = {
+        this.state= {
             likes: 0,
             dislikes: 0,
             action: null
         }
-        this.handleUpVote = this.handleUpVote.bind(this);
-        this.handleDownVote = this.handleDownVote.bind(this);
     }
 
     componentDidMount() {
@@ -26,15 +26,7 @@ class Vote extends React.Component {
         })
     }
 
-    handleUpVote(e) {
-        this.props.onUpVoteChange(e.target.value);
-    }
-
-    handleDownVote(e) {
-        this.props.onDownVoteChange(e.target.value);
-    }
-
-    like = () => {
+    like() {
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: 1,
             user_id: this.props.user_id,
@@ -46,9 +38,9 @@ class Vote extends React.Component {
                     dislikes: this.props.note.down_votes,
                     action: 'liked'});
             }).catch(err => {alert("Cannot post vote info")});
-    };
+    }
 
-    dislike = () => {
+    dislike(){
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: -1,
             user_id: this.props.user_id,
@@ -60,7 +52,7 @@ class Vote extends React.Component {
                     dislikes: this.props.note.down_votes+1,
                     action: 'disliked'});
             }).catch(err => {alert("Cannot post vote info")});
-    };
+    }
 
 
     render() {

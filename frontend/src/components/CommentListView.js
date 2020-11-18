@@ -1,23 +1,7 @@
-//@flow
 import * as React from 'react';
 import Comment from './Comment.js'
 import {List, Form, Input, Button, Avatar, Comment as CommentAnt} from 'antd';
 import moment from 'moment';
-
-const { TextArea } = Input;
-
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
-    <>
-        <Form.Item>
-            <TextArea rows={4} onChange={onChange} value={value} />
-        </Form.Item>
-        <Form.Item>
-            <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-                Add Comment
-            </Button>
-        </Form.Item>
-    </>
-);
 
 
 class CommentListView extends React.Component{

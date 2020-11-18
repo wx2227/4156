@@ -1,8 +1,6 @@
-//@flow
-import React from 'react';
-import {Card} from "antd";
 
-class Preview extends React.Component {
+import * as React from 'react';
+class Preview extends React.Component<Props> {
     render() {
         const url = "https://docs.google.com/viewer?url=" + this.props.url + "&embedded=true"
         return(

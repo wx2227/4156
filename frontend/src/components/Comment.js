@@ -1,10 +1,9 @@
-//@flow
-import React, { createElement, useState } from 'react';
+import * as React from 'react';
+import { createElement, useState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Comment as CommentDesign, Tooltip, Avatar, Typography } from 'antd';
 import moment from 'moment';
-import axios from 'axios';
 
 const { Text } = Typography;
 

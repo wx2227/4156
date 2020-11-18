@@ -1,12 +1,15 @@
-//@flow
-import React from 'react';
+
+import * as React from 'react';
 import axios from 'axios';
 import Notes from './Notes';
 import 'antd/dist/antd.css';
 
-class NotesListView extends React.Component {
+
+// $FlowFixMe
+class NotesListView extends React.Component<Props>{
 
     render() {
+        // $FlowFixMe
         return (
             <div className="row d-flex justify-content-center">
                 <div className="col-md-12" align="center">
