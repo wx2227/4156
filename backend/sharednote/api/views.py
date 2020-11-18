@@ -9,6 +9,10 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
     queryset = CustomizeUser.objects.all()
 
     def get_queryset(self):
+        """ Part of the Django requirement, get query set
+
+        :return: The query set of customized user view
+        """
         queryset = CustomizeUser.objects.all()
         email = self.request.query_params.get('email')
         if email:
@@ -23,11 +27,19 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class NoteViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
+        """ Part of the Django requirement, get query set serializer
+
+        :return: A Serializer based on action type
+        """
         if self.action == 'list' or self.action == 'retrieve':
             return NoteDynamicSerializer
         return NoteBaseSerializer
 
     def get_queryset(self):
+        """ Return a queryset containing upvote and downvote number
+
+        :return: queryset : object containing upvote and downvote number
+        """
         queryset = Note.objects.all()
         course_number = self.request.query_params.get('course_number')
         if course_number:
@@ -44,6 +56,10 @@ class NoteViewSet(viewsets.ModelViewSet):
 
 class CourseViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
+        """ Get a query set of a course
+
+        :return: queryset: A queryset object containing courses of certain course number
+        """
         queryset = Course.objects.all()
         course_number = self.request.query_params.get('course_number')
         if course_number:
@@ -51,6 +67,10 @@ class CourseViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_serializer_class(self):
+        """ Part of the Django requirement, get query set serializer
+
+        :return: Serializer : A Serializer for course
+        """
         if self.action == 'list' or self.action == 'retrieve':
             return CourseSerializer
         return CourseBaseSerializer

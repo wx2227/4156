@@ -30,6 +30,11 @@ class VoteSerializer(ModelSerializer):
         validators = []
 
     def create(self, validated_data):
+        """ Helper function for upvote/downvote, so user can create a vote or change a vote in one POST method
+
+        :param validated_data: Dictionary containing the vote instance
+        :return: A valid JSON object (a dictionary) containing votes information for a course
+        """
         vote = validated_data.pop('vote')
         obj, created = Vote.objects.update_or_create(
             **validated_data,
