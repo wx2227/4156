@@ -39,18 +39,26 @@ class CommentEditor extends React.Component {
         }
     }
 
-    handleChange = e => {
+    componentDidUpdate (prevProps): void {
+        if (this.props.note !== prevProps.note) {
+            this.setState({
+                comment: {
+                    ...this.state.comment,
+                    user_id: this.props.note.user_id,
+                    note_id: this.props.note.id
+                }
+            })
+        }
+    }
+
+    handleChange = (e) => {
         this.setState({
             ...this.state,
             value: e.target.value,
-            comment: {
-                ...this.state.comment,
-                content: e.target.value
-            },
         });
     };
 
-    handleSubmit = (e) => {
+    handleSubmit = () => {
 
         if (this.value === "") {
             return
@@ -59,18 +67,14 @@ class CommentEditor extends React.Component {
         this.setState({
             loading: true,
             comment: {
-                content: this.state.comment.content,
-                user_id: this.props.note.user_id,
-                note_id: this.props.note.id,
-                time: moment().format('YYYY-MM-DD HH:mm:ss')
+                ...this.state.comment
             }
         });
 
-        let { comment } = this.state;
         axios.post(`http://127.0.0.1:8000/api/comment/`, {
-            content: this.state.comment.content,
-            user_id: this.props.note.user_id,
-            note_id: this.props.note.id,
+            content: this.state.value,
+            user_id: this.state.comment.user_id,
+            note_id: this.state.comment.note_id,
             time: moment().format('YYYY-MM-DD HH:mm:ss')
         })
             .then(res => {
@@ -81,15 +85,23 @@ class CommentEditor extends React.Component {
                     this.setState({
                         value: "",
                         loading: false,
-                        comment: { ...comment, content: "" }
+                        comment: {
+                            content: this.state.value,
+                            time: res.data.time
+                        }
                     });
-                    this.props.addComment(comment);
+                    this.props.addComment(this.state.comment);
+                    this.setState({
+                        comment: {
+                            content: ""
+                        }
+                    })
                 }
             })
     };
 
     render() {
-        const { comments, submitting, value } = this.state;
+        const { comments, loading, value } = this.state;
 
         return (
             <>
@@ -102,9 +114,9 @@ class CommentEditor extends React.Component {
                     }
                     content={
                         <Editor
-                            onChange={((e)=>this.handleChange(e))}
-                            onSubmit={((e)=>this.handleSubmit(e))}
-                            submitting={submitting}
+                            onChange={this.handleChange}
+                            onSubmit={this.handleSubmit}
+                            submitting={loading}
                             value={value}
                         />
                     }

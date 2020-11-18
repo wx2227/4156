@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout} from 'antd';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import "../containers/MainPage.css";
 
 const { Content, Footer} = Layout;
@@ -9,8 +9,8 @@ class CustomLayout extends React.Component {
 
     render() {
         return (
-            <Layout className="layout">
-                <Navbar bg="primary" variant="dark" style={{ position: "sticky", top: "0", zIndex:"100"}}>
+            <>
+                <Navbar bg="primary" variant="dark" style={{ position: "sticky", top: "0" }}>
                     <Navbar.Brand href="#home">AirNote</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link href="/airnote/main">Home</Nav.Link>
@@ -22,15 +22,13 @@ class CustomLayout extends React.Component {
                         <Button variant="outline-light" onClick={this.handleClick}>Search</Button>
                     </Form>
                 </Navbar>
-                <Content>
-                    <div style={{ background: '#fff', padding: 24, minHeight: 500 }}>
-                        {this.props.children}
-                    </div>
-                </Content>
+                  <div style={{ top: 20, background: '#fff', padding: 24, minHeight: 500 }}>
+                    {this.props.children}
+                  </div>
                 <Footer style={{bottom: "0" }}>
                     Ant Design ©2016 Created by Ant UED
                 </Footer>
-            </Layout>
+            </>
         );
     }
 }

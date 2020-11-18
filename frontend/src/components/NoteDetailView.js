@@ -1,16 +1,18 @@
-//@flow
 import * as React from 'react';
 import axios from 'axios';
 import './NoteDetailView.css';
 import Preview from "./Preview";
 import NoteDetailTitle from "./NoteDetailTitle";
-import CommentParent from "./CommentParent";
+import CommentListView from './CommentListView'
 
 class NoteDetailView extends React.Component<props, state> {
 
-    state = {
-        note: [],
-        comments: []
+    constructor (props) {
+        super(props);
+        this.state = {
+            note: [],
+            comments: []
+        }
     }
 
     getData() {
@@ -42,10 +44,8 @@ class NoteDetailView extends React.Component<props, state> {
                         <button className="btn btn-primary"> Download File </button>
                     </a>
                     <div style={{width: "100%"}}>
-                        <CommentParent note={this.state.note}
-                                       note_id={this.props.match.params.noteID}
-                                       comments={this.state.comments}/>
-                        </div>
+                       <CommentListView note={this.state.note}/>
+                    </div>
                     </div>
                 </div>
             </div>

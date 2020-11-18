@@ -1,4 +1,3 @@
-//@flow
 import * as React from 'react';
 import { createElement, useState } from 'react';
 import 'antd/dist/antd.css';
@@ -6,9 +5,7 @@ import { Tooltip, Comment } from 'antd';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import axios from 'axios';
 
-
-
-class Vote extends React.Component<props> {
+class Vote extends React.Component {
 
     constructor(props) {
         super(props);
@@ -33,10 +30,13 @@ class Vote extends React.Component<props> {
             note_id: this.props.note.id
         })
             .then(res => {
-                this.setState({
-                    likes: this.props.note.up_votes + 1,
-                    dislikes: this.props.note.down_votes,
-                    action: 'liked'});
+              this.setState(prevState =>{
+                return{
+                  ...prevState,
+                  likes : prevState.likes + 1,
+                  action : 'like'
+                }
+              })
             }).catch(err => {alert("Cannot post vote info")});
     }
 
@@ -47,13 +47,14 @@ class Vote extends React.Component<props> {
             note_id: this.props.note.id
         })
             .then(res => {
-                this.setState({
-                    likes: this.props.note.up_votes,
-                    dislikes: this.props.note.down_votes+1,
-                    action: 'disliked'});
+                this.setState(prevState => {
+                  return{
+                    dislikes: prevState.dislikes + 1,
+                    action: 'disliked'
+                  }
+                })
             }).catch(err => {alert("Cannot post vote info")});
     }
-
 
     render() {
 
