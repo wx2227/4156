@@ -36,7 +36,7 @@ function Mainpage(props) {
     const showCourses = () => {
 
         return (   <CardColumns style={{ width: '70rem' }}>{ courses.map((course) =>
-            <a href= "/airnote/notes/">
+            <a href= {"/airnote/notes/" + course.course_number}>
              <Card style={{ width: '18rem', textDecoration:'none' }}>
         
                 <Card.Img variant="top" style={{width: "286px", height:"180px"}} className="img-fluid" src="https://picsum.photos/286/180" />
