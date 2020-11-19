@@ -30,7 +30,10 @@ function GoogleButton() {
         const res = await getUserInfo(response.getBasicProfile().getEmail());
         if(res && res.data && res.data[0].user) {
             // set cookie 
-            Cookies.set("user", res.data[0].user);
+            Cookies.set("user_id", res.data[0].user.id);
+            Cookies.set("token", googleResponse.data);
+            Cookies.set("firstname", res.data[0].user.first_name);
+            Cookies.set("lastname", res.data[0].user.last_name);
             history.replace("/airnote/main")
         }
     }
