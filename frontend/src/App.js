@@ -8,13 +8,15 @@ import Cookies from 'js-cookie';
 
 function App() {
 
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(Cookies.get("user") ? true : false);
 
   const checkAuth = () => {
       if (Cookies.get("user") && !auth) {
           setAuth(true);
       }
   }
+
+  
 
   return (
       <div>
