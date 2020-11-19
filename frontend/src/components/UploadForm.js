@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import moment from 'moment';
 
 class UploadForm extends React.Component<Props> {
     toBase64 : String = file => new Promise((resolve, reject) => {
@@ -52,11 +53,13 @@ class UploadForm extends React.Component<Props> {
             return;
         }
         const uploadResponse = await this.uploadFile();
+        const currTime = moment().format('YYYY-MM-DD HH:mm:ss');
         if (!uploadResponse){
             return;
         }
         const fileUrl = uploadResponse.body.file_url;
-        const data = {file_name: fileName, file_url: fileUrl, description: description, user_id: userID, course_number: courseNumber}
+        const data = {file_name: fileName, file_url: fileUrl, description: description,
+            user_id: userID, course_number: courseNumber, time: currTime};
         console.log(data);
         await fetch("http://localhost:8000/api/note/", {
             headers: {'Content-Type': 'application/json'},
