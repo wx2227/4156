@@ -45,6 +45,10 @@ class Vote extends React.Component {
 
     like() {
         if (this.state.action === 'liked') {
+            this.setState({
+                likes: this.state.likes - 1,
+                action: null
+            })
             return
         }
 
@@ -71,7 +75,11 @@ class Vote extends React.Component {
 
     dislike(){
         if (this.state.action === 'disliked') {
-          return;
+            this.setState({
+                dislikes: this.state.dislikes - 1,
+                action: null
+            })
+            return
         }
 
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
