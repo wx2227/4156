@@ -47,8 +47,28 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.13.0",
     "eslint-plugin-react": "^7.21.5",
     "standard": "^16.0.3"
+  },
+  "standard": {
+    "env": [
+      "jest", 
+      "browser",
+      "es2021"
+    ],
+    "globals": [
+      "alert",
+      "fetch"
+    ],
+    "parser": "babel-eslint",
+      "parserOptions": {
+          "ecmaFeatures": {
+              "jsx": true
+          },
+          "ecmaVersion": 12,
+          "sourceType": "module"
+      }
   }
 }
