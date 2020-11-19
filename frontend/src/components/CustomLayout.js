@@ -40,7 +40,10 @@ class CustomLayout extends React.Component {
     }
 
     handleLogout = () => {
-        Cookies.remove("user");
+        Cookies.remove("user_id", res.data[0].user.id);
+        Cookie.remove("token", googleResponse.data);
+        Cookies.remove("firstname", res.data[0].user.first_name);
+        Cookies.remove("lastname", res.data[0].user.last_name);
         window.location.href = "/"; 
     }
 
