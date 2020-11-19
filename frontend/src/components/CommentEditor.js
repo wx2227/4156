@@ -61,7 +61,8 @@ class CommentEditor extends React.Component {
 
     handleSubmit = () => {
 
-        if (this.value === "") {
+        if (this.state.value.split(' ').join('') === "") {
+            alert("blank comment cannot be posted.")
             return
         }
 
@@ -93,6 +94,7 @@ class CommentEditor extends React.Component {
                     });
                     this.props.addComment(this.state.comment);
                     this.setState({
+                        value: "",
                         comment: {
                             content: ""
                         }
