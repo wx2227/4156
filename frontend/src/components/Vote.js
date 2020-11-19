@@ -29,7 +29,8 @@ class Vote extends React.Component {
           axios.get(`http://127.0.0.1:8000/api/vote/?user_id=${this.props.note.user_id}&note_id=${this.props.note.id}`)
             .then(res => {
               if (res !== []) {
-                const action = res.data['vote'] === 1 ? 'liked' : 'disliked';
+                console.log(res.data[0]['vote'] === 1)
+                const action = res.data[0]['vote'] === 1 ? 'liked' : 'disliked';
                 this.setState({
                   voted: true,
                   action: action
@@ -46,7 +47,7 @@ class Vote extends React.Component {
 
     like() {
         if (this.state.action === 'liked') {
-          return;
+            return
         }
 
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
@@ -55,10 +56,18 @@ class Vote extends React.Component {
             note_id: this.state.note.id
         })
             .then(() => {
-              this.setState({
-                likes: this.state.likes + 1,
-                action: 'liked'
-              })
+              if (this.state.action === 'disliked') {
+                this.setState({
+                  likes: this.state.likes + 1,
+                  dislikes: this.state.dislikes - 1,
+                  action: 'liked'
+                })
+              } else {
+                this.setState({
+                  likes: this.state.likes + 1,
+                  action: 'liked'
+                })
+              }
             }).catch(() => {alert("Cannot post vote info")});
     }
 
@@ -73,10 +82,18 @@ class Vote extends React.Component {
             note_id: this.state.note.id
         })
             .then(() => {
-              this.setState({
-                dislikes: this.state.dislikes + 1,
-                action: 'disliked'
-              })
+              if (this.state.action === 'liked') {
+                this.setState({
+                  likes: this.state.likes - 1,
+                  dislikes: this.state.dislikes + 1,
+                  action: 'disliked'
+                })
+              } else {
+                this.setState({
+                  dislikes: this.state.dislikes + 1,
+                  action: 'disliked'
+                })
+              }
             }).catch(() => {alert("Cannot post vote info")});
     }
 
