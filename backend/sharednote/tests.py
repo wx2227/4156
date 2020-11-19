@@ -19,19 +19,24 @@ class UnitTest(TestCase):
         '''
         test the user endpoint on a valid user, should return the user's info
         '''
-        response = self.client.get("/api/user/?id=13")
+        response = self.client.get("/api/user/?id=14")
         assert response.status_code == 200
         print(response.json()[0])
         self.assertEqual(len(response.json()), 1)
         self.assertEqual(response.json()[0],
-          {'avartar': 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-          'credits': 0,
-          'user': {'id': 13,
-            'first_name': 'WAN',
-            'last_name': 'XU',
-            'email': '15221288637xw@gmail.com',
-            'notes': [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 26, 27, 28]
-          }})
+             {
+                 "avartar": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+                 "credits": 0,
+                 "user": {
+                     "id": 14,
+                     "first_name": "Guancheng",
+                     "last_name": "Ren",
+                     "email": "gr2625@columbia.edu",
+                     "notes": [
+                         1
+                     ]
+                 }
+             })
 
     def test_user_not_exist(self):
         '''
@@ -48,40 +53,83 @@ class UnitTest(TestCase):
         '''
         response = self.client.get("/api/note/?course_number=4156")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.json()), 21)
-        self.assertEqual(response.json()[0], {'id': 2, 'user_id': 13,
-         'course_number': '4156',
-         'file_name': 'name',
-         'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/Assignment1-Spring2020.pdf',
-         'description': 'des',
-         'comments': [{'id': 4, 'content': 'comment1', 'time': '2020-11-10T21:33:00Z',
-            'user_id': 13, 'note_id': 2},
-          {'id': 5, 'content': 'comment2',
-            'time': '2020-11-10T21:33:00Z',
-            'user_id': 13, 'note_id': 2},
-          {'id': 6, 'content': 'comment2',
-            'time': '2020-11-10T21:33:00Z',
-            'user_id': 13, 'note_id': 2},
-            {'id': 7,
-            'content': 'comment2',
-            'time': '2020-11-10T21:33:00Z',
-            'user_id': 13, 'note_id': 2},
-            {'id': 8, 'content': 'comment3',
-            'time': '2020-11-10T21:33:00Z',
-            'user_id': 13, 'note_id': 2},
-            {'id': 9, 'content': 'comment4',
-            'time': '2020-11-10T21:33:00Z',
-            'user_id': 13, 'note_id': 2}],
-            'up_votes': 0, 'down_votes': 2})
-        self.assertEqual(response.json()[20],
-          {'id': 28, 'user_id': 13,
-          'course_number': '4156',
-          'file_name': 'name',
-          'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/Assignment1-Spring2020.pdf',
-          'description': 'des',
-          'comments': [],
-          'up_votes': 0,
-          'down_votes': 0})
+        self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json()[0], {
+        "id": 1,
+        "user_id": 14,
+        "course_number": "4156",
+        "file_name": "name",
+        "file_url": "https://coms4156.s3-us-west-1.amazonaws.com/Assignment1-Spring2020.pdf",
+        "description": "des",
+        "time": "2020-11-19T05:20:43Z",
+        "comments": [
+            {
+                "id": 1,
+                "content": "comment1",
+                "time": "2020-11-19T00:52:16Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 2,
+                "content": "comment2",
+                "time": "2020-11-19T00:52:32Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 3,
+                "content": "comment3",
+                "time": "2020-11-19T00:53:09Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 4,
+                "content": "comment4",
+                "time": "2020-11-19T00:54:45Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 5,
+                "content": "comment5",
+                "time": "2020-11-19T00:56:12Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 6,
+                "content": "comment6",
+                "time": "2020-11-19T00:57:48Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 7,
+                "content": "comment7",
+                "time": "2020-11-19T00:57:56Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 8,
+                "content": "comment8",
+                "time": "2020-11-19T00:58:25Z",
+                "user_id": 14,
+                "note_id": 1
+            },
+            {
+                "id": 9,
+                "content": "comment9",
+                "time": "2020-11-19T00:58:34Z",
+                "user_id": 14,
+                "note_id": 1
+            }
+        ],
+        "up_votes": 1,
+        "down_votes": 0
+        })
 
     def test_note_not_exist(self):
         '''
@@ -97,13 +145,15 @@ class UnitTest(TestCase):
         test the comment endpoint to get a comment,
         should return info of that comment
         '''
-        response = self.client.get("/api/comment/4", follow=True)
+        response = self.client.get("/api/comment/1", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), {'id': 4,
-          'content': 'comment1',
-          'time': '2020-11-10T21:33:00Z',
-          'user_id': 13,
-          'note_id': 2})
+        self.assertEqual(response.json(), {
+            "id": 1,
+            "content": "comment1",
+            "time": "2020-11-19T00:52:16Z",
+            "user_id": 14,
+            "note_id": 1
+        })
 
     def test_comment_not_exist(self):
         '''
@@ -120,8 +170,8 @@ class UnitTest(TestCase):
         response = self.client.post("/api/comment/",
           {'content': 'a lot of work',
           'time': '2020-11-10T21:33:00Z',
-          'user_id': 13,
-          'note_id': 2},
+          'user_id': 14,
+          'note_id': 1},
           follow=True)
         self.assertEqual(response.status_code, 201)
 
@@ -129,12 +179,14 @@ class UnitTest(TestCase):
         '''
         test the vote endpoint to get a vote's info
         '''
-        response = self.client.get("/api/vote/4", follow=True)
+        response = self.client.get("/api/vote/1", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), {'id': 4,
-          'vote': -1,
-          'user_id': 13,
-          'note_id': 2})
+        self.assertEqual(response.json(), {
+            "id": 1,
+            "vote": 1,
+            "user_id": 14,
+            "note_id": 1
+        })
 
     def test_vote_not_exist(self):
         '''
@@ -149,8 +201,8 @@ class UnitTest(TestCase):
         '''
         response = self.client.post("/api/vote",
           {'vote': 1,
-          'user_id': 13,
-          'note_id': 7},
+          'user_id': 14,
+          'note_id': 1},
           follow=True)
         self.assertEqual(response.status_code, 200)
 
@@ -159,7 +211,7 @@ class UnitTest(TestCase):
         test the vote endpoint to downvote a note
         '''
         response = self.client.post("/api/vote",
-          {'vote': -1, 'user_id': 13, 'note_id': 4}, follow=True)
+          {'vote': -1, 'user_id': 14, 'note_id': 1}, follow=True)
         self.assertEqual(response.status_code, 200)
 
     def test_course_valid(self):
@@ -173,7 +225,7 @@ class UnitTest(TestCase):
           {'course_number': '4156',
           'course_name': 'software engineering',
           'department_name': 'cs', 'term': '2020fall',
-          'notes': [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 26, 27, 28]})
+          'notes': [1]})
 
     def test_course_not_exist(self):
         '''
