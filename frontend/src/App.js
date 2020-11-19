@@ -10,8 +10,11 @@ function App() {
 
   const [auth, setAuth] = useState(Cookies.get("user") ? true : false);
 
+
+    // TODO:
+    // need to post token to backend to verify user 
   const checkAuth = () => {
-      if (Cookies.get("user") && !auth) {
+      if (Cookies.get("user_id") && (Cookies.get("token")) && !auth) {
           setAuth(true);
       }
   }
