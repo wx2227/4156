@@ -21,9 +21,6 @@ class Vote extends React.Component {
         this.dislike = this.dislike.bind(this)
     }
 
-    // componentDidMount () {
-    // }
-
   componentDidUpdate (prevProps) {
         if (this.props.note !== prevProps.note){
           axios.get(`http://127.0.0.1:8000/api/vote/?user_id=${this.props.note.user_id}&note_id=${this.props.note.id}`)

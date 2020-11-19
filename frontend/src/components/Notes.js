@@ -1,55 +1,38 @@
 
 import React from 'react'
 import { List } from "antd";
-import { Card, Row, Col, Divider } from 'antd';
+import { Row, Col, Divider } from 'antd';
+import { Card, ListGroup } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 import './Notes.css';
-import Text from "antd/es/typography/Text";
 
 
 function Notes(props) {
     let noteRows = []
-    props.notes.map((note, i) =>{
-        const rows = [...Array( Math.ceil(props.notes.length / 5) )];
+    props.notes.map(() =>{
+        const rows = [...Array( Math.ceil(props.notes.length / 2) )];
         // chunk the notes into the array of rows
-        noteRows = rows.map( (row, idx) => props.notes.slice(idx * 5, idx * 5 + 5) );
+        noteRows = rows.map( (row, idx) => props.notes.slice(idx * 2, idx * 2 + 2) );
     })
     return (
         <div className={"notes-view-wrapper"}>
-            <List
-                split={false}
-                itemLayout="vertical"
-                dataSource={noteRows}
-                pagination={{
-                    onChange: page => {
-                        console.log(page);
-                    },
-                    pageSize: 5,
-                }}
-                renderItem={item => (
-                    <List.Item>
-                        <Divider orientation="left"></Divider>
-                        <Row justify={"space-between"}>
-                            { item.map( note =>
-                                <Col flex="180px">
-                                    <Card
-                                        hoverable
-                                        size="small"
-                                        title={note.file_name}
-                                        cover={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-                                        actions={[
-                                            <Text type="secondary">{note.up_votes} likes</Text>,
-                                            <Text type="secondary">{note.up_votes} dislikes</Text>
-                                        ]}
-                                        extra={<a href={`/airnote/note/${note.id}`}>More</a>}
-                                    >
-                                    </Card>
-                                </Col>
-                            )}
-                        </Row>
-                    </List.Item>
-                )}
-            />
+            <ListGroup horizontal={'xl'} className="my-2" key={idx}>
+                noteRows.map( row =>
+                    row.map(note => {
+                        <ListGroup.Item>
+                            <Card style={{ width: '18rem' }}>
+                                <Card.Body>
+                                    <Card.Link href={`/airnote/note/${note.id}`}>{props.course.course_number}</Card.Link>
+                                    <Card.Link href={`/airnote/note/${note.id}`}>{props.course.course_name}</Card.Link>
+                                    <Card.Text>{props.course.department_name}</Card.Text>
+                                    <Card.Text>note.up_votes</Card.Text>
+                                    <Card.Text>note.down_votes</Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </ListGroup.Item>}
+                    )
+                )
+            </ListGroup>
         </div>
     );
 }

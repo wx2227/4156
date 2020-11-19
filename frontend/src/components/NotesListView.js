@@ -9,7 +9,8 @@ class NotesListView extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            notes: []
+            notes: [],
+            course: []
         }
     }
 
@@ -36,13 +37,21 @@ class NotesListView extends React.Component{
                 }
             )
         }
+        axios.get(`http://localhost:8000/api/course/?course_number=${course_number}`)
+          .then(res => {
+              this.setState({
+                  course: res.data
+              })
+          }).catch(() => {
+            alert("Cannot get course form server")
+        })
     }
 
     render() {
         return (
             <div className="row justify-content-center">
                 <div className="col-md-12" align="center">
-                    <Notes notes={this.state.notes}/>
+                    <Notes notes={this.state.notes} course={this.state.course}/>
                 </div>
             </div>
         );
