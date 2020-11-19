@@ -1,8 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Comment, Avatar, Form, Button, List, Input } from 'antd';
+import { Comment, Avatar, Form, Button, List, Input, Comment as CommentDesign } from 'antd'
 import moment from 'moment';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const { TextArea } = Input;
 
@@ -29,7 +30,7 @@ class CommentEditor extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             comment: {
-                user_id: props.note.user_id,
+                user_id: Cookies.get('user_id'),
                 note_id: props.note.id,
                 time: null,
                 content: ""
@@ -44,7 +45,7 @@ class CommentEditor extends React.Component {
             this.setState({
                 comment: {
                     ...this.state.comment,
-                    user_id: this.props.note.user_id,
+                    user_id: Cookies.get('user_id'),
                     note_id: this.props.note.id
                 }
             })

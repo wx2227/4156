@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { Tooltip } from 'antd';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 class Vote extends React.Component {
 
@@ -14,35 +15,32 @@ class Vote extends React.Component {
             likes: 0,
             dislikes: 0,
             action: null,
-            voted: false
+            voted: false,
+            user_id: Cookies.get('user_id')
         }
-
         this.like = this.like.bind(this)
         this.dislike = this.dislike.bind(this)
     }
 
-    // componentDidMount () {
-    // }
-
   componentDidUpdate (prevProps) {
-        if (this.props.note !== prevProps.note){
-          axios.get(`http://127.0.0.1:8000/api/vote/?user_id=${this.props.note.user_id}&note_id=${this.props.note.id}`)
-            .then(res => {
-              console.log(res)
-              if (res.data.length !== 0) {
-                const action = res.data[0]['vote'] === 1 ? 'liked' : 'disliked';
-                this.setState({
-                  voted: true,
-                  action: action
-                })
-              }
+    if (this.props.note !== prevProps.note){
+      axios.get(`http://127.0.0.1:8000/api/vote/?user_id=${this.state.user_id}&note_id=${this.props.note.id}`)
+        .then(res => {
+          console.log(res)
+          if (res.data.length !== 0) {
+            const action = res.data[0]['vote'] === 1 ? 'liked' : 'disliked';
+            this.setState({
+              voted: true,
+              action: action
             })
-          this.setState({
+          }
+        })
+        this.setState({
             note: this.props.note,
             likes: this.props.note.up_votes,
             dislikes: this.props.note.down_votes
-          })
-        }
+        })
+    }
       }
 
     like() {
@@ -52,7 +50,7 @@ class Vote extends React.Component {
 
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: 1,
-            user_id: this.state.note.user_id,
+            user_id: this.state.user_id,
             note_id: this.state.note.id
         })
             .then(() => {
@@ -78,7 +76,7 @@ class Vote extends React.Component {
 
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: -1,
-            user_id: this.state.note.user_id,
+            user_id: this.state.user_id,
             note_id: this.state.note.id
         })
             .then(() => {
