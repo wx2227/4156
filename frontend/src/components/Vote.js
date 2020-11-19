@@ -28,7 +28,15 @@ class Vote extends React.Component {
         .then(res => {
           console.log(res)
           if (res.data.length !== 0) {
-            const action = res.data[0]['vote'] === 1 ? 'liked' : 'disliked';
+              let action;
+              const vote = res.data[0]['vote']
+              if (vote === 1) {
+                  action = 'liked';
+              } else if (vote === -1) {
+                  action = 'disliked';
+              } else {
+                  action = null
+              }
             this.setState({
               voted: true,
               action: action
@@ -45,10 +53,17 @@ class Vote extends React.Component {
 
     like() {
         if (this.state.action === 'liked') {
-            this.setState({
-                likes: this.state.likes - 1,
-                action: null
+            axios.post(`http://127.0.0.1:8000/api/vote/`, {
+                vote: 0,
+                user_id: this.state.user_id,
+                note_id: this.state.note.id
             })
+                .then(() => {
+                    this.setState({
+                        likes: this.state.likes - 1,
+                        action: null
+                    })
+                }).catch(() => alert('cannot undo the operation.'))
             return
         }
 
@@ -75,10 +90,17 @@ class Vote extends React.Component {
 
     dislike(){
         if (this.state.action === 'disliked') {
-            this.setState({
-                dislikes: this.state.dislikes - 1,
-                action: null
+            axios.post(`http://127.0.0.1:8000/api/vote/`, {
+                vote: 0,
+                user_id: this.state.user_id,
+                note_id: this.state.note.id
             })
+                .then(() => {
+                    this.setState({
+                        dislikes: this.state.dislikes - 1,
+                        action: null
+                    })
+                }).catch(() => alert('cannot undo the operation.'))
             return
         }
 

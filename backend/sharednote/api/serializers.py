@@ -46,7 +46,8 @@ class VoteSerializer(ModelSerializer):
 class NoteBaseSerializer(ModelSerializer):
     class Meta:
         model = Note
-        fields = '__all__'
+        fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url',
+        'description')
 
 
 class NoteSerializer(ModelSerializer):
