@@ -25,7 +25,6 @@ class Vote extends React.Component {
     if (this.props.note !== prevProps.note) {
       axios.get(`http://127.0.0.1:8000/api/vote/?user_id=${this.state.user_id}&note_id=${this.props.note.id}`)
         .then(res => {
-          console.log(res)
           if (res.data.length !== 0) {
             let action
             const vote = res.data[0].vote

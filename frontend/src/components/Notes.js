@@ -7,13 +7,13 @@ import Text from 'antd/es/typography/Text'
 
 function Notes (props) {
   let noteRows = []
-  /* eslint-disable */
-  props.notes.forEach((note) => {
+
+  props.notes.forEach(() => {
     const rows = [...Array(Math.ceil(props.notes.length / 5))]
     // chunk the notes into the array of rows
     noteRows = rows.map((row, idx) => props.notes.slice(idx * 5, idx * 5 + 5))
   })
-  /* eslint-enable */
+
   return (
     <div className='notes-view-wrapper'>
       <List

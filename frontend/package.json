@@ -54,7 +54,7 @@
   },
   "standard": {
     "env": [
-      "jest", 
+      "jest",
       "browser",
       "es2021"
     ],
@@ -63,12 +63,12 @@
       "fetch"
     ],
     "parser": "babel-eslint",
-      "parserOptions": {
-          "ecmaFeatures": {
-              "jsx": true
-          },
-          "ecmaVersion": 12,
-          "sourceType": "module"
-      }
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    }
   }
 }
