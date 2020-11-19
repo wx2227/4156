@@ -9,6 +9,11 @@ from django.dispatch import receiver
 
 
 def validate_lion_mail(email):
+    """ Check whether a email is from lion mail
+
+    :param email: String: containing email address
+    :return: None : Raise ValidationError if email is not lionmail
+    """
     if not email.endswith('@columbia.edu'):
         raise ValidationError("Only @columbia.edu email address is allowed.")
 
@@ -21,12 +26,28 @@ class CustomizeUser(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    """ Create a new user profile in Django database
+    If user profile created by built-in user table then we create a customized user table with extra fields
+
+    :param sender: Django built-in placeholder parameter
+    :param instance: built-in UserInstance
+    :param created: Boolean : whether the user is already created
+    :param kwargs: [args...] : additional arguments
+    :return: CustomizedUserInstance
+    """
     if created:
         CustomizeUser.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
+    """ Modify a new user profile in Django database
+
+    :param sender: Django built-in placeholder parameter
+    :param instance: built-in UserInstance
+    :param kwargs: [args...] : additional arguments
+    :return: None
+    """
     instance.customizeuser.save()
 
 
@@ -48,7 +69,7 @@ class Note(models.Model):
 
 
 class Comment(models.Model):
-    user_id = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), related_name="user_info",on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()
     time = models.DateTimeField()

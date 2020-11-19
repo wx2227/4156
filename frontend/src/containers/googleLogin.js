@@ -4,14 +4,15 @@ import { Component, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import './Login.css'
 import googleLogin from "../services/googleLoginService";
 
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com';
+const lionMail = "columbia.edu";
 
-
-function GoogleButton(props) {
+function GoogleButton() {
 
     //const [isLogined, setLogin] = useState(false);
     //const [accessToken, setToken] = useState("");
@@ -25,11 +26,31 @@ function GoogleButton(props) {
      */
     const responseGoogle = async(response) => {
         // use this as accessToken from google: response.accessToken
-        history.replace("/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
+        const userEmail = response.getBasicProfile().getEmail();
+        if (!userEmail.endsWith(lionMail)) {
+            return;
+        }
+        const googleResponse  = await googleLogin(response.accessToken);
+        const res = await getUserInfo(userEmail);
+        if(res && res.data && res.data[0].user) {
+            // set cookie 
+            Cookies.set("user_id", res.data[0].user.id);
+            Cookies.set("token", googleResponse.data);
+            Cookies.set("firstname", res.data[0].user.first_name);
+            Cookies.set("lastname", res.data[0].user.last_name);
+            window.location.href = "/airnote/main";
+        }
     }
+
     
 
-    const handleLoginFailure = (response) => {
+    const getUserInfo = async(email) => {
+        const request = "http://localhost:8000/api/user/?email=" + email;
+        let res = await axios.get(request);
+        return await res;
+    }
+
+    const handleLoginFailure = () => {
         alert('Failed to log out')
     }
 

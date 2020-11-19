@@ -1,22 +1,39 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import LoginPage from './containers/googleLogin'
-import main from './containers/main'
-import NotesView from "./components/NotesListView"
-import NoteDetailView from "./components/NoteDetailView";
-import UploadForm from "./components/UploadForm"
+import {useState} from "react";
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import BaseRouter from './routes';
+import CustomLayout from "./components/CustomLayout";
+import LoginPage from "./containers/googleLogin";
+import Cookies from 'js-cookie';
 
 function App() {
+
+  const [auth, setAuth] = useState(Cookies.get("user") ? true : false);
+
+
+    // TODO:
+    // need to post token to backend to verify user 
+  const checkAuth = () => {
+      if (Cookies.get("user_id") && (Cookies.get("token")) && !auth) {
+          setAuth(true);
+      }
+  }
+
+  
+
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={LoginPage}/>
-        <Route path="/main" component={main}/>
-        <Route exact path="/note/:noteID" component={NoteDetailView}/>
-        <Route exact path="/note" component={NotesView}/>
-        <Route exact path="/upload" component={UploadForm}/>
-      </Switch>
-    </Router>
+      <div>
+          <Router>
+              <Route exact path="/" component={LoginPage} onLeave={checkAuth()} />
+              { auth &&
+                <Route path="/airnote">
+                    <CustomLayout>
+                        <BaseRouter/>
+                    </CustomLayout>
+                </Route>
+              }
+          </Router>
+      </div>
   );
 }
 

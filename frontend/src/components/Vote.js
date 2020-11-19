@@ -1,59 +1,107 @@
-//@flow
 import * as React from 'react';
-import { createElement, useState } from 'react';
+import { createElement } from 'react';
 import 'antd/dist/antd.css';
-import { Tooltip, Comment } from 'antd';
+import { Tooltip } from 'antd';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-
-
-class Vote extends React.Component<props> {
+class Vote extends React.Component {
 
     constructor(props) {
         super(props);
         this.state= {
+            note: [],
             likes: 0,
             dislikes: 0,
-            action: null
+            action: null,
+            voted: false,
+            user_id: Cookies.get('user_id')
         }
+        this.like = this.like.bind(this)
+        this.dislike = this.dislike.bind(this)
     }
 
-    componentDidMount() {
+  componentDidUpdate (prevProps) {
+    if (this.props.note !== prevProps.note){
+      axios.get(`http://127.0.0.1:8000/api/vote/?user_id=${this.state.user_id}&note_id=${this.props.note.id}`)
+        .then(res => {
+          console.log(res)
+          if (res.data.length !== 0) {
+            const action = res.data[0]['vote'] === 1 ? 'liked' : 'disliked';
+            this.setState({
+              voted: true,
+              action: action
+            })
+          }
+        })
         this.setState({
+            note: this.props.note,
             likes: this.props.note.up_votes,
             dislikes: this.props.note.down_votes
         })
     }
+      }
 
     like() {
+        if (this.state.action === 'liked') {
+            this.setState({
+                likes: this.state.likes - 1,
+                action: null
+            })
+            return
+        }
+
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: 1,
-            user_id: this.props.user_id,
-            note_id: this.props.note.id
+            user_id: this.state.user_id,
+            note_id: this.state.note.id
         })
-            .then(res => {
+            .then(() => {
+              if (this.state.action === 'disliked') {
                 this.setState({
-                    likes: this.props.note.up_votes + 1,
-                    dislikes: this.props.note.down_votes,
-                    action: 'liked'});
-            }).catch(err => {alert("Cannot post vote info")});
+                  likes: this.state.likes + 1,
+                  dislikes: this.state.dislikes - 1,
+                  action: 'liked'
+                })
+              } else {
+                this.setState({
+                  likes: this.state.likes + 1,
+                  action: 'liked'
+                })
+              }
+            }).catch(() => {alert("Cannot post vote info")});
     }
 
     dislike(){
+        if (this.state.action === 'disliked') {
+            this.setState({
+                dislikes: this.state.dislikes - 1,
+                action: null
+            })
+            return
+        }
+
         axios.post(`http://127.0.0.1:8000/api/vote/`, {
             vote: -1,
-            user_id: this.props.user_id,
-            note_id: this.props.note.id
+            user_id: this.state.user_id,
+            note_id: this.state.note.id
         })
-            .then(res => {
+            .then(() => {
+              if (this.state.action === 'liked') {
                 this.setState({
-                    likes: this.props.note.up_votes,
-                    dislikes: this.props.note.down_votes+1,
-                    action: 'disliked'});
-            }).catch(err => {alert("Cannot post vote info")});
+                  likes: this.state.likes - 1,
+                  dislikes: this.state.dislikes + 1,
+                  action: 'disliked'
+                })
+              } else {
+                this.setState({
+                  dislikes: this.state.dislikes + 1,
+                  action: 'disliked'
+                })
+              }
+            }).catch(() => {alert("Cannot post vote info")});
     }
-
 
     render() {
 

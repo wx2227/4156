@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 class UploadForm extends React.Component<Props> {
     toBase64 : String = file => new Promise((resolve, reject) => {
@@ -7,6 +8,15 @@ class UploadForm extends React.Component<Props> {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
+    async isCourseNumberValid(courseNumber) : boolean{
+        const courses = await fetch("http://127.0.0.1:8000/api/course").then(res => res.json());
+        for (let course of courses) {
+            if (course.course_number === courseNumber){
+                return true;
+            }
+        }
+        return false;
+    }
     async uploadFile() {
         if (document.getElementById("file").files.length === 0){
             return alert("Please Select File");
@@ -32,10 +42,15 @@ class UploadForm extends React.Component<Props> {
     }
     async handleSubmit(event) {
         event.preventDefault();
-        const userID = 1;
+        const userID = Cookies.get("user_id") - 0;
+        console.log(userID);
         const fileName = document.getElementById("fileName").value;
         const courseNumber = document.getElementById("courseNumber").value;
         const description = document.getElementById("description").value;
+        if (!await this.isCourseNumberValid(courseNumber)) {
+            alert("The course number is not valid");
+            return;
+        }
         const uploadResponse = await this.uploadFile();
         if (!uploadResponse){
             return;
@@ -51,7 +66,7 @@ class UploadForm extends React.Component<Props> {
         .then(response => response.json())
         .then(response => {
             console.log(response)
-            window.location.href = window.location.protocol + "//" + window.location.host + "/note/" + response.id;
+            window.location.href = "/airnote/note/" + response.id;
         })
         .catch(err => console.log(err));
     }

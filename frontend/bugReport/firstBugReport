@@ -1,0 +1,39 @@
+/frontend/src/App.test.js: line 4, col 1, Error - 'test' is not defined. (no-undef)
+/frontend/src/App.test.js: line 5, col 10, Error - 'React' must be in scope when using JSX (react/react-in-jsx-scope)
+/frontend/src/App.test.js: line 7, col 3, Error - 'expect' is not defined. (no-undef)
+/frontend/src/components/CommentEditor.js: line 43, col 35, Error - Parsing error: Unexpected token :
+/frontend/src/components/CommentListView.js: line 24, col 35, Error - Parsing error: Unexpected token :
+/frontend/src/components/CustomLayout.js: line 21, col 19, Error - Parsing error: Unexpected token =
+/frontend/src/components/NoteDetailTitle.js: line 16, col 17, Error - Parsing error: Unexpected token =
+/frontend/src/components/NoteDetailView.js: line 8, col 45, Error - Parsing error: Unexpected token <
+/frontend/src/components/Notes.js: line 11, col 22, Error - 'note' is defined but never used. (no-unused-vars)
+/frontend/src/components/Notes.js: line 11, col 28, Error - 'i' is defined but never used. (no-unused-vars)
+/frontend/src/components/Notes.js: line 33, col 33, Error - Missing "key" prop for element in iterator (react/jsx-key)
+/frontend/src/components/Notes.js: line 40, col 45, Error - Missing "key" prop for element in array (react/jsx-key)
+/frontend/src/components/Notes.js: line 41, col 45, Error - Missing "key" prop for element in array (react/jsx-key)
+/frontend/src/components/Preview.js: line 3, col 38, Error - Parsing error: Unexpected token <
+/frontend/src/components/UploadForm.js: line 3, col 41, Error - Parsing error: Unexpected token <
+/frontend/src/containers/MainPage.js: line 2, col 10, Error - 'Component' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 3, col 10, Error - 'GoogleLogin' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 3, col 23, Error - 'GoogleLogout' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 4, col 10, Error - 'useHistory' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 5, col 10, Error - 'useLocation' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 7, col 8, Error - 'axios' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 12, col 19, Error - 'props' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 31, col 26, Error - 'err' is defined but never used. (no-unused-vars)
+/frontend/src/containers/MainPage.js: line 38, col 13, Error - Missing "key" prop for element in iterator (react/jsx-key)
+/frontend/src/containers/googleLogin.js: line 3, col 10, Error - 'Component' is defined but never used. (no-unused-vars)
+/frontend/src/containers/googleLogin.js: line 3, col 21, Error - 'useState' is defined but never used. (no-unused-vars)
+/frontend/src/containers/googleLogin.js: line 4, col 23, Error - 'GoogleLogout' is defined but never used. (no-unused-vars)
+/frontend/src/containers/googleLogin.js: line 21, col 9, Error - 'history' is assigned a value but never used. (no-unused-vars)
+/frontend/src/containers/main.js: line 3, col 10, Error - 'Component' is defined but never used. (no-unused-vars)
+/frontend/src/containers/main.js: line 3, col 21, Error - 'useState' is defined but never used. (no-unused-vars)
+/frontend/src/containers/main.js: line 4, col 10, Error - 'GoogleLogin' is defined but never used. (no-unused-vars)
+/frontend/src/containers/main.js: line 4, col 23, Error - 'GoogleLogout' is defined but never used. (no-unused-vars)
+/frontend/src/containers/main.js: line 12, col 15, Error - 'props' is defined but never used. (no-unused-vars)
+/frontend/src/containers/main.js: line 21, col 29, Error - Do not access Object.prototype method 'hasOwnProperty' from target object. (no-prototype-builtins)
+/frontend/src/containers/main.js: line 21, col 72, Error - Do not access Object.prototype method 'hasOwnProperty' from target object. (no-prototype-builtins)
+/frontend/src/index.js: line 5, col 8, Error - 'GoogleButton' is defined but never used. (no-unused-vars)
+/frontend/src/services/googleLoginService.js: line 2, col 8, Error - 'Cookies' is defined but never used. (no-unused-vars)
+
+37 problems

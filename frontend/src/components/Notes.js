@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { List } from "antd";
 import { Card, Row, Col, Divider } from 'antd';
@@ -41,7 +40,7 @@ function Notes(props) {
                                             <Text type="secondary">{note.up_votes} likes</Text>,
                                             <Text type="secondary">{note.up_votes} dislikes</Text>
                                         ]}
-                                        extra={<a href={`/note/${note.id}`}>More</a>}
+                                        extra={<a href={`/airnote/note/${note.id}`}>More</a>}
                                     >
                                     </Card>
                                 </Col>
