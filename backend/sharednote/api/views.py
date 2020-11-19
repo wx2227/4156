@@ -15,8 +15,11 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
         """
         queryset = CustomizeUser.objects.all()
         email = self.request.query_params.get('email')
+        id = self.request.query_params.get('id')
         if email:
             queryset = queryset.filter(user__email=email)
+        if id:
+            queryset = queryset.filter(user__id=id)
         return queryset
 
 

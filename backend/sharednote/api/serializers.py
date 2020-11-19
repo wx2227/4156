@@ -56,7 +56,7 @@ class NoteSerializer(ModelSerializer):
     class Meta:
         model = Note
         fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url',
-        'description', 'comments', 'votes')
+        'description', 'time', 'comments', 'votes')
 
 
 class NoteDynamicSerializer(NoteSerializer):
@@ -65,7 +65,7 @@ class NoteDynamicSerializer(NoteSerializer):
     class Meta:
         model = Note
         fields = ('id', 'user_id', 'course_number', 'file_name',
-        'file_url', 'description', 'comments', 'up_votes', 'down_votes')
+        'file_url', 'description', 'time', 'comments', 'up_votes', 'down_votes')
 
 
 class CourseSerializer(ModelSerializer):

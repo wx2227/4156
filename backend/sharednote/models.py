@@ -66,6 +66,7 @@ class Note(models.Model):
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
     description = models.TextField(default="")
+    time = models.DateTimeField()
 
 
 class Comment(models.Model):

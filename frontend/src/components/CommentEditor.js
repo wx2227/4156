@@ -67,6 +67,7 @@ class CommentEditor extends React.Component {
         }
 
         this.setState({
+            ...this.state,
             loading: true,
             comment: {
                 ...this.state.comment
@@ -88,16 +89,20 @@ class CommentEditor extends React.Component {
                         value: "",
                         loading: false,
                         comment: {
+                            ...this.state.comment,
                             content: this.state.value,
                             time: res.data.time
                         }
                     });
                     this.props.addComment(this.state.comment);
                     this.setState({
+                        ...this.state,
                         value: "",
                         comment: {
+                            ...this.state.comment,
+                            time: null,
                             content: ""
-                        }
+                        },
                     })
                 }
             })

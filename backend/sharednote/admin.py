@@ -21,7 +21,7 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ('user_id', 'course_number', 'file_name', 'file_url', 'description')
+    list_display = ('user_id', 'course_number', 'file_name', 'file_url', 'description', 'time')
 
 
 class VoteAdmin(admin.ModelAdmin):
