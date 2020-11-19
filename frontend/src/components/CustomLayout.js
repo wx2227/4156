@@ -23,12 +23,12 @@ class CustomLayout extends React.Component {
        return
      }
 
-     /*eslint-disable */
+     /* eslint-disable */
      this.setState((props, state) => ({
        course: value
      }))
    }
-   /*eslint-enable */
+   /* eslint-enable */
 
     handleClick = () => {
       if (this.state.course) {
