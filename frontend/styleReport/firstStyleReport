@@ -1,0 +1,694 @@
+/frontend/src/App.js:1:19: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react/index.js' imported multiple times.
+/frontend/src/App.js:1:19: Strings must use singlequote.
+/frontend/src/App.js:1:26: Extra semicolon.
+/frontend/src/App.js:2:8: A space is required after '{'.
+/frontend/src/App.js:2:17: A space is required before '}'.
+/frontend/src/App.js:2:24: Strings must use singlequote.
+/frontend/src/App.js:2:24: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react/index.js' imported multiple times.
+/frontend/src/App.js:2:31: Extra semicolon.
+/frontend/src/App.js:3:40: A space is required before '}'.
+/frontend/src/App.js:3:47: Strings must use singlequote.
+/frontend/src/App.js:3:65: Extra semicolon.
+/frontend/src/App.js:4:34: Extra semicolon.
+/frontend/src/App.js:5:26: Strings must use singlequote.
+/frontend/src/App.js:5:53: Extra semicolon.
+/frontend/src/App.js:6:23: Strings must use singlequote.
+/frontend/src/App.js:6:49: Extra semicolon.
+/frontend/src/App.js:7:32: Extra semicolon.
+/frontend/src/App.js:9:13: Missing space before function parentheses.
+/frontend/src/App.js:9:16: Block must not be padded by blank lines.
+/frontend/src/App.js:11:36: Unnecessary use of boolean literals in conditional expression.
+/frontend/src/App.js:11:48: Strings must use singlequote.
+/frontend/src/App.js:11:71: Extra semicolon.
+/frontend/src/App.js:13:1: More than 1 blank line not allowed.
+/frontend/src/App.js:14:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/App.js:15:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/App.js:15:52: Trailing spaces not allowed.
+/frontend/src/App.js:17:1: Expected indentation of 4 spaces but found 6.
+/frontend/src/App.js:17:23: Strings must use singlequote.
+/frontend/src/App.js:17:50: Strings must use singlequote.
+/frontend/src/App.js:18:1: Expected indentation of 6 spaces but found 10.
+/frontend/src/App.js:18:24: Extra semicolon.
+/frontend/src/App.js:19:1: Expected indentation of 4 spaces but found 6.
+/frontend/src/App.js:22:1: More than 1 blank line not allowed.
+/frontend/src/App.js:22:1: Trailing spaces not allowed.
+/frontend/src/App.js:25:7: Expected indentation of 4 space characters but found 6.
+/frontend/src/App.js:26:11: Expected indentation of 8 space characters but found 10.
+/frontend/src/App.js:27:15: Expected indentation of 12 space characters but found 14.
+/frontend/src/App.js:27:33: Unexpected usage of doublequote.
+/frontend/src/App.js:28:15: Expected indentation of 12 space characters but found 14.
+/frontend/src/App.js:28:15: There should be no space after '{'
+/frontend/src/App.js:29:29: Unexpected usage of doublequote.
+/frontend/src/App.js:30:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/App.js:31:25: Expected indentation of 22 space characters but found 24.
+/frontend/src/App.js:31:36: A space is required before closing bracket
+/frontend/src/App.js:34:15: Unexpected newline before '{'.
+/frontend/src/App.js:37:4: Extra semicolon.
+/frontend/src/App.js:40:19: Extra semicolon.
+/frontend/src/App.test.js:1:56: Extra semicolon.
+/frontend/src/App.test.js:2:24: Extra semicolon.
+/frontend/src/App.test.js:4:1: 'test' is not defined.
+/frontend/src/App.test.js:5:18: Extra semicolon.
+/frontend/src/App.test.js:6:55: Extra semicolon.
+/frontend/src/App.test.js:7:3: 'expect' is not defined.
+/frontend/src/App.test.js:7:42: Extra semicolon.
+/frontend/src/App.test.js:8:3: Extra semicolon.
+/frontend/src/components/Comment.js:1:31: Extra semicolon.
+/frontend/src/components/Comment.js:2:28: Extra semicolon.
+/frontend/src/components/Comment.js:3:77: Extra semicolon.
+/frontend/src/components/Comment.js:4:28: Extra semicolon.
+/frontend/src/components/Comment.js:6:28: Extra semicolon.
+/frontend/src/components/Comment.js:9:1: Expected indentation of 2 spaces but found 8.
+/frontend/src/components/Comment.js:10:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/components/Comment.js:12:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Comment.js:13:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/Comment.js:14:25: Expected indentation of 22 space characters but found 24.
+/frontend/src/components/Comment.js:14:29: Unexpected usage of doublequote.
+/frontend/src/components/Comment.js:17:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Comment.js:18:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/Comment.js:20:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Comment.js:21:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/Comment.js:22:25: Expected indentation of 22 space characters but found 24.
+/frontend/src/components/Comment.js:26:1: Expected indentation of 2 spaces but found 8.
+/frontend/src/components/Comment.js:26:10: Extra semicolon.
+/frontend/src/components/Comment.js:28:1: Too many blank lines at the end of file. Max of 0 allowed.
+/frontend/src/components/CommentEditor.js:43:35: Parsing error: Unexpected token :
+/frontend/src/components/CommentListView.js:24:35: Parsing error: Unexpected token :
+/frontend/src/components/CustomLayout.js:21:19: Parsing error: Unexpected token =
+/frontend/src/components/NoteDetailTitle.js:16:17: Parsing error: Unexpected token =
+/frontend/src/components/NoteDetailView.js:8:45: Parsing error: Unexpected token <
+/frontend/src/components/Notes.js:2:22: Strings must use singlequote.
+/frontend/src/components/Notes.js:2:22: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/antd/lib/index.js' imported multiple times.
+/frontend/src/components/Notes.js:2:28: Extra semicolon.
+/frontend/src/components/Notes.js:3:41: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/antd/lib/index.js' imported multiple times.
+/frontend/src/components/Notes.js:3:47: Extra semicolon.
+/frontend/src/components/Notes.js:4:28: Extra semicolon.
+/frontend/src/components/Notes.js:5:21: Extra semicolon.
+/frontend/src/components/Notes.js:6:18: Strings must use singlequote.
+/frontend/src/components/Notes.js:6:43: Extra semicolon.
+/frontend/src/components/Notes.js:8:1: More than 1 blank line not allowed.
+/frontend/src/components/Notes.js:9:15: Missing space before function parentheses.
+/frontend/src/components/Notes.js:10:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Notes.js:11:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Notes.js:11:31: Array.prototype.map() expects a return value from arrow function.
+/frontend/src/components/Notes.js:11:33: Missing space after =>.
+/frontend/src/components/Notes.js:12:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Notes.js:12:32: There should be no space after this paren.
+/frontend/src/components/Notes.js:12:66: There should be no space before this paren.
+/frontend/src/components/Notes.js:12:69: Extra semicolon.
+/frontend/src/components/Notes.js:13:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Notes.js:14:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Notes.js:14:29: There should be no space after this paren.
+/frontend/src/components/Notes.js:14:83: There should be no space before this paren.
+/frontend/src/components/Notes.js:14:85: Extra semicolon.
+/frontend/src/components/Notes.js:15:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Notes.js:16:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Notes.js:17:9: Expected indentation of 6 space characters but found 8.
+/frontend/src/components/Notes.js:17:24: Curly braces are unnecessary here.
+/frontend/src/components/Notes.js:17:25: Strings must use singlequote.
+/frontend/src/components/Notes.js:18:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/components/Notes.js:19:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Notes.js:20:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Notes.js:20:28: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:21:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Notes.js:22:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Notes.js:23:1: Expected indentation of 18 spaces but found 20.
+/frontend/src/components/Notes.js:24:1: Expected indentation of 20 spaces but found 24.
+/frontend/src/components/Notes.js:24:42: Extra semicolon.
+/frontend/src/components/Notes.js:25:1: Expected indentation of 18 spaces but found 20.
+/frontend/src/components/Notes.js:26:1: Expected indentation of 18 spaces but found 20.
+/frontend/src/components/Notes.js:26:32: Unexpected trailing comma.
+/frontend/src/components/Notes.js:28:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Notes.js:29:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/Notes.js:30:25: Empty components are self-closing
+/frontend/src/components/Notes.js:30:25: Expected indentation of 22 space characters but found 24.
+/frontend/src/components/Notes.js:30:46: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:31:25: Expected indentation of 22 space characters but found 24.
+/frontend/src/components/Notes.js:31:38: Curly braces are unnecessary here.
+/frontend/src/components/Notes.js:31:39: Strings must use singlequote.
+/frontend/src/components/Notes.js:32:29: There should be no space after '{'
+/frontend/src/components/Notes.js:32:29: Expected indentation of 26 space characters but found 28.
+/frontend/src/components/Notes.js:32:40: There should be no space after this paren.
+/frontend/src/components/Notes.js:33:33: Missing "key" prop for element in iterator
+/frontend/src/components/Notes.js:33:33: Expected indentation of 30 space characters but found 32.
+/frontend/src/components/Notes.js:33:43: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:34:37: Empty components are self-closing
+/frontend/src/components/Notes.js:34:37: Expected indentation of 34 space characters but found 36.
+/frontend/src/components/Notes.js:35:41: Expected indentation of 38 space characters but found 40.
+/frontend/src/components/Notes.js:36:41: Expected indentation of 38 space characters but found 40.
+/frontend/src/components/Notes.js:36:46: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:37:41: Expected indentation of 38 space characters but found 40.
+/frontend/src/components/Notes.js:38:41: Expected indentation of 38 space characters but found 40.
+/frontend/src/components/Notes.js:38:57: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:39:41: Expected indentation of 38 space characters but found 40.
+/frontend/src/components/Notes.js:40:45: Expected indentation of 42 space characters but found 44.
+/frontend/src/components/Notes.js:40:45: Missing "key" prop for element in array
+/frontend/src/components/Notes.js:40:56: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:41:45: Expected indentation of 42 space characters but found 44.
+/frontend/src/components/Notes.js:41:45: Missing "key" prop for element in array
+/frontend/src/components/Notes.js:41:56: Unexpected usage of doublequote.
+/frontend/src/components/Notes.js:43:41: Expected indentation of 38 space characters but found 40.
+/frontend/src/components/Notes.js:53:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Notes.js:53:6: Extra semicolon.
+/frontend/src/components/Notes.js:56:21: Extra semicolon.
+/frontend/src/components/Notes.js:56:22: Newline required at end of file but not found.
+/frontend/src/components/NotesListView.js:2:31: Extra semicolon.
+/frontend/src/components/NotesListView.js:3:26: Extra semicolon.
+/frontend/src/components/NotesListView.js:4:28: Extra semicolon.
+/frontend/src/components/NotesListView.js:5:28: Extra semicolon.
+/frontend/src/components/NotesListView.js:7:1: More than 1 blank line not allowed.
+/frontend/src/components/NotesListView.js:8:44: Missing space before opening brace.
+/frontend/src/components/NotesListView.js:9:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/NotesListView.js:9:16: Missing space before function parentheses.
+/frontend/src/components/NotesListView.js:10:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:10:21: Extra semicolon.
+/frontend/src/components/NotesListView.js:11:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:12:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/NotesListView.js:13:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/NotesListView.js:14:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:15:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/NotesListView.js:17:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/NotesListView.js:17:22: Missing space before function parentheses.
+/frontend/src/components/NotesListView.js:18:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:18:15: Identifier 'course_number' is not in camel case.
+/frontend/src/components/NotesListView.js:18:68: Extra semicolon.
+/frontend/src/components/NotesListView.js:19:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:19:13: Identifier 'course_number' is not in camel case.
+/frontend/src/components/NotesListView.js:20:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/NotesListView.js:20:23: Strings must use singlequote.
+/frontend/src/components/NotesListView.js:21:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/NotesListView.js:22:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/components/NotesListView.js:23:1: Expected indentation of 12 spaces but found 24.
+/frontend/src/components/NotesListView.js:24:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/components/NotesListView.js:25:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/NotesListView.js:26:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/components/NotesListView.js:26:21: 'alert' is not defined.
+/frontend/src/components/NotesListView.js:26:27: Strings must use singlequote.
+/frontend/src/components/NotesListView.js:27:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/NotesListView.js:28:1: Expected indentation of 8 spaces but found 12.
+/frontend/src/components/NotesListView.js:29:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:30:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/NotesListView.js:30:72: Identifier 'course_number' is not in camel case.
+/frontend/src/components/NotesListView.js:31:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/NotesListView.js:32:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/components/NotesListView.js:33:1: Expected indentation of 12 spaces but found 24.
+/frontend/src/components/NotesListView.js:34:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/components/NotesListView.js:35:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/NotesListView.js:36:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/components/NotesListView.js:36:21: 'alert' is not defined.
+/frontend/src/components/NotesListView.js:36:27: Strings must use singlequote.
+/frontend/src/components/NotesListView.js:37:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/NotesListView.js:38:1: Expected indentation of 8 spaces but found 12.
+/frontend/src/components/NotesListView.js:39:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:40:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:40:70: Identifier 'course_number' is not in camel case.
+/frontend/src/components/NotesListView.js:41:1: Expected indentation of 6 spaces but found 10.
+/frontend/src/components/NotesListView.js:42:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/NotesListView.js:43:1: Expected indentation of 10 spaces but found 18.
+/frontend/src/components/NotesListView.js:44:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/NotesListView.js:45:1: Expected indentation of 6 spaces but found 10.
+/frontend/src/components/NotesListView.js:46:1: Expected indentation of 8 spaces but found 12.
+/frontend/src/components/NotesListView.js:46:13: 'alert' is not defined.
+/frontend/src/components/NotesListView.js:46:19: Strings must use singlequote.
+/frontend/src/components/NotesListView.js:47:1: Expected indentation of 6 spaces but found 8.
+/frontend/src/components/NotesListView.js:48:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/NotesListView.js:50:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/NotesListView.js:50:11: Missing space before function parentheses.
+/frontend/src/components/NotesListView.js:51:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:52:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/components/NotesListView.js:52:28: Unexpected usage of doublequote.
+/frontend/src/components/NotesListView.js:53:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/NotesListView.js:53:32: Unexpected usage of doublequote.
+/frontend/src/components/NotesListView.js:53:50: Unexpected usage of doublequote.
+/frontend/src/components/NotesListView.js:54:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/NotesListView.js:54:79: A space is required before closing bracket
+/frontend/src/components/NotesListView.js:57:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/NotesListView.js:57:10: Extra semicolon.
+/frontend/src/components/NotesListView.js:58:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/NotesListView.js:61:29: Extra semicolon.
+/frontend/src/components/NotesListView.js:61:30: Newline required at end of file but not found.
+/frontend/src/components/Preview.js:3:38: Parsing error: Unexpected token <
+/frontend/src/components/UploadForm.js:3:41: Parsing error: Unexpected token <
+/frontend/src/components/Vote.js:1:31: Extra semicolon.
+/frontend/src/components/Vote.js:2:38: Extra semicolon.
+/frontend/src/components/Vote.js:3:28: Extra semicolon.
+/frontend/src/components/Vote.js:4:31: Extra semicolon.
+/frontend/src/components/Vote.js:5:93: Extra semicolon.
+/frontend/src/components/Vote.js:6:26: Extra semicolon.
+/frontend/src/components/Vote.js:7:32: Extra semicolon.
+/frontend/src/components/Vote.js:9:36: Block must not be padded by blank lines.
+/frontend/src/components/Vote.js:11:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:11:16: Missing space before function parentheses.
+/frontend/src/components/Vote.js:12:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:12:21: Extra semicolon.
+/frontend/src/components/Vote.js:13:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:13:19: Operator '=' must be spaced.
+/frontend/src/components/Vote.js:14:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:15:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:16:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:17:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:18:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:19:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:20:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:21:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:22:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:23:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:26:44: Missing space before opening brace.
+/frontend/src/components/Vote.js:31:40: ["vote"] is better written in dot notation.
+/frontend/src/components/Vote.js:31:76: Extra semicolon.
+/frontend/src/components/Vote.js:38:1: Expected indentation of 6 spaces but found 8.
+/frontend/src/components/Vote.js:39:1: Expected indentation of 8 spaces but found 12.
+/frontend/src/components/Vote.js:40:1: Expected indentation of 8 spaces but found 12.
+/frontend/src/components/Vote.js:41:1: Expected indentation of 8 spaces but found 12.
+/frontend/src/components/Vote.js:42:1: Expected indentation of 6 spaces but found 8.
+/frontend/src/components/Vote.js:44:1: Expected indentation of 2 spaces but found 6.
+/frontend/src/components/Vote.js:46:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:46:9: Missing space before function parentheses.
+/frontend/src/components/Vote.js:47:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:48:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:49:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/Vote.js:50:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/Vote.js:51:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:52:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:53:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:55:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:55:20: Strings must use singlequote.
+/frontend/src/components/Vote.js:56:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:57:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:58:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:59:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:60:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:61:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/Vote.js:62:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:63:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:64:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:65:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:66:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:67:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/Vote.js:68:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:69:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:70:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:71:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:72:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/Vote.js:73:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:73:28: Requires a space after '{'.
+/frontend/src/components/Vote.js:73:29: 'alert' is not defined.
+/frontend/src/components/Vote.js:73:35: Strings must use singlequote.
+/frontend/src/components/Vote.js:73:59: Requires a space before '}'.
+/frontend/src/components/Vote.js:73:61: Extra semicolon.
+/frontend/src/components/Vote.js:74:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:76:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:76:12: Missing space before function parentheses.
+/frontend/src/components/Vote.js:76:14: Missing space before opening brace.
+/frontend/src/components/Vote.js:77:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:78:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:79:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/Vote.js:80:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/components/Vote.js:81:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:82:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:83:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:85:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:85:20: Strings must use singlequote.
+/frontend/src/components/Vote.js:86:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:87:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:88:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:89:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:90:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:91:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/Vote.js:92:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:93:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:94:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:95:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:96:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:97:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/Vote.js:98:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:99:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:100:1: Expected indentation of 12 spaces but found 18.
+/frontend/src/components/Vote.js:101:1: Expected indentation of 10 spaces but found 16.
+/frontend/src/components/Vote.js:102:1: Expected indentation of 8 spaces but found 14.
+/frontend/src/components/Vote.js:103:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/components/Vote.js:103:28: Requires a space after '{'.
+/frontend/src/components/Vote.js:103:29: 'alert' is not defined.
+/frontend/src/components/Vote.js:103:35: Strings must use singlequote.
+/frontend/src/components/Vote.js:103:59: Requires a space before '}'.
+/frontend/src/components/Vote.js:103:61: Extra semicolon.
+/frontend/src/components/Vote.js:104:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:106:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:106:11: Missing space before function parentheses.
+/frontend/src/components/Vote.js:106:14: Block must not be padded by blank lines.
+/frontend/src/components/Vote.js:108:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:109:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/components/Vote.js:110:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Vote.js:110:30: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:110:57: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:111:17: Expected indentation of 18 space characters but found 16.
+/frontend/src/components/Vote.js:111:23: Handler function for onClick prop key must be a camelCase name beginning with 'handle' only
+/frontend/src/components/Vote.js:112:17: Expected indentation of 18 space characters but found 16.
+/frontend/src/components/Vote.js:113:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/Vote.js:113:37: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:116:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Vote.js:116:33: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:117:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/components/Vote.js:117:30: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:117:60: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:118:17: Expected indentation of 18 space characters but found 16.
+/frontend/src/components/Vote.js:118:23: Handler function for onClick prop key must be a camelCase name beginning with 'handle' only
+/frontend/src/components/Vote.js:119:17: Expected indentation of 18 space characters but found 16.
+/frontend/src/components/Vote.js:120:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/components/Vote.js:120:37: Unexpected usage of doublequote.
+/frontend/src/components/Vote.js:124:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/components/Vote.js:125:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/components/Vote.js:128:20: Extra semicolon.
+/frontend/src/components/Vote.js:128:21: Newline required at end of file but not found.
+/frontend/src/containers/MainPage.js:1:19: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react/index.js' imported multiple times.
+/frontend/src/containers/MainPage.js:2:10: 'Component' is defined but never used.
+/frontend/src/containers/MainPage.js:2:40: A space is required before '}'.
+/frontend/src/containers/MainPage.js:2:47: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react/index.js' imported multiple times.
+/frontend/src/containers/MainPage.js:3:10: 'GoogleLogin' is defined but never used.
+/frontend/src/containers/MainPage.js:3:23: 'GoogleLogout' is defined but never used.
+/frontend/src/containers/MainPage.js:3:63: Extra semicolon.
+/frontend/src/containers/MainPage.js:4:10: 'useHistory' is defined but never used.
+/frontend/src/containers/MainPage.js:4:20: A space is required before '}'.
+/frontend/src/containers/MainPage.js:4:27: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:4:27: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react-router-dom/index.js' imported multiple times.
+/frontend/src/containers/MainPage.js:4:45: Extra semicolon.
+/frontend/src/containers/MainPage.js:5:10: 'useLocation' is defined but never used.
+/frontend/src/containers/MainPage.js:5:29: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react-router-dom/index.js' imported multiple times.
+/frontend/src/containers/MainPage.js:5:29: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:5:47: Extra semicolon.
+/frontend/src/containers/MainPage.js:6:8: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:6:24: Extra semicolon.
+/frontend/src/containers/MainPage.js:7:8: 'axios' is defined but never used.
+/frontend/src/containers/MainPage.js:7:26: Extra semicolon.
+/frontend/src/containers/MainPage.js:7:27: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:8:8: A space is required after '{'.
+/frontend/src/containers/MainPage.js:8:37: A space is required before '}'.
+/frontend/src/containers/MainPage.js:8:61: Extra semicolon.
+/frontend/src/containers/MainPage.js:10:1: More than 1 blank line not allowed.
+/frontend/src/containers/MainPage.js:12:18: Missing space before function parentheses.
+/frontend/src/containers/MainPage.js:13:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:13:49: Extra semicolon.
+/frontend/src/containers/MainPage.js:14:1: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:15:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:16:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:17:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/MainPage.js:18:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/MainPage.js:19:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/MainPage.js:19:28: Extra semicolon.
+/frontend/src/containers/MainPage.js:20:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/MainPage.js:20:57: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:21:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/MainPage.js:22:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:22:6: Extra semicolon.
+/frontend/src/containers/MainPage.js:24:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:24:33: Missing space before function parentheses.
+/frontend/src/containers/MainPage.js:25:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/MainPage.js:26:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/MainPage.js:26:15: 'fetch' is not defined.
+/frontend/src/containers/MainPage.js:26:21: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:27:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/MainPage.js:28:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/MainPage.js:29:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/containers/MainPage.js:30:1: Expected indentation of 10 spaces but found 20.
+/frontend/src/containers/MainPage.js:30:39: Extra semicolon.
+/frontend/src/containers/MainPage.js:31:1: Expected indentation of 8 spaces but found 16.
+/frontend/src/containers/MainPage.js:31:26: Expected error to be handled.
+/frontend/src/containers/MainPage.js:31:33: Requires a space after '{'.
+/frontend/src/containers/MainPage.js:31:34: 'alert' is not defined.
+/frontend/src/containers/MainPage.js:31:40: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:31:70: Requires a space before '}'.
+/frontend/src/containers/MainPage.js:31:72: Extra semicolon.
+/frontend/src/containers/MainPage.js:31:73: Block must not be padded by blank lines.
+/frontend/src/containers/MainPage.js:33:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:35:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:35:31: Block must not be padded by blank lines.
+/frontend/src/containers/MainPage.js:37:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/MainPage.js:37:17: Multiple spaces found before '<'.
+/frontend/src/containers/MainPage.js:37:17: There should be no space after this paren.
+/frontend/src/containers/MainPage.js:37:20: Parentheses around JSX should be on separate lines
+/frontend/src/containers/MainPage.js:37:60: There should be no space after '{'
+/frontend/src/containers/MainPage.js:38:13: Missing "key" prop for element in iterator
+/frontend/src/containers/MainPage.js:38:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/containers/MainPage.js:38:20: There should be no space after '='
+/frontend/src/containers/MainPage.js:38:23: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:39:14: Expected indentation of 14 space characters but found 13.
+/frontend/src/containers/MainPage.js:39:60: Missing space before value for key 'textDecoration'.
+/frontend/src/containers/MainPage.js:40:1: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:41:17: Expected indentation of 15 space characters but found 16.
+/frontend/src/containers/MainPage.js:41:35: Unexpected usage of doublequote.
+/frontend/src/containers/MainPage.js:41:48: A space is required after '{'.
+/frontend/src/containers/MainPage.js:41:56: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:41:72: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:41:72: Missing space before value for key 'height'.
+/frontend/src/containers/MainPage.js:41:79: A space is required before '}'.
+/frontend/src/containers/MainPage.js:41:92: Unexpected usage of doublequote.
+/frontend/src/containers/MainPage.js:41:108: Unexpected usage of doublequote.
+/frontend/src/containers/MainPage.js:42:17: Expected indentation of 15 space characters but found 16.
+/frontend/src/containers/MainPage.js:42:35: A space is required after '{'.
+/frontend/src/containers/MainPage.js:42:42: Missing space before value for key 'color'.
+/frontend/src/containers/MainPage.js:42:42: Strings must use singlequote.
+/frontend/src/containers/MainPage.js:42:49: A space is required before '}'.
+/frontend/src/containers/MainPage.js:43:17: Expected indentation of 18 space characters but found 16.
+/frontend/src/containers/MainPage.js:44:17: Expected indentation of 18 space characters but found 16.
+/frontend/src/containers/MainPage.js:45:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/containers/MainPage.js:48:13: Expected indentation of 13 space characters but found 12.
+/frontend/src/containers/MainPage.js:48:13: Expected closing tag to match indentation of opening.
+/frontend/src/containers/MainPage.js:49:1: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:51:1: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:52:1: More than 1 blank line not allowed.
+/frontend/src/containers/MainPage.js:52:1: Trailing spaces not allowed.
+/frontend/src/containers/MainPage.js:53:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/MainPage.js:53:16: Closing tag of a multiline JSX expression must be on its own line.
+/frontend/src/containers/MainPage.js:53:31: Extra semicolon.
+/frontend/src/containers/MainPage.js:54:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:56:1: More than 1 blank line not allowed.
+/frontend/src/containers/MainPage.js:57:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:58:9: Expected indentation of 6 space characters but found 8.
+/frontend/src/containers/MainPage.js:59:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/containers/MainPage.js:61:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/MainPage.js:61:6: Extra semicolon.
+/frontend/src/containers/MainPage.js:64:24: Extra semicolon.
+/frontend/src/containers/googleLogin.js:1:1: Expected space or tab after '//' in comment.
+/frontend/src/containers/googleLogin.js:2:31: Extra semicolon.
+/frontend/src/containers/googleLogin.js:3:10: 'Component' is defined but never used.
+/frontend/src/containers/googleLogin.js:3:21: 'useState' is defined but never used.
+/frontend/src/containers/googleLogin.js:3:44: Extra semicolon.
+/frontend/src/containers/googleLogin.js:4:23: 'GoogleLogout' is defined but never used.
+/frontend/src/containers/googleLogin.js:4:63: Extra semicolon.
+/frontend/src/containers/googleLogin.js:5:20: A space is required before '}'.
+/frontend/src/containers/googleLogin.js:5:27: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:5:45: Extra semicolon.
+/frontend/src/containers/googleLogin.js:6:26: Extra semicolon.
+/frontend/src/containers/googleLogin.js:7:32: Extra semicolon.
+/frontend/src/containers/googleLogin.js:10:25: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:10:57: Extra semicolon.
+/frontend/src/containers/googleLogin.js:12:93: Extra semicolon.
+/frontend/src/containers/googleLogin.js:13:18: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:13:32: Extra semicolon.
+/frontend/src/containers/googleLogin.js:15:22: Missing space before function parentheses.
+/frontend/src/containers/googleLogin.js:15:25: Block must not be padded by blank lines.
+/frontend/src/containers/googleLogin.js:17:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:17:5: Expected space or tab after '//' in comment.
+/frontend/src/containers/googleLogin.js:18:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:18:5: Expected space or tab after '//' in comment.
+/frontend/src/containers/googleLogin.js:19:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:19:5: Expected space or tab after '//' in comment.
+/frontend/src/containers/googleLogin.js:21:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:21:9: 'history' is assigned a value but never used.
+/frontend/src/containers/googleLogin.js:21:9: 'history' is never reassigned. Use 'const' instead.
+/frontend/src/containers/googleLogin.js:21:31: Extra semicolon.
+/frontend/src/containers/googleLogin.js:23:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:27:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:27:33: Missing space before function parentheses.
+/frontend/src/containers/googleLogin.js:28:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:29:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:29:64: Extra semicolon.
+/frontend/src/containers/googleLogin.js:30:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:31:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:31:19: Extra semicolon.
+/frontend/src/containers/googleLogin.js:32:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:33:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:33:29: Multiple spaces found before '='.
+/frontend/src/containers/googleLogin.js:33:72: Extra semicolon.
+/frontend/src/containers/googleLogin.js:34:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:34:49: Extra semicolon.
+/frontend/src/containers/googleLogin.js:35:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:35:9: Expected space(s) after "if".
+/frontend/src/containers/googleLogin.js:36:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:36:26: Trailing spaces not allowed.
+/frontend/src/containers/googleLogin.js:37:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:37:25: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:37:56: Extra semicolon.
+/frontend/src/containers/googleLogin.js:38:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:38:25: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:38:54: Extra semicolon.
+/frontend/src/containers/googleLogin.js:39:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:39:25: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:39:66: Extra semicolon.
+/frontend/src/containers/googleLogin.js:40:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:40:25: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:40:64: Extra semicolon.
+/frontend/src/containers/googleLogin.js:41:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/googleLogin.js:41:36: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:41:51: Extra semicolon.
+/frontend/src/containers/googleLogin.js:42:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:43:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:45:1: Trailing spaces not allowed.
+/frontend/src/containers/googleLogin.js:45:1: More than 1 blank line not allowed.
+/frontend/src/containers/googleLogin.js:47:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:47:30: Missing space before function parentheses.
+/frontend/src/containers/googleLogin.js:48:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:48:25: Strings must use singlequote.
+/frontend/src/containers/googleLogin.js:48:73: Extra semicolon.
+/frontend/src/containers/googleLogin.js:49:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:49:13: 'res' is never reassigned. Use 'const' instead.
+/frontend/src/containers/googleLogin.js:49:43: Extra semicolon.
+/frontend/src/containers/googleLogin.js:50:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:50:25: Extra semicolon.
+/frontend/src/containers/googleLogin.js:51:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:53:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:54:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/googleLogin.js:54:9: 'alert' is not defined.
+/frontend/src/containers/googleLogin.js:55:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:57:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:58:9: Expected indentation of 6 space characters but found 8.
+/frontend/src/containers/googleLogin.js:58:17: Unexpected usage of doublequote.
+/frontend/src/containers/googleLogin.js:59:13: Expected indentation of 10 space characters but found 12.
+/frontend/src/containers/googleLogin.js:59:21: Unexpected usage of doublequote.
+/frontend/src/containers/googleLogin.js:59:32: Trailing spaces not allowed.
+/frontend/src/containers/googleLogin.js:60:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/containers/googleLogin.js:60:28: Unexpected usage of doublequote.
+/frontend/src/containers/googleLogin.js:61:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/containers/googleLogin.js:61:25: Unexpected usage of doublequote.
+/frontend/src/containers/googleLogin.js:62:21: Expected indentation of 18 space characters but found 20.
+/frontend/src/containers/googleLogin.js:63:25: Expected indentation of 22 space characters but found 24.
+/frontend/src/containers/googleLogin.js:64:25: Expected indentation of 26 space characters but found 24.
+/frontend/src/containers/googleLogin.js:64:34: There should be no space after '{'
+/frontend/src/containers/googleLogin.js:64:46: There should be no space before '}'
+/frontend/src/containers/googleLogin.js:65:25: Expected indentation of 26 space characters but found 24.
+/frontend/src/containers/googleLogin.js:66:25: Expected indentation of 26 space characters but found 24.
+/frontend/src/containers/googleLogin.js:66:51: There should be no space before '}'
+/frontend/src/containers/googleLogin.js:67:25: Expected indentation of 26 space characters but found 24.
+/frontend/src/containers/googleLogin.js:67:35: There should be no space after '{'
+/frontend/src/containers/googleLogin.js:67:56: There should be no space before '}'
+/frontend/src/containers/googleLogin.js:68:25: Expected indentation of 26 space characters but found 24.
+/frontend/src/containers/googleLogin.js:68:38: There should be no space after '{'
+/frontend/src/containers/googleLogin.js:68:38: Curly braces are unnecessary here.
+/frontend/src/containers/googleLogin.js:68:61: There should be no space before '}'
+/frontend/src/containers/googleLogin.js:69:25: Expected indentation of 26 space characters but found 24.
+/frontend/src/containers/googleLogin.js:70:27: Trailing spaces not allowed.
+/frontend/src/containers/googleLogin.js:75:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/googleLogin.js:75:6: Extra semicolon.
+/frontend/src/containers/googleLogin.js:75:7: Block must not be padded by blank lines.
+/frontend/src/containers/googleLogin.js:76:1: Trailing spaces not allowed.
+/frontend/src/containers/googleLogin.js:79:28: Extra semicolon.
+/frontend/src/containers/main.js:1:1: Expected space or tab after '//' in comment.
+/frontend/src/containers/main.js:2:19: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react/index.js' imported multiple times.
+/frontend/src/containers/main.js:2:26: Extra semicolon.
+/frontend/src/containers/main.js:3:10: 'Component' is defined but never used.
+/frontend/src/containers/main.js:3:21: 'useState' is defined but never used.
+/frontend/src/containers/main.js:3:29: A space is required before '}'.
+/frontend/src/containers/main.js:3:36: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react/index.js' imported multiple times.
+/frontend/src/containers/main.js:3:43: Extra semicolon.
+/frontend/src/containers/main.js:4:10: 'GoogleLogin' is defined but never used.
+/frontend/src/containers/main.js:4:23: 'GoogleLogout' is defined but never used.
+/frontend/src/containers/main.js:4:63: Extra semicolon.
+/frontend/src/containers/main.js:5:20: A space is required before '}'.
+/frontend/src/containers/main.js:5:27: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react-router-dom/index.js' imported multiple times.
+/frontend/src/containers/main.js:5:27: Strings must use singlequote.
+/frontend/src/containers/main.js:5:45: Extra semicolon.
+/frontend/src/containers/main.js:6:29: '/Users/michaelfang/Desktop/4156/4156/frontend/node_modules/react-router-dom/index.js' imported multiple times.
+/frontend/src/containers/main.js:6:29: Strings must use singlequote.
+/frontend/src/containers/main.js:6:47: Extra semicolon.
+/frontend/src/containers/main.js:7:22: Strings must use singlequote.
+/frontend/src/containers/main.js:7:34: Extra semicolon.
+/frontend/src/containers/main.js:11:1: More than 1 blank line not allowed.
+/frontend/src/containers/main.js:12:14: Missing space before function parentheses.
+/frontend/src/containers/main.js:13:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:13:9: 'location' is never reassigned. Use 'const' instead.
+/frontend/src/containers/main.js:13:33: Extra semicolon.
+/frontend/src/containers/main.js:14:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:14:9: 'history' is never reassigned. Use 'const' instead.
+/frontend/src/containers/main.js:14:31: Extra semicolon.
+/frontend/src/containers/main.js:16:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:16:51: Trailing spaces not allowed.
+/frontend/src/containers/main.js:17:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:17:40: Trailing spaces not allowed.
+/frontend/src/containers/main.js:18:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:19:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/main.js:19:25: Strings must use singlequote.
+/frontend/src/containers/main.js:19:29: Extra semicolon.
+/frontend/src/containers/main.js:20:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:21:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/main.js:21:29: Do not access Object.prototype method 'hasOwnProperty' from target object.
+/frontend/src/containers/main.js:21:44: Strings must use singlequote.
+/frontend/src/containers/main.js:21:72: Do not access Object.prototype method 'hasOwnProperty' from target object.
+/frontend/src/containers/main.js:21:87: Strings must use singlequote.
+/frontend/src/containers/main.js:22:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/main.js:22:29: Strings must use singlequote.
+/frontend/src/containers/main.js:22:33: Extra semicolon.
+/frontend/src/containers/main.js:23:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/main.js:24:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/main.js:24:44: Trailing spaces not allowed.
+/frontend/src/containers/main.js:25:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/main.js:26:17: Expected indentation of 14 space characters but found 16.
+/frontend/src/containers/main.js:26:66: There should be no space before '='
+/frontend/src/containers/main.js:26:66: There should be no space after '='
+/frontend/src/containers/main.js:26:94: A space is required before closing bracket
+/frontend/src/containers/main.js:27:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/containers/main.js:27:14: Extra semicolon.
+/frontend/src/containers/main.js:28:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/containers/main.js:28:10: Block must not be padded by blank lines.
+/frontend/src/containers/main.js:30:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:32:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/containers/main.js:32:16: Extra semicolon.
+/frontend/src/containers/main.js:35:20: Extra semicolon.
+/frontend/src/history.js:1:47: Extra semicolon.
+/frontend/src/history.js:3:38: Extra semicolon.
+/frontend/src/history.js:3:39: Newline required at end of file but not found.
+/frontend/src/index.js:1:26: Extra semicolon.
+/frontend/src/index.js:2:33: Extra semicolon.
+/frontend/src/index.js:3:21: Extra semicolon.
+/frontend/src/index.js:4:24: Extra semicolon.
+/frontend/src/index.js:5:8: 'GoogleButton' is defined but never used.
+/frontend/src/index.js:6:48: Extra semicolon.
+/frontend/src/index.js:9:5: Expected indentation of 2 space characters but found 4.
+/frontend/src/index.js:10:1: Expected indentation of 4 spaces but found 2.
+/frontend/src/index.js:11:2: Extra semicolon.
+/frontend/src/index.js:16:18: Extra semicolon.
+/frontend/src/reportWebVitals.js:4:26: Extra semicolon.
+/frontend/src/reportWebVitals.js:5:26: Extra semicolon.
+/frontend/src/reportWebVitals.js:6:26: Extra semicolon.
+/frontend/src/reportWebVitals.js:7:26: Extra semicolon.
+/frontend/src/reportWebVitals.js:8:27: Extra semicolon.
+/frontend/src/reportWebVitals.js:9:7: Extra semicolon.
+/frontend/src/reportWebVitals.js:11:2: Extra semicolon.
+/frontend/src/reportWebVitals.js:13:31: Extra semicolon.
+/frontend/src/routes.js:4:23: Strings must use singlequote.
+/frontend/src/routes.js:4:51: Extra semicolon.
+/frontend/src/routes.js:5:28: Strings must use singlequote.
+/frontend/src/routes.js:5:57: Extra semicolon.
+/frontend/src/routes.js:6:24: Strings must use singlequote.
+/frontend/src/routes.js:6:49: Extra semicolon.
+/frontend/src/routes.js:7:22: Strings must use singlequote.
+/frontend/src/routes.js:7:45: Extra semicolon.
+/frontend/src/services/googleLoginService.js:1:19: Strings must use singlequote.
+/frontend/src/services/googleLoginService.js:1:26: Extra semicolon.
+/frontend/src/services/googleLoginService.js:2:8: 'Cookies' is defined but never used.
+/frontend/src/services/googleLoginService.js:2:32: Extra semicolon.
+/frontend/src/services/googleLoginService.js:9:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/services/googleLoginService.js:9:9: 'res' is never reassigned. Use 'const' instead.
+/frontend/src/services/googleLoginService.js:10:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/services/googleLoginService.js:10:9: Strings must use singlequote.
+/frontend/src/services/googleLoginService.js:11:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/services/googleLoginService.js:12:1: Expected indentation of 6 spaces but found 12.
+/frontend/src/services/googleLoginService.js:12:38: Unexpected trailing comma.
+/frontend/src/services/googleLoginService.js:13:1: Expected indentation of 4 spaces but found 8.
+/frontend/src/services/googleLoginService.js:14:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/services/googleLoginService.js:14:6: Extra semicolon.
+/frontend/src/services/googleLoginService.js:15:1: Expected indentation of 2 spaces but found 4.
+/frontend/src/services/googleLoginService.js:15:21: Extra semicolon.
+/frontend/src/services/googleLoginService.js:16:2: Extra semicolon.
+/frontend/src/services/googleLoginService.js:18:27: Extra semicolon.
+/frontend/src/services/googleLoginService.js:18:28: Newline required at end of file but not found.
+/frontend/src/setupTests.js:5:35: Extra semicolon.

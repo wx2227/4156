@@ -10,7 +10,7 @@ import './Login.css'
 import googleLogin from "../services/googleLoginService";
 
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com';
-
+const lionMail = "columbia.edu";
 
 function GoogleButton() {
 
@@ -26,8 +26,12 @@ function GoogleButton() {
      */
     const responseGoogle = async(response) => {
         // use this as accessToken from google: response.accessToken
+        const userEmail = response.getBasicProfile().getEmail();
+        if (!userEmail.endsWith(lionMail)) {
+            return;
+        }
         const googleResponse  = await googleLogin(response.accessToken);
-        const res = await getUserInfo(response.getBasicProfile().getEmail());
+        const res = await getUserInfo(userEmail);
         if(res && res.data && res.data[0].user) {
             // set cookie 
             Cookies.set("user_id", res.data[0].user.id);
@@ -37,6 +41,7 @@ function GoogleButton() {
             window.location.href = "/airnote/main";
         }
     }
+
     
 
     const getUserInfo = async(email) => {

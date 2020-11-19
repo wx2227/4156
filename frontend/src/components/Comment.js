@@ -2,13 +2,6 @@ import * as React from 'react';
 import 'antd/dist/antd.css';
 import { Comment as CommentDesign, Tooltip, Avatar, Typography } from 'antd';
 import moment from 'moment';
-import Cookies from 'js-cookie';
-
-const user =  Cookies.get('user').split(', ').reduce((prev, current) => {
-    const [name, value] = current.split('=');
-    prev[name] = value;
-    return prev
-}, {});
 
 const { Text } = Typography;
 
