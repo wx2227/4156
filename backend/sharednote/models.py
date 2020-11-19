@@ -8,16 +8,6 @@ from django.dispatch import receiver
 # Create your models here.
 
 
-def validate_lion_mail(email):
-    """ Check whether a email is from lion mail
-
-    :param email: String: containing email address
-    :return: None : Raise ValidationError if email is not lionmail
-    """
-    if not email.endswith('@columbia.edu'):
-        raise ValidationError("Only @columbia.edu email address is allowed.")
-
-
 class CustomizeUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avartar = models.TextField(max_length=200, default="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")
@@ -66,7 +56,7 @@ class Note(models.Model):
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
     description = models.TextField(default="")
-    time = models.DateTimeField()
+    time = models.DateTimeField(null=True)
 
 
 class Comment(models.Model):

@@ -47,7 +47,7 @@ class NoteBaseSerializer(ModelSerializer):
     class Meta:
         model = Note
         fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url',
-        'description')
+        'description', 'time')
 
 
 class NoteSerializer(ModelSerializer):
