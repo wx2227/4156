@@ -3,7 +3,10 @@ import { Layout} from 'antd';
 import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import "../containers/MainPage.css";
 import {withRouter} from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 const { Footer} = Layout;
+
 
 class CustomLayout extends React.Component {
 
@@ -36,6 +39,12 @@ class CustomLayout extends React.Component {
         }
     }
 
+    handleLogout = () => {
+        console.log(Cookies.get("user"));
+        Cookies.remove("user");
+        window.location.href = "/"; 
+    }
+
     render() {
         return (
             <>
@@ -48,7 +57,8 @@ class CustomLayout extends React.Component {
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleOnChange} />
-                        <Button variant="outline-light" onClick={this.handleClick}>Search</Button>
+                        <Button variant="outline-light" style={{marginRight:"10px"}} onClick={this.handleClick}>Search</Button>
+                        <Button variant="danger" style={{width: "80px"}} onClick={this.handleLogout}>Logout</Button>
                     </Form>
                 </Navbar>
                   <div style={{ top: 20, background: '#fff', padding: 24, minHeight: 500 }}>

@@ -8,7 +8,7 @@ function App() {
   return (
       <div>
           <Router>
-              <Route extact path="/login" component={LoginPage}/>
+              <Route exact path="/" component={LoginPage}/>
               <Route path="/airnote">
                   <CustomLayout>
                       <BaseRouter/>

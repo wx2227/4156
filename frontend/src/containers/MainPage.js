@@ -22,7 +22,6 @@ function Mainpage(props) {
     );
 
     async function updateCourses() {
-        console.log("update Courses");
         // fetch courses
         await fetch("http://localhost:8000/api/course/")
             .then(res => res.json())

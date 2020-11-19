@@ -4,6 +4,7 @@ import { Component, useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory} from "react-router-dom";
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import './Login.css'
 import googleLogin from "../services/googleLoginService";
@@ -25,11 +26,21 @@ function GoogleButton() {
      */
     const responseGoogle = async(response) => {
         // use this as accessToken from google: response.accessToken
-        let googleResponse  = await googleLogin(response.accessToken);
-        console.log(googleResponse);
-        history.replace("/airnote/main", {client_id: CLIENT_ID, email: response.getBasicProfile().getEmail()})
+        const googleResponse  = await googleLogin(response.accessToken);
+        const res = await getUserInfo(response.getBasicProfile().getEmail());
+        if(res && res.data && res.data[0].user) {
+            // set cookie 
+            Cookies.set("user", res.data[0].user);
+            history.replace("/airnote/main")
+        }
     }
     
+
+    const getUserInfo = async(email) => {
+        const request = "http://localhost:8000/api/user/?email=" + email;
+        let res = await axios.get(request);
+        return await res;
+    }
 
     const handleLoginFailure = () => {
         alert('Failed to log out')
