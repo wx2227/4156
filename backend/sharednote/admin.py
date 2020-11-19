@@ -1,3 +1,6 @@
+"""
+define admin page format
+"""
 from django.contrib import admin
 from .models import CustomizeUser
 from .models import Comment
@@ -9,22 +12,37 @@ from .models import Vote
 
 
 class CustomizeUserAdmin(admin.ModelAdmin):
+    """
+    define customize user format in admin page
+    """
     list_display = ('avartar', 'credits', 'user')
 
 
 class CommentAdmin(admin.ModelAdmin):
+    """
+    define comment format in admin page
+    """
     list_display = ('user_id', 'note_id', 'content', 'time')
 
 
 class CourseAdmin(admin.ModelAdmin):
+    """
+    define course format in admin page
+    """
     list_display = ('course_number', 'course_name', 'department_name', 'term')
 
 
 class NoteAdmin(admin.ModelAdmin):
+    """
+    define note format in admin page
+    """
     list_display = ('user_id', 'course_number', 'file_name', 'file_url', 'description', 'time')
 
 
 class VoteAdmin(admin.ModelAdmin):
+    """
+    define vote format in admin page
+    """
     list_display = ('user_id', 'note_id', 'vote')
 
 

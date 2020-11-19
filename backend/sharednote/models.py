@@ -1,3 +1,6 @@
+'''
+Data model for database
+'''
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -6,17 +9,23 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-
+# pylint: disable=no-member
 class CustomizeUser(models.Model):
+    """
+    define data schema for customized user
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avartar = models.TextField(max_length=200, default="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")
+    avartar = models.TextField(
+        max_length=200,
+        default="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")
     credits = models.IntegerField(default=0)
 
-
+# pylint: disable=unused-argument
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     """ Create a new user profile in Django database
-    If user profile created by built-in user table then we create a customized user table with extra fields
+    If user profile created by built-in user table then we create
+    a customized user table with extra fields
 
     :param sender: Django built-in placeholder parameter
     :param instance: built-in UserInstance
@@ -27,7 +36,7 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         CustomizeUser.objects.create(user=instance)
 
-
+# pylint: disable=unused-argument
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     """ Modify a new user profile in Django database
@@ -41,6 +50,9 @@ def save_user_profile(sender, instance, **kwargs):
 
 
 class Course(models.Model):
+    """
+    define data schema for course
+    """
     course_number = models.CharField(max_length=20, primary_key=True)
     course_name = models.CharField(max_length=50)
     department_name = models.CharField(max_length=50)
@@ -48,6 +60,9 @@ class Course(models.Model):
 
 
 class Note(models.Model):
+    """
+    define data schema for note
+    """
     user_id = models.ForeignKey(
         get_user_model(), related_name='notes', on_delete=models.CASCADE)
     course_number = models.ForeignKey(
@@ -59,13 +74,20 @@ class Note(models.Model):
 
 
 class Comment(models.Model):
-    user_id = models.ForeignKey(get_user_model(), related_name="user_info",on_delete=models.CASCADE)
+    """
+    define data schema for comment
+    """
+    user_id = models.ForeignKey(get_user_model(), related_name="user_info",
+                                on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()
     time = models.DateTimeField()
 
 
 class Vote(models.Model):
+    """
+    define data schema for vote
+    """
     UPVOTE = 1
     NOVOTE = 0
     DOWNVOTE = -1
@@ -78,5 +100,9 @@ class Vote(models.Model):
     note_id = models.ForeignKey(Note, related_name='votes', on_delete=models.CASCADE)
     vote = models.IntegerField(choices=VOTE_CHOICES, default=0)
 
+    # pylint: disable=too-few-public-methods
     class Meta:
+        """
+        set user_id and note_id to be unique pair
+        """
         unique_together = ('user_id', 'note_id',)

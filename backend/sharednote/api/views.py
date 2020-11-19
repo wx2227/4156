@@ -1,10 +1,21 @@
+'''
+Handle response format
+'''
+# pylint: disable=import-error
 from rest_framework import viewsets
-from sharednote.api.serializers import *
-from ..models import *
 from django.db.models import Count, Q
+from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
+    NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
+    CourseBaseSerializer, VoteSerializer
+from ..models import CustomizeUser, Comment, Note, Course, Vote
 
 
+# pylint: disable=no-member
+# pylint: disable=too-few-public-methods
 class CustomizeUserViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for customized user request
+    """
     serializer_class = CustomizeUserSerializer
     queryset = CustomizeUser.objects.all()
 
@@ -15,20 +26,29 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
         """
         queryset = CustomizeUser.objects.all()
         email = self.request.query_params.get('email')
-        id = self.request.query_params.get('id')
+        identification = self.request.query_params.get('id')
         if email:
             queryset = queryset.filter(user__email=email)
-        if id:
-            queryset = queryset.filter(user__id=id)
+        if identification:
+            queryset = queryset.filter(user__id=identification)
         return queryset
 
 
+# pylint: disable=no-member
+# pylint: disable=too-few-public-methods
 class CommentViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for comment request
+    """
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
 
 
+# pylint: disable=no-member
 class NoteViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for note request
+    """
     def get_serializer_class(self):
         """ Part of the Django requirement, get query set serializer
 
@@ -57,7 +77,11 @@ class NoteViewSet(viewsets.ModelViewSet):
         )
 
 
+# pylint: disable=no-member
 class CourseViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for course request
+    """
     def get_queryset(self):
         """ Get a query set of a course
 
@@ -79,7 +103,12 @@ class CourseViewSet(viewsets.ModelViewSet):
         return CourseBaseSerializer
 
 
+# pylint: disable=no-member
+# pylint: disable=too-few-public-methods
 class VoteViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for vote request
+    """
     def get_queryset(self):
         """ Get a query set of a Vote, with query params user_id and note_id
 
@@ -92,5 +121,3 @@ class VoteViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(user_id=user_id, note_id=note_id)
         return queryset
     serializer_class = VoteSerializer
-
-
