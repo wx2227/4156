@@ -31,7 +31,7 @@ function GoogleButton() {
         if(res && res.data && res.data[0].user) {
             // set cookie 
             Cookies.set("user", res.data[0].user);
-            history.replace("/airnote/main")
+            window.location.href = "/airnote/main";
         }
     }
     
