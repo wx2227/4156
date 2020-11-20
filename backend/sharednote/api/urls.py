@@ -11,4 +11,5 @@ ROUTER.register(r'note', NoteViewSet, basename='note')
 ROUTER.register(r'comment', CommentViewSet, basename='comment')
 ROUTER.register(r'vote', VoteViewSet, basename='vote')
 ROUTER.register(r'course', CourseViewSet, basename='course')
-URL = ROUTER.urls
+# pylint: disable=invalid-name
+urlpatterns = ROUTER.urls
