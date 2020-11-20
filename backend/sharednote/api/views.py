@@ -12,6 +12,7 @@ from ..models import CustomizeUser, Comment, Note, Course, Vote
 
 # pylint: disable=no-member
 # pylint: disable=too-few-public-methods
+# pylint: disable=too-many-ancestors
 class CustomizeUserViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for customized user request
@@ -36,6 +37,7 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
 
 # pylint: disable=no-member
 # pylint: disable=too-few-public-methods
+# pylint: disable=too-many-ancestors
 class CommentViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for comment request
@@ -45,6 +47,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 # pylint: disable=no-member
+# pylint: disable=too-many-ancestors
 class NoteViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for note request
@@ -78,6 +81,7 @@ class NoteViewSet(viewsets.ModelViewSet):
 
 
 # pylint: disable=no-member
+# pylint: disable=too-many-ancestors
 class CourseViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for course request
@@ -105,6 +109,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 # pylint: disable=no-member
 # pylint: disable=too-few-public-methods
+# pylint: disable=too-many-ancestors
 class VoteViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for vote request

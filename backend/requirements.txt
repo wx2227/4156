@@ -8,7 +8,7 @@ django-cors-headers==3.4.0
 django-rest-auth==0.9.5
 djangorestframework==3.11.0
 idna==2.10
-oauthlib==3.1.0
+oauthlib==3.1.0pip
 python3-openid==3.2.0
 pytz==2020.1
 requests==2.24.0
@@ -18,3 +18,4 @@ sqlparse==0.3.1
 urllib3==1.25.10
 coverage==5.3
 django-nose==1.4.7
+pylint==2.6.0
