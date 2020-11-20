@@ -21,7 +21,6 @@ class UnitTest(TestCase):
         '''
         response = self.client.get("/api/user/?id=14")
         assert response.status_code == 200
-        print(response.json()[0])
         self.assertEqual(len(response.json()), 1)
         self.assertEqual(response.json()[0], {
             "avartar": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
