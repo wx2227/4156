@@ -1,6 +1,7 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import moment from 'moment'
+import { Form } from 'react-bootstrap'
 
 class UploadForm extends React.Component {
     toBase64 : String = file => new Promise((resolve, reject) => {
@@ -85,27 +86,36 @@ class UploadForm extends React.Component {
 
     render () {
       return (
-        <form className='p-4 m-4' onSubmit={(event) => this.handleSubmit(event)}>
-          <div className='form-row'>
-            <div className='form-group col-md-6'>
-              <label htmlFor='fileName'>File Name</label>
-              <input className='form-control' type='text' placeholder='File name' id='fileName' required />
-            </div>
-            <div className='form-group col-md-6'>
-              <label htmlFor='courseNumber'>Course Number</label>
-              <input className='form-control' type='text' placeholder='Course Number' id='courseNumber' required />
-            </div>
+        <div className='container h-100'>
+          <div className='row justify-content-center align-self-center'>
+            <Form className='card bg-white'>
+              <span className='align-middle' style={{ textAlign: 'center', background: '#17A2B8', height: '80px' }}>
+                <h1 className='text-white row justify-content-center align-self-center'>Add Your Note</h1>
+              </span>
+              <div className='p-3'>
+                <div className='form-row'>
+                  <div className='form-group'>
+                    <label htmlFor='fileName'>File Name</label>
+                    <input className='form-control' type='text' placeholder='File name' id='fileName' required />
+                  </div>
+                  <div className='form-group'>
+                    <label htmlFor='courseNumber'>Course Number</label>
+                    <input className='form-control' type='text' placeholder='Course Number' id='courseNumber' required />
+                  </div>
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='description'>Description</label>
+                  <textarea className='form-control' placeholder='Description' id='description' rows='5' required />
+                </div>
+                <div className='form-group'>
+                  <label htmlFor='file'>Upload your file</label>
+                  <input className='form-control-file' type='file' name='file' id='file' required />
+                </div>
+              </div>
+              <button className='btn btn-primary' type='submit' onSubmit={(event) => this.handleSubmit(event)}>Submit</button>
+            </Form>
           </div>
-          <div className='form-group'>
-            <label htmlFor='description'>Description</label>
-            <textarea className='form-control' placeholder='Description' id='description' rows='5' required />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='file'>Upload your file</label>
-            <input className='form-control-file' type='file' name='file' id='file' required />
-          </div>
-          <button className='btn btn-primary' type='submit'>Submit</button>
-        </form>
+        </div>
       )
     }
 }

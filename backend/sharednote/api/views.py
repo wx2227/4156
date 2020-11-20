@@ -2,17 +2,17 @@
 Handle response format
 '''
 # pylint: disable=import-error
+# pylint: disable=no-member
+# pylint: disable=too-few-public-methods
+# pylint: disable=too-many-ancestors
 from rest_framework import viewsets
-from django.db.models import Count, Q
+from django.db.models import Count, Q, F
 from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
     NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
     CourseBaseSerializer, VoteSerializer
 from ..models import CustomizeUser, Comment, Note, Course, Vote
 
 
-# pylint: disable=no-member
-# pylint: disable=too-few-public-methods
-# pylint: disable=too-many-ancestors
 class CustomizeUserViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for customized user request
@@ -22,7 +22,6 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """ Part of the Django requirement, get query set
-
         :return: The query set of customized user view
         """
         queryset = CustomizeUser.objects.all()
@@ -35,9 +34,6 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-# pylint: disable=no-member
-# pylint: disable=too-few-public-methods
-# pylint: disable=too-many-ancestors
 class CommentViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for comment request
@@ -46,15 +42,12 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
 
 
-# pylint: disable=no-member
-# pylint: disable=too-many-ancestors
 class NoteViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for note request
     """
     def get_serializer_class(self):
         """ Part of the Django requirement, get query set serializer
-
         :return: A Serializer based on action type
         """
         if self.action == 'list' or self.action == 'retrieve':
@@ -63,7 +56,6 @@ class NoteViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """ Return a queryset containing upvote and downvote number
-
         :return: queryset : object containing upvote and downvote number
         """
         queryset = Note.objects.all()
@@ -80,15 +72,12 @@ class NoteViewSet(viewsets.ModelViewSet):
         )
 
 
-# pylint: disable=no-member
-# pylint: disable=too-many-ancestors
 class CourseViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for course request
     """
     def get_queryset(self):
         """ Get a query set of a course
-
         :return: queryset: A queryset object containing courses of certain course number
         """
         queryset = Course.objects.all()
@@ -98,8 +87,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         return queryset
 
     def get_serializer_class(self):
-        """ Part of the Django requirement, get query set serializer
-
+        """Part of the Django requirement, get query set serializer
         :return: Serializer : A Serializer for course
         """
         if self.action == 'list' or self.action == 'retrieve':
@@ -107,16 +95,12 @@ class CourseViewSet(viewsets.ModelViewSet):
         return CourseBaseSerializer
 
 
-# pylint: disable=no-member
-# pylint: disable=too-few-public-methods
-# pylint: disable=too-many-ancestors
 class VoteViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for vote request
     """
     def get_queryset(self):
         """ Get a query set of a Vote, with query params user_id and note_id
-
         :return: queryset: A queryset object containing courses of certain course number
         """
         queryset = Vote.objects.all()

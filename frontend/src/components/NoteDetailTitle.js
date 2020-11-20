@@ -1,13 +1,14 @@
 import * as React from 'react'
 import 'antd/dist/antd.css'
 import { PageHeader, Descriptions } from 'antd'
+import { Jumbotron, Container, Button, Row, Col } from 'react-bootstrap'
 import Vote from './Vote'
 import axios from 'axios'
 
 const Content = ({ children }) => {
   return (
-    <div className='content'>
-      <div className='main'>{children}</div>
+    <div>
+      <div>{children}</div>
     </div>
   )
 }
@@ -34,43 +35,43 @@ class NoteDetailTitle extends React.Component {
           }
         }).catch(() => alert('cannot get user info.'))
       this.setState({
+        ...this.state,
         note: this.props.note
       })
     }
   }
 
-    renderContent = (column = 3) => {
+    renderContent = () => {
       return (
-        <div style={{ display: 'inline-block' }}>
-          <Descriptions size='small' column={column}>
-            <Descriptions.Item label='Created'>{this.state.last_name} {this.state.first_name}</Descriptions.Item>
-            <Descriptions.Item label='Creation Time'>{this.props.note.time}</Descriptions.Item>
-            <Descriptions.Item label='Course Number'>
-              {this.props.note.course_number}
-            </Descriptions.Item>
-            <Descriptions.Item label='Votes'>
-              <Vote note={this.props.note} />
-            </Descriptions.Item>
-          </Descriptions>
-          <Descriptions size='small' column={1}>
-            <Descriptions.Item label='Description'>
-              {this.props.note.description}
-            </Descriptions.Item>
-          </Descriptions>
+        <div>
+          <Row>
+            <Col>Created {this.state.last_name} {this.state.first_name}</Col>
+            <Col>Creation Time {this.props.note.time}</Col>
+          </Row>
+          <Row>
+            <Vote note={this.props.note} />
+          </Row>
+          <Row>
+            <Col>{this.props.note.description}</Col>
+          </Row>
         </div>
       )
+    }
+
+    handleClick = () => {
+      window.location.href = '/airnote/upload'
     }
 
     render () {
       return (
         <div>
-          <PageHeader
-            className='site-page-header-responsive'
-            onBack={() => window.history.back()}
-            title={this.props.note.course_number}
-          >
-            <Content>{this.renderContent()}</Content>
-          </PageHeader>
+          <Content>{this.renderContent()}</Content>
+          {/* <PageHeader */}
+          {/*  className='site-page-header-responsive' */}
+          {/*  onBack={() => window.history.back()} */}
+          {/*  title={this.props.note.course_number} */}
+          {/* > */}
+          {/* </PageHeader> */}
         </div>
       )
     }

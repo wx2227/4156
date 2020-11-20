@@ -46,8 +46,8 @@ class CustomLayout extends React.Component {
 
     render () {
       return (
-        <>
-          <Navbar bg='primary' variant='dark' style={{ position: 'sticky', top: '0', zIndex: '100' }}>
+        <div>
+          <Navbar bg='light' expand='lg' style={{ position: 'sticky', top: '0', zIndex: '100' }}>
             <Navbar.Brand href='#home'>AirNote</Navbar.Brand>
             <Nav className='mr-auto'>
               <Nav.Link href='/airnote/main'>Home</Nav.Link>
@@ -56,17 +56,17 @@ class CustomLayout extends React.Component {
             </Nav>
             <Form inline>
               <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={this.handleOnChange} />
-              <Button variant='outline-light' style={{ marginRight: '10px' }} onClick={this.handleClick}>Search</Button>
+              <Button variant='outline-dark' style={{ marginRight: '10px' }} onClick={this.handleClick}>Search</Button>
               <Button variant='danger' style={{ width: '80px' }} onClick={this.handleLogout}>Logout</Button>
             </Form>
           </Navbar>
-          <div style={{ top: 20, background: '#fff', padding: 24, minHeight: 500 }}>
+          <div className='vh-100'>
             {this.props.children}
           </div>
-          <Footer style={{ bottom: '0' }}>
-            Ant Design ©2016 Created by Ant UED
+          <Footer style={{ bottom: '0' }} className='d-flex justify-content-center'>
+            AirNote ©2020 Created by Batman's Kitchen
           </Footer>
-        </>
+        </div>
       )
     }
 }

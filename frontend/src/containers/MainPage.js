@@ -1,57 +1,68 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import axios from 'axios'
+// import './MainPage.css'
+import { Button, Card, CardColumns, Container, Jumbotron } from 'react-bootstrap'
 
-import './MainPage.css'
-import { Card, CardColumns, Container } from 'react-bootstrap'
-
-function Mainpage () {
-  const [courses, setCourses] = useState(null)
-
-  // make search bar sticky on top
-  useEffect(
-    () => {
-      // fetch courses
-      updateCourses()
-      // update course notes if course is provided
-    }, []
-  )
-
-  async function updateCourses () {
-    // fetch courses
-    await fetch('http://localhost:8000/api/course/')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setCourses(result)
-        }).catch(err => { console.log(err.stack) })
+class Mainpage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      courses: [],
+      department: ''
+    }
   }
 
-  const showCourses = () => {
+  componentDidMount (): void {
+    axios.get('http://localhost:8000/api/course/')
+      .then(res => {
+        if (res.data.length !== 0) {
+          this.setState({
+            courses: res.data,
+            department: res.data[0].department_name
+          })
+        }
+      }).catch(err => { console.log(err.stack) })
+  }
+
+  showCourses = () => {
     return (
-      <CardColumns style={{ width: '70rem' }}>{courses.map((course) =>
-        <a key={course.id} href={'/airnote/notes/' + course.course_number}>
-          <Card style={{ width: '18rem', textDecoration: 'none' }}>
-
-            <Card.Img variant='top' style={{ width: '286px', height: '180px' }} className='img-fluid' src='https://picsum.photos/286/180' />
-            <Card.Body style={{ color: 'Black' }}>
-              <Card.Title>{course.course_number}</Card.Title>
-              <Card.Text>
-                {course.course_name}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-
-        </a>
-
-      )}
+      <CardColumns style={{ width: '100rem' }}>
+        {
+              this.state.courses.map((course) =>
+                <a key={course.id} href={'/airnote/notes/' + course.course_number}>
+                  <Card style={{ width: '30rem', textDecoration: 'none' }}>
+                    <Card.Body style={{ color: 'Black' }}>
+                      <Card.Title>{course.course_number}</Card.Title>
+                      <Card.Title>{course.course_name}</Card.Title>
+                      <Button variant='outline-success' style={{ width: '8rem' }}>{course.notes.length} Notes</Button>{' '}
+                    </Card.Body>
+                  </Card>
+                </a>
+              )
+}
       </CardColumns>
     )
   }
 
-  return (
-    <Container>
-      {courses && showCourses()}
-    </Container>
-  )
+  render () {
+    return (
+      <div>
+        <Jumbotron fluid style={{ background: '#494342' }}>
+          <Container>
+            <h1 className='text-white'>Department of {this.state.department}</h1>
+            <p>
+              <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={this.handleClick}>+ Add Course</Button>
+            </p>
+          </Container>
+        </Jumbotron>
+        <div className='row justify-content-md-center'>
+          <div align='center' className='col-md-8'>
+            {this.state.courses && this.showCourses()}
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Mainpage

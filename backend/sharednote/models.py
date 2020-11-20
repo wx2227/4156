@@ -1,6 +1,8 @@
 '''
 Data model for database
 '''
+# pylint: disable=too-few-public-methods
+# pylint: disable=no-member
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -9,7 +11,6 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-# pylint: disable=no-member
 class CustomizeUser(models.Model):
     """
     define data schema for customized user
@@ -63,14 +64,15 @@ class Note(models.Model):
     """
     define data schema for note
     """
-    user_id = models.ForeignKey(
-        get_user_model(), related_name='notes', on_delete=models.CASCADE)
-    course_number = models.ForeignKey(
-        Course, related_name='notes', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(get_user_model(), related_name='notes',
+                                on_delete=models.CASCADE)
+    course_number = models.ForeignKey(Course, related_name='notes',
+                                      on_delete=models.CASCADE)
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
     description = models.TextField(default="")
     time = models.DateTimeField(null=True)
+    # course = models.OneToOneField(Course, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
@@ -100,9 +102,5 @@ class Vote(models.Model):
     note_id = models.ForeignKey(Note, related_name='votes', on_delete=models.CASCADE)
     vote = models.IntegerField(choices=VOTE_CHOICES, default=0)
 
-    # pylint: disable=too-few-public-methods
     class Meta:
-        """
-        set user_id and note_id to be unique pair
-        """
         unique_together = ('user_id', 'note_id',)
