@@ -10,9 +10,6 @@ from sharednote.models import Note, Comment, Course, Vote, CustomizeUser
 
 
 class CommentSerializer(ModelSerializer):
-    """
-    define serialization format for comment
-    """
     class Meta:
         model = Comment
         fields = '__all__'
@@ -20,6 +17,7 @@ class CommentSerializer(ModelSerializer):
 
 class UserSerializer(ModelSerializer):
     notes = PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = get_user_model()
         fields = ('id', 'first_name', 'last_name', 'email', 'notes')
@@ -27,6 +25,7 @@ class UserSerializer(ModelSerializer):
 
 class CustomizeUserSerializer(ModelSerializer):
     user = UserSerializer(read_only=True)
+
     class Meta:
         model = CustomizeUser
         fields = ('avartar', 'credits', 'user')
