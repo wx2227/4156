@@ -72,7 +72,6 @@ class NoteBaseSerializer(ModelSerializer):
 class NoteSerializer(ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
     votes = VoteSerializer(many=True, read_only=True)
-    course = PrimaryKeyRelatedField(queryset=Course.objects.all())
 
     class Meta:
         model = Note

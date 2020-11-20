@@ -72,7 +72,6 @@ class Note(models.Model):
     file_url = models.TextField(null=False)
     description = models.TextField(default="")
     time = models.DateTimeField(null=True)
-    # course = models.OneToOneField(Course, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
