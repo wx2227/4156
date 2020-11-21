@@ -23,7 +23,10 @@ function GoogleButton () {
      */
   const responseGoogle = async (response) => {
     // use this as accessToken from google: response.accessToken
-    const userEmail = response.getBasicProfile().getEmail()
+    const profile = response.getBasicProfile()
+    const userEmail = profile.getEmail()
+    const imgUrl = profile.getImageUrl()
+
     if (!userEmail.endsWith(lionMail)) {
       return
     }
@@ -36,6 +39,7 @@ function GoogleButton () {
       Cookies.set('token', googleResponse.data)
       Cookies.set('firstname', res.data[0].first_name)
       Cookies.set('lastname', res.data[0].last_name)
+      Cookies.set('url', imgUrl)
       window.location.href = '/airnote/main'
     }
   }

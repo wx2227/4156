@@ -30,13 +30,14 @@ class NoteDetailView extends React.Component {
             // last_name: res.data.user['last_name']
           })
         }
-        axios.get(`http://127.0.0.1:8000/api/user/?id=${res.data.user_id}`)
+        axios.get(`http://127.0.0.1:8000/api/user/${res.data.user_id}`)
           .then(res => {
+            console.log(res.data)
             if (res.data.length !== 0) {
               this.setState({
                 ...this.state,
-                first_name: res.data[0].user.first_name,
-                last_name: res.data[0].user.last_name
+                first_name: res.data.first_name,
+                last_name: res.data.last_name
               })
             }
           }).catch(() => alert('cannot get user info.'))
@@ -56,7 +57,7 @@ class NoteDetailView extends React.Component {
               <h2 className='text-white pb-3'>{this.state.note.file_name}</h2>
               <Row>
                 <Col className='col-md-2'><h6 className='text-white'>Created By:</h6></Col>
-                <Col><h6 className='text-white'>{this.state.last_name} {this.state.first_name}</h6></Col>
+                <Col><h6 className='text-white'>{this.state.first_name} {this.state.last_name}</h6></Col>
               </Row>
               <Row className='text-white'>
                 <Col className='col-md-2'><h6 className='text-white'>Creation Time:</h6></Col>

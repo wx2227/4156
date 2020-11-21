@@ -16,12 +16,13 @@ class DropDown extends React.Component {
     return (
       <div>
         <Dropdown>
-          <Dropdown.Toggle variant="info" id="dropdown-basic">
+          <Dropdown.Toggle variant="light">
+            <img src={Cookies.get('url')} className="img-fluid" style={{width: '50px', height: '50px'}}/>{' '}
             {`${Cookies.get('firstname')} ${Cookies.get('lastname')}`}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item>
-              <Button variant='danger' onClick={this.handleLogout}>Logout</Button>
+              <Button variant='danger' onClick={this.handleLogout} className={'w-100'}>Logout</Button>
             </Dropdown.Item>
             <Dropdown.Item href="/airnote/profile">Student Profile</Dropdown.Item>
           </Dropdown.Menu>
