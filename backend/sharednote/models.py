@@ -4,50 +4,24 @@ Data model for database
 # pylint: disable=too-few-public-methods
 # pylint: disable=no-member
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 # Create your models here.
 
-class CustomizeUser(models.Model):
+
+class CustomizeUser(AbstractUser):
     """
     define data schema for customized user
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avartar = models.TextField(
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.TextField(
+        null=True,
         max_length=200,
-        default="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")
+        default="")
     credits = models.IntegerField(default=0)
-
-# pylint: disable=unused-argument
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    """ Create a new user profile in Django database
-    If user profile created by built-in user table then we create
-    a customized user table with extra fields
-
-    :param sender: Django built-in placeholder parameter
-    :param instance: built-in UserInstance
-    :param created: Boolean : whether the user is already created
-    :param kwargs: [args...] : additional arguments
-    :return: CustomizedUserInstance
-    """
-    if created:
-        CustomizeUser.objects.create(user=instance)
-
-# pylint: disable=unused-argument
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    """ Modify a new user profile in Django database
-
-    :param sender: Django built-in placeholder parameter
-    :param instance: built-in UserInstance
-    :param kwargs: [args...] : additional arguments
-    :return: None
-    """
-    instance.customizeuser.save()
 
 
 class Course(models.Model):
@@ -71,7 +45,7 @@ class Note(models.Model):
     file_name = models.TextField(null=False, default="")
     file_url = models.TextField(null=False)
     description = models.TextField(default="")
-    time = models.DateTimeField(null=True)
+    time = models.DateTimeField(auto_now_add=True)
 
 
 class Comment(models.Model):

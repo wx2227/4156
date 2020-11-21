@@ -3,14 +3,18 @@ import axios from 'axios'
 import Preview from './Preview'
 import NoteDetailTitle from './NoteDetailTitle'
 import CommentListView from './CommentListView'
-import { Button, Container, Jumbotron } from 'react-bootstrap'
+import AddNote from './AddNote'
+import Vote from './Vote'
+import { Button, Col, Container, Jumbotron, Row } from 'react-bootstrap'
 
 class NoteDetailView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       note: [],
-      comments: []
+      comments: [],
+      first_name: "",
+      last_name: ""
     }
   }
 
@@ -18,10 +22,24 @@ class NoteDetailView extends React.Component {
     const noteID = this.props.match.params.noteID
     axios.get(`http://127.0.0.1:8000/api/note/${noteID}`)
       .then(res => {
-        this.setState({
-          note: res.data,
-          comments: res.data.comments
-        })
+        if (res.data.length !== 0) {
+          this.setState({
+            note: res.data,
+            comments: res.data.comments,
+            // first_name: res.data.user['first_name'],
+            // last_name: res.data.user['last_name']
+          })
+        }
+        axios.get(`http://127.0.0.1:8000/api/user/?id=${res.data.user_id}`)
+          .then(res => {
+            if (res.data.length !== 0) {
+              this.setState({
+                ...this.state,
+                first_name: res.data[0].user.first_name,
+                last_name: res.data[0].user.last_name
+              })
+            }
+          }).catch(() => alert('cannot get user info.'))
       })
   }
 
@@ -33,12 +51,17 @@ class NoteDetailView extends React.Component {
     return (
       <div>
         <div>
-          <Jumbotron fluid style={{ background: '#494342' }}>
+          <Jumbotron fluid style={{ background: '#494342', maxHeight: '220px'}}>
             <Container>
-              <h2 className='text-white'>{this.state.note.file_name}</h2>
-              <p>
-                <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={this.handleClick}>+ Add Note</Button>
-              </p>
+              <h2 className='text-white pb-3'>{this.state.note.file_name}</h2>
+              <Row>
+                <Col className='col-md-2'><h6 className='text-white'>Created By:</h6></Col>
+                <Col><h6 className='text-white'>{this.state.last_name} {this.state.first_name}</h6></Col>
+              </Row>
+              <Row className='text-white'>
+                <Col className='col-md-2'><h6 className='text-white'>Creation Time:</h6></Col>
+                <Col><h6 className='text-white'>{this.state.note.time}</h6></Col>
+              </Row>
             </Container>
           </Jumbotron>
         </div>
@@ -46,13 +69,18 @@ class NoteDetailView extends React.Component {
           <div className='col-md-2'> </div>
           <div className='col-md-8'>
             <div className='detail-container'>
-              <NoteDetailTitle note={this.state.note} />
               <Preview url={this.state.note.file_url} />
-              <div style={{ width: '100%' }} />
-              <br />
-              <a href={this.state.note.file_url}>
-                <button className='btn btn-primary'> Download File </button>
-              </a>
+              <Row className='pt-3'>
+                <Col>
+                  <div style={{ width: '100%' }} />
+                  <a href={this.state.note.file_url}>
+                    <Button variant="info"> Download File </Button>
+                  </a>
+                </Col>
+                <Col className="d-flex justify-content-end">
+                  <Vote note={this.state.note} />
+                </Col>
+              </Row>
               <div style={{ width: '100%' }}>
                 <CommentListView note={this.state.note} />
               </div>

@@ -34,7 +34,7 @@ class Mainpage extends React.Component {
                     <Card.Body style={{ color: 'Black' }}>
                       <Card.Title>{course.course_number}</Card.Title>
                       <Card.Title>{course.course_name}</Card.Title>
-                      <Button variant='outline-success' style={{ width: '8rem' }}>{course.notes.length} Notes</Button>{' '}
+                      <Button variant='outline-success' style={{ width: '20rem' }}>{course.notes.length} Notes</Button>{' '}
                     </Card.Body>
                   </Card>
                 </a>
@@ -55,7 +55,7 @@ class Mainpage extends React.Component {
             </p>
           </Container>
         </Jumbotron>
-        <div className='row justify-content-md-center'>
+        <div className='row justify-content-md-center' style={{minHeight: 700 }}>
           <div align='center' className='col-md-8'>
             {this.state.courses && this.showCourses()}
           </div>

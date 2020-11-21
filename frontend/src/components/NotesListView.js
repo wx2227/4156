@@ -1,6 +1,7 @@
 import * as React from 'react'
 import axios from 'axios'
 import Notes from './Notes'
+import AddNote from './AddNote'
 import 'antd/dist/antd.css'
 import { Button, Container, Jumbotron } from 'react-bootstrap'
 
@@ -15,6 +16,7 @@ class NotesListView extends React.Component {
 
   componentDidMount () {
     const courseNumber = this.props.match.params.course_number
+    console.log(courseNumber)
     if (courseNumber === undefined) {
       axios.get('http://localhost:8000/api/note/')
         .then(res => {
@@ -33,8 +35,7 @@ class NotesListView extends React.Component {
           })
         }).catch(() => {
           alert('Please input a valid course number.')
-        }
-        )
+        })
     }
     axios.get(`http://localhost:8000/api/course/?course_number=${courseNumber}`)
       .then(res => {
@@ -43,34 +44,36 @@ class NotesListView extends React.Component {
           course: res.data[0]
         })
       }).catch(() => {
-        alert('Cannot get course form server')
-      })
+      alert('Cannot get course form server')
+    })
   }
 
   render () {
     return (
-      <div>
+      <>
         <Jumbotron fluid style={{ background: '#494342' }} className='h-20'>
+          <Container>
           {
-              this.state.course
-                ? <Container>
+            this.state.course
+              ?
+                <div>
                   <h1 className='text-white'>{this.state.course.course_number}</h1>
                   <h2 className='text-white'>{this.state.course.course_name}</h2>
-                  <p>
-                    <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={this.handleClick}>+ Add Note</Button>
-                  </p>
-                  </Container>
-                : <Container>
-                  <h1 className='text-white'>Air Notes</h1>
-                  </Container>
+                </div>
+              :
+                <h1 className='text-white'>Air Notes</h1>
             }
+            <p>
+            <AddNote />
+            </p>
+          </Container>
         </Jumbotron>
-        <div className='row justify-content-center' style={{ background: '#fff', minHeight: 500 }}>
+        <div className='row justify-content-center' style={{ background: '#fff', minHeight: 700 }}>
           <div className='col-md-8' align='center'>
             <Notes notes={this.state.notes} course={this.state.course} />
           </div>
         </div>
-      </div>
+      </>
     )
   }
 }

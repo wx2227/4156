@@ -18,19 +18,15 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
     Define the format of response for customized user request
     """
     serializer_class = CustomizeUserSerializer
-    queryset = CustomizeUser.objects.all()
 
     def get_queryset(self):
         """ Part of the Django requirement, get query set
         :return: The query set of customized user view
         """
-        queryset = CustomizeUser.objects.all()
+        queryset = CustomizeUser.objects.filter(is_superuser=False)
         email = self.request.query_params.get('email')
-        identification = self.request.query_params.get('id')
         if email:
-            queryset = queryset.filter(user__email=email)
-        if identification:
-            queryset = queryset.filter(user__id=identification)
+            queryset = queryset.filter(email=email)
         return queryset
 
 

@@ -142,8 +142,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-SITE_ID = 2
+SITE_ID = 3
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# AUTH_USER_MODEL = "sharednote.CustomizeUser"
+AUTH_USER_MODEL = "sharednote.CustomizeUser"
+
+SOCIALACCOUNT_ADAPTER = 'sharednote.api.adapters.CustomSocialAccountAdapter'

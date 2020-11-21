@@ -24,11 +24,9 @@ class UserSerializer(ModelSerializer):
 
 
 class CustomizeUserSerializer(ModelSerializer):
-    user = UserSerializer(read_only=True)
-
     class Meta:
         model = CustomizeUser
-        fields = ('avartar', 'credits', 'user')
+        fields = ('id', 'first_name', 'last_name', 'email', 'avatar', 'credits')
 
 
 class VoteSerializer(ModelSerializer):
