@@ -17,7 +17,7 @@ class DropDown extends React.Component {
       <div>
         <Dropdown>
           <Dropdown.Toggle variant="light">
-            <img src={Cookies.get('url')} className="img-fluid" style={{width: '50px', height: '50px'}}/>{' '}
+            <img src={Cookies.get('url')} className="img-fluid" style={{width: '40px', height: '40px'}}/>{' '}
             {`${Cookies.get('firstname')} ${Cookies.get('lastname')}`}
           </Dropdown.Toggle>
           <Dropdown.Menu>

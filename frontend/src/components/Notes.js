@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardColumns, Button } from 'react-bootstrap'
+import { Card, CardColumns, Button, CardDeck, Row, Col } from 'react-bootstrap'
 
 import 'antd/dist/antd.css'
 
@@ -13,24 +13,26 @@ function Notes (props) {
   })
 
   return (
-    <CardColumns style={{ width: '100rem' }}>
-      {
-        props.notes.map(note =>
-          <a href={`/airnote/note/${note.id}`}>
-            <Card border='primary' style={{ width: '30rem', textDecoration: 'none' }}>
-              <Card.Body style={{ color: 'Black' }}>
-                <Card.Title>{note.course_number}</Card.Title>
-                {props.course && <Card.Title style={{ height: '3rem' }}>{props.course && props.course.course_name}</Card.Title>}
-                <Card.Text>{note.file_name}</Card.Text>
-                <Button variant='outline-success' style={{ width: '8rem' }}>{note.up_votes} Likes</Button>{'  '}
-                <Button variant='outline-danger' style={{ width: '8rem' }}>{note.down_votes} Dislikes</Button>{'  '}
-                <Button variant='outline-info' style={{ width: '8rem' }}>{note.comments.length} Comments</Button>{'  '}
-              </Card.Body>
-            </Card>
-          </a>
-        )
-      }
-    </CardColumns>
+    noteRows.map(row =>
+      <Row className={'pb-4'}>
+          {row.map(note =>
+            <Col className={'col-md-6'}>
+              <a href={`/airnote/note/${note.id}`}>
+                <Card border='primary' style={{textDecoration: 'none' }}>
+                  <Card.Body style={{ color: 'Black' }}>
+                    <Card.Title>{note.course_number}</Card.Title>
+                    {props.course && <Card.Title style={{}}>{props.course && props.course.course_name}</Card.Title>}
+                    <Card.Text>{note.file_name}</Card.Text>
+                    <Button variant='outline-success' style={{width: '120px'}}>{note.up_votes} Likes</Button>{'  '}
+                    <Button variant='outline-danger' style={{width: '120px'}}>{note.down_votes} Dislikes</Button>{'  '}
+                    <Button variant='outline-info' style={{width: '120px'}}>{note.comments.length} Comments</Button>{'  '}
+                  </Card.Body>
+                </Card>
+              </a>
+            </Col>
+          )}
+      </Row>
+    )
   )
 }
 

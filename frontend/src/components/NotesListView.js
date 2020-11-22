@@ -3,7 +3,7 @@ import axios from 'axios'
 import Notes from './Notes'
 import AddNote from './AddNote'
 import 'antd/dist/antd.css'
-import { Button, Container, Jumbotron } from 'react-bootstrap'
+import { Button, Card, CardColumns, Container, Jumbotron } from 'react-bootstrap'
 
 class NotesListView extends React.Component {
   constructor (props) {
@@ -69,7 +69,7 @@ class NotesListView extends React.Component {
           </Container>
         </Jumbotron>
         <div className='row justify-content-center' style={{ background: '#fff', minHeight: 700 }}>
-          <div className='col-md-8' align='center'>
+          <div align='center' className='col-md-8'>
             <Notes notes={this.state.notes} course={this.state.course} />
           </div>
         </div>
