@@ -8,8 +8,7 @@ class Mainpage extends React.Component {
     super(props)
     this.state = {
       courses: [],
-      department: '',
-      courseRows: []
+      department: ''
     }
   }
 
@@ -67,7 +66,7 @@ class Mainpage extends React.Component {
             </p>
           </Container>
         </Jumbotron>
-        <div className="row justify-content-center"  style={{minHeight: 700}}>
+        <div className="row justify-content-center">
           <div align='center' className='col-md-8'>
             {this.state.courses && this.showCourses()}
           </div>

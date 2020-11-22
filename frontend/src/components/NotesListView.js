@@ -68,7 +68,7 @@ class NotesListView extends React.Component {
             </p>
           </Container>
         </Jumbotron>
-        <div className='row justify-content-center' style={{ background: '#fff', minHeight: 700 }}>
+        <div className='row justify-content-center'>
           <div align='center' className='col-md-8'>
             <Notes notes={this.state.notes} course={this.state.course} />
           </div>

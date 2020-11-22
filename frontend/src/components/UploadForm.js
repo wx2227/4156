@@ -86,7 +86,7 @@ class UploadForm extends React.Component {
 
     render () {
       return (
-        <div className='container h-100'>
+        <div>
           <div className='row justify-content-center align-self-center'>
             <Form className='card bg-white'>
               <span className='align-middle' style={{ textAlign: 'center', background: '#17A2B8', height: '80px' }}>

@@ -112,8 +112,7 @@ class CommentEditor extends React.Component {
           <Comment
             avatar={
               <Avatar
-                src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
-                alt='Han Solo'
+                src={Cookies.get('url')}
               />
                     }
             content={

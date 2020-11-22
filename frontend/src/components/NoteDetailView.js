@@ -71,7 +71,7 @@ class NoteDetailView extends React.Component {
           <div className='col-md-8'>
             <div className='detail-container'>
               <Preview url={this.state.note.file_url} />
-              <Row className='pt-3'>
+              <Row className='pt-2 pb-3'>
                 <Col>
                   <div style={{ width: '100%' }} />
                   <a href={this.state.note.file_url}>

@@ -5,6 +5,8 @@ import '../containers/MainPage.css'
 import DropDown from './DropDown'
 import { withRouter } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 
 const { Footer } = Layout
 
@@ -62,12 +64,17 @@ class CustomLayout extends React.Component {
               {/*<Button variant='danger' style={{ width: '80px' }} onClick={this.handleLogout}>Logout</Button>*/}
             </Form>
           </Navbar>
-          <div>
+          <div style={{minHeight: '100vh'}}>
             {this.props.children}
           </div>
-          <Footer className='d-flex justify-content-center'>
-            AirNote ©2020 Created by Batman's Kitchen
-          </Footer>
+          <div style={{height: '80px', background: '#f0f2f5', display: 'block', flexGrow: '0', padding: '15px 0', textAlign: 'center'}}>
+            <div className='pb-1'>AirNote ©2020 Created by Batman's Kitchen</div>
+            <div>
+              <a href="https://github.com/wx2227/4156">
+                <FontAwesomeIcon icon={faGithubSquare} size='2x' style={{ color: 'black' }}/>
+              </a>
+            </div>
+          </div>
         </div>
       )
     }
