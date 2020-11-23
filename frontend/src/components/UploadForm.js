@@ -86,19 +86,19 @@ class UploadForm extends React.Component {
 
     render () {
       return (
-        <div>
+        <div style={{height: "80vh", display: "flex", justifyContent: 'center', alignItems: 'center'}}>
           <div className='row justify-content-center align-self-center'>
             <Form className='card bg-white'>
-              <span className='align-middle' style={{ textAlign: 'center', background: '#17A2B8', height: '80px' }}>
-                <h1 className='text-white row justify-content-center align-self-center'>Add Your Note</h1>
-              </span>
+              <div style={{ display: "flex", justifyContent: 'center', alignItems: 'center', background: '#17A2B8', height: '80px' }}>
+                <h1 className='text-white m-0 p-0'>Add Your Note</h1>
+              </div>
               <div className='p-3'>
                 <div className='form-row'>
-                  <div className='form-group'>
+                  <div className='form-group p-1'>
                     <label htmlFor='fileName'>File Name</label>
                     <input className='form-control' type='text' placeholder='File name' id='fileName' required />
                   </div>
-                  <div className='form-group'>
+                  <div className='form-group p-1'>
                     <label htmlFor='courseNumber'>Course Number</label>
                     <input className='form-control' type='text' placeholder='Course Number' id='courseNumber' required />
                   </div>
