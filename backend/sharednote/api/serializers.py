@@ -4,6 +4,7 @@ Define serialization format
 # pylint: disable=import-error
 # pylint: disable=too-few-public-methods
 # pylint: disable=no-member
+# pylint: disable=missing-class-docstring
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, \
     IntegerField, SerializerMethodField
 from django.contrib.auth import get_user_model
@@ -31,7 +32,13 @@ class CommentSerializer(ModelSerializer):
         model = Comment
         fields = '__all__'
 
+    # pylint: disable=no-self-use
     def get_user_info(self, obj):
+        """
+        add the user_info fields to comment serializer
+        :param obj:
+        :return:
+        """
         data = CustomizeUserSerializer(obj.user_id).data
         return data
 

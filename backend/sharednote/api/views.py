@@ -6,7 +6,7 @@ Handle response format
 # pylint: disable=too-few-public-methods
 # pylint: disable=too-many-ancestors
 from rest_framework import viewsets
-from django.db.models import Count, Q, F
+from django.db.models import Count, Q
 from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
     NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
     CourseBaseSerializer, VoteSerializer, CommentBaseSerializer
@@ -25,8 +25,11 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
         """
         queryset = CustomizeUser.objects.filter(is_superuser=False)
         email = self.request.query_params.get('email')
+        identification = self.request.query_params.get('id')
         if email:
             queryset = queryset.filter(email=email)
+        if identification:
+            queryset = queryset.filter(id=identification)
         return queryset
 
 

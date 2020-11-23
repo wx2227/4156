@@ -6,8 +6,6 @@ Data model for database
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 # Create your models here.
 
@@ -76,4 +74,7 @@ class Vote(models.Model):
     vote = models.IntegerField(choices=VOTE_CHOICES, default=0)
 
     class Meta:
+        """
+        set user_id and note_id as unique pair
+        """
         unique_together = ('user_id', 'note_id',)
