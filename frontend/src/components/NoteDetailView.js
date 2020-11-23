@@ -1,9 +1,7 @@
 import * as React from 'react'
 import axios from 'axios'
 import Preview from './Preview'
-import NoteDetailTitle from './NoteDetailTitle'
 import CommentListView from './CommentListView'
-import AddNote from './AddNote'
 import Vote from './Vote'
 import { Button, Col, Container, Jumbotron, Row } from 'react-bootstrap'
 
@@ -13,8 +11,8 @@ class NoteDetailView extends React.Component {
     this.state = {
       note: [],
       comments: [],
-      first_name: "",
-      last_name: ""
+      first_name: '',
+      last_name: ''
     }
   }
 
@@ -25,7 +23,7 @@ class NoteDetailView extends React.Component {
         if (res.data.length !== 0) {
           this.setState({
             note: res.data,
-            comments: res.data.comments,
+            comments: res.data.comments
             // first_name: res.data.user['first_name'],
             // last_name: res.data.user['last_name']
           })
@@ -52,7 +50,7 @@ class NoteDetailView extends React.Component {
     return (
       <div>
         <div>
-          <Jumbotron fluid style={{ background: '#494342', maxHeight: '220px'}}>
+          <Jumbotron fluid style={{ background: '#494342', maxHeight: '220px' }}>
             <Container>
               <h2 className='text-white pb-3'>{this.state.note.file_name}</h2>
               <Row>
@@ -75,10 +73,10 @@ class NoteDetailView extends React.Component {
                 <Col>
                   <div style={{ width: '100%' }} />
                   <a href={this.state.note.file_url}>
-                    <Button variant="info"> Download File </Button>
+                    <Button variant='info'> Download File </Button>
                   </a>
                 </Col>
-                <Col className="d-flex justify-content-end">
+                <Col className='d-flex justify-content-end'>
                   <Vote note={this.state.note} />
                 </Col>
               </Row>

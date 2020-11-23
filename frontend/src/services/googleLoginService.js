@@ -8,7 +8,7 @@ const googleLogin = async (accesstoken) => {
   const res = await axios.post(
     'http://localhost:8000/rest-auth/google/',
     {
-      access_token: accesstoken,
+      access_token: accesstoken
 
     }
   )

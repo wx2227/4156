@@ -2,8 +2,6 @@
 import * as React from 'react'
 import { GoogleLogin } from 'react-google-login'
 import axios from 'axios'
-import FormData from 'form-data'
-
 import Cookies from 'js-cookie'
 
 import './Login.css'
@@ -13,10 +11,6 @@ const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleuser
 const lionMail = 'columbia.edu'
 
 function GoogleButton () {
-  // const [isLogined, setLogin] = useState(false);
-  // const [accessToken, setToken] = useState("");
-  // const [email, setEmail] = useState("");
-
   /**
      *
      * @param {*} accesstoken This is the access token of the user obtained from Google

@@ -4,15 +4,10 @@ Define serialization format
 # pylint: disable=import-error
 # pylint: disable=too-few-public-methods
 # pylint: disable=no-member
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, IntegerField
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, \
+    IntegerField, SerializerMethodField
 from django.contrib.auth import get_user_model
 from sharednote.models import Note, Comment, Course, Vote, CustomizeUser
-
-
-class CommentSerializer(ModelSerializer):
-    class Meta:
-        model = Comment
-        fields = '__all__'
 
 
 class UserSerializer(ModelSerializer):
@@ -27,6 +22,24 @@ class CustomizeUserSerializer(ModelSerializer):
     class Meta:
         model = CustomizeUser
         fields = ('id', 'first_name', 'last_name', 'email', 'avatar', 'credits')
+
+
+class CommentSerializer(ModelSerializer):
+    user_info = SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+    def get_user_info(self, obj):
+        data = CustomizeUserSerializer(obj.user_id).data
+        return data
+
+
+class CommentBaseSerializer(ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'
 
 
 class VoteSerializer(ModelSerializer):

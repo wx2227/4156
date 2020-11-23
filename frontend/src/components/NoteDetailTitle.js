@@ -1,9 +1,7 @@
 import * as React from 'react'
 import 'antd/dist/antd.css'
-import { PageHeader, Descriptions } from 'antd'
-import { Jumbotron, Container, Button, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import Vote from './Vote'
-import axios from 'axios'
 
 const Content = ({ children }) => {
   return (
@@ -17,7 +15,7 @@ class NoteDetailTitle extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      note: [],
+      note: []
     }
   }
 

@@ -2,6 +2,7 @@ import * as React from 'react'
 import Comment from './Comment.js'
 import { List } from 'antd'
 import CommentEditor from './CommentEditor'
+import Cookies from 'js-cookie'
 
 class CommentListView extends React.Component {
   constructor (props) {
@@ -15,6 +16,10 @@ class CommentListView extends React.Component {
 
   addComment (comment) {
     this.setState(prevState => {
+      comment = {
+        ...comment,
+        user_info: { avatar: Cookies.get('url') }
+      }
       return {
         comments: [comment, ...prevState.comments]
       }

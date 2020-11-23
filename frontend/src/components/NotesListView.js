@@ -3,7 +3,7 @@ import axios from 'axios'
 import Notes from './Notes'
 import AddNote from './AddNote'
 import 'antd/dist/antd.css'
-import { Button, Card, CardColumns, Container, Jumbotron } from 'react-bootstrap'
+import { Container, Jumbotron } from 'react-bootstrap'
 
 class NotesListView extends React.Component {
   constructor (props) {
@@ -44,8 +44,8 @@ class NotesListView extends React.Component {
           course: res.data[0]
         })
       }).catch(() => {
-      alert('Cannot get course form server')
-    })
+        alert('Cannot get course form server')
+      })
   }
 
   render () {
@@ -53,18 +53,17 @@ class NotesListView extends React.Component {
       <>
         <Jumbotron fluid style={{ background: '#494342' }} className='h-20'>
           <Container>
-          {
+            {
             this.state.course
-              ?
+              ? (
                 <div>
                   <h1 className='text-white'>{this.state.course.course_number}</h1>
                   <h2 className='text-white'>{this.state.course.course_name}</h2>
-                </div>
-              :
-                <h1 className='text-white'>Air Notes</h1>
+                </div>)
+              : (<h1 className='text-white'>Air Notes</h1>)
             }
             <p>
-            <AddNote />
+              <AddNote />
             </p>
           </Container>
         </Jumbotron>

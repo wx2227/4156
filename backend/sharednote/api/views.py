@@ -9,7 +9,7 @@ from rest_framework import viewsets
 from django.db.models import Count, Q, F
 from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
     NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
-    CourseBaseSerializer, VoteSerializer
+    CourseBaseSerializer, VoteSerializer, CommentBaseSerializer
 from ..models import CustomizeUser, Comment, Note, Course, Vote
 
 
@@ -34,8 +34,12 @@ class CommentViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for comment request
     """
-    serializer_class = CommentSerializer
     queryset = Comment.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return CommentSerializer
+        return CommentBaseSerializer
 
 
 class NoteViewSet(viewsets.ModelViewSet):
