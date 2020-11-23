@@ -112,7 +112,7 @@ class UploadForm extends React.Component {
                   <input className='form-control-file' type='file' name='file' id='file' required />
                 </div>
               </div>
-              <button className='btn btn-primary' type='submit' onSubmit={(event) => this.handleSubmit(event)}>Submit</button>
+              <button className='btn btn-primary' type='submit' onClick={(event) => this.handleSubmit(event)}>Submit</button>
             </Form>
           </div>
         </div>
