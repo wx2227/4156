@@ -6,6 +6,8 @@ import NoteDetailView from './components/NoteDetailView'
 import UploadForm from './components/UploadForm'
 import Mainpage from './containers/MainPage'
 
+const i = 1;
+
 const BaseRouter = () => (
   <div>
     <Route exact path='/airnote/main' component={Mainpage} />
