@@ -86,10 +86,10 @@ class UploadForm extends React.Component {
 
     render () {
       return (
-        <div style={{height: "80vh", display: "flex", justifyContent: 'center', alignItems: 'center'}}>
+        <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div className='row justify-content-center align-self-center'>
             <Form className='card bg-white'>
-              <div style={{ display: "flex", justifyContent: 'center', alignItems: 'center', background: '#17A2B8', height: '80px' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#17A2B8', height: '80px' }}>
                 <h1 className='text-white m-0 p-0'>Add Your Note</h1>
               </div>
               <div className='p-3'>
