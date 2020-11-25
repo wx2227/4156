@@ -3,7 +3,6 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import '../containers/MainPage.css'
 import DropDown from './DropDown'
 import { withRouter } from 'react-router-dom'
-import Cookies from 'js-cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons'
 
@@ -34,14 +33,6 @@ class CustomLayout extends React.Component {
       } else {
         alert('Please input valid course number')
       }
-    }
-
-    handleLogout = () => {
-      Cookies.remove('user_id')
-      Cookies.remove('token')
-      Cookies.remove('firstname')
-      Cookies.remove('lastname')
-      window.location.href = '/'
     }
 
     render () {

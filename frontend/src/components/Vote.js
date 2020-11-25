@@ -3,7 +3,7 @@ import { createElement } from 'react'
 import 'antd/dist/antd.css'
 import { Tooltip } from 'antd'
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons'
-import axios from 'axios'
+import axios from '../services/axios'
 import Cookies from 'js-cookie'
 
 class Vote extends React.Component {

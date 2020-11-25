@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { GoogleLogin } from 'react-google-login'
-import axios from 'axios'
+import axios from '../services/axios'
 import Cookies from 'js-cookie'
 
 import './Login.css'
@@ -25,12 +25,13 @@ function GoogleButton () {
       return
     }
     const googleResponse = await googleLogin(response.accessToken)
+    Cookies.set('token', googleResponse.data.key)
+
     const res = await getUserInfo(userEmail)
     console.log(res.data[0])
     if (res && res.data && res.data[0]) {
       // set cookie
       Cookies.set('user_id', res.data[0].id)
-      Cookies.set('token', googleResponse.data)
       Cookies.set('firstname', res.data[0].first_name)
       Cookies.set('lastname', res.data[0].last_name)
       Cookies.set('url', imgUrl)

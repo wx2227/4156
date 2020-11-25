@@ -2,7 +2,7 @@ import React from 'react'
 import 'antd/dist/antd.css'
 import { Comment, Avatar, Form, Button, Input } from 'antd'
 import moment from 'moment'
-import axios from 'axios'
+import axios from '../services/axios'
 import Cookies from 'js-cookie'
 
 const { TextArea } = Input

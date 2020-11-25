@@ -2,6 +2,7 @@ import React from 'react'
 import Cookies from 'js-cookie'
 import moment from 'moment'
 import { Form } from 'react-bootstrap'
+import axios from '../services/axios'
 
 class UploadForm extends React.Component {
     toBase64 : String = file => new Promise((resolve, reject) => {
@@ -12,7 +13,7 @@ class UploadForm extends React.Component {
     });
 
     async isCourseNumberValid (courseNumber) : boolean {
-      const courses = await fetch('http://127.0.0.1:8000/api/course').then(res => res.json())
+      const courses = axios.get('http://127.0.0.1:8000/api/course').then(res => res.data)
       for (const course of courses) {
         if (course.course_number === courseNumber) {
           return true
@@ -71,7 +72,7 @@ class UploadForm extends React.Component {
         time: currTime
       }
       console.log(data)
-      await fetch('http://localhost:8000/api/note/', {
+      axios.post('http://localhost:8000/api/note/', {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(data)

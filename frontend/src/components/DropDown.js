@@ -8,6 +8,7 @@ class DropDown extends React.Component {
     Cookies.remove('token')
     Cookies.remove('firstname')
     Cookies.remove('lastname')
+    Cookies.remove('Authorization')
     window.location.href = '/'
   }
 

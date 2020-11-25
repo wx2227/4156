@@ -1,5 +1,5 @@
 import * as React from 'react'
-import axios from 'axios'
+import axios from '../services/axios'
 import Preview from './Preview'
 import CommentListView from './CommentListView'
 import Vote from './Vote'
