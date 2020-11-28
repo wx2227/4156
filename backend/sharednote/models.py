@@ -78,3 +78,24 @@ class Vote(models.Model):
         set user_id and note_id as unique pair
         """
         unique_together = ('user_id', 'note_id',)
+
+
+class Favorite(models.Model):
+    """
+    define data schema for favorite
+    """
+    FAVORITE = 1
+    NOACTION = 0
+    CHOICES = [
+        (1, FAVORITE),
+        (0, NOACTION),
+    ]
+    user_info = models.ForeignKey(get_user_model(), related_name='favorites', on_delete=models.CASCADE)
+    note_id = models.ForeignKey(Note, on_delete=models.CASCADE)
+    favorite = models.IntegerField(choices=CHOICES, default=0)
+
+    class Meta:
+        """
+        set user_id and note_id as unique pair
+        """
+        unique_together = ('user_info', 'note_id',)

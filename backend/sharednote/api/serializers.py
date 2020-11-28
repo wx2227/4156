@@ -8,21 +8,7 @@ Define serialization format
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, \
     IntegerField, SerializerMethodField
 from django.contrib.auth import get_user_model
-from sharednote.models import Note, Comment, Course, Vote, CustomizeUser
-
-
-class UserSerializer(ModelSerializer):
-    notes = PrimaryKeyRelatedField(many=True, read_only=True)
-
-    class Meta:
-        model = get_user_model()
-        fields = ('id', 'first_name', 'last_name', 'email', 'notes')
-
-
-class CustomizeUserSerializer(ModelSerializer):
-    class Meta:
-        model = CustomizeUser
-        fields = ('id', 'first_name', 'last_name', 'email', 'avatar', 'credits')
+from sharednote.models import Note, Comment, Course, Vote, CustomizeUser, Favorite
 
 
 class CommentSerializer(ModelSerializer):
@@ -72,14 +58,6 @@ class VoteSerializer(ModelSerializer):
         return obj
 
 
-class CourseSerializer(ModelSerializer):
-    notes = PrimaryKeyRelatedField(many=True, read_only=True)
-
-    class Meta:
-        model = Course
-        fields = ('course_number', 'course_name', 'department_name', 'term', 'notes')
-
-
 class NoteBaseSerializer(ModelSerializer):
     class Meta:
         model = Note
@@ -106,6 +84,48 @@ class NoteDynamicSerializer(NoteSerializer):
         fields = ('id', 'user_id', 'course_number', 'file_name',
                   'file_url', 'description', 'time', 'up_votes',
                   'down_votes', 'comments')
+
+
+class FavoriteSerializer(ModelSerializer):
+    note_info = SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Favorite
+        fields = '__all__'
+
+    # pylint: disable=no-self-use
+    def get_note_info(self, obj):
+        """
+        add the note_info fields to note serializer
+        :param obj:
+        :return:
+        """
+        data = NoteBaseSerializer(obj.note_id).data
+        return data
+
+
+class UserSerializer(ModelSerializer):
+
+    class Meta:
+        model = get_user_model()
+        fields = ('id', 'first_name', 'last_name', 'email')
+
+
+class CustomizeUserSerializer(ModelSerializer):
+    notes = NoteBaseSerializer(many=True, read_only=True)
+    favorites = FavoriteSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = CustomizeUser
+        fields = ('id', 'first_name', 'last_name', 'email', 'avatar', 'credits', 'notes', 'favorites')
+
+
+class CourseSerializer(ModelSerializer):
+    notes = PrimaryKeyRelatedField(many=True, read_only=True)
+
+    class Meta:
+        model = Course
+        fields = ('course_number', 'course_name', 'department_name', 'term', 'notes')
 
 
 class CourseBaseSerializer(ModelSerializer):

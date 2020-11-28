@@ -28,7 +28,7 @@ function GoogleButton () {
     Cookies.set('token', googleResponse.data.key)
 
     const res = await getUserInfo(userEmail)
-    console.log(res.data[0])
+
     if (res && res.data && res.data[0]) {
       // set cookie
       Cookies.set('user_id', res.data[0].id)

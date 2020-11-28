@@ -9,8 +9,8 @@ from rest_framework import viewsets
 from django.db.models import Count, Q
 from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
     NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
-    CourseBaseSerializer, VoteSerializer, CommentBaseSerializer
-from ..models import CustomizeUser, Comment, Note, Course, Vote
+    CourseBaseSerializer, VoteSerializer, CommentBaseSerializer, FavoriteSerializer
+from ..models import CustomizeUser, Comment, Note, Course, Vote, Favorite
 
 
 class CustomizeUserViewSet(viewsets.ModelViewSet):
@@ -113,3 +113,11 @@ class VoteViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(user_id=user_id, note_id=note_id)
         return queryset
     serializer_class = VoteSerializer
+
+
+class FavoriteViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for favorite request
+    """
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer

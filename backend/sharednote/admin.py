@@ -2,11 +2,7 @@
 define admin page format
 """
 from django.contrib import admin
-from .models import CustomizeUser
-from .models import Comment
-from .models import Note
-from .models import Course
-from .models import Vote
+from .models import CustomizeUser, Comment, Note, Course, Vote, Favorite
 
 # Register your models here.
 
@@ -16,3 +12,4 @@ admin.site.register(Comment)
 admin.site.register(Note)
 admin.site.register(Course)
 admin.site.register(Vote)
+admin.site.register(Favorite)

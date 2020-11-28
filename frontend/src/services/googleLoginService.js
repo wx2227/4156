@@ -9,7 +9,6 @@ const googleLogin = async (accesstoken) => {
     'http://localhost:8000/rest-auth/google/',
     {
       access_token: accesstoken
-
     }
   )
   return await res
