@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../services/axios'
 // import './MainPage.css'
 import { Button, Card, Container, Jumbotron, Row, Col } from 'react-bootstrap'
 
