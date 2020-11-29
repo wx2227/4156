@@ -108,16 +108,18 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('id', 'first_name', 'last_name', 'email')
+        fields = ('id', 'first_name', 'last_name', 'email', 'is_superuser')
 
 
 class CustomizeUserSerializer(ModelSerializer):
     notes = NoteBaseSerializer(many=True, read_only=True)
     favorites = FavoriteSerializer(many=True, read_only=True)
+    comments = CommentBaseSerializer(many=True, read_only=True)
 
     class Meta:
         model = CustomizeUser
-        fields = ('id', 'first_name', 'last_name', 'email', 'avatar', 'credits', 'notes', 'favorites')
+        fields = ('id', 'first_name', 'last_name', 'email', 'avatar', 'credits',
+                  'is_superuser', 'nick_name', 'notes', 'favorites', 'comments')
 
 
 class CourseSerializer(ModelSerializer):

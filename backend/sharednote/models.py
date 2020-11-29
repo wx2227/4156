@@ -6,6 +6,7 @@ Data model for database
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
+from nickname_generator import generate
 
 # Create your models here.
 
@@ -20,6 +21,7 @@ class CustomizeUser(AbstractUser):
         max_length=200,
         default="")
     credits = models.IntegerField(default=0)
+    nick_name = models.TextField(max_length=30, default=generate())
 
 
 class Course(models.Model):
@@ -50,7 +52,7 @@ class Comment(models.Model):
     """
     define data schema for comment
     """
-    user_id = models.ForeignKey(get_user_model(), related_name="user_info",
+    user_id = models.ForeignKey(get_user_model(), related_name="comments",
                                 on_delete=models.CASCADE)
     note_id = models.ForeignKey(Note, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()

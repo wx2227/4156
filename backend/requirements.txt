@@ -19,3 +19,4 @@ urllib3==1.25.10
 coverage==5.3
 django-nose==1.4.7
 pylint==2.6.0
+nickname-generator==1.0.1
