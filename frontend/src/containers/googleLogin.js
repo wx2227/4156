@@ -25,20 +25,22 @@ function GoogleButton () {
       alert("Please sign in with Lionmail")
       return
     }
-    
 
     const googleResponse = await googleLogin(response.accessToken)
+
+    // axios use accesstoken as credential
+    Cookies.remove('token')
+    Cookies.set('token', googleResponse.data.key)
+
     const res = await getUserInfo(userEmail)
 
     if (res && res.data && res.data[0]) {
       // remove cookie 
-      Cookies.remove('token')
       Cookies.remove('user_id')
       Cookies.remove('firstname')
       Cookies.remove('lastname')
       Cookies.remove('url')
       // set cookie
-      Cookies.set('token', googleResponse.data.key)
       Cookies.set('user_id', res.data[0].id)
       Cookies.set('firstname', res.data[0].first_name)
       Cookies.set('lastname', res.data[0].last_name)
