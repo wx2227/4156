@@ -22,7 +22,7 @@ function GoogleButton () {
     const imgUrl = profile.getImageUrl()
 
     if (!userEmail.endsWith(lionMail)) {
-      alert("Please sign in with Lionmail")
+      alert('Please sign in with Lionmail')
       return
     }
 
@@ -35,17 +35,19 @@ function GoogleButton () {
     const res = await getUserInfo(userEmail)
 
     if (res && res.data && res.data[0]) {
-      // remove cookie 
+      // remove cookie
       Cookies.remove('user_id')
       Cookies.remove('firstname')
       Cookies.remove('lastname')
       Cookies.remove('url')
+      Cookies.remove('admin')
       // set cookie
       Cookies.set('user_id', res.data[0].id)
       Cookies.set('firstname', res.data[0].first_name)
       Cookies.set('lastname', res.data[0].last_name)
+      Cookies.set('admin', res.data[0].is_superuser)
       Cookies.set('url', imgUrl)
-      window.location.href = '/airnote/main'
+      window.location.href = '/airnote/course'
     }
   }
 

@@ -24,13 +24,20 @@ class CustomizeUser(AbstractUser):
     nick_name = models.TextField(max_length=30, default=generate())
 
 
+class Department(models.Model):
+    """
+    define data schema for department
+    """
+    department_name = models.CharField(max_length=50, primary_key=True)
+
+
 class Course(models.Model):
     """
     define data schema for course
     """
     course_number = models.CharField(max_length=20, primary_key=True)
     course_name = models.CharField(max_length=50)
-    department_name = models.CharField(max_length=50)
+    department_name = models.ForeignKey(Department, related_name='courses_detail', on_delete=models.CASCADE)
     term = models.CharField(max_length=10)
 
 

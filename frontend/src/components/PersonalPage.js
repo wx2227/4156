@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Cookies from "js-cookie"
-import { Button, Card, Container, Jumbotron, Row, Col } from 'react-bootstrap'
+import Cookies from 'js-cookie'
 
 class PersonalPage extends React.Component {
   constructor (props) {
@@ -9,21 +8,21 @@ class PersonalPage extends React.Component {
     this.state = {
       credits: 0,
       user_id: -1,
-      nickname: "haha",
-      email: "",
+      nickname: 'haha',
+      email: '',
       notes: [],
       favorites: [],
-      avatar: "",
+      avatar: '',
       comments: [],
-      role: ""
+      role: ''
     }
   }
 
   componentDidMount () {
-    const id = Cookies.get("user_id")
+    const id = Cookies.get('user_id')
     axios.get('http://localhost:8000/api/user/?id=' + id)
       .then(res => {
-        if (res.data.length != 0) {
+        if (res.data.length !== 0) {
           console.log(res.data[0])
           this.setState({
             credits: res.data[0].credits,
@@ -34,95 +33,91 @@ class PersonalPage extends React.Component {
             avatar: res.data[0].avatar,
             nickname: res.data[0].nick_name,
             comments: res.data[0].comments,
-            role: (res.data[0].is_superuser ? "Administrator" : "Client")
+            role: (res.data[0].is_superuser ? 'Administrator' : 'Client')
           })
         }
       }).catch(err => { console.log(err.stack) })
   }
 
-  renderUserInfo() {
-    
-    return(
-      <div className="container pl-5 pt-1 borderless">
-        <div className="row" style={{height: "550px"}}>
-          <div className="col-4">
-            <ul className="list-group pt-1" style={{fontSize:"16px", fontWeight: "bold"}}>
-              <li className="list-group-item border-0" style={{height:"62px"}}>Nickname:</li>
-              <li className="list-group-item border-0" style={{height:"62px"}}>Role:</li>
-              <li className="list-group-item border-0" style={{height:"62px"}}>Credits:</li>
-              <li className="list-group-item border-0" style={{height:"62px"}}>Email:</li>
-              <li className="list-group-item border-0" style={{height:"62px"}}>Favorites:</li>
-              <li className="list-group-item border-0" style={{height:"62px"}}>Notes submitted:</li>
-              <li className="list-group-item border-0" style={{height:"62px"}}>My comments: </li>
+  renderUserInfo () {
+    return (
+      <div className='container pl-5 pt-1 borderless'>
+        <div className='row' style={{ height: '550px' }}>
+          <div className='col-4'>
+            <ul className='list-group pt-1' style={{ fontSize: '16px', fontWeight: 'bold' }}>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>Nickname:</li>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>Role:</li>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>Credits:</li>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>Email:</li>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>Favorites:</li>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>Notes submitted:</li>
+              <li className='list-group-item border-0' style={{ height: '62px' }}>My comments: </li>
             </ul>
           </div>
-          <div className="col-7">
-            <ul className="list-group" style={{fontSize:"16px"}}>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.nickname}/>
+          <div className='col-7'>
+            <ul className='list-group' style={{ fontSize: '16px' }}>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.nickname} />
               </li>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.role}/>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.role} />
               </li>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.credits}/>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.credits} />
               </li>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.email}/>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.email} />
               </li>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.favorites.length}/>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.favorites.length} />
               </li>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.notes.length}/>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.notes.length} />
               </li>
-              <li className="list-group-item border-0">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" value={this.state.comments.length}/>
+              <li className='list-group-item border-0'>
+                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.comments.length} />
               </li>
             </ul>
           </div>
         </div>
-        <div className="row">
-             <div class="col-md-2 offset-md-2">
-                <button type="button" className="btn btn-primary rounded" style={{width:"80px"}}>Edit</button>
-            </div>
-             <div class="col">
-                <button type="button" className="btn btn-light rounded">Cancel</button>
-            </div>
+        <div className='row'>
+          <div className='col-md-2 offset-md-2'>
+            <button type='button' className='btn btn-primary rounded' style={{ width: '80px' }}>Edit</button>
+          </div>
+          <div className='col'>
+            <button type='button' className='btn btn-light rounded'>Cancel</button>
+          </div>
         </div>
       </div>
     )
-
   }
-
 
   render () {
     return (
       <>
-        <div className="container" style={{paddingTop: "80px"}}>
-          <div className="row" style={{height: "750px"}}>
-            <div className="col-1 border-right">
-              <div className="float-right">
-                <div className="list-group list-group-flush">
-                  <button type="button" className="btn btn-primary rounded-0">Profile</button>
-                  <button type="button" className="btn btn-light rounded-0 ">Favorites</button>
-                  <button type="button" className="btn btn-light rounded-0">Notes</button>
-                  <button type="button" className="btn btn-light rounded-0">Comments</button>
+        <div className='container' style={{ paddingTop: '80px' }}>
+          <div className='row' style={{ height: '750px' }}>
+            <div className='col-1 border-right'>
+              <div className='float-right'>
+                <div className='list-group list-group-flush'>
+                  <button type='button' className='btn btn-primary rounded-0'>Profile</button>
+                  <button type='button' className='btn btn-light rounded-0 '>Favorites</button>
+                  <button type='button' className='btn btn-light rounded-0'>Notes</button>
+                  <button type='button' className='btn btn-light rounded-0'>Comments</button>
                 </div>
               </div>
             </div>
-            <div className="col-8">
+            <div className='col-8'>
               {this.renderUserInfo()}
             </div>
-            <div className="col-3">
-              <div className="container">
-                <div className="row">
-                  <div className="col">
-                    <img src={this.state.avatar} alt="..." className="rounded mx-auto d-block " style={{height:"200px"}} />
+            <div className='col-3'>
+              <div className='container'>
+                <div className='row'>
+                  <div className='col'>
+                    <img src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' style={{ height: '200px' }} />
                   </div>
                 </div>
-                <div className="row">
-                </div> 
+                <div className='row' />
               </div>
             </div>
           </div>

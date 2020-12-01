@@ -8,7 +8,7 @@ Define serialization format
 from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, \
     IntegerField, SerializerMethodField
 from django.contrib.auth import get_user_model
-from sharednote.models import Note, Comment, Course, Vote, CustomizeUser, Favorite
+from sharednote.models import Note, Comment, Course, Vote, CustomizeUser, Favorite, Department
 
 
 class CommentSerializer(ModelSerializer):
@@ -134,3 +134,19 @@ class CourseBaseSerializer(ModelSerializer):
     class Meta:
         model = Course
         fields = '__all__'
+
+
+class DepartmentSerializer(ModelSerializer):
+    courses_detail = CourseBaseSerializer(many=True, read_only=True)
+    courses = IntegerField()
+
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+
+class DepartmentDynamicSerializer(DepartmentSerializer):
+
+    class Meta:
+        model = Department
+        fields = ('department_name', 'courses')

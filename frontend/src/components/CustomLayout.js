@@ -1,6 +1,5 @@
 import React from 'react'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
-import '../containers/MainPage.css'
 import DropDown from './DropDown'
 import { withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -41,7 +40,8 @@ class CustomLayout extends React.Component {
           <Navbar bg='light' style={{ position: 'sticky', top: '0', zIndex: '100' }}>
             <Navbar.Brand href='#home'>AirNote</Navbar.Brand>
             <Nav className='mr-auto'>
-              <Nav.Link href='/airnote/main'>Home</Nav.Link>
+              <Nav.Link href='/airnote/department'>Home</Nav.Link>
+              <Nav.Link href='/airnote/courses'>Course</Nav.Link>
               <Nav.Link href='/airnote/notes'>Notes</Nav.Link>
               <Nav.Link href='/airnote/upload'>Upload</Nav.Link>
             </Nav>

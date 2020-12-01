@@ -1,9 +1,8 @@
 import React from 'react'
 import axios from '../services/axios'
-// import './MainPage.css'
 import { Button, Card, Container, Jumbotron, Row, Col } from 'react-bootstrap'
 
-class Mainpage extends React.Component {
+class CoursePage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -13,15 +12,24 @@ class Mainpage extends React.Component {
   }
 
   componentDidMount (): void {
-    axios.get('http://localhost:8000/api/course/')
-      .then(res => {
-        if (res.data.length !== 0) {
+    const departmentName = this.props.match.params.department_name
+
+    if (departmentName === undefined) {
+      axios.get('http://localhost:8000/api/course/')
+        .then(res => {
+          this.setState({
+            courses: res.data
+          })
+        }).catch(err => { console.log(err.stack) })
+    } else {
+      axios.get(`http://localhost:8000/api/course/?department_name=${departmentName}`)
+        .then(res => {
           this.setState({
             courses: res.data,
-            department: res.data[0].department_name
+            department: departmentName
           })
-        }
-      }).catch(err => { console.log(err.stack) })
+        }).catch(err => { console.log(err.stack) })
+    }
   }
 
   showCourses = () => {
@@ -59,7 +67,14 @@ class Mainpage extends React.Component {
       <>
         <Jumbotron fluid style={{ background: '#494342' }}>
           <Container>
-            <h1 className='text-white'>Department of {this.state.department}</h1>
+            {
+              this.state.department
+                ? (
+                  <div>
+                    <h1 className='text-white'>Department of {this.state.department}</h1>
+                  </div>)
+                : (<h1 className='text-white'>Courses</h1>)
+            }
             <p>
               <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={this.handleClick}>+ Add Course</Button>
             </p>
@@ -77,4 +92,4 @@ class Mainpage extends React.Component {
   }
 }
 
-export default Mainpage
+export default CoursePage

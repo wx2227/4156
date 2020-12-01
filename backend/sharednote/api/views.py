@@ -9,8 +9,9 @@ from rest_framework import viewsets
 from django.db.models import Count, Q
 from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
     NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
-    CourseBaseSerializer, VoteSerializer, CommentBaseSerializer, FavoriteSerializer
-from ..models import CustomizeUser, Comment, Note, Course, Vote, Favorite
+    CourseBaseSerializer, VoteSerializer, CommentBaseSerializer, \
+    FavoriteSerializer, DepartmentSerializer, DepartmentDynamicSerializer
+from ..models import CustomizeUser, Comment, Note, Course, Vote, Favorite, Department
 
 
 class CustomizeUserViewSet(viewsets.ModelViewSet):
@@ -23,7 +24,8 @@ class CustomizeUserViewSet(viewsets.ModelViewSet):
         """ Part of the Django requirement, get query set
         :return: The query set of customized user view
         """
-        queryset = CustomizeUser.objects.filter(is_superuser=False)
+        # queryset = CustomizeUser.objects.filter(is_superuser=False)
+        queryset = CustomizeUser.objects.all()
         email = self.request.query_params.get('email')
         identification = self.request.query_params.get('id')
         if email:
@@ -85,8 +87,11 @@ class CourseViewSet(viewsets.ModelViewSet):
         """
         queryset = Course.objects.all()
         course_number = self.request.query_params.get('course_number')
+        department_name = self.request.query_params.get('department_name')
         if course_number:
             queryset = queryset.filter(course_number=course_number)
+        if department_name:
+            queryset = queryset.filter(department_name=department_name)
         return queryset
 
     def get_serializer_class(self):
@@ -121,3 +126,21 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     """
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
+
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    """
+    Define the format of response for department request
+    """
+    def get_queryset(self):
+        """ Return a queryset containing courses number
+        :return: queryset : object containing courses number
+        """
+        queryset = Department.objects.all()
+        courses = Count('courses_detail')
+
+        return queryset.annotate(
+            courses=courses
+        )
+
+    serializer_class = DepartmentDynamicSerializer
