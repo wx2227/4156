@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { Form } from 'react-bootstrap'
 
 class PersonalPage extends React.Component {
   constructor (props) {
@@ -8,18 +9,20 @@ class PersonalPage extends React.Component {
     this.state = {
       credits: 0,
       user_id: -1,
-      nickname: 'haha',
+      nickname: '',
       email: '',
       notes: [],
       favorites: [],
       avatar: '',
       comments: [],
-      role: ''
+      role: '', 
+      edit: false
     }
   }
 
   componentDidMount () {
     const id = Cookies.get('user_id')
+    this.disableForms()
     axios.get('http://localhost:8000/api/user/?id=' + id)
       .then(res => {
         if (res.data.length !== 0) {
@@ -37,14 +40,43 @@ class PersonalPage extends React.Component {
           })
         }
       }).catch(err => { console.log(err.stack) })
+    
+      
+  }
 
-      var forms = document.getElementsByClassName("form-control")
+  disableForms = () => {
+          var forms = document.getElementsByClassName("form-control")
       for (var i = 0; i < forms.length; i++) {
         forms[i].style.border = "none"
-        forms[i].disabled = "true"
+        forms[i].disabled = true
+        forms[i].style.background = "white"
+        forms[i].style.color = "black"
+  }
+  }
+
+  handleClickEdit = () => {
+       var forms = document.getElementsByClassName("editable")
+      for (var i = 0; i < forms.length; i++) {
+        forms[i].style.border = "thin solid black"
+        forms[i].disabled = false
         forms[i].style.background = "white"
         forms[i].style.color = "black"
       }
+      document.getElementById("editButton").textContent = "Save"
+
+    
+    this.setState({
+      edit: true
+    })
+  }
+
+  handleClickCancel = () => {
+    this.disableForms();
+    document.getElementById("editButton").textContent = "Edit"
+
+        this.setState({
+      edit: false
+    })
   }
 
   renderUserInfo () {
@@ -65,7 +97,7 @@ class PersonalPage extends React.Component {
           <div className='col-7'>
             <ul className='list-group' style={{ fontSize: '16px', background: 'white'}}>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.nickname} />
+                <input type='text' className='form-control editable' aria-label='Default' aria-describedby='inputGroup-sizing-default' defaultValue={this.state.nickname} />
               </li>
               <li className='list-group-item border-0'>
                 <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.role} />
@@ -88,13 +120,14 @@ class PersonalPage extends React.Component {
             </ul>
           </div>
         </div>
-        <div className='row'>
+        <div className='row' id="EditCancel">
           <div className='col-md-2 offset-md-2'>
-            <button type='button' className='btn btn-primary rounded' style={{ width: '80px' }}>Edit</button>
+            <button type='button' id="editButton" className='btn btn-primary rounded' onClick={this.handleClickEdit} style={{ width: '80px' }}>Edit</button>
           </div>
-          <div className='col'>
-            <button type='button' className='btn btn-light rounded'>Cancel</button>
-          </div>
+          {this.state.edit && 
+                    <div className='col'>
+            <button type='button' className='btn btn-light rounded' onClick={this.handleClickCancel} style={{width: '80px', marginLeft: "30px"}}>Cancel</button>
+          </div>}
         </div>
       </div>
     )
@@ -124,6 +157,13 @@ class PersonalPage extends React.Component {
                   <div className='col'>
                     <img src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' style={{ height: '350px', width: '350px' }} />
                   </div>
+                  {this.state.edit &&
+                  <Form style={{marginLeft: "90px", marginTop:"50px"}}>
+                    <Form.Group>
+                      <Form.File id="exampleFormControlFile1" />
+                    </Form.Group>
+                  </Form>
+                  }
                 </div>
                 <div className='row' />
               </div>
