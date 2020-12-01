@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from '../services/axios'
 import { Button, Card, Container, Jumbotron, Row, Col } from 'react-bootstrap'
+import AddCourse from '../components/AddCourse'
 
 class CoursePage extends React.Component {
   constructor (props) {
@@ -76,7 +77,7 @@ class CoursePage extends React.Component {
                 : (<h1 className='text-white'>Courses</h1>)
             }
             <p>
-              <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={this.handleClick}>+ Add Course</Button>
+              <AddCourse/>
             </p>
           </Container>
         </Jumbotron>

@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../services/axios'
 import { Button, Card, Col, Container, Jumbotron, Row } from 'react-bootstrap'
 import AddCourse from './AddCourse'
 
@@ -32,11 +32,9 @@ class DepartmentsListView extends React.Component {
 
     return (
       <>
-        <Jumbotron fluid style={{ background: '#494342' }} className='h-20'>
+        <Jumbotron fluid style={{ background: '#494342' }}>
           <Container>
-            <div>
-              <h1 className='text-white'>Departments</h1>
-            </div>)
+            <h1 className='text-white'>Departments</h1>
             <p>
               <AddCourse />
             </p>

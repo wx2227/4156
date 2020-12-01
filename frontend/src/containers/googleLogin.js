@@ -47,7 +47,8 @@ function GoogleButton () {
       Cookies.set('lastname', res.data[0].last_name)
       Cookies.set('admin', res.data[0].is_superuser)
       Cookies.set('url', imgUrl)
-      window.location.href = '/airnote/course'
+      // Cookies.set('url', "")
+      window.location.href = '/airnote/department'
     }
   }
 
