@@ -1,8 +1,10 @@
-import React, { createElement } from 'react'
+import React from 'react'
 import Cookies from 'js-cookie'
 import { Tooltip } from 'antd'
-import { StarFilled, StarOutlined } from '@ant-design/icons'
+import { faStar as StarFilled } from '@fortawesome/free-solid-svg-icons'
+import { faStar as StarOutlined } from '@fortawesome/free-regular-svg-icons'
 import axios from '../services/axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Favorite extends React.Component {
   constructor (props) {
@@ -71,7 +73,9 @@ class Favorite extends React.Component {
       <>
         <Tooltip title='Favorite'>
           <span onClick={this.handleFavorite}>
-            {createElement(this.state.action === 'favorite' ? StarFilled : StarOutlined)}
+            {this.state.action === 'favorite'
+              ? <FontAwesomeIcon icon={StarFilled} size='2x' style={{ color: '#ffc107' }} />
+              : <FontAwesomeIcon icon={StarOutlined} size='2x' style={{ color: '#ffc107' }} />}
             <span className='comment-action'>{this.state.likes}</span>
           </span>
         </Tooltip>

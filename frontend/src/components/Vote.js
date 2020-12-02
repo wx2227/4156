@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { createElement } from 'react'
 import 'antd/dist/antd.css'
 import { Tooltip } from 'antd'
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons'
+import { faThumbsUp as LikeFilled, faThumbsDown as DislikeFilled } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp as LikeOutlined, faThumbsDown as DislikeOutlined } from '@fortawesome/free-regular-svg-icons'
 import axios from '../services/axios'
 import Cookies from 'js-cookie'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Vote extends React.Component {
   constructor (props) {
@@ -128,15 +129,19 @@ class Vote extends React.Component {
       <div>
         <Tooltip key='comment-basic-like' title='Like'>
           <span onClick={this.handleLike}>
-            {createElement(this.state.action === 'liked' ? LikeFilled : LikeOutlined)}
-            <span className='comment-action'>{this.state.likes}</span>
+            {this.state.action === 'liked'
+              ? <FontAwesomeIcon icon={LikeFilled} style={{ color: 'grey' }} />
+              : <FontAwesomeIcon icon={LikeOutlined} style={{ color: 'grey' }} />}
+            <span className='comment-action' style={{ color: 'grey' }}>{this.state.likes}</span>
           </span>
         </Tooltip>
         <span className='pr-1'> </span>
         <Tooltip key='comment-basic-dislike' title='Dislike'>
           <span onClick={this.handleDislike}>
-            {createElement(this.state.action === 'disliked' ? DislikeFilled : DislikeOutlined)}
-            <span className='comment-action'>{this.state.dislikes}</span>
+            {this.state.action === 'disliked'
+              ? <FontAwesomeIcon icon={DislikeFilled} style={{ color: 'grey' }} />
+              : <FontAwesomeIcon icon={DislikeOutlined} style={{ color: 'grey' }} />}
+            <span className='comment-action' style={{ color: 'grey' }}>{this.state.dislikes}</span>
           </span>
         </Tooltip>
       </div>

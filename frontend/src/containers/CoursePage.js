@@ -77,12 +77,12 @@ class CoursePage extends React.Component {
                 ? (
                   <div>
                     <h1 className='text-white'>{this.props.match.params.department_name}</h1>
+                    <p className='pb-3'>
+                      <a href={this.state.url} className='text-light' style={{ fontSize: '18px' }}>{this.state.url}</a>
+                    </p>
                   </div>)
                 : (<h1 className='text-white'>Courses</h1>)
             }
-            <p className='pb-3'>
-              <a href={this.state.url} className='text-light' style={{ fontSize: '18px' }}>{this.state.url}</a>
-            </p>
             <p>
               <AddCourse />
             </p>

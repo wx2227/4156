@@ -5,6 +5,7 @@ import CommentListView from './CommentListView'
 import Vote from './Vote'
 import { Button, Col, Container, Jumbotron, Row } from 'react-bootstrap'
 import Favorite from './Favorite'
+import DeleteNote from './DeleteNote'
 
 class NoteDetailView extends React.Component {
   constructor (props) {
@@ -66,27 +67,40 @@ class NoteDetailView extends React.Component {
           </Jumbotron>
         </div>
         <div className='row'>
-          <div className='col-md-2'> </div>
-          <div className='col-md-8'>
-            <div className='detail-container'>
-              <Preview url={this.state.note.file_url} />
-              <Row className='pt-2 pb-3'>
-                <Col>
-                  <div style={{ width: '100%' }} />
-                  <a href={this.state.note.file_url}>
-                    <Button variant='info'> Download File </Button>
-                  </a>
-                </Col>
-                <Col className='d-flex justify-content-end'>
-                  <Vote note={this.state.note} />
-                  <div className='pr-3' />
-                  <Favorite note_id={this.state.note.id} />
-                </Col>
-              </Row>
-              <div style={{ width: '100%' }}>
+          <div className='col-md-12'>
+            <Row>
+              <div className='col-md-1' />
+              <Col className='col-md-1 mt-auto mb-auto'>
+                <Favorite note_id={this.state.note.id} />
+                <div className='pb-2' />
+                <Vote note={this.state.note} />
+              </Col>
+              <Col className='col-md-8'>
+                <Preview url={this.state.note.file_url} />
+              </Col>
+            </Row>
+            <Row className='pt-2 pb-3'>
+              <div className='col-md-2' />
+              <Col className='col-md-8'>
+                <Row>
+                  <Col>
+                    <a href={this.state.note.file_url}>
+                      <Button variant='info' style={{ width: '150px' }}> Download File </Button>
+                    </a>
+                  </Col>
+                  <Col>
+                    <div className='float-right'><DeleteNote note={this.state.note} /></div>
+
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            <Row>
+              <div className='col-md-2' />
+              <div style={{ width: '100%' }} className='col-md-8'>
                 <CommentListView note={this.state.note} />
               </div>
-            </div>
+            </Row>
           </div>
         </div>
       </div>
