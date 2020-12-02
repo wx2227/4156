@@ -5,6 +5,13 @@ import { Form } from 'react-bootstrap'
 import axios from '../services/axios'
 
 class UploadForm extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      courses: []
+    }
+  }
+
     toBase64 : String = file => new Promise((resolve, reject) => {
       const reader = new FileReader()
       reader.readAsDataURL(file)
@@ -13,13 +20,19 @@ class UploadForm extends React.Component {
     });
 
     async isCourseNumberValid (courseNumber) : boolean {
-      const courses = axios.get('http://127.0.0.1:8000/api/course').then(res => res.data)
-      for (const course of courses) {
-        if (course.course_number === courseNumber) {
-          return true
+      return await axios.get('http://127.0.0.1:8000/api/course').then(res => {
+        this.setState({
+          courses: res.data
+        })
+      }).then(() => {
+        console.log(this.state.courses)
+        for (const course of this.state.courses) {
+          if (course.course_number === courseNumber) {
+            return true
+          }
         }
-      }
-      return false
+        return false
+      })
     }
 
     async uploadFile () {
@@ -49,7 +62,7 @@ class UploadForm extends React.Component {
     async handleSubmit (event) {
       event.preventDefault()
       const userID = Cookies.get('user_id') - 0
-      console.log(userID)
+
       const fileName = document.getElementById('fileName').value
       const courseNumber = document.getElementById('courseNumber').value
       const description = document.getElementById('description').value
@@ -72,15 +85,10 @@ class UploadForm extends React.Component {
         time: currTime
       }
       console.log(data)
-      axios.post('http://localhost:8000/api/note/', {
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-        body: JSON.stringify(data)
-      })
-        .then(response => response.json())
+      axios.post('http://localhost:8000/api/note/', data)
         .then(response => {
           console.log(response)
-          window.location.href = '/airnote/note/' + response.id
+          window.location.href = '/airnote/note/' + response.data.id
         })
         .catch(err => console.log(err))
     }
