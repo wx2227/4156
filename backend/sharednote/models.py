@@ -101,7 +101,7 @@ class Favorite(models.Model):
         (0, NOACTION),
     ]
     user_id = models.ForeignKey(get_user_model(), related_name='favorites', on_delete=models.CASCADE)
-    note_id = models.ForeignKey(Note, on_delete=models.CASCADE)
+    note_id = models.ForeignKey(Note, related_name='favorites', on_delete=models.CASCADE)
     favorite = models.IntegerField(choices=CHOICES, default=0)
 
     class Meta:

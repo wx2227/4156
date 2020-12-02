@@ -1,13 +1,14 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import Cookies from 'js-cookie'
+import { useHistory } from 'react-router-dom'
 
 export default function AddCourse () {
   function handleClick () {
-    window.location.href = '/airnote/addcourse'
+    history.push('/airnote/addcourse')
   }
 
-  console.log(Cookies.get('admin'))
+  const history = useHistory();
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from '../services/axios'
 import { Button, Card, Container, Jumbotron, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import AddCourse from '../components/AddCourse'
 
 class CoursePage extends React.Component {
@@ -51,7 +52,7 @@ class CoursePage extends React.Component {
         <Row className='pb-4' key={row.id}>
           {row.map(course =>
             <Col className='col-md-6' key={course.id}>
-              <a key={course.id} href={'/airnote/notes/' + course.course_number}>
+              <Link to={'/airnote/notes/' + course.course_number}>
                 <Card>
                   <Card.Body style={{ color: 'Black', width: '538px' }}>
                     <Card.Title>{course.course_number}</Card.Title>
@@ -59,7 +60,7 @@ class CoursePage extends React.Component {
                     <Button variant='outline-success' style={{ width: '300px' }}>{course.notes.length} Notes</Button>{' '}
                   </Card.Body>
                 </Card>
-              </a>
+              </Link>
             </Col>
           )}
         </Row>

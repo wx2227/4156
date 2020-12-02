@@ -65,45 +65,6 @@ class NoteBaseSerializer(ModelSerializer):
                   'description', 'time')
 
 
-class NoteSerializer(ModelSerializer):
-    comments = CommentSerializer(many=True, read_only=True)
-    votes = VoteSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Note
-        fields = ('id', 'user_id', 'course_number', 'file_name', 'file_url',
-                  'description', 'time', 'comments', 'votes')
-
-
-class NoteDynamicSerializer(NoteSerializer):
-    up_votes = IntegerField()
-    down_votes = IntegerField()
-
-    class Meta:
-        model = Note
-        fields = ('id', 'user_id', 'course_number', 'file_name',
-                  'file_url', 'description', 'time', 'up_votes',
-                  'down_votes', 'comments')
-
-
-class FavoriteSerializer(ModelSerializer):
-    note_info = SerializerMethodField(read_only=True)
-
-    class Meta:
-        model = Favorite
-        fields = '__all__'
-
-    # pylint: disable=no-self-use
-    def get_note_info(self, obj):
-        """
-        add the note_info fields to note serializer
-        :param obj:
-        :return:
-        """
-        data = NoteBaseSerializer(obj.note_id).data
-        return data
-
-
 class FavoriteBaseSerializer(ModelSerializer):
 
     class Meta:
@@ -126,6 +87,45 @@ class FavoriteBaseSerializer(ModelSerializer):
             defaults={'favorite': favorite},
         )
         return obj
+
+
+class NoteSerializer(ModelSerializer):
+    comments = CommentSerializer(many=True, read_only=True)
+    votes = VoteSerializer(many=True, read_only=True)
+    favorites = FavoriteBaseSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Note
+        fields = '__all__'
+
+
+class NoteDynamicSerializer(NoteSerializer):
+    up_votes = IntegerField()
+    down_votes = IntegerField()
+
+    class Meta:
+        model = Note
+        fields = ('id', 'user_id', 'course_number', 'file_name',
+                  'file_url', 'description', 'time', 'up_votes',
+                  'down_votes', 'comments', 'favorites')
+
+
+class FavoriteSerializer(ModelSerializer):
+    note_info = SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Favorite
+        fields = '__all__'
+
+    # pylint: disable=no-self-use
+    def get_note_info(self, obj):
+        """
+        add the note_info fields to note serializer
+        :param obj:
+        :return:
+        """
+        data = NoteBaseSerializer(obj.note_id).data
+        return data
 
 
 class UserSerializer(ModelSerializer):
