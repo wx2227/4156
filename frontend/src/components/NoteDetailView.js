@@ -4,6 +4,7 @@ import Preview from './Preview'
 import CommentListView from './CommentListView'
 import Vote from './Vote'
 import { Button, Col, Container, Jumbotron, Row } from 'react-bootstrap'
+import Favorite from './Favorite'
 
 class NoteDetailView extends React.Component {
   constructor (props) {
@@ -78,6 +79,8 @@ class NoteDetailView extends React.Component {
                 </Col>
                 <Col className='d-flex justify-content-end'>
                   <Vote note={this.state.note} />
+                  <div className='pr-3'></div>
+                  <Favorite note_id={this.state.note.id}/>
                 </Col>
               </Row>
               <div style={{ width: '100%' }}>

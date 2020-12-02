@@ -10,7 +10,7 @@ from django.db.models import Count, Q
 from sharednote.api.serializers import CustomizeUserSerializer, CommentSerializer, \
     NoteDynamicSerializer, NoteBaseSerializer, CourseSerializer, \
     CourseBaseSerializer, VoteSerializer, CommentBaseSerializer, \
-    FavoriteSerializer, DepartmentSerializer, DepartmentDynamicSerializer
+    FavoriteSerializer, DepartmentSerializer, DepartmentDynamicSerializer, FavoriteBaseSerializer
 from ..models import CustomizeUser, Comment, Note, Course, Vote, Favorite, Department
 
 
@@ -124,8 +124,24 @@ class FavoriteViewSet(viewsets.ModelViewSet):
     """
     Define the format of response for favorite request
     """
-    queryset = Favorite.objects.all()
-    serializer_class = FavoriteSerializer
+    def get_queryset(self):
+        """ Get a query set of a Vote, with query params user_id and note_id
+        :return: queryset: A queryset object containing courses of certain course number
+        """
+        queryset = Favorite.objects.all()
+        user_id = self.request.query_params.get('user_id')
+        note_id = self.request.query_params.get('note_id')
+        if user_id and note_id:
+            queryset = queryset.filter(user_id=user_id, note_id=note_id)
+        return queryset
+
+    def get_serializer_class(self):
+        """ Part of the Django requirement, get query set serializer
+        :return: A Serializer based on action type
+        """
+        if self.action == 'list':
+            return FavoriteSerializer
+        return FavoriteBaseSerializer
 
 
 class DepartmentViewSet(viewsets.ModelViewSet):

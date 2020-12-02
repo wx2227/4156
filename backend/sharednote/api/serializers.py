@@ -104,6 +104,30 @@ class FavoriteSerializer(ModelSerializer):
         return data
 
 
+class FavoriteBaseSerializer(ModelSerializer):
+
+    class Meta:
+        model = Favorite
+        fields = '__all__'
+        validators = []
+
+    # pylint: disable=no-self-use
+    def create(self, validated_data):
+        """
+        Helper function for favorite,
+        so user can create a vote or change a vote in one POST method
+
+        :param validated_data: Dictionary containing the vote instance
+        :return: A valid JSON object (a dictionary) containing votes information for a favorite
+        """
+        favorite = validated_data.pop('favorite')
+        obj, _ = Favorite.objects.update_or_create(
+            **validated_data,
+            defaults={'favorite': favorite},
+        )
+        return obj
+
+
 class UserSerializer(ModelSerializer):
 
     class Meta:
