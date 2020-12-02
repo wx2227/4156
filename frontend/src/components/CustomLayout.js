@@ -49,7 +49,6 @@ class CustomLayout extends React.Component {
               <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={this.handleOnChange} />
               <Button variant='outline-dark' style={{ marginRight: '10px' }} onClick={this.handleClick}>Search</Button>
               <DropDown />
-              <Button variant='danger' style={{ width: '80px' }} onClick={this.handleLogout}>Logout</Button>
             </Form>
           </Navbar>
           <div style={{ minHeight: '100vh' }}>

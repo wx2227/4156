@@ -12,7 +12,7 @@ export default function AddCourse () {
   return (
     <>
       {
-        Cookies.get('admin')
+        Cookies.get('admin') === 'true'
           ? <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={handleClick}>+ Add Course</Button>
           : <div />
       }
