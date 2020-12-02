@@ -16,7 +16,8 @@ class PersonalPage extends React.Component {
       avatar: '',
       comments: [],
       role: '', 
-      edit: false
+      edit: false,
+      nickNameInput: ''
     }
   }
 
@@ -36,7 +37,8 @@ class PersonalPage extends React.Component {
             avatar: res.data[0].avatar,
             nickname: res.data[0].nick_name,
             comments: res.data[0].comments,
-            role: (res.data[0].is_superuser ? 'Administrator' : 'Client')
+            role: (res.data[0].is_superuser ? 'Administrator' : 'Client'),
+            nickNameInput: res.data[0].nick_name
           })
         }
       }).catch(err => { console.log(err.stack) })
@@ -52,6 +54,7 @@ class PersonalPage extends React.Component {
         forms[i].style.background = "white"
         forms[i].style.color = "black"
   }
+  
   }
 
   handleClickEdit = () => {
@@ -72,8 +75,16 @@ class PersonalPage extends React.Component {
   handleClickCancel = () => {
     this.disableForms();
         document.getElementById("avatar").src = this.state.avatar
-        this.setState({
-      edit: false
+        document.getElementById("nickname").value = this.state.nickname
+      this.setState({
+      edit: false,
+      nickNameInput: this.state.nickname
+    })
+  }
+
+  handleNickNameInput = (e) => {
+    this.setState({
+      nickNameInput: e.target.value
     })
   }
 
@@ -95,7 +106,7 @@ class PersonalPage extends React.Component {
           <div className='col-7'>
             <ul className='list-group' style={{ fontSize: '16px', background: 'white'}}>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control editable' aria-label='Default' aria-describedby='inputGroup-sizing-default' defaultValue={this.state.nickname} />
+                <input type='text' className='form-control editable' id="nickname" aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.nickNameInput} onChange= {this.handleNickNameInput} />
               </li>
               <li className='list-group-item border-0'>
                 <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.role} />
@@ -173,7 +184,7 @@ class PersonalPage extends React.Component {
                   {this.state.edit &&
                   <Form style={{marginLeft: "90px", marginTop:"50px"}}>
                     <Form.Group>
-                      <Form.File id="imageUpload"  onChange={(e) => this.handlePreviewImage(e)} />
+                      <Form.File id="imageUpload"  onChange={this.handlePreviewImage} />
                     </Form.Group>
                   </Form>
                   }
