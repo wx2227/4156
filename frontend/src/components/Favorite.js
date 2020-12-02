@@ -5,7 +5,6 @@ import { StarFilled, StarOutlined } from '@ant-design/icons'
 import axios from '../services/axios'
 
 class Favorite extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -71,10 +70,10 @@ class Favorite extends React.Component {
     return (
       <>
         <Tooltip title='Favorite'>
-        <span onClick={this.handleFavorite}>
-          {createElement(this.state.action === 'favorite' ? StarFilled : StarOutlined)}
-          <span className='comment-action'>{this.state.likes}</span>
-        </span>
+          <span onClick={this.handleFavorite}>
+            {createElement(this.state.action === 'favorite' ? StarFilled : StarOutlined)}
+            <span className='comment-action'>{this.state.likes}</span>
+          </span>
         </Tooltip>
       </>
     )
