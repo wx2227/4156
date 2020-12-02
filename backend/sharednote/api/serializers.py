@@ -102,12 +102,23 @@ class NoteSerializer(ModelSerializer):
 class NoteDynamicSerializer(NoteSerializer):
     up_votes = IntegerField()
     down_votes = IntegerField()
+    course_info = SerializerMethodField(read_only=True)
 
     class Meta:
         model = Note
-        fields = ('id', 'user_id', 'course_number', 'file_name',
+        fields = ('id', 'user_id', 'file_name',
                   'file_url', 'description', 'time', 'up_votes',
-                  'down_votes', 'comments', 'favorites')
+                  'down_votes', 'comments', 'favorites', 'course_info')
+
+    # pylint: disable=no-self-use
+    def get_course_info(self, obj):
+        """
+        add the course_info fields to note serializer
+        :param obj:
+        :return:
+        """
+        data = CourseBaseSerializer(obj.course_number).data
+        return data
 
 
 class FavoriteSerializer(ModelSerializer):

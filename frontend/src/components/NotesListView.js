@@ -9,43 +9,44 @@ class NotesListView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      filtered: [],
       notes: [],
-      course: {}
+      course: ""
     }
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     const courseNumber = this.props.match.params.course_number
-    console.log(courseNumber)
-    if (courseNumber === undefined) {
-      axios.get('http://localhost:8000/api/note/')
-        .then(res => {
-          this.setState({
-            notes: res.data
-          })
-        }).catch(() => {
-          alert('Cannot get note form server')
-        }
-        )
-    } else {
-      axios.get(`http://localhost:8000/api/note/?course_number=${courseNumber}`)
-        .then(res => {
-          this.setState({
-            notes: res.data
-          })
-        }).catch(() => {
-          alert('Please input a valid course number.')
-        })
-    }
-    axios.get(`http://localhost:8000/api/course/?course_number=${courseNumber}`)
+
+    await axios.get('http://localhost:8000/api/note/')
       .then(res => {
         this.setState({
-          ...this.state,
-          course: res.data[0]
+          notes: res.data
         })
       }).catch(() => {
-        alert('Cannot get course form server')
+      alert('Cannot get note form server')
+    })
+
+    if (this.state.notes.length !== 0) {
+      let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
+
+      let b = {}
+      filtered.forEach(note => b[note.course_info.course_number] = (b[note.course_info.course_number] || 0) + 1)
+
+      console.log(b.length)
+
+      if (Object.keys(b).length === 1) {
+        this.setState({
+          ...this.state,
+          course: filtered[0].course_info
+        })
+      }
+
+      this.setState({
+        ...this.state,
+        filtered: filtered
       })
+    }
   }
 
   render () {
@@ -69,7 +70,7 @@ class NotesListView extends React.Component {
         </Jumbotron>
         <div className='row justify-content-center'>
           <div align='center' className='col-md-8'>
-            <Notes notes={this.state.notes} course={this.state.course} />
+            <Notes notes={this.state.filtered}/>
           </div>
         </div>
       </>

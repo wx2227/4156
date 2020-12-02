@@ -20,8 +20,8 @@ function Notes (props) {
             <Link to={`/airnote/note/${note.id}`}>
               <Card border='primary' style={{ textDecoration: 'none' }}>
                 <Card.Body style={{ color: 'Black' }}>
-                  <Card.Title>{note.course_number}</Card.Title>
-                  {props.course && <Card.Title style={{}}>{props.course && props.course.course_name}</Card.Title>}
+                  <Card.Title>{note.course_info.course_number}</Card.Title>
+                  <Card.Title style={{}}>{note.course_info.course_name}</Card.Title>
                   <Card.Text>{note.file_name}</Card.Text>
                   <Button variant='outline-success' style={{ width: '120px' }}>{note.up_votes} Likes</Button>{'  '}
                   <Button variant='outline-danger' style={{ width: '120px' }}>{note.down_votes} Dislikes</Button>{'  '}
