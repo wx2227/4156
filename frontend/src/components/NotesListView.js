@@ -21,13 +21,14 @@ class NotesListView extends React.Component {
     await axios.get('http://localhost:8000/api/note/')
       .then(res => {
         this.setState({
-          notes: res.data
+          notes: res.data,
+          filtered: res.data
         })
       }).catch(() => {
       alert('Cannot get note form server')
     })
 
-    if (this.state.notes.length !== 0) {
+    if (this.state.notes.length !== 0 && courseNumber) {
       let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
 
       let b = {}
