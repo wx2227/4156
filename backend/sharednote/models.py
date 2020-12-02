@@ -29,6 +29,7 @@ class Department(models.Model):
     define data schema for department
     """
     department_name = models.CharField(max_length=50, primary_key=True)
+    url = models.CharField(max_length=150, default="")
 
 
 class Course(models.Model):

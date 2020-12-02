@@ -19,7 +19,7 @@ function GoogleButton () {
     // use this as accessToken from google: response.accessToken
     const profile = response.getBasicProfile()
     const userEmail = profile.getEmail()
-    const imgUrl = profile.getImageUrl()
+    // const imgUrl = profile.getImageUrl()
 
     if (!userEmail.endsWith(lionMail)) {
       alert('Please sign in with Lionmail')
@@ -46,8 +46,8 @@ function GoogleButton () {
       Cookies.set('firstname', res.data[0].first_name)
       Cookies.set('lastname', res.data[0].last_name)
       Cookies.set('admin', res.data[0].is_superuser)
-      Cookies.set('url', imgUrl)
-      // Cookies.set('url', "")
+      // Cookies.set('url', imgUrl)
+      Cookies.set('url', '')
       window.location.href = '/airnote/department'
     }
   }

@@ -38,13 +38,13 @@ class PersonalPage extends React.Component {
         }
       }).catch(err => { console.log(err.stack) })
 
-      var forms = document.getElementsByClassName("form-control")
-      for (var i = 0; i < forms.length; i++) {
-        forms[i].style.border = "none"
-        forms[i].disabled = "true"
-        forms[i].style.background = "white"
-        forms[i].style.color = "black"
-      }
+    const forms = document.getElementsByClassName('form-control')
+    for (let i = 0; i < forms.length; i++) {
+      forms[i].style.border = 'none'
+      forms[i].disabled = 'true'
+      forms[i].style.background = 'white'
+      forms[i].style.color = 'black'
+    }
   }
 
   renderUserInfo () {
@@ -63,7 +63,7 @@ class PersonalPage extends React.Component {
             </ul>
           </div>
           <div className='col-7'>
-            <ul className='list-group' style={{ fontSize: '16px', background: 'white'}}>
+            <ul className='list-group' style={{ fontSize: '16px', background: 'white' }}>
               <li className='list-group-item border-0'>
                 <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.nickname} />
               </li>

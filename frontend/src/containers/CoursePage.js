@@ -77,7 +77,7 @@ class CoursePage extends React.Component {
                 : (<h1 className='text-white'>Courses</h1>)
             }
             <p>
-              <AddCourse/>
+              <AddCourse />
             </p>
           </Container>
         </Jumbotron>

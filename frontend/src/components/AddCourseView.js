@@ -3,7 +3,6 @@ import { Form, Button, Col, Row } from 'react-bootstrap'
 import axios from '../services/axios'
 
 class AddCourseView extends React.Component {
-
   constructor (props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -13,12 +12,12 @@ class AddCourseView extends React.Component {
   }
 
   handleSubmit = (e) => {
-    const form = e.currentTarget;
+    const form = e.currentTarget
 
-    e.preventDefault();
+    e.preventDefault()
 
     if (form.checkValidity() === false) {
-      e.stopPropagation();
+      e.stopPropagation()
     }
 
     this.setState({
@@ -40,7 +39,7 @@ class AddCourseView extends React.Component {
       window.location.href = '/airnote/courses/' + res.data.department_name
     }).catch((error) => {
       if (error.response) {
-        alert(error.response.data.course_number);
+        alert(error.response.data.course_number)
       }
     })
   }
@@ -58,25 +57,25 @@ class AddCourseView extends React.Component {
                 <div className='pl-lg-5 pr-lg-5 pb-4 pt-4'>
                   <Form.Group>
                     <Form.Row className='pb-3'>
-                      <Form.Label column="lg">Course Number</Form.Label>
+                      <Form.Label column='lg'>Course Number</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control required size="lg" placeholder="COMS 4156" id='course_number'/>
+                        <Form.Control required size='lg' placeholder='COMS 4156' id='course_number' />
                       </Col>
                     </Form.Row>
                   </Form.Group>
                   <Form.Group>
                     <Form.Row className='pb-3'>
-                      <Form.Label column="lg">Course Name</Form.Label>
+                      <Form.Label column='lg'>Course Name</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control required size="lg" placeholder="Advanced Software Engineering" id='course_name'/>
+                        <Form.Control required size='lg' placeholder='Advanced Software Engineering' id='course_name' />
                       </Col>
                     </Form.Row>
                   </Form.Group>
                   <Form.Group>
                     <Form.Row className='pb-3'>
-                      <Form.Label column="lg">Term</Form.Label>
+                      <Form.Label column='lg'>Term</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control size="lg" as="select" id='term'>
+                        <Form.Control size='lg' as='select' id='term'>
                           <option>2020 Fall</option>
                           <option>2020 Summer</option>
                           <option>2020 Spring</option>
@@ -88,10 +87,10 @@ class AddCourseView extends React.Component {
                   </Form.Group>
                   <Form.Group>
                     <Form.Row className='pb-3'>
-                      <Form.Label column="lg">Department Name</Form.Label>
+                      <Form.Label column='lg'>Department Name</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control size="lg" as="select" id='department_name'>
-                          <option>Computer Science</option>
+                        <Form.Control size='lg' as='select' id='department_name'>
+                          <option>Computer Science Department</option>
                           <option>Data Science</option>
                           <option>Electrical Engineering</option>
                         </Form.Control>
