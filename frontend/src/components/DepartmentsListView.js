@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from '../services/axios'
 import { Button, Card, Col, Row, ToggleButton, ToggleButtonGroup, Form, FormControl } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 class DepartmentsListView extends React.Component {
   constructor (props) {
@@ -101,14 +102,14 @@ class DepartmentsListView extends React.Component {
         <Row className='pb-4' key={row.id}>
           {row.map(department =>
             <Col className='col-md-4' key={row.id}>
-              <a href={`/airnote/courses/${department.department_name}`}>
+              <Link to={`/airnote/courses/${department.department_name}`}>
                 <Card border='primary' style={{ textDecoration: 'none' }}>
                   <Card.Body style={{ color: 'Black' }}>
                     <Card.Title className='pb-2'>{department.department_name}</Card.Title>
                     <Button variant='outline-success' style={{ width: '130px' }}>{department.courses} Courses</Button>{'  '}
                   </Card.Body>
                 </Card>
-              </a>
+              </Link>
             </Col>
           )}
         </Row>

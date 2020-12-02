@@ -17,29 +17,28 @@ class Favorite extends React.Component {
     this.handleFavorite = this.handleFavorite.bind(this)
   }
 
-  componentDidUpdate (prevProps) {
+  async componentDidUpdate (prevProps) {
+    let action = null
     if (this.props.note_id !== prevProps.note_id) {
-      axios.get(`http://127.0.0.1:8000/api/favorite/?user_id=${this.state.user_id}&note_id=${this.props.note_id}`)
+      await axios.get(`http://127.0.0.1:8000/api/favorite/?user_id=${this.state.user_id}&note_id=${this.props.note_id}`)
         .then(res => {
           if (res.data.length !== 0) {
-            let action
             const favorite = res.data[0].favorite
             if (favorite === 1) {
               action = 'favorite'
-            } else {
-              action = null
             }
-            this.setState({
-              ...this.state,
-              action: action,
-              note_id: this.props.note_id
-            })
           }
         })
+      this.setState({
+        ...this.state,
+        action: action,
+        note_id: this.props.note_id
+      })
     }
   }
 
   handleFavorite = () => {
+
     if (this.state.action === 'favorite') {
       axios.post('http://127.0.0.1:8000/api/favorite/', {
         favorite: 0,

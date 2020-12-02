@@ -1,12 +1,15 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import axios from '../services/axios'
 
 export default function DeleteNote (props) {
+  const history = useHistory()
+
   function handleClick () {
     axios.delete(`http://127.0.0.1:8000/api/note/${props.note.id}`)
-      .then(window.location.href(`/airnote/notes/?course_number=${props.note.course_number}`))
+      .then(() => history.push((`/airnote/notes/?course_number=${props.note.course_number}`)))
       .catch(() => alert('cannot delete note'))
   }
 

@@ -1,9 +1,12 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 
 function AddNote () {
+  const history = useHistory()
+
   function handleClick () {
-    window.location.href = '/airnote/upload'
+    history.push('/airnote/upload')
   }
 
   return (
