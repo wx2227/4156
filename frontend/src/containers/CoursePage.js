@@ -8,7 +8,8 @@ class CoursePage extends React.Component {
     super(props)
     this.state = {
       courses: [],
-      department: ''
+      department: this.props.match.params.department_name,
+      url: ''
     }
   }
 
@@ -25,10 +26,13 @@ class CoursePage extends React.Component {
     } else {
       axios.get(`http://localhost:8000/api/course/?department_name=${departmentName}`)
         .then(res => {
-          this.setState({
-            courses: res.data,
-            department: departmentName
-          })
+          console.log(res)
+          if (res.data.length !== 0) {
+            this.setState({
+              courses: res.data,
+              url: res.data[0].department_info.url
+            })
+          }
         }).catch(err => { console.log(err.stack) })
     }
   }
@@ -69,13 +73,16 @@ class CoursePage extends React.Component {
         <Jumbotron fluid style={{ background: '#494342' }}>
           <Container>
             {
-              this.state.department
+              this.props.match.params.department_name
                 ? (
                   <div>
-                    <h1 className='text-white'>Department of {this.state.department}</h1>
+                    <h1 className='text-white'>{this.props.match.params.department_name}</h1>
                   </div>)
                 : (<h1 className='text-white'>Courses</h1>)
             }
+            <p className='pb-3'>
+              <a href={this.state.url} className='text-light' style={{ fontSize: '18px' }}>{this.state.url}</a>
+            </p>
             <p>
               <AddCourse />
             </p>

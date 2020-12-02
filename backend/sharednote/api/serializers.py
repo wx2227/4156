@@ -122,14 +122,6 @@ class CustomizeUserSerializer(ModelSerializer):
                   'is_superuser', 'nick_name', 'notes', 'favorites', 'comments')
 
 
-class CourseSerializer(ModelSerializer):
-    notes = PrimaryKeyRelatedField(many=True, read_only=True)
-
-    class Meta:
-        model = Course
-        fields = ('course_number', 'course_name', 'department_name', 'term', 'notes')
-
-
 class CourseBaseSerializer(ModelSerializer):
     class Meta:
         model = Course
@@ -137,6 +129,12 @@ class CourseBaseSerializer(ModelSerializer):
 
 
 class DepartmentSerializer(ModelSerializer):
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+
+class DepartmentBaseSerializer(ModelSerializer):
     courses_detail = CourseBaseSerializer(many=True, read_only=True)
     courses = IntegerField()
 
@@ -145,8 +143,28 @@ class DepartmentSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class DepartmentDynamicSerializer(DepartmentSerializer):
+class DepartmentDynamicSerializer(DepartmentBaseSerializer):
 
     class Meta:
         model = Department
-        fields = ('department_name', 'courses')
+        fields = ('department_name', 'courses', 'url')
+
+
+class CourseSerializer(ModelSerializer):
+    notes = PrimaryKeyRelatedField(many=True, read_only=True)
+    department_info = SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+    # pylint: disable=no-self-use
+    def get_department_info(self, obj):
+        """
+        add the department_info field to Course serializer
+        :param obj:
+        :return:
+        """
+        data = DepartmentSerializer(obj.department_name).data
+        return data
+''

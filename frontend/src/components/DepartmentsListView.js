@@ -94,6 +94,8 @@ class DepartmentsListView extends React.Component {
       departmentRows = rows.map((row, idx) => departments.slice(idx * 3, idx * 3 + 3))
     })
 
+    console.log(departments)
+
     return (
       departmentRows.map(row =>
         <Row className='pb-4' key={row.id}>
@@ -121,7 +123,7 @@ class DepartmentsListView extends React.Component {
       <>
         <div className='row justify-content-center'>
           <div className='col-md-8 pt-lg-5'>
-            <div className='pb-lg-3'>
+            <div className='pb-lg-3 pl-3 pr-3'>
               <Row>
                 <h1>List of Departments</h1>
               </Row>
@@ -133,9 +135,9 @@ class DepartmentsListView extends React.Component {
                   <ToggleButton variant='info' value={4} style={{ fontSize: '20px', textAlign: 'left' }} id='G-O' onClick={this.handleDepartments}>G-O</ToggleButton>
                   <ToggleButton variant='info' value={5} style={{ fontSize: '20px', textAlign: 'left' }} id='P-Z' onClick={this.handleDepartments}>P-Z</ToggleButton>
                 </ToggleButtonGroup>
-                <div className='ml-auto'>
-                  <Form inline>
-                    <FormControl type='text' placeholder='Search...' className='ml-sm-2 mr-2' onChange={this.handleChange} />
+                <div className='ml-auto mr-2'>
+                  <Form>
+                    <FormControl type='text' placeholder='Search...' className='ml-sm-2' onChange={this.handleChange} />
                   </Form>
                 </div>
               </Row>
