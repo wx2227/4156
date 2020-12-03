@@ -91,7 +91,7 @@ function AddCourseView () {
                     <Button variant='outline-success' className='w-100' type='submit'>Submit</Button>{' '}
                   </Col>
                   <Col className='col-md-5'>
-                    <Button variant='outline-success' className='w-100'>Cancel</Button>
+                    <Button variant='outline-success' className='w-100' onClick={() => history.push('/airnote/courses')}>Cancel</Button>
                   </Col>
                 </Row>
               </div>
