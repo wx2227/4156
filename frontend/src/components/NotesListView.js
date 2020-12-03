@@ -11,7 +11,7 @@ class NotesListView extends React.Component {
     this.state = {
       filtered: [],
       notes: [],
-      course: ''
+      course: null
     }
   }
 
@@ -19,6 +19,7 @@ class NotesListView extends React.Component {
     await axios.get('http://localhost:8000/api/note/')
       .then(res => {
         this.setState({
+          ...this.state,
           notes: res.data,
           filtered: res.data
         })
@@ -40,18 +41,20 @@ class NotesListView extends React.Component {
         if (Object.keys(b).length === 1) {
           this.setState({
             ...this.state,
-            course: filtered[0].course_info
+            course: filtered[0].course_info,
+            filtered: filtered
+          })
+        } else {
+          this.setState({
+            ...this.state,
+            filtered: filtered
           })
         }
-
-        this.setState({
-          ...this.state,
-          filtered: filtered
-        })
       } else if (courseNumber === '' || courseNumber === undefined) {
         this.setState({
           ...this.state,
-          filtered: this.state.notes
+          filtered: this.state.notes,
+          course: null
         })
       }
     }
@@ -63,9 +66,8 @@ class NotesListView extends React.Component {
         <Jumbotron fluid style={{ background: '#494342' }} className='h-20'>
           <Container>
             {
-            this.state.course
-              ? (
-                <div>
+              (this.state.course)
+              ? (<div>
                   <h1 className='text-white'>{this.state.course.course_number}</h1>
                   <h2 className='text-white'>{this.state.course.course_name}</h2>
                 </div>)

@@ -19,7 +19,6 @@ function CustomLayout (props) {
   }
 
   function handleClick () {
-    console.log(course)
     if (course) {
       history.push('/airnote/notes/' + course)
     } else {
@@ -58,4 +57,4 @@ function CustomLayout (props) {
   )
 }
 
-export default withRouter(CustomLayout)
+export default CustomLayout
