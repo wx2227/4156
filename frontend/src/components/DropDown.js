@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Dropdown } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 class DropDown extends React.Component {
@@ -24,7 +25,7 @@ class DropDown extends React.Component {
             <Dropdown.Item>
               <Button variant='danger' onClick={this.handleLogout} className='w-100'>Logout</Button>
             </Dropdown.Item>
-            <Dropdown.Item href='/airnote/profile'>Student Profile</Dropdown.Item>
+            <Dropdown.Item as={Link} to='/airnote/profile'>Student Profile</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
