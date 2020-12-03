@@ -16,6 +16,7 @@ class NotesListView extends React.Component {
   }
 
   async componentDidMount (): void {
+    const courseNumber = this.props.match.params.course_number
     await axios.get('http://localhost:8000/api/note/')
       .then(res => {
         this.setState({
@@ -26,6 +27,14 @@ class NotesListView extends React.Component {
       }).catch(() => {
         alert('Cannot get note form server')
       })
+
+    if (courseNumber) {
+      let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
+      this.setState({
+        ...this.state,
+        filtered: filtered
+      })
+    }
   }
 
   componentDidUpdate (prevProps, prevState) {
