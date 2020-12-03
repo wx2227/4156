@@ -95,8 +95,6 @@ class DepartmentsListView extends React.Component {
       departmentRows = rows.map((row, idx) => departments.slice(idx * 3, idx * 3 + 3))
     })
 
-    console.log(departments)
-
     return (
       departmentRows.map(row =>
         <Row className='pb-4' key={row.id}>

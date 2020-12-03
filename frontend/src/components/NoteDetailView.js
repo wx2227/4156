@@ -90,7 +90,6 @@ class NoteDetailView extends React.Component {
                   </Col>
                   <Col>
                     <div className='float-right'><DeleteNote note={this.state.note} /></div>
-
                   </Col>
                 </Row>
               </Col>
