@@ -32,7 +32,8 @@ class NotesListView extends React.Component {
       let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
       this.setState({
         ...this.state,
-        filtered: filtered
+        filtered: filtered,
+        course: filtered[0].course_info
       })
     }
   }
