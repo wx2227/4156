@@ -11,13 +11,11 @@ class NotesListView extends React.Component {
     this.state = {
       filtered: [],
       notes: [],
-      course: ""
+      course: ''
     }
   }
 
-  async componentDidMount () {
-    const courseNumber = this.props.match.params.course_number
-
+  async componentDidMount (): void {
     await axios.get('http://localhost:8000/api/note/')
       .then(res => {
         this.setState({
@@ -25,28 +23,37 @@ class NotesListView extends React.Component {
           filtered: res.data
         })
       }).catch(() => {
-      alert('Cannot get note form server')
-    })
+        alert('Cannot get note form server')
+      })
+  }
 
-    if (this.state.notes.length !== 0 && courseNumber) {
-      let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
+  componentDidUpdate (prevProps, prevState) {
+    const courseNumber = this.props.match.params.course_number
 
-      let b = {}
-      filtered.forEach(note => b[note.course_info.course_number] = (b[note.course_info.course_number] || 0) + 1)
+    if (prevProps.match.params.course_number !== this.props.match.params.course_number) {
+      if (this.state.notes.length !== 0 && courseNumber) {
+        let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
 
-      console.log(b.length)
+        let b = {}
+        filtered.forEach(note => b[note.course_info.course_number] = (b[note.course_info.course_number] || 0) + 1)
 
-      if (Object.keys(b).length === 1) {
+        if (Object.keys(b).length === 1) {
+          this.setState({
+            ...this.state,
+            course: filtered[0].course_info
+          })
+        }
+
         this.setState({
           ...this.state,
-          course: filtered[0].course_info
+          filtered: filtered
+        })
+      } else if (courseNumber === '' || courseNumber === undefined) {
+        this.setState({
+          ...this.state,
+          filtered: this.state.notes
         })
       }
-
-      this.setState({
-        ...this.state,
-        filtered: filtered
-      })
     }
   }
 
