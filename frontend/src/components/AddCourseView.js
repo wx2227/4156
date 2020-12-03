@@ -1,17 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom'
 import axios from '../services/axios'
 
-class AddCourseView extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = {
-      validated: false
-    }
-  }
+function AddCourseView (props) {
 
-  handleSubmit = (e) => {
+  const history = useHistory()
+
+  function handleSubmit(e) {
     const form = e.currentTarget
 
     e.preventDefault()
@@ -19,10 +15,6 @@ class AddCourseView extends React.Component {
     if (form.checkValidity() === false) {
       e.stopPropagation()
     }
-
-    this.setState({
-      validated: true
-    })
 
     const courseNumber = document.getElementById('course_number').value
     const courseName = document.getElementById('course_name').value
@@ -35,8 +27,7 @@ class AddCourseView extends React.Component {
       term: term,
       department_name: departmentName
     }).then(res => {
-      console.log(res)
-      window.location.href = '/airnote/courses/' + res.data.department_name
+      history.push('/airnote/courses/' + res.data.department_name)
     }).catch((error) => {
       if (error.response) {
         alert(error.response.data.course_number)
@@ -44,12 +35,11 @@ class AddCourseView extends React.Component {
     })
   }
 
-  render () {
     return (
       <>
         <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <div className='col-md-6'>
-            <Form className='card bg-white' onSubmit={this.handleSubmit}>
+            <Form className='card bg-white' onSubmit={handleSubmit}>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#17A2B8', height: '80px' }}>
                 <h1 className='text-white m-0 p-0'>Add Course</h1>
               </div>
@@ -112,7 +102,6 @@ class AddCourseView extends React.Component {
         </div>
       </>
     )
-  }
 }
 
 export default AddCourseView

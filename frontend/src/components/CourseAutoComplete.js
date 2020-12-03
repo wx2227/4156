@@ -13,7 +13,7 @@ export default function CourseAutoComplete (props) {
     <>
       <Form.Group>
         <Typeahead
-          id='basic-typeahead-single'
+          id='courseNumber'
           labelKey='name'
           onChange={setSingleSelections}
           options={options}
