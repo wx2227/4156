@@ -47,7 +47,8 @@ class NotesListView extends React.Component {
         } else {
           this.setState({
             ...this.state,
-            filtered: filtered
+            filtered: filtered,
+            course: null
           })
         }
       } else if (courseNumber === '' || courseNumber === undefined) {

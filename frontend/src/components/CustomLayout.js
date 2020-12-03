@@ -18,11 +18,19 @@ function CustomLayout (props) {
     }
   }
 
-  function handleClick () {
+  function handleClick (event) {
+    event.preventDefault();
     if (course) {
+      document.getElementById('searchbar').value = ""
       history.push('/airnote/notes/' + course)
     } else {
       alert('Please input valid course number')
+    }
+  }
+
+  function handleKeyPress (e) {
+    if(e.target.charCode===13){
+      handleClick()
     }
   }
 
@@ -36,9 +44,9 @@ function CustomLayout (props) {
           <Nav.Link as={Link} to='/airnote/notes'>Notes</Nav.Link>
           <Nav.Link as={Link} to='/airnote/upload'>Upload</Nav.Link>
         </Nav>
-        <Form inline>
-          <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={handleOnChange} />
-          <Button variant='outline-dark' style={{ marginRight: '10px' }} onClick={handleClick}>Search</Button>
+        <Form inline onSubmit={handleClick}>
+          <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={handleOnChange} id='searchbar'/>
+          <Button variant='outline-dark' style={{ marginRight: '10px' }} onClick={handleClick} onKeyPress={handleKeyPress}>Search</Button>
           <DropDown />
         </Form>
       </Navbar>
