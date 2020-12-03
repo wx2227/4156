@@ -38,7 +38,6 @@ class Favorite extends React.Component {
   }
 
   handleFavorite = () => {
-
     if (this.state.action === 'favorite') {
       axios.post('http://127.0.0.1:8000/api/favorite/', {
         favorite: 0,

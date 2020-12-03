@@ -1,27 +1,24 @@
 import React, { useState } from 'react'
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import DropDown from './DropDown'
-import { Link, useHistory, withRouter } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons'
 
 function CustomLayout (props) {
-
   const [course, setCourse] = useState(null)
   const history = useHistory()
 
   function handleOnChange (e) {
     if (e && e.target && e.target.value) {
       setCourse(e.target.value)
-    } else {
-      return
     }
   }
 
   function handleClick (event) {
-    event.preventDefault();
+    event.preventDefault()
     if (course) {
-      document.getElementById('searchbar').value = ""
+      document.getElementById('searchbar').value = ''
       history.push('/airnote/notes/' + course)
     } else {
       alert('Please input valid course number')
@@ -29,7 +26,7 @@ function CustomLayout (props) {
   }
 
   function handleKeyPress (e) {
-    if(e.target.charCode===13){
+    if (e.target.charCode === 13) {
       handleClick()
     }
   }
@@ -45,7 +42,7 @@ function CustomLayout (props) {
           <Nav.Link as={Link} to='/airnote/upload'>Upload</Nav.Link>
         </Nav>
         <Form inline onSubmit={handleClick}>
-          <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={handleOnChange} id='searchbar'/>
+          <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={handleOnChange} id='searchbar' />
           <Button variant='outline-dark' style={{ marginRight: '10px' }} onClick={handleClick} onKeyPress={handleKeyPress}>Search</Button>
           <DropDown />
         </Form>

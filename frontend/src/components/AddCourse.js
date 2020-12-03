@@ -8,7 +8,7 @@ export default function AddCourse () {
     history.push('/airnote/addcourse')
   }
 
-  const history = useHistory();
+  const history = useHistory()
 
   return (
     <>

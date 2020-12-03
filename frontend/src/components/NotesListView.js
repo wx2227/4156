@@ -29,7 +29,7 @@ class NotesListView extends React.Component {
       })
 
     if (courseNumber) {
-      let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
+      const filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
       this.setState({
         ...this.state,
         filtered: filtered,
@@ -38,15 +38,17 @@ class NotesListView extends React.Component {
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate (prevProps) {
     const courseNumber = this.props.match.params.course_number
 
     if (prevProps.match.params.course_number !== this.props.match.params.course_number) {
       if (this.state.notes.length !== 0 && courseNumber) {
-        let filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
+        const filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
 
-        let b = {}
-        filtered.forEach(note => b[note.course_info.course_number] = (b[note.course_info.course_number] || 0) + 1)
+        const b = {}
+        filtered.forEach(note => {
+          b[note.course_info.course_number] = (b[note.course_info.course_number] || 0) + 1
+        })
 
         if (Object.keys(b).length === 1) {
           this.setState({
@@ -78,11 +80,12 @@ class NotesListView extends React.Component {
           <Container>
             {
               (this.state.course)
-              ? (<div>
-                  <h1 className='text-white'>{this.state.course.course_number}</h1>
-                  <h2 className='text-white'>{this.state.course.course_name}</h2>
-                </div>)
-              : (<h1 className='text-white'>Air Notes</h1>)
+                ? (
+                  <div>
+                    <h1 className='text-white'>{this.state.course.course_number}</h1>
+                    <h2 className='text-white'>{this.state.course.course_name}</h2>
+                  </div>)
+                : (<h1 className='text-white'>Air Notes</h1>)
             }
             <p>
               <AddNote />
@@ -91,7 +94,7 @@ class NotesListView extends React.Component {
         </Jumbotron>
         <div className='row justify-content-center'>
           <div align='center' className='col-md-8'>
-            <Notes notes={this.state.filtered}/>
+            <Notes notes={this.state.filtered} />
           </div>
         </div>
       </>
