@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { Form } from 'react-bootstrap'
+import Notes from './Notes'
+import { Form, Card, Button, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 
 class PersonalPage extends React.Component {
@@ -29,7 +31,6 @@ class PersonalPage extends React.Component {
     axios.get('http://localhost:8000/api/user/?id=' + id)
       .then(res => {
         if (res.data.length !== 0) {
-          console.log(res.data[0])
           this.setState({
             credits: res.data[0].credits,
             email: res.data[0].email,
@@ -47,7 +48,7 @@ class PersonalPage extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.state.page === 1) {
+    if(this.state.page === 1 && !this.state.edit) {
       this.disableForms()
     }
   }
@@ -202,11 +203,43 @@ class PersonalPage extends React.Component {
     })
   }
 
-  renderFavorites() {
+  renderFavorites () {
+    return this.renderNoteList(this.state.favorites)
+  }
+
+  renderUserNotes () {
+    return this.renderNoteList(this.state.notes)
+  }
+
+  renderNoteList = (notes) => {
+    let noteRows = []
+    console.log(notes)
+    notes.forEach(() => {
+      const rows = [...Array(Math.ceil(notes.length / 2))]
+      // chunk the notes into the array of rows
+      noteRows = rows.map((row, idx) => notes.slice(idx * 2, idx * 2 + 2))
+    })
+    
     return (
-      <>
-      </>
+      noteRows.map(row =>
+        <Row className='pb-4 ml-5 pl-5 mt-4' key={row.id}>
+          {row.map(note =>
+            <Col className='col-md-6 pr-5 pl-5' key={note.note_info.id}>
+              <Link to={`/airnote/note/${note.note_info.id}`}>
+                <Card border='primary' style={{ textDecoration: 'none', width: '15rem', height:"13rem" }}>
+                  <Card.Header>{note.note_info.course_number}</Card.Header>
+                  <Card.Body style={{ color: 'Black' }}>
+                    <Card.Title>{note.note_info.file_name}</Card.Title>
+                    <Card.Text>{note.note_info.description}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          )}
+        </Row>
+      )
     )
+
   }
 
   render () {
@@ -225,6 +258,8 @@ class PersonalPage extends React.Component {
               </div>
             </div>
               {this.state.page === 1 && this.renderProfilePage()}
+              {this.state.page === 2 && this.renderFavorites()}
+              {this.state.page === 3 && this.renderUserNotes()}
           </div> 
         </div>
       </>
