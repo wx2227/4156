@@ -3,6 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { Form } from 'react-bootstrap'
 
+
 class PersonalPage extends React.Component {
   constructor (props) {
     super(props)
@@ -17,7 +18,8 @@ class PersonalPage extends React.Component {
       comments: [],
       role: '',
       edit: false,
-      nickNameInput: ''
+      nickNameInput: '',
+      page: 1
     }
   }
 
@@ -43,6 +45,14 @@ class PersonalPage extends React.Component {
         }
       }).catch(err => { console.log(err.stack) })
   }
+
+  componentDidUpdate() {
+    if(this.state.page === 1) {
+      this.disableForms()
+    }
+  }
+
+
 
   disableForms = () => {
     const forms = document.getElementsByClassName('form-control')
@@ -82,6 +92,33 @@ class PersonalPage extends React.Component {
     this.setState({
       nickNameInput: e.target.value
     })
+  }
+
+  renderProfilePage() {
+    return (
+      <>
+         <div className='col-8'>
+              {this.renderUserInfo()}
+            </div>
+            <div className='col-3'>
+              <div className='container'>
+                <div className='row'>
+                  <div className='col'>
+                    <img id='avatar' src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' style={{ height: '350px', width: '350px' }} />
+                  </div>
+                  {this.state.edit &&
+                    <Form style={{ marginLeft: '90px', marginTop: '50px' }}>
+                      <Form.Group>
+                        <Form.File id='imageUpload' onChange={this.handlePreviewImage} />
+                      </Form.Group>
+                    </Form>}
+                </div>
+                <div className='row'/>
+              </div>
+            </div>
+      </>
+
+    )
   }
 
   renderUserInfo () {
@@ -151,6 +188,27 @@ class PersonalPage extends React.Component {
     }
   }
 
+  getButtonClass = (page) => {
+    if (page === this.state.page) {
+      return 'btn btn-primary rounded-0'
+    } else {
+      return 'btn btn-light rounded-0 '
+    }
+  }
+
+  setPage = (p) => {
+    this.setState({
+      page: p
+    })
+  }
+
+  renderFavorites() {
+    return (
+      <>
+      </>
+    )
+  }
+
   render () {
     return (
       <>
@@ -159,33 +217,15 @@ class PersonalPage extends React.Component {
             <div className='col-1 border-right'>
               <div className='float-right'>
                 <div className='list-group list-group-flush'>
-                  <button type='button' className='btn btn-primary rounded-0'>Profile</button>
-                  <button type='button' className='btn btn-light rounded-0 '>Favorites</button>
-                  <button type='button' className='btn btn-light rounded-0'>Notes</button>
-                  <button type='button' className='btn btn-light rounded-0'>Comments</button>
+                  <button type='button' className={this.getButtonClass(1)} onClick={() => {this.setPage(1)}}>Profile</button>
+                  <button type='button' className={this.getButtonClass(2)} onClick={() => {this.setPage(2)}}>Favorites</button>
+                  <button type='button' className={this.getButtonClass(3)} onClick={() => {this.setPage(3)}}>Notes</button>
+                  <button type='button' className={this.getButtonClass(4)} onClick={() => {this.setPage(4)}}>Comments</button>
                 </div>
               </div>
             </div>
-            <div className='col-8'>
-              {this.renderUserInfo()}
-            </div>
-            <div className='col-3'>
-              <div className='container'>
-                <div className='row'>
-                  <div className='col'>
-                    <img id='avatar' src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' style={{ height: '350px', width: '350px' }} />
-                  </div>
-                  {this.state.edit &&
-                    <Form style={{ marginLeft: '90px', marginTop: '50px' }}>
-                      <Form.Group>
-                        <Form.File id='imageUpload' onChange={this.handlePreviewImage} />
-                      </Form.Group>
-                    </Form>}
-                </div>
-                <div className='row' />
-              </div>
-            </div>
-          </div>
+              {this.state.page === 1 && this.renderProfilePage()}
+          </div> 
         </div>
       </>
     )
