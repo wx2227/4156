@@ -213,7 +213,6 @@ class PersonalPage extends React.Component {
 
   renderNoteList = (notes) => {
     let noteRows = []
-    console.log(notes)
     notes.forEach(() => {
       const rows = [...Array(Math.ceil(notes.length / 2))]
       // chunk the notes into the array of rows
@@ -242,6 +241,24 @@ class PersonalPage extends React.Component {
 
   }
 
+  renderUserComments() {
+    console.log(this.state.comments)
+    return (
+      this.state.comments.map(comment => 
+        <Row className='pb-4 ml-5 pl-5 mt-4' key={comment.id} style={{width: "10rem" }}> 
+              <Link to={`/airnote/note/${comment.note_id}`}>
+                <Card border='primary' style={{ textDecoration: 'none', width: '70rem', height:"6.5rem" }}>
+                  <Card.Header style={{height: "2.5rem"}}>{comment.time.slice(0, 10)}</Card.Header>
+                  <Card.Body style={{ color: 'Black' }}>
+                    <Card.Text>{comment.content}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </Link>
+          </Row>
+      )
+    )
+  }
+
   render () {
     return (
       <>
@@ -260,6 +277,7 @@ class PersonalPage extends React.Component {
               {this.state.page === 1 && this.renderProfilePage()}
               {this.state.page === 2 && this.renderFavorites()}
               {this.state.page === 3 && this.renderUserNotes()}
+              {this.state.page === 4 && this.renderUserComments()}
           </div> 
         </div>
       </>
