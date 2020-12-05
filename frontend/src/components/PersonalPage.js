@@ -2,9 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Notes from './Notes'
-import { Form, Card, Button, Row, Col } from 'react-bootstrap'
+import {CardDeck, Container, Form, Card, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import { faTrash as Trash} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class PersonalPage extends React.Component {
   constructor (props) {
@@ -26,9 +27,14 @@ class PersonalPage extends React.Component {
   }
 
   componentDidMount () {
-    const id = Cookies.get('user_id')
+
     this.disableForms()
-    axios.get('http://localhost:8000/api/user/?id=' + id)
+    this.updateUserInfo()
+  }
+
+  updateUserInfo() {
+      const id = Cookies.get('user_id')
+       axios.get('http://localhost:8000/api/user/?id=' + id)
       .then(res => {
         if (res.data.length !== 0) {
           this.setState({
@@ -205,35 +211,67 @@ class PersonalPage extends React.Component {
 
   renderFavorites () {
     return this.renderNoteList(this.state.favorites)
+
   }
 
   renderUserNotes () {
     return this.renderNoteList(this.state.notes)
   }
 
+  deleteComment = (id) => {
+          axios.delete('http://localhost:8000/api/comment/' + id)
+      .then(res => {
+        this.updateUserInfo()
+          }).catch(err => { console.log(err.stack) })
+
+  }
+
+  deleteNote = (id) => {
+      axios.delete('http://localhost:8000/api/note/' + id)
+      .then(res => {
+        this.updateUserInfo()
+          }).catch(err => { console.log(err.stack) })
+  }
+
+  deleteFavorite = (id) => {
+       axios.delete('http://localhost:8000/api/favorite/' + id)
+      .then(res => {
+        this.updateUserInfo()
+          }).catch(err => { console.log(err.stack) })
+  }
+
   renderNoteList = (notes) => {
     let noteRows = []
-    notes.forEach(() => {
-      const rows = [...Array(Math.ceil(notes.length / 2))]
-      // chunk the notes into the array of rows
-      noteRows = rows.map((row, idx) => notes.slice(idx * 2, idx * 2 + 2))
-    })
+    console.log(notes)
+
+
+    for (let i = 0; i < notes.length; i+=3) {
+      let rows = []
+      for (let j=0; j < 3 && (i + j) < notes.length; j++) {
+        rows.push(notes[j + i])
+      }
+      noteRows.push(rows)
+    }
     
     return (
       noteRows.map(row =>
-        <Row className='pb-4 ml-5 pl-5 mt-4' key={row.id}>
+        <Row className='pb-3 ml-5 pl-4 mt-4' key={row.id}>
           {row.map(note =>
-            <Col className='col-md-6 pr-5 pl-5' key={note.note_info.id}>
-              <Link to={`/airnote/note/${note.note_info.id}`}>
-                <Card border='primary' style={{ textDecoration: 'none', width: '15rem', height:"13rem" }}>
-                  <Card.Header>{note.note_info.course_number}</Card.Header>
+            <CardDeck className='pr-5 pl-4' key={note.note_info ? note.note_info.id : note.id}>
+                <Card border='info' style={{ textDecoration: 'none', width: '15rem', height:"13rem" }}>
+            
+                  <Card.Header><b className='pr-5'>{note.note_info ? note.note_info.course_number : note.course_number} </b>
+                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color:'#FF0000', cursor:'pointer' }} onClick={note.note_info ? () => {this.deleteFavorite(note.id)} : () => {this.deleteNote(note.id)}} />
+                  </Card.Header>
+                  <Link to={`/airnote/note/${note.note_info ? note.note_info.id : note.id}`} >
                   <Card.Body style={{ color: 'Black' }}>
-                    <Card.Title>{note.note_info.file_name}</Card.Title>
-                    <Card.Text>{note.note_info.description}</Card.Text>
+                    <Card.Title>{note.note_info ? note.note_info.file_name : note.file_name}</Card.Title>
+                    <Card.Text>{note.note_info ? note.note_info.description : note.description}</Card.Text>
                   </Card.Body>
+                     </Link>
                 </Card>
-              </Link>
-            </Col>
+          
+            </CardDeck>
           )}
         </Row>
       )
@@ -245,25 +283,42 @@ class PersonalPage extends React.Component {
     console.log(this.state.comments)
     return (
       this.state.comments.map(comment => 
-        <Row className='pb-4 ml-5 pl-5 mt-4' key={comment.id} style={{width: "10rem" }}> 
-              <Link to={`/airnote/note/${comment.note_id}`}>
-                <Card border='primary' style={{ textDecoration: 'none', width: '70rem', height:"6.5rem" }}>
-                  <Card.Header style={{height: "2.5rem"}}>{comment.time.slice(0, 10)}</Card.Header>
+        <Row className='pb-4 ml-5 pl-5 mt-2 mb-4' key={comment.id} style={{width: "60rem", height: "6.5rem" }}> 
+                <Card border='info' style={{ textDecoration: 'none', width: '60rem', height:"6.5rem" }}>
+                  <Card.Header style={{height: "2.5rem"}}>{comment.time.slice(0, 10)}
+                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color:'#FF0000', cursor:'pointer', float:"right" }} onClick={ () => {this.deleteComment(comment.id)}} />
+                  </Card.Header>
+                            <Link to={`/airnote/note/${comment.note_id}`}>
                   <Card.Body style={{ color: 'Black' }}>
                     <Card.Text>{comment.content}</Card.Text>
                   </Card.Body>
+                              </Link>
                 </Card>
-              </Link>
+  
           </Row>
       )
     )
+  }
+  
+  renderRightContent = () => {
+    if(this.state.page === 1) {
+      return this.renderProfilePage()
+    } else {
+      return (
+        <div>
+            {this.state.page === 2 && this.renderFavorites()}
+            {this.state.page === 3 && this.renderUserNotes()}
+            {this.state.page === 4 && this.renderUserComments()}
+        </div>
+      )
+    }
   }
 
   render () {
     return (
       <>
         <div className='container' style={{ paddingTop: '80px' }}>
-          <div className='row' style={{ height: '750px' }}>
+          <div className='row' style={{ minHeight: '750px' }}>
             <div className='col-1 border-right'>
               <div className='float-right'>
                 <div className='list-group list-group-flush'>
@@ -274,10 +329,7 @@ class PersonalPage extends React.Component {
                 </div>
               </div>
             </div>
-              {this.state.page === 1 && this.renderProfilePage()}
-              {this.state.page === 2 && this.renderFavorites()}
-              {this.state.page === 3 && this.renderUserNotes()}
-              {this.state.page === 4 && this.renderUserComments()}
+              {this.renderRightContent()}
           </div> 
         </div>
       </>
