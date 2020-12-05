@@ -1,10 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import Notes from './Notes'
-import {Image, CardDeck, Container, Form, Card, Button, Row, Col } from 'react-bootstrap'
+import { Image, CardDeck, Form, Card, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { faTrash as Trash} from '@fortawesome/free-solid-svg-icons'
+import { faTrash as Trash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class PersonalPage extends React.Component {
@@ -27,14 +26,13 @@ class PersonalPage extends React.Component {
   }
 
   componentDidMount () {
-
     this.disableForms()
     this.updateUserInfo()
   }
 
-  updateUserInfo() {
-      const id = Cookies.get('user_id')
-       axios.get('http://localhost:8000/api/user/?id=' + id)
+  updateUserInfo () {
+    const id = Cookies.get('user_id')
+    axios.get('http://localhost:8000/api/user/?id=' + id)
       .then(res => {
         if (res.data.length !== 0) {
           this.setState({
@@ -53,13 +51,11 @@ class PersonalPage extends React.Component {
       }).catch(err => { console.log(err.stack) })
   }
 
-  componentDidUpdate() {
-    if(this.state.page === 1 && !this.state.edit) {
+  componentDidUpdate () {
+    if (this.state.page === 1 && !this.state.edit) {
       this.disableForms()
     }
   }
-
-
 
   disableForms = () => {
     const forms = document.getElementsByClassName('form-control')
@@ -101,28 +97,28 @@ class PersonalPage extends React.Component {
     })
   }
 
-  renderProfilePage() {
+  renderProfilePage () {
     return (
       <>
-         <div className='col-8'>
-              {this.renderUserInfo()}
-            </div>
-            <div className='col-3'>
-              <div className='container'>
-                <div className='row'>
-                  <div className='col'>
-                    <Image id='avatar' src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' roundedCircle style={{ height: '350px', width: '350px', borderRadius:"50" }} />
-                  </div>
-                  {this.state.edit &&
-                    <Form style={{ marginLeft: '90px', marginTop: '50px' }}>
-                      <Form.Group>
-                        <Form.File id='imageUpload' onChange={this.handlePreviewImage} />
-                      </Form.Group>
-                    </Form>}
-                </div>
-                <div className='row'/>
+        <div className='col-8'>
+          {this.renderUserInfo()}
+        </div>
+        <div className='col-3'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col'>
+                <Image id='avatar' src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' roundedCircle style={{ height: '350px', width: '350px', borderRadius: '50' }} />
               </div>
+              {this.state.edit &&
+                <Form style={{ marginLeft: '90px', marginTop: '50px' }}>
+                  <Form.Group>
+                    <Form.File id='imageUpload' onChange={this.handlePreviewImage} />
+                  </Form.Group>
+                </Form>}
             </div>
+            <div className='row' />
+          </div>
+        </div>
       </>
 
     )
@@ -211,7 +207,6 @@ class PersonalPage extends React.Component {
 
   renderFavorites () {
     return this.renderNoteList(this.state.favorites)
-
   }
 
   renderUserNotes () {
@@ -219,96 +214,96 @@ class PersonalPage extends React.Component {
   }
 
   deleteComment = (id) => {
-          axios.delete('http://localhost:8000/api/comment/' + id)
+    axios.delete('http://localhost:8000/api/comment/' + id)
       .then(res => {
         this.updateUserInfo()
-          }).catch(err => { console.log(err.stack) })
-
+        return res
+      }).catch(err => { console.log(err.stack) })
   }
 
   deleteNote = (id) => {
-      axios.delete('http://localhost:8000/api/note/' + id)
+    axios.delete('http://localhost:8000/api/note/' + id)
       .then(res => {
         this.updateUserInfo()
-          }).catch(err => { console.log(err.stack) })
+        return res
+      }).catch(err => { console.log(err.stack) })
   }
 
   deleteFavorite = (id) => {
-       axios.delete('http://localhost:8000/api/favorite/' + id)
+    axios.delete('http://localhost:8000/api/favorite/' + id)
       .then(res => {
         this.updateUserInfo()
-          }).catch(err => { console.log(err.stack) })
+        return res
+      }).catch(err => { console.log(err.stack) })
   }
 
   renderNoteList = (notes) => {
-    let noteRows = []
+    const noteRows = []
     console.log(notes)
 
-
-    for (let i = 0; i < notes.length; i+=3) {
-      let rows = []
-      for (let j=0; j < 3 && (i + j) < notes.length; j++) {
+    for (let i = 0; i < notes.length; i += 3) {
+      const rows = []
+      for (let j = 0; j < 3 && (i + j) < notes.length; j++) {
         rows.push(notes[j + i])
       }
       noteRows.push(rows)
     }
-    
+
     return (
       noteRows.map(row =>
         <Row className='pb-3 ml-5 pl-4 mt-4' key={row.id}>
           {row.map(note =>
             <CardDeck className='pr-5 pl-4' key={note.note_info ? note.note_info.id : note.id}>
-                <Card border='info' style={{ textDecoration: 'none', width: '15rem', height:"13rem" }}>
-            
-                  <Card.Header><b className='pr-5'>{note.note_info ? note.note_info.course_number : note.course_number} </b>
-                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color:'#FF0000', cursor:'pointer' }} onClick={note.note_info ? () => {this.deleteFavorite(note.id)} : () => {this.deleteNote(note.id)}} />
-                  </Card.Header>
-                  <Link to={`/airnote/note/${note.note_info ? note.note_info.id : note.id}`} >
+              <Card border='info' style={{ textDecoration: 'none', width: '15rem', height: '13rem' }}>
+
+                <Card.Header><b className='pr-5'>{note.note_info ? note.note_info.course_number : note.course_number} </b>
+                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer' }} onClick={note.note_info ? () => { this.deleteFavorite(note.id) } : () => { this.deleteNote(note.id) }} />
+                </Card.Header>
+                <Link to={`/airnote/note/${note.note_info ? note.note_info.id : note.id}`}>
                   <Card.Body style={{ color: 'Black' }}>
                     <Card.Title>{note.note_info ? note.note_info.file_name : note.file_name}</Card.Title>
                     <Card.Text>{note.note_info ? note.note_info.description : note.description}</Card.Text>
                   </Card.Body>
-                     </Link>
-                </Card>
-          
+                </Link>
+              </Card>
+
             </CardDeck>
           )}
         </Row>
       )
     )
-
   }
 
-  renderUserComments() {
+  renderUserComments () {
     console.log(this.state.comments)
     return (
-      this.state.comments.map(comment => 
-        <Row className='pb-4 ml-5 pl-5 mt-2 mb-4' key={comment.id} style={{width: "60rem", height: "6.5rem" }}> 
-                <Card border='info' style={{ textDecoration: 'none', width: '60rem', height:"6.5rem" }}>
-                  <Card.Header style={{height: "2.5rem"}}>{comment.time.slice(0, 10)}
-                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color:'#FF0000', cursor:'pointer', float:"right" }} onClick={ () => {this.deleteComment(comment.id)}} />
-                  </Card.Header>
-                            <Link to={`/airnote/note/${comment.note_id}`}>
-                  <Card.Body style={{ color: 'Black' }}>
-                    <Card.Text>{comment.content}</Card.Text>
-                  </Card.Body>
-                              </Link>
-                </Card>
-  
-          </Row>
+      this.state.comments.map(comment =>
+        <Row className='pb-4 ml-5 pl-5 mt-2 mb-4' key={comment.id} style={{ width: '60rem', height: '6.5rem' }}>
+          <Card border='info' style={{ textDecoration: 'none', width: '60rem', height: '6.5rem' }}>
+            <Card.Header style={{ height: '2.5rem' }}>{comment.time.slice(0, 10)}
+              <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer', float: 'right' }} onClick={() => { this.deleteComment(comment.id) }} />
+            </Card.Header>
+            <Link to={`/airnote/note/${comment.note_id}`}>
+              <Card.Body style={{ color: 'Black' }}>
+                <Card.Text>{comment.content}</Card.Text>
+              </Card.Body>
+            </Link>
+          </Card>
+
+        </Row>
       )
     )
   }
-  
+
   renderRightContent = () => {
-    if(this.state.page === 1) {
+    if (this.state.page === 1) {
       return this.renderProfilePage()
     } else {
       return (
         <div>
-            {this.state.page === 2 && this.renderFavorites()}
-            {this.state.page === 3 && this.renderUserNotes()}
-            {this.state.page === 4 && this.renderUserComments()}
+          {this.state.page === 2 && this.renderFavorites()}
+          {this.state.page === 3 && this.renderUserNotes()}
+          {this.state.page === 4 && this.renderUserComments()}
         </div>
       )
     }
@@ -322,15 +317,15 @@ class PersonalPage extends React.Component {
             <div className='col-1 border-right'>
               <div className='float-right'>
                 <div className='list-group list-group-flush'>
-                  <button type='button' className={this.getButtonClass(1)} onClick={() => {this.setPage(1)}}>Profile</button>
-                  <button type='button' className={this.getButtonClass(2)} onClick={() => {this.setPage(2)}}>Favorites</button>
-                  <button type='button' className={this.getButtonClass(3)} onClick={() => {this.setPage(3)}}>Notes</button>
-                  <button type='button' className={this.getButtonClass(4)} onClick={() => {this.setPage(4)}}>Comments</button>
+                  <button type='button' className={this.getButtonClass(1)} onClick={() => { this.setPage(1) }}>Profile</button>
+                  <button type='button' className={this.getButtonClass(2)} onClick={() => { this.setPage(2) }}>Favorites</button>
+                  <button type='button' className={this.getButtonClass(3)} onClick={() => { this.setPage(3) }}>Notes</button>
+                  <button type='button' className={this.getButtonClass(4)} onClick={() => { this.setPage(4) }}>Comments</button>
                 </div>
               </div>
             </div>
-              {this.renderRightContent()}
-          </div> 
+            {this.renderRightContent()}
+          </div>
         </div>
       </>
     )
