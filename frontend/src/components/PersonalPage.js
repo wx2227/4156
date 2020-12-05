@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import Notes from './Notes'
-import {CardDeck, Container, Form, Card, Button, Row, Col } from 'react-bootstrap'
+import {Image, CardDeck, Container, Form, Card, Button, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { faTrash as Trash} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -111,7 +111,7 @@ class PersonalPage extends React.Component {
               <div className='container'>
                 <div className='row'>
                   <div className='col'>
-                    <img id='avatar' src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' style={{ height: '350px', width: '350px' }} />
+                    <Image id='avatar' src={this.state.avatar} alt='...' className='rounded mx-auto d-block ' roundedCircle style={{ height: '350px', width: '350px', borderRadius:"50" }} />
                   </div>
                   {this.state.edit &&
                     <Form style={{ marginLeft: '90px', marginTop: '50px' }}>

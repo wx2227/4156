@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dropdown } from 'react-bootstrap'
+import { Button, Dropdown, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
@@ -18,7 +18,7 @@ class DropDown extends React.Component {
       <div>
         <Dropdown>
           <Dropdown.Toggle variant='light'>
-            <img src={Cookies.get('url')} className='img-fluid' style={{ width: '40px', height: '40px' }} />{' '}
+            <Image src={Cookies.get('url')} className='img-fluid' roundedCircle style={{ width: '40px', height: '40px' }} />{' '}
             {`${Cookies.get('firstname')} ${Cookies.get('lastname')}`}
           </Dropdown.Toggle>
           <Dropdown.Menu>
