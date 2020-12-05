@@ -9,7 +9,8 @@ class UploadForm extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      courses: []
+      courses: [],
+      selectedCourse: ""
     }
   }
 
@@ -19,6 +20,16 @@ class UploadForm extends React.Component {
         courses: res.data
       })
     })
+  }
+
+  handleSelectCourse = (e) => {
+    console.log(e);
+    if (e.length >= 1) {
+      this.setState({
+        ...this.state,
+        selectedCourse: e[0]
+      })
+    }
   }
 
   toBase64 : String = file => new Promise((resolve, reject) => {
@@ -73,7 +84,8 @@ class UploadForm extends React.Component {
     const userID = Cookies.get('user_id') - 0
 
     const fileName = document.getElementById('fileName').value
-    const courseNumber = document.getElementById('courseNumber').value
+    // const courseNumber = document.getElementById('courseNumber').value
+    const courseNumber = this.state.selectedCourse
     const description = document.getElementById('description').value
     if (!await this.isCourseNumberValid(courseNumber)) {
       alert('The course number is not valid')
@@ -118,7 +130,7 @@ class UploadForm extends React.Component {
                 </div>
                 <div className='form-group p-1'>
                   <label htmlFor='courseNumber'>Course Number</label>
-                  <CourseAutoComplete courses={this.state.courses} />
+                  <CourseAutoComplete courses={this.state.courses} handleSelectCourse={this.handleSelectCourse}/>
                   {/* <input className='form-control' type='text' placeholder='Course Number' id='courseNumber' required /> */}
                 </div>
               </div>
@@ -140,3 +152,4 @@ class UploadForm extends React.Component {
 }
 
 export default UploadForm
+
