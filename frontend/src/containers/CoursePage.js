@@ -18,23 +18,22 @@ class CoursePage extends React.Component {
     const departmentName = this.props.match.params.department_name
 
     if (departmentName === undefined) {
-      axios.get('http://localhost:8000/api/course/')
+      return axios.get('http://localhost:8000/api/course/')
         .then(res => {
           this.setState({
             courses: res.data
           })
-        }).catch(err => { console.log(err.stack) })
+        });
     } else {
-      axios.get(`http://localhost:8000/api/course/?department_name=${departmentName}`)
+      return axios.get(`http://localhost:8000/api/course/?department_name=${departmentName}`)
         .then(res => {
-          console.log(res)
           if (res.data.length !== 0) {
             this.setState({
               courses: res.data,
               url: res.data[0].department_info.url
             })
           }
-        }).catch(err => { console.log(err.stack) })
+        });
     }
   }
 
@@ -94,8 +93,6 @@ class CoursePage extends React.Component {
             {this.state.courses && this.showCourses()}
           </div>
         </div>
-        {/* <div className='col-md-8' style={{minHeight: 700 , display: 'flex', justifyContent: 'center', width: '100%', height: '100%'}}> */}
-        {/* </div> */}
       </>
     )
   }

@@ -2,7 +2,7 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import Preview from "./Preview";
+import AddCourseView from "../src/components/AddCourseView";
 
 let container = null;
 beforeEach(() => {
@@ -18,10 +18,16 @@ afterEach(() => {
   container = null;
 });
 
-it("render Preview", () => {
+it("render AddCourseView", () => {
   act(() => {
-    render(<Preview  url={"test"}/>, container);
+    render(<AddCourseView />, container);
   });
-  const iframe = document.querySelector("iframe");
-  expect(iframe.textContent).toBe("Preview");
+  const form = container.querySelector("form");
+  expect(form).not.toBeNull();
+
+  const header = container.querySelector("h1");
+  expect(header.textContent).toBe("Add Course");
+
+  const option = container.querySelectorAll("option");
+  expect(option.length).toBe(8);
 });

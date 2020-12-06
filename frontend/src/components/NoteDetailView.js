@@ -25,23 +25,12 @@ class NoteDetailView extends React.Component {
         if (res.data.length !== 0) {
           this.setState({
             note: res.data,
-            comments: res.data.comments
-            // first_name: res.data.user['first_name'],
-            // last_name: res.data.user['last_name']
+            comments: res.data.comments,
+            first_name: res.data.user_info.first_name,
+            last_name: res.data.user_info.last_name
           })
         }
-        axios.get(`http://127.0.0.1:8000/api/user/${res.data.user_id}`)
-          .then(res => {
-            console.log(res.data)
-            if (res.data.length !== 0) {
-              this.setState({
-                ...this.state,
-                first_name: res.data.first_name,
-                last_name: res.data.last_name
-              })
-            }
-          }).catch(() => alert('cannot get user info.'))
-      })
+      }).catch(() => alert('cannot get note info.'))
   }
 
   componentDidMount () {

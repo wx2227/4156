@@ -2,7 +2,7 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import DeleteNote from "./DeleteNote";
+import DeleteNote from "../src/components/DeleteNote";
 
 let container = null;
 beforeEach(() => {

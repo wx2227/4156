@@ -32,7 +32,7 @@ class PersonalPage extends React.Component {
 
   updateUserInfo () {
     const id = Cookies.get('user_id')
-    axios.get('http://localhost:8000/api/user/?id=' + id)
+    axios.get('http://localhost:8000/api/user/' + id)
       .then(res => {
         if (res.data.length !== 0) {
           this.setState({

@@ -2,7 +2,7 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import AddCourseView from "./AddCourseView";
+import DepartmentsListView from "../src/components/DepartmentsListView";
 
 let container = null;
 beforeEach(() => {
@@ -18,16 +18,10 @@ afterEach(() => {
   container = null;
 });
 
-it("render AddCourseView", () => {
-  act(() => {
-    render(<AddCourseView />, container);
-  });
-  const form = container.querySelector("form");
-  expect(form).not.toBeNull();
-
-  const header = container.querySelector("h1");
-  expect(header.textContent).toBe("Add Course");
-
-  const option = container.querySelectorAll("option");
-  expect(option.length).toBe(8);
+it("render PersonalPage", () => {
+  // act(() => {
+  //   render(<DepartmentsListView />, container);
+  // });
+  // const h1 = document.querySelector("h1");
+  // expect(h1.textContent).toBe("List of Departments");
 });

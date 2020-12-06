@@ -2,17 +2,13 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import AddCourse from "./AddCourse";
+import AddNote from "../src/components/AddNote";
 
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
-  Object.defineProperty(window.document, 'cookie', {
-    writable: true,
-    value: 'admin=true',
-  });
 });
 
 afterEach(() => {
@@ -24,20 +20,8 @@ afterEach(() => {
 
 it("render button if admin", () => {
   act(() => {
-    render(<AddCourse />, container);
+    render(<AddNote />, container);
   });
   const button = document.querySelector("Button");
-  expect(button.innerHTML).toBe("+ Add Course");
-});
-
-it("not render button if not admin", () => {
-  Object.defineProperty(window.document, 'cookie', {
-    writable: true,
-    value: 'admin=false',
-  });
-  act(() => {
-    render(<AddCourse />, container);
-  });
-  const button = document.querySelector("Button");
-  expect(button).toBeNull();
+  expect(button.innerHTML).toBe("+ Add Note");
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import DepartmentsListView from "./DepartmentsListView";
+import Preview from "../src/components/Preview";
 
 let container = null;
 beforeEach(() => {
@@ -18,10 +18,10 @@ afterEach(() => {
   container = null;
 });
 
-it("render PersonalPage", () => {
+it("render Preview", () => {
   act(() => {
-    render(<DepartmentsListView />, container);
+    render(<Preview  url={"test"}/>, container);
   });
-  const h1 = document.querySelector("h1");
-  expect(h1.textContent).toBe("List of Departments");
+  const iframe = document.querySelector("iframe");
+  expect(iframe.textContent).toBe("Preview");
 });

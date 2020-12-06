@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test CoursePage rendering CoursePage queryParams snapshot test 1`] = `<CoursePage />`;
+
+exports[`test CoursePage rendering CoursePage queryParams snapshot zero length test 1`] = `<CoursePage />`;
+
+exports[`test CoursePage rendering test basic CoursePage rendering 1`] = `<CoursePage />`;

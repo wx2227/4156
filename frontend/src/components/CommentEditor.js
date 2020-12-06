@@ -20,8 +20,6 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </>
 )
 
-// Todo
-// render user data in the comment header
 class CommentEditor extends React.Component {
   constructor (props) {
     super(props)
