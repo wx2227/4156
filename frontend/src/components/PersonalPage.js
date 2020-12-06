@@ -26,7 +26,7 @@ class PersonalPage extends React.Component {
   }
 
   componentDidMount () {
-    this.disableForms()
+    // this.disableForms()
     this.updateUserInfo()
   }
 

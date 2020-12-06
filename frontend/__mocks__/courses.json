@@ -1,0 +1,55 @@
+{
+  "data": {
+    "courses": [
+      {
+        "course_number": "COMS 4156",
+        "notes": [
+          5,
+          7
+        ],
+        "department_info": {
+          "department_name": "Computer Science Department",
+          "url": "https://www.columbia.edu/content/computer-science-department"
+        },
+        "course_name": "Advanced Software Engineering",
+        "term": "2020 Fall",
+        "department_name": "Computer Science Department"
+      },
+      {
+        "course_number": "COMS 4118",
+        "notes": [
+          6
+        ],
+        "department_info": {
+          "department_name": "Computer Science Department",
+          "url": "https://www.columbia.edu/content/computer-science-department"
+        },
+        "course_name": "Operating System",
+        "term": "2020 Fall",
+        "department_name": "Computer Science Department"
+      },
+      {
+        "course_number": "COMS 4115",
+        "notes": [],
+        "department_info": {
+          "department_name": "Computer Science Department",
+          "url": "https://www.columbia.edu/content/computer-science-department"
+        },
+        "course_name": "Programming Lanugauge & Translators",
+        "term": "2020 Fall",
+        "department_name": "Computer Science Department"
+      },
+      {
+        "course_number": "CSEE 4119",
+        "notes": [],
+        "department_info": {
+          "department_name": "Computer Science Department",
+          "url": "https://www.columbia.edu/content/computer-science-department"
+        },
+        "course_name": "Computer Networks",
+        "term": "2020 Fall",
+        "department_name": "Computer Science Department"
+      }
+    ]
+  }
+}
