@@ -15,7 +15,7 @@ class DepartmentsListView extends React.Component {
   }
 
   componentDidMount (): void {
-    axios.get('http://localhost:8000/api/department')
+    return axios.get('http://localhost:8000/api/department')
       .then(res => {
         this.setState({
           ...this.state,
@@ -64,7 +64,7 @@ class DepartmentsListView extends React.Component {
         ...this.state,
         filtered: filtered
       })
-    } else if (filter === 'P-Z') {
+    } else{
       filtered = departments.filter(department => this.startsWith2(department.department_name, ['P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']))
 
       this.setState({
@@ -72,17 +72,6 @@ class DepartmentsListView extends React.Component {
         filtered: filtered
       })
     }
-  }
-
-  handleChange = (e) => {
-    const departments = this.state.departments
-
-    const filtered = departments.filter(department => department.department_name.toLowerCase().includes(e.target.value.toLowerCase()))
-
-    this.setState({
-      ...this.state,
-      filtered: filtered
-    })
   }
 
   showDepartments = () => {
@@ -127,7 +116,7 @@ class DepartmentsListView extends React.Component {
                 <h1>List of Departments</h1>
               </Row>
               <Row className='pt-2'>
-                <ToggleButtonGroup type='radio' value={this.state.value} onChange={handleChange} name='radio'>
+                <ToggleButtonGroup type='radio' value={this.state.value} onChange={handleChange} name='radio' id='group'>
                   <ToggleButton variant='info' value={1} style={{ fontSize: '20px', textAlign: 'left' }} id='ALL' onClick={this.handleDepartments}>ALL</ToggleButton>
                   <ToggleButton variant='info' value={2} style={{ fontSize: '20px', textAlign: 'left' }} id='A-C' onClick={this.handleDepartments}>A-C</ToggleButton>
                   <ToggleButton variant='info' value={3} style={{ fontSize: '20px', textAlign: 'left' }} id='D-F' onClick={this.handleDepartments}>D-F</ToggleButton>

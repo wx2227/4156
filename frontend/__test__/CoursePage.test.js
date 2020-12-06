@@ -28,8 +28,6 @@ jest.mock('axios', () => {
   const course = courses
   const none = {'data': []}
 
-  // Promise.resolve(courses)
-
   return {
     get: jest.fn((url) => {
       switch(url) {
@@ -47,9 +45,6 @@ jest.mock('axios', () => {
 const axios = require('axios');
 
 let wrapper;
-beforeEach(() => {
-  wrapper = (<CoursePage />)
-})
 
 describe('test CoursePage rendering', () => {
 
@@ -76,7 +71,6 @@ describe('test CoursePage rendering', () => {
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
         expect(wrapper).toMatchSnapshot();
-        // done();
       })
   });
 
@@ -90,7 +84,6 @@ describe('test CoursePage rendering', () => {
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
         expect(wrapper).toMatchSnapshot();
-        // done();
       })
   });
 })
