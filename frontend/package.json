@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -54,14 +54,16 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.12.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "enzyme-to-json": "^3.6.1",
     "eslint": "^7.13.0",
     "eslint-plugin-react": "^7.21.5",
-    "jest": "^26.6.0",
+    "identity-obj-proxy": "^3.0.0",
     "standard": "^16.0.3"
   },
   "standard": {
@@ -84,6 +86,15 @@
     }
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "verbose": true,
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
   }
 }
