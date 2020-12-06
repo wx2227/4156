@@ -58,7 +58,7 @@ class PersonalPage extends React.Component {
   }
 
   disableForms = () => {
-    const forms = document.getElementsByClassName('form-control')
+    const forms = document.getElementsByClassName('userInfo')
     for (let i = 0; i < forms.length; i++) {
       forms[i].style.border = 'none'
       forms[i].disabled = true
@@ -142,25 +142,25 @@ class PersonalPage extends React.Component {
           <div className='col-7'>
             <ul className='list-group' style={{ fontSize: '16px', background: 'white' }}>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control editable' id='nickname' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.nickNameInput} onChange={this.handleNickNameInput} />
+                <input type='text' className='form-control editable userInfo' id='nickname' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.nickNameInput} onChange={this.handleNickNameInput} />
               </li>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.role} />
+                <input type='text' className='form-control userInfo' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.role} />
               </li>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.credits} />
+                <input type='text' className='form-control userInfo' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.credits} />
               </li>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.email} />
+                <input type='text' className='form-control userInfo' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.email} />
               </li>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.favorites.length} />
+                <input type='text' className='form-control userInfo' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.favorites.length} />
               </li>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.notes.length} />
+                <input type='text' className='form-control userInfo' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.notes.length} />
               </li>
               <li className='list-group-item border-0'>
-                <input type='text' className='form-control' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.comments.length} />
+                <input type='text' className='form-control userInfo' aria-label='Default' aria-describedby='inputGroup-sizing-default' value={this.state.comments.length} />
               </li>
             </ul>
           </div>
