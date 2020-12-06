@@ -1,7 +1,5 @@
-import CoursePage from '../src/containers/CoursePage'
 import React from 'react'
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import DepartmentsListView from '../src/components/DepartmentsListView'
 
 const departments = {
