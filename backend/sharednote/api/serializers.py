@@ -162,22 +162,6 @@ class CourseBaseSerializer(ModelSerializer):
         model = Course
         fields = '__all__'
 
-    # pylint: disable=no-self-use
-    def create(self, validated_data):
-        """
-        Helper function for course,
-        so user can create a vote or change a vote in one POST method
-
-        :param validated_data: Dictionary containing the vote instance
-        :return: A valid JSON object (a dictionary) containing votes information for a favorite
-        """
-        course_number = validated_data.pop('course_number')
-        obj, _ = Course.objects.update_or_create(
-            **validated_data,
-            defaults={'course_number': course_number},
-        )
-        return obj
-
 
 class DepartmentSerializer(ModelSerializer):
     class Meta:
@@ -209,3 +193,12 @@ class CourseSerializer(ModelSerializer):
         model = Course
         fields = '__all__'
 
+    # pylint: disable=no-self-use
+    def get_department_info(self, obj):
+        """
+        add the department_info field to Course serializer
+        :param obj:
+        :return:
+        """
+        data = DepartmentSerializer(obj.department_name).data
+        return data
