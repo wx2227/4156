@@ -55,6 +55,8 @@ describe('test CoursePage rendering', () => {
       .componentDidMount()
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
+        component.update()
+        expect(component.debug()).toMatchSnapshot();
       })
   })
 
@@ -67,6 +69,8 @@ describe('test CoursePage rendering', () => {
       .componentDidMount()
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
+        component.update()
+        expect(component.debug()).toMatchSnapshot();
       })
   });
 
