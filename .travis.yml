@@ -5,8 +5,9 @@ install:
   - pip install -r backend/requirements.txt
   - (cd frontend && npm install)
 script:
+  - (cd frontend && npm add --include=dev @types/jest)
   - (cd frontend && npm test)
   - (cd backend && python manage.py test)
 notifications:
   email:
-  - wx2227@gmail.com
+  - wx2227@columbia.edu
