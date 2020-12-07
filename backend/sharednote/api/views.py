@@ -98,7 +98,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         """Part of the Django requirement, get query set serializer
         :return: Serializer : A Serializer for course
         """
-        if self.action == 'list' or self.action == 'retrieve':
+        if self.action == 'list':
             return CourseSerializer
         return CourseBaseSerializer
 

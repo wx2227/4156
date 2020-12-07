@@ -82,129 +82,7 @@ class UnitTest(TestCase):
         response = self.client.get("/api/note/?course_number=COMS 4118")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 1)
-        self.assertEqual(response.json()[0], {
-            'id': 6,
-            'user_id': 2,
-            'file_name': 'name',
-            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/a27726ab-5820-439e-a1aa-ed82902873b4.pdf',
-            'description': 'des',
-            'time': '2020-12-02T22:48:32.949327Z',
-            'up_votes': 1,
-            'down_votes': 0,
-            'comments': [{
-                'id': 11,
-                'user_info': {
-                    'id': 2,
-                    'first_name': 'Wan',
-                    'last_name': 'XU',
-                    'email': 'wx2227@columbia.edu',
-                    'avatar': 'https://lh6.googleusercontent.com/-mOFZSfmWuG8/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucl2Arj7Gqi7LTYuAieuGoIosc_2lQ/s96-c/photo.jpg',
-                    'credits': 0,
-                    'is_superuser': True,
-                    'nick_name': 'Zafigevuk',
-                    'notes': [{
-                        'id': 5,
-                        'user_id': 2,
-                        'course_number':
-                        'COMS 4156',
-                        'file_name': 'name',
-                        'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/f030c473-61a1-4f3b-9193-08d45cf3b0c0.pdf',
-                        'description': 'des',
-                        'time': '2020-12-02T18:46:30.176473Z'
-                    }, {
-                        'id': 6,
-                        'user_id': 2,
-                        'course_number': 'COMS 4118',
-                        'file_name': 'name',
-                        'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/a27726ab-5820-439e-a1aa-ed82902873b4.pdf',
-                        'description': 'des',
-                        'time': '2020-12-02T22:48:32.949327Z'
-                    }, {
-                        'id': 7,
-                        'user_id': 2,
-                        'course_number': 'COMS 4156',
-                        'file_name': 'name',
-                        'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/4121a382-614b-4192-81db-5710744aac0f.pdf',
-                        'description': 'des', 'time': '2020-12-05T01:36:09.520937Z'
-                    }],
-                    'favorites': [{
-                        'id': 4,
-                        'note_info': {
-                            'id': 6,
-                            'user_id': 2,
-                            'course_number': 'COMS 4118',
-                            'file_name': 'name',
-                            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/a27726ab-5820-439e-a1aa-ed82902873b4.pdf',
-                            'description': 'des',
-                            'time': '2020-12-02T22:48:32.949327Z'
-                        },
-                        'favorite': 1,
-                        'user_id': 2,
-                        'note_id': 6
-                    }, {
-                        'id': 5,
-                        'note_info': {
-                            'id': 5,
-                            'user_id': 2,
-                            'course_number': 'COMS 4156',
-                            'file_name': 'name',
-                            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/f030c473-61a1-4f3b-9193-08d45cf3b0c0.pdf',
-                            'description': 'des',
-                            'time': '2020-12-02T18:46:30.176473Z'
-                        },
-                        'favorite': 1,
-                        'user_id': 2,
-                        'note_id': 5
-                    }, {
-                        'id': 6,
-                        'note_info': {
-                            'id': 7,
-                            'user_id': 2,
-                            'course_number': 'COMS 4156',
-                            'file_name': 'name',
-                            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/4121a382-614b-4192-81db-5710744aac0f.pdf',
-                            'description': 'des',
-                            'time': '2020-12-05T01:36:09.520937Z'
-                        },
-                        'favorite': 1,
-                        'user_id': 2,
-                        'note_id': 7
-                    }],
-                    'comments': [{
-                        'id': 9,
-                        'content': 'comment1',
-                        'time': '2020-12-02T22:31:37Z',
-                        'user_id': 2,
-                        'note_id': 5
-                    }, {
-                        'id': 10,
-                        'content': 'comment2',
-                        'time': '2020-12-02T22:31:39Z',
-                        'user_id': 2,
-                        'note_id': 5
-                    }, {
-                        'id': 11,
-                        'content': 'comment1',
-                        'time': '2020-12-02T22:48:45Z',
-                        'user_id': 2,
-                        'note_id': 6
-                }]},
-                'content': 'comment1',
-                'time': '2020-12-02T22:48:45Z',
-                'user_id': 2,
-                'note_id': 6
-            }],
-                'favorites': [{
-                    'id': 4,
-                    'favorite': 1,
-                    'user_id': 2,
-                    'note_id': 6}],
-                    'course_info': {
-                        'course_number': 'COMS 4118',
-                        'course_name': 'Operating System',
-                        'term': '2020 Fall',
-                        'department_name': 'Computer Science Department'
-        }})
+        self.assertEqual(response.json()[0]['id'], 6)
 
     def test_get_note_not_exist(self):
         '''
@@ -214,20 +92,6 @@ class UnitTest(TestCase):
         response = self.client.get("/api/note/?course_number=asdf")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 0)
-
-    def test_post_note_already_exist(self):
-        '''
-        test the note endpoint to post an already-exist note,
-        should return ???
-        '''
-        response = self.client.post("/api/note/", {
-            'user_id': 2,
-            'course_number': 'COMS 4156',
-            'file_name': 'name',
-            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/4121a382-614b-4192-81db-5710744aac0f.pdf',
-            'description': 'des'
-        }, follow=True)
-        self.assertEqual(response.status_code, 201)
 
     def test_post_note_valid(self):
         '''
@@ -265,17 +129,9 @@ class UnitTest(TestCase):
             'user_id': 2,
             'note_id': 5
         })
-        response = self.client.get("/api/comment/11", follow=True)
+        response = self.client.get("/api/comment/", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.json()), 5)
-        self.assertEqual(response.json(), {
-            'id': 11,
-            'content': 'comment1',
-            'time': '2020-12-02T22:48:45Z',
-            'user_id': 2,
-            'note_id': 6
-        })
-
+        self.assertEqual(response.json()[0]['id'], 9)
 
     def test_comment_not_exist(self):
         '''
@@ -311,14 +167,17 @@ class UnitTest(TestCase):
             'note_id': 6
         })
 
-        response = self.client.get("/api/vote/5", follow=True)
+    def test_vote_queryParams(self):
+        '''
+        test the favorite endpoint to get favorite info summary
+        '''
+        response = self.client.get("/api/vote/?user_id=2&note_id=6", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.json()), 4)
-        self.assertEqual(response.json(), {
-            'id': 5,
-            'vote': 1,
-            'user_id': 2,
-            'note_id': 7
+        self.assertEqual(response.json()[0], {
+            "id": 3,
+            "vote": 1,
+            "user_id": 2,
+            "note_id": 6
         })
 
     def test_vote_not_exist(self):
@@ -345,8 +204,12 @@ class UnitTest(TestCase):
         '''
         test the vote endpoint to cover an existing vote
         '''
-        response = self.client.post("/api/vote", {
-            "vote": 0,
+        response = self.client.get("/api/vote/5", follow=True)
+        vote = response.json()['vote']
+        vote = 1 if vote == 0 else 0
+
+        response = self.client.post("/api/vote/", {
+            "vote": vote,
             "user_id": 2,
             "note_id": 5
         }, follow=True)
@@ -406,6 +269,27 @@ class UnitTest(TestCase):
                 'department_name': 'Computer Science Department'
         })
 
+    def test_course_queryParams(self):
+        '''
+        test the course endpoint to get course info summary
+        '''
+        response = self.client.get("/api/course/?department_name=Computer Science Department", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()[0], {
+            "course_number": "COMS 4156",
+            "notes": [
+                5,
+                7
+            ],
+            "department_info": {
+                "department_name": "Computer Science Department",
+                "url": "https://www.columbia.edu/content/computer-science-department"
+            },
+            "course_name": "Advanced Software Engineering",
+            "term": "2020 Fall",
+            "department_name": "Computer Science Department"
+        })
+
     def test_course_not_exist(self):
         '''
         test the course endpoint to get course info for a non-exist course, should get nothing
@@ -418,10 +302,47 @@ class UnitTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 0)
 
+    def test_add_course(self):
+        '''
+        test the course endpoint to add course
+        '''
+        self.client.post("/api/course/", {
+            "course_number": "4156",
+            "course_name": "engineering",
+            "term": "2020 Fall",
+            "department_name": "Computer Science Department"
+        }, follow=True)
+        response = self.client.post("/api/course/", {
+            "course_number": "4156",
+            "course_name": "engineering",
+            "term": "2019 Fall",
+            "department_name": "Computer Science Department"
+        }, follow=True)
+        # self.client.delete("/api/course/4156")
+        self.assertEqual(response.status_code, 200)
+
     def test_favorite_valid(self):
         '''
         test the favorite endpoint to get favorite info summary
         '''
+        response = self.client.get("/api/favorite", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()[0], {
+            "id": 4,
+            "note_info": {
+                "id": 6,
+                "user_id": 2,
+                "course_number": "COMS 4118",
+                "file_name": "name",
+                "file_url": "https://coms4156.s3-us-west-1.amazonaws.com/a27726ab-5820-439e-a1aa-ed82902873b4.pdf",
+                "description": "des",
+                "time": "2020-12-02T22:48:32.949327Z"
+            },
+            "favorite": 1,
+            "user_id": 2,
+            "note_id": 6
+        })
+
         response = self.client.get("/api/favorite/4", follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 4)
@@ -431,15 +352,29 @@ class UnitTest(TestCase):
             'user_id': 2,
             'note_id': 6
         })
-        response = self.client.get("/api/favorite/6", follow=True)
+
+    def test_favorite_queryParams(self):
+        '''
+        test the favorite endpoint to get favorite info summary
+        '''
+        response = self.client.get("/api/favorite/?user_id=2&note_id=6", follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.json()), 4)
-        self.assertEqual(response.json(), {
-            'id': 6,
-            'favorite': 1,
-            'user_id': 2,
-            'note_id': 7
-        })
+        self.assertEqual(response.json(), [{
+            "id": 4,
+            "note_info": {
+                "id": 6,
+                "user_id": 2,
+                "course_number": "COMS 4118",
+                "file_name": "name",
+                "file_url": "https://coms4156.s3-us-west-1.amazonaws.com/a27726ab-5820-439e-a1aa-ed82902873b4.pdf",
+                "description": "des",
+                "time": "2020-12-02T22:48:32.949327Z"
+            },
+            "favorite": 1,
+            "user_id": 2,
+            "note_id": 6
+        }
+        ])
 
     def test_favorite_not_valid(self):
         '''
@@ -451,7 +386,7 @@ class UnitTest(TestCase):
         response = self.client.get("/api/favorite/a", follow=True)
         self.assertEqual(response.status_code, 404)
 
-    def test_post_favorite_note_already_exist(self):
+    def test_post_favorite_already_exist(self):
         '''
         test the favorite endpoint to post an already-exist record,
         should return 201
@@ -474,14 +409,6 @@ class UnitTest(TestCase):
             'note_id': 7
         }, follow=True)
         self.assertEqual(response.status_code, 201)
-
-    def test_post_favorite_note_already_exist(self):
-        '''
-        test the favorite endpoint to delete an existing record,
-        should return 200
-        '''
-        response = self.client.delete("/api/favorite/4", follow=True)
-        self.assertEqual(response.status_code, 200)
 
     def test_department_valid(self):
         '''
