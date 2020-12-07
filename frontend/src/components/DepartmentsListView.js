@@ -64,7 +64,7 @@ class DepartmentsListView extends React.Component {
         ...this.state,
         filtered: filtered
       })
-    } else{
+    } else if (filter === 'P-Z') {
       filtered = departments.filter(department => this.startsWith2(department.department_name, ['P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']))
 
       this.setState({
@@ -72,6 +72,17 @@ class DepartmentsListView extends React.Component {
         filtered: filtered
       })
     }
+  }
+
+  handleChange = (e) => {
+    const departments = this.state.departments
+
+    const filtered = departments.filter(department => department.department_name.toLowerCase().includes(e.target.value.toLowerCase()))
+
+    this.setState({
+      ...this.state,
+      filtered: filtered
+    })
   }
 
   showDepartments = () => {
