@@ -49,11 +49,6 @@ beforeEach(() => {
 
 describe('test DepartmentListView rendering', () => {
 
-  // test('testing the api get method', () => {
-  //   axios.get.mockRejectedValueOnce(new Error('error'));
-  //   expect(axios.get).rejects.toThrow('error');  // Success!
-  // });
-
   it('componentDidMount with catch', () => {
     axios.get.mockRejectedValueOnce(new Error('error'));
     wrapper

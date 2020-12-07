@@ -74,6 +74,17 @@ class DepartmentsListView extends React.Component {
     }
   }
 
+  handleChange = (e) => {
+    const departments = this.state.departments
+
+    const filtered = departments.filter(department => department.department_name.toLowerCase().includes(e.target.value.toLowerCase()))
+
+    this.setState({
+      ...this.state,
+      filtered: filtered
+    })
+  }
+
   showDepartments = () => {
     const departments = this.state.filtered
     let departmentRows = []

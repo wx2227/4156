@@ -1,10 +1,10 @@
 import CoursePage from '../src/containers/CoursePage'
 import React from 'react'
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 const COURSES_ENDPOINT = 'http://localhost:8000/api/course/';
 const COURSE_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Computer Science Department'
-const NONE_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Computer Department'
+const ACCOUNT_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Account Division'
 
 jest.mock('axios', () => {
   const courses = {
@@ -35,7 +35,7 @@ jest.mock('axios', () => {
           return Promise.resolve(courses)
         case COURSE_ENDPOINT:
           return Promise.resolve(course)
-        case NONE_ENDPOINT:
+        case ACCOUNT_ENDPOINT:
           return Promise.resolve(none)
       }
     }),
@@ -43,8 +43,6 @@ jest.mock('axios', () => {
 });
 
 const axios = require('axios');
-
-let wrapper;
 
 describe('test CoursePage rendering', () => {
 
@@ -57,7 +55,6 @@ describe('test CoursePage rendering', () => {
       .componentDidMount()
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
-        expect(wrapper).toMatchSnapshot();
       })
   })
 
@@ -70,20 +67,19 @@ describe('test CoursePage rendering', () => {
       .componentDidMount()
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
-        expect(wrapper).toMatchSnapshot();
       })
   });
 
   it('CoursePage queryParams snapshot zero length test', () => {
-    const match = { params: { department_name: 'Computer Department' } }
-    const component = shallow(<CoursePage match={match} />)
+    const match = { params: { department_name: 'Account Division' } }
+    const component = mount(<CoursePage match={match} />)
 
     component
       .instance()
       .componentDidMount()
       .then(() => {
         expect(axios.get).toHaveBeenCalled();
-        expect(wrapper).toMatchSnapshot();
+        expect(component.find('h1').text()).toBe('Courses');
       })
   });
 })

@@ -9,7 +9,7 @@ class CoursePage extends React.Component {
     super(props)
     this.state = {
       courses: [],
-      department: this.props.match.params.department_name,
+      department: '',
       url: ''
     }
   }
@@ -30,7 +30,13 @@ class CoursePage extends React.Component {
           if (res.data.length !== 0) {
             this.setState({
               courses: res.data,
-              url: res.data[0].department_info.url
+              url: res.data[0].department_info.url,
+              departmentName: departmentName
+            })
+          } else {
+            this.setState({
+              ...this.state,
+              departmentName: departmentName
             })
           }
         })
@@ -73,10 +79,10 @@ class CoursePage extends React.Component {
         <Jumbotron fluid style={{ background: '#494342' }}>
           <Container>
             {
-              this.props.match.params.department_name
+              this.state.departmentName
                 ? (
                   <div>
-                    <h1 className='text-white'>{this.props.match.params.department_name}</h1>
+                    <h1 className='text-white'>{this.state.departmentName}</h1>
                     <p className='pb-3'>
                       <a href={this.state.url} className='text-light' style={{ fontSize: '18px' }}>{this.state.url}</a>
                     </p>
