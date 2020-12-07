@@ -16,26 +16,59 @@ class UnitTest(TestCase):
         '''
         self.client = Client()
 
-    def test_user_valid(self):
+    def test_user_valid_by_id(self):
         '''
-        test the user endpoint on a valid user, should return the user's info
+        test the user endpoint on a valid user by id, should return the user's info
         '''
-        response = self.client.get("/api/user/?id=6")
+        response = self.client.get("/api/user/?id=1")
+        assert response.status_code == 200
+        self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json()[0], {
+            'id': 1,
+            'first_name': '',
+            'last_name': '',
+            'email': '',
+            'avatar': '',
+            'credits': 0,
+            'is_superuser': True,
+            'nick_name': 'Muxenakhy',
+            'notes': [],
+            'favorites': [],
+            'comments': []
+        })
+
+    def test_user_valid_by_email(self):
+        '''
+        test the user endpoint on a valid user by email, should return the user's info
+        '''
+        response = self.client.get("/api/user/?email=gr2625@columbia.edu")
+        assert response.status_code == 200
+        self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json()[0], {
+            'id': 3,
+            'first_name': 'Guancheng',
+            'last_name': 'Ren',
+            'email': 'gr2625@columbia.edu',
+            'avatar': 'https://lh5.googleusercontent.com/-VvP-39_XqpE/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckynjUvtzHhKYllwL5InS5lMTGEyg/s96-c/photo.jpg',
+            'credits': 0,
+            'is_superuser': False,
+            'nick_name': 'Acaqakyfo',
+            'notes': [],
+            'favorites': [],
+            'comments': []
+        })
+
+    def test_user_not_exist_by_id(self):
+        '''
+        test the user endpoint on a non-exist user by id, should return nothing
+        '''
+        response = self.client.get("/api/user/?id=123")
         assert response.status_code == 200
         self.assertEqual(len(response.json()), 0)
-        # self.assertEqual(response.json()[0], {
-        #     "id": 6,
-        #     "first_name": "Wan",
-        #     "last_name": "XU",
-        #     "email": "wx2227@columbia.edu",
-        #     "avatar": "https://lh6.googleusercontent.com/-mOFZSfmWuG8/"
-        #               "AAAAAAAAAAI/AAAAAAAAAAA/AMZuucl2Arj7Gqi7LTYuAieuGoIosc_2lQ/s96-c/photo.jpg",
-        #     "credits": 0
-        # })
 
-    def test_user_not_exist(self):
+    def test_user_not_exist_by_email(self):
         '''
-        test the user endpoint on a non-exist user, should return nothing
+        test the user endpoint on a non-exist user by email, should return nothing
         '''
         response = self.client.get("/api/user/?email=123@gmail.com")
         assert response.status_code == 200
