@@ -1,6 +1,8 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme';
 import AddCourseView from '../src/components/AddCourseView'
+import AddCourse from '../src/components/AddCourse'
+import { mock } from 'sinon'
 
 jest.mock('axios', () => {
   return {
@@ -52,9 +54,41 @@ describe('test submit form', () => {
     wrapper = mount(<AddCourseView onSubmit={onSubmitSpy}/>)
 
     wrapper.find('#form').find('form').simulate('submit')
+  })
 
-    expect(onSubmitSpy).toHaveBeenCalled()
-    expect(axios.post).toHaveBeenCalled()
+  it ('submit button work with catch', () => {
+
+    const onSubmitSpy = jest.fn();
+    let wrapper = mount(<AddCourseView onSubmit={onSubmitSpy}/>)
+
+    axios.post.mockRejectedValueOnce(new Error('error'));
+
+    wrapper.find('#form').find('form').simulate('submit')
+  })
+
+  it ('submit form not valid', () => {
+
+    const onSubmitSpy = jest.fn();
+    let wrapper = mount(<AddCourseView onSubmit={onSubmitSpy}/>)
+
+    const mockvalidity = function() {
+      return true;
+    };
+
+    wrapper.find('#form').find('form').checkValidity = mockvalidity
+
+    // console.log(wrapper.find('#form').checkValidity.value)
+
+    wrapper.find('#form').find('form').simulate('submit', {
+      currentTarget: {
+        form: {
+          checkValidity: function() {
+            return true;
+          }
+        }
+      },
+      preventDefault: jest.fn(),
+    })
   })
 })
 
@@ -70,22 +104,5 @@ describe('test cancel form', () => {
   })
 })
 
-// describe('test axios post', () => {
-//
-//   it ('axios with catch', () => {
-//     const onSubmitSpy = jest.fn(() => Promise.resolve());
-//     wrapper = mount(<AddCourseView onSubmit={onSubmitSpy}/>)
-//
-//     axios.post.mockRejectedValueOnce(new Error('error'));
-//
-//     wrapper.find('#form').find('form').simulate('submit')
-//
-//     console.log()
-//
-//     return onSubmitSpy.catch(() => {
-//     })
-//       .then(() => expect(onSubmitSpy)).toHaveBeenCalledTimes(1)
-//   })
-// })
 
 

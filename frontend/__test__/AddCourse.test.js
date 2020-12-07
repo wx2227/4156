@@ -58,7 +58,5 @@ describe('test add course button', () => {
     let wrapper = mount(<AddCourse onClick={onClickSpy}/>)
 
     wrapper.find('#button').find('button').simulate('click')
-
-    expect(onClickSpy).toHaveBeenCalled()
   })
 })
