@@ -213,7 +213,7 @@ class UnitTest(TestCase):
             "user_id": 2,
             "note_id": 5
         }, follow=True)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
     def test_downvote_valid(self):
         '''
@@ -306,20 +306,14 @@ class UnitTest(TestCase):
         '''
         test the course endpoint to add course
         '''
-        self.client.post("/api/course/", {
+        response = self.client.post("/api/course/", {
             "course_number": "4156",
             "course_name": "engineering",
             "term": "2020 Fall",
             "department_name": "Computer Science Department"
         }, follow=True)
-        response = self.client.post("/api/course/", {
-            "course_number": "4156",
-            "course_name": "engineering",
-            "term": "2019 Fall",
-            "department_name": "Computer Science Department"
-        }, follow=True)
-        # self.client.delete("/api/course/4156")
-        self.assertEqual(response.status_code, 200)
+        self.client.delete("/api/course/4156")
+        self.assertEqual(response.status_code, 201)
 
     def test_favorite_valid(self):
         '''
