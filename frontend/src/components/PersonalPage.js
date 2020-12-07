@@ -25,16 +25,17 @@ class PersonalPage extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount = async () => {
     this.disableForms()
-    this.updateUserInfo()
+    await this.updateUserInfo()
   }
 
   updateUserInfo = async () => {
     const id = Cookies.get('user_id')
-    axios.get('http://localhost:8000/api/user/' + id)
+    await axios.get('http://localhost:8000/api/user/' + id)
       .then(res => {
-      if (res.data) {
+      // console.log(res.data)
+      if (res) {
           this.setState({
             credits: res.data.credits,
             email: res.data.email,

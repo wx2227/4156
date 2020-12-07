@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import Cookies from 'js-cookie'
 import { useHistory } from 'react-router-dom'
 
-export default function AddCourse (props) {
+export default function AddCourse () {
   function handleClick () {
     history.push('/airnote/addcourse')
   }
