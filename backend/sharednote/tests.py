@@ -357,8 +357,7 @@ class UnitTest(TestCase):
                 'course_name': 'Operating System',
                 'term': '2020 Fall',
                 'department_name': 'Computer Science Department'
-            }
-        )
+        })
 
     def test_course_not_exist(self):
         '''
@@ -403,4 +402,36 @@ class UnitTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
         response = self.client.get("/api/favorite/a", follow=True)
+        self.assertEqual(response.status_code, 404)
+
+    def test_department_valid(self):
+        '''
+        test the department endpoint to get department info summary
+        '''
+        response = self.client.get("/api/department/Accounting Division", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 3)
+        self.assertEqual(response.json(), {
+            'department_name': 'Accounting Division',
+            'courses': 0,
+            'url': 'https://www.columbia.edu/content/accounting-division'
+        })
+
+        response = self.client.get("/api/department/Global Support Department", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 3)
+        self.assertEqual(response.json(), {
+            "department_name": "Global Support Department",
+            "courses": 0,
+            "url": "https://www.columbia.edu/content/global-support-department"
+        })
+
+    def test_department_not_valid(self):
+        '''
+        test the department endpoint with invalid department name, should return nothing
+        '''
+        response = self.client.get("/api/favorite/random", follow=True)
+        self.assertEqual(response.status_code, 404)
+
+        response = self.client.get("/api/favorite/test123", follow=True)
         self.assertEqual(response.status_code, 404)
