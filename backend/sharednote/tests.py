@@ -301,20 +301,21 @@ class UnitTest(TestCase):
         '''
         response = self.client.post("/api/vote", {
             'vote': 1,
-            'user_id': 7,
-            'note_id': 1}, follow=True)
+            'user_id': 6,
+            'note_id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
 
-    # def test_undo_upvote(self):
-    #     '''
-    #     test the vote endpoint to undo an upvote
-    #     '''
-    #     response = self.client.post("/api/vote", {
-    #         'vote': 1,
-    #         'user_id': 1,
-    #         'note_id': 6
-    #     }, follow=True)
-    #     self.assertEqual(response.status_code, 200)
+    def test_undo_upvote(self):
+        '''
+        test the vote endpoint to undo an upvote
+        '''
+        response = self.client.post("/api/vote", {
+            'vote': -1,
+            'user_id': 6,
+            'note_id': 1
+        }, follow=True)
+        self.assertEqual(response.status_code, 200)
 
     def test_downvote_valid(self):
         '''
@@ -322,7 +323,18 @@ class UnitTest(TestCase):
         '''
         response = self.client.post("/api/vote", {
             'vote': -1,
-            'user_id': 1,
+            'user_id': 7,
+            'note_id': 1
+        }, follow=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_undo_downvote(self):
+        '''
+        test the vote endpoint to undo an downvote
+        '''
+        response = self.client.post("/api/vote", {
+            'vote': 1,
+            'user_id': 7,
             'note_id': 1
         }, follow=True)
         self.assertEqual(response.status_code, 200)
