@@ -24,7 +24,7 @@ class PersonalPage extends React.Component {
       page: 1
     }
   }
-  
+
   componentDidMount = async () => {
     this.disableForms()
     await this.updateUserInfo()
