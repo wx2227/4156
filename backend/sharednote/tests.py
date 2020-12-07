@@ -371,3 +371,36 @@ class UnitTest(TestCase):
         response = self.client.get("/api/course/?course_number=asdf")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 0)
+
+    def test_favorite_valid(self):
+        '''
+        test the favorite endpoint to get favorite info summary
+        '''
+        response = self.client.get("/api/favorite/4", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 4)
+        self.assertEqual(response.json(), {
+            'id': 4,
+            'favorite': 1,
+            'user_id': 2,
+            'note_id': 6
+        })
+        response = self.client.get("/api/favorite/6", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 4)
+        self.assertEqual(response.json(), {
+            'id': 6,
+            'favorite': 1,
+            'user_id': 2,
+            'note_id': 7
+        })
+
+    def test_favorite_not_valid(self):
+        '''
+        test the favorite endpoint with invalid id, should return nothing
+        '''
+        response = self.client.get("/api/favorite/123", follow=True)
+        self.assertEqual(response.status_code, 404)
+
+        response = self.client.get("/api/favorite/a", follow=True)
+        self.assertEqual(response.status_code, 404)
