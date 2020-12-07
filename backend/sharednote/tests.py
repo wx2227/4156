@@ -74,7 +74,7 @@ class UnitTest(TestCase):
         assert response.status_code == 200
         self.assertEqual(len(response.json()), 0)
 
-    def test_note_valid(self):
+    def test_get_note_valid(self):
         '''
         test the note endpoint to get notes for a particular class,
         should return notes info of that class
@@ -206,7 +206,7 @@ class UnitTest(TestCase):
                         'department_name': 'Computer Science Department'
         }})
 
-    def test_note_not_exist(self):
+    def test_get_note_not_exist(self):
         '''
         test the note endpoint to get notes for a non-exist class,
         should return nothing
@@ -214,6 +214,41 @@ class UnitTest(TestCase):
         response = self.client.get("/api/note/?course_number=asdf")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 0)
+
+    def test_post_note_already_exist(self):
+        '''
+        test the note endpoint to post an already-exist note,
+        should return ???
+        '''
+        response = self.client.post("/api/note/", {
+            'user_id': 2,
+            'course_number': 'COMS 4156',
+            'file_name': 'name',
+            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/4121a382-614b-4192-81db-5710744aac0f.pdf',
+            'description': 'des'
+        }, follow=True)
+        self.assertEqual(response.status_code, 201)
+
+    def test_post_note_valid(self):
+        '''
+        test the note endpoint to post an already-exist note,
+        should return ???
+        '''
+        response = self.client.post("/api/note/", {
+            'user_id': 2,
+            'course_number': 'COMS 4156',
+            'file_name': 'test',
+            'file_url': 'https://coms4156.s3-us-west-1.amazonaws.com/test.pdf',
+            'description': 'des'
+        }, follow=True)
+        self.assertEqual(response.status_code, 201)
+
+    def test_delete_note_valid(self):
+        '''
+        test the note endpoint to post an already-exist note
+        '''
+        response = self.client.delete("/api/note/5", follow=True)
+        self.assertEqual(response.status_code, 200)
 
     def test_comment_valid(self):
         '''
@@ -257,11 +292,10 @@ class UnitTest(TestCase):
         response = self.client.post("/api/comment/", {
             'content': 'Still have a lot of work to do, keep it up!',
             'time': '2020-11-10T21:33:00Z',
-            'user_id': 6,
+            'user_id': 2,
             'note_id': 5
         }, follow=True)
-        print(response.json())
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 201)
 
     def test_vote_valid(self):
         '''
@@ -302,19 +336,19 @@ class UnitTest(TestCase):
         '''
         response = self.client.post("/api/vote", {
             'vote': 1,
-            'user_id': 6,
+            'user_id': 7,
             'note_id': 1
         }, follow=True)
         self.assertEqual(response.status_code, 200)
 
-    def test_undo_upvote(self):
+    def test_vote_already_exist(self):
         '''
-        test the vote endpoint to undo an upvote
+        test the vote endpoint to cover an existing vote
         '''
         response = self.client.post("/api/vote", {
-            'vote': -1,
-            'user_id': 6,
-            'note_id': 1
+            "vote": 0,
+            "user_id": 2,
+            "note_id": 5
         }, follow=True)
         self.assertEqual(response.status_code, 200)
 
@@ -416,6 +450,38 @@ class UnitTest(TestCase):
 
         response = self.client.get("/api/favorite/a", follow=True)
         self.assertEqual(response.status_code, 404)
+
+    def test_post_favorite_note_already_exist(self):
+        '''
+        test the favorite endpoint to post an already-exist record,
+        should return 201
+        '''
+        response = self.client.post("/api/favorite/", {
+            'favorite': 1,
+            'user_id': 2,
+            'note_id': 7
+        }, follow=True)
+        self.assertEqual(response.status_code, 201)
+
+    def test_post_favorite_note_already_exist(self):
+        '''
+        test the favorite endpoint to post an already-exist record,
+        should return 201
+        '''
+        response = self.client.post("/api/favorite/", {
+            'favorite': 1,
+            'user_id': 3,
+            'note_id': 7
+        }, follow=True)
+        self.assertEqual(response.status_code, 201)
+
+    def test_post_favorite_note_already_exist(self):
+        '''
+        test the favorite endpoint to delete an existing record,
+        should return 200
+        '''
+        response = self.client.delete("/api/favorite/4", follow=True)
+        self.assertEqual(response.status_code, 200)
 
     def test_department_valid(self):
         '''
