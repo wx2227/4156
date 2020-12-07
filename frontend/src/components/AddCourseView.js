@@ -23,13 +23,6 @@ class AddCourseView extends React.Component {
       e.stopPropagation()
     }
 
-    this.props.onSubmit({
-      course_number: this.state.courseNumber,
-      course_name: this.state.courseName,
-      term: this.state.term,
-      department_name: this.state.departmentName
-    });
-
     return axios.post('http://127.0.0.1:8000/api/course/', {
       course_number: this.state.courseNumber,
       course_name: this.state.courseName,
@@ -37,11 +30,7 @@ class AddCourseView extends React.Component {
       department_name: this.state.departmentName
     }).then(res => {
       history.push('/airnote/courses/' + res.data.department_name)
-    }).catch((error) => {
-      if (error.response) {
-        alert(error.response.data.course_number)
-      }
-    })
+    }).catch(() => alert('cannot delete note'))
   }
 
   render () {

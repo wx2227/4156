@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 
 export default function AddCourse (props) {
   function handleClick () {
-    props.onClick({})
     history.push('/airnote/addcourse')
   }
 

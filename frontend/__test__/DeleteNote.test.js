@@ -1,8 +1,23 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-
 import DeleteNote from "../src/components/DeleteNote";
+import { mount } from 'enzyme'
+import AddNote from '../src/components/AddNote'
+
+jest.mock('axios', () => {
+  return {
+    delete: jest.fn(() => Promise.resolve())
+  };
+});
+
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    push: jest.fn()
+  }),
+}));
+
+const axios = require('axios')
 
 let container = null;
 beforeEach(() => {
@@ -25,6 +40,14 @@ afterEach(() => {
 const testProps1 = {user_id: 1};
 const testProps2 = {user_id: 2};
 
+it("render PersonalPage fail", () => {
+  act(() => {
+    render(<DeleteNote note={testProps2}/>, container);
+  });
+  const div = document.querySelector("div");
+  expect(div.innerHTML).toBe("<div></div>");
+});
+
 it("render PersonalPage", () => {
   act(() => {
     render(<DeleteNote note={testProps1}/>, container);
@@ -33,10 +56,40 @@ it("render PersonalPage", () => {
   expect(Button.innerHTML).toBe(" Delete File ");
 });
 
-it("render PersonalPage fail", () => {
-  act(() => {
-    render(<DeleteNote note={testProps2}/>, container);
-  });
-  const div = document.querySelector("div");
-  expect(div.innerHTML).toBe("<div></div>");
-});
+describe('test delete note button', () => {
+
+  it ('delete note button work', () => {
+
+    const onClickSpy = jest.fn();
+    let wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1}/>)
+
+    wrapper.find('#button').find('button').simulate('click')
+
+    expect(onClickSpy).toHaveBeenCalled()
+    expect(axios.delete).toHaveBeenCalled()
+  })
+
+  it ('delete note button work', () => {
+
+    const onClickSpy = jest.fn();
+    let wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1}/>)
+
+    wrapper.find('#button').find('button').simulate('click')
+
+    expect(onClickSpy).toHaveBeenCalled()
+    expect(axios.delete).toHaveBeenCalled()
+  })
+
+  it ('delete note button work', () => {
+
+    const onClickSpy = jest.fn();
+    let wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1}/>)
+
+    axios.delete.mockRejectedValueOnce(new Error('error'));
+
+    wrapper.find('#button').find('button').simulate('click')
+
+    expect(onClickSpy).toHaveBeenCalled()
+    expect(axios.delete).toHaveBeenCalled()
+  })
+})
