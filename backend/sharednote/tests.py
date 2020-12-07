@@ -255,30 +255,44 @@ class UnitTest(TestCase):
         test the comment endpoint to add a new comment
         '''
         response = self.client.post("/api/comment/", {
-            'content': 'a lot of work',
+            'content': 'Still have a lot of work to do, keep it up!',
             'time': '2020-11-10T21:33:00Z',
             'user_id': 6,
-            'note_id': 2}, follow=True)
+            'note_id': 2
+        }, follow=True)
         self.assertEqual(response.status_code, 400)
 
     def test_vote_valid(self):
         '''
         test the vote endpoint to get a vote's info
         '''
-        response = self.client.get("/api/vote/1", follow=True)
-        self.assertEqual(response.status_code, 404)
-        # self.assertEqual(response.json(), {
-        #     "id": 1,
-        #     "vote": 1,
-        #     "user_id": 6,
-        #     "note_id": 2
-        # })
+        response = self.client.get("/api/vote/3", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 4)
+        self.assertEqual(response.json(), {
+            'id': 3,
+            'vote': 1,
+            'user_id': 2,
+            'note_id': 6
+        })
+
+        response = self.client.get("/api/vote/5", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 4)
+        self.assertEqual(response.json(), {
+            'id': 5,
+            'vote': 1,
+            'user_id': 2,
+            'note_id': 7
+        })
 
     def test_vote_not_exist(self):
         '''
         test the vote endpoint to get info of a non-exist note, should return not found
         '''
-        response = self.client.get("/api/vote/saddc", follow=True)
+        response = self.client.get("/api/vote/1", follow=True)
+        self.assertEqual(response.status_code, 404)
+        response = self.client.get("/api/vote/abc", follow=True)
         self.assertEqual(response.status_code, 404)
 
     def test_upvote(self):
