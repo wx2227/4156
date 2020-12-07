@@ -10,7 +10,7 @@ class UploadForm extends React.Component {
     super(props)
     this.state = {
       courses: [],
-      selectedCourse: ""
+      selectedCourse: ''
     }
   }
 
@@ -23,7 +23,7 @@ class UploadForm extends React.Component {
   }
 
   handleSelectCourse = (e) => {
-    console.log(e);
+    console.log(e)
     if (e.length >= 1) {
       this.setState({
         ...this.state,
@@ -130,7 +130,7 @@ class UploadForm extends React.Component {
                 </div>
                 <div className='form-group p-1'>
                   <label htmlFor='courseNumber'>Course Number</label>
-                  <CourseAutoComplete courses={this.state.courses} handleSelectCourse={this.handleSelectCourse}/>
+                  <CourseAutoComplete courses={this.state.courses} handleSelectCourse={this.handleSelectCourse} />
                   {/* <input className='form-control' type='text' placeholder='Course Number' id='courseNumber' required /> */}
                 </div>
               </div>
@@ -152,4 +152,3 @@ class UploadForm extends React.Component {
 }
 
 export default UploadForm
-

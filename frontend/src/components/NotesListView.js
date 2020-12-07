@@ -41,7 +41,8 @@ class NotesListView extends React.Component {
           ...this.state,
           filtered: filtered
         })
-      }}
+      }
+    }
   }
 
   componentDidUpdate (prevProps) {
