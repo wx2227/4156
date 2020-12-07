@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test CoursePage rendering CoursePage queryParams snapshot test 1`] = `
+"<Fragment>
+  <Jumbotron fluid={true} style={{...}}>
+    <Container fluid={false}>
+      <div>
+        <h1 className=\\"text-white\\">
+          Computer Science Department
+        </h1>
+        <p className=\\"pb-3\\">
+          <a href=\\"https://www.columbia.edu/content/computer-science-department\\" className=\\"text-light\\" style={{...}}>
+            https://www.columbia.edu/content/computer-science-department
+          </a>
+        </p>
+      </div>
+      <p>
+        <AddCourse />
+      </p>
+    </Container>
+  </Jumbotron>
+  <div className=\\"row justify-content-center\\">
+    <div align=\\"center\\" className=\\"col-md-8\\">
+      <Row className=\\"pb-4\\" noGutters={false}>
+        <Col className=\\"col-md-6\\">
+          <Link to=\\"/airnote/notes/COMS 4156\\">
+            <Card body={false}>
+              <CardBody style={{...}}>
+                <CardTitle>
+                  COMS 4156
+                </CardTitle>
+                <CardTitle>
+                  Advanced Software Engineering
+                </CardTitle>
+                <Button variant=\\"outline-success\\" style={{...}} active={false} disabled={false}>
+                  2
+                   Notes
+                </Button>
+                 
+              </CardBody>
+            </Card>
+          </Link>
+        </Col>
+      </Row>
+    </div>
+  </div>
+</Fragment>"
+`;
+
+exports[`test CoursePage rendering test basic CoursePage rendering 1`] = `
+"<Fragment>
+  <Jumbotron fluid={true} style={{...}}>
+    <Container fluid={false}>
+      <h1 className=\\"text-white\\">
+        Courses
+      </h1>
+      <p>
+        <AddCourse />
+      </p>
+    </Container>
+  </Jumbotron>
+  <div className=\\"row justify-content-center\\">
+    <div align=\\"center\\" className=\\"col-md-8\\">
+      <Row className=\\"pb-4\\" noGutters={false}>
+        <Col className=\\"col-md-6\\">
+          <Link to=\\"/airnote/notes/COMS 4156\\">
+            <Card body={false}>
+              <CardBody style={{...}}>
+                <CardTitle>
+                  COMS 4156
+                </CardTitle>
+                <CardTitle>
+                  Advanced Software Engineering
+                </CardTitle>
+                <Button variant=\\"outline-success\\" style={{...}} active={false} disabled={false}>
+                  2
+                   Notes
+                </Button>
+                 
+              </CardBody>
+            </Card>
+          </Link>
+        </Col>
+      </Row>
+    </div>
+  </div>
+</Fragment>"
+`;
