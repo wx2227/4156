@@ -250,17 +250,18 @@ class UnitTest(TestCase):
         response = self.client.get("/api/comment/100", follow=True)
         self.assertEqual(response.status_code, 404)
 
-    # def test_add_comment(self):
-    #     '''
-    #     test the comment endpoint to add a new comment
-    #     '''
-    #     response = self.client.post("/api/comment/", {
-    #         'content': 'Still have a lot of work to do, keep it up!',
-    #         'time': '2020-11-10T21:33:00Z',
-    #         'user_id': 6,
-    #         'note_id': 2
-    #     }, follow=True)
-    #     self.assertEqual(response.status_code, 400)
+    def test_add_comment(self):
+        '''
+        test the comment endpoint to add a new comment
+        '''
+        response = self.client.post("/api/comment/", {
+            'content': 'Still have a lot of work to do, keep it up!',
+            'time': '2020-11-10T21:33:00Z',
+            'user_id': 6,
+            'note_id': 5
+        }, follow=True)
+        print(response.json())
+        self.assertEqual(response.status_code, 400)
 
     def test_vote_valid(self):
         '''
