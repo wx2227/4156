@@ -8,14 +8,14 @@ import './Login.css'
 import googleLogin from '../services/googleLoginService'
 
 const CLIENT_ID = '117590776103-qt4jgq89g0vhbeu72v4vja56s6sti0as.apps.googleusercontent.com'
-const lionMail = 'columbia.edu'
+export const lionMail = 'columbia.edu'
 
-function GoogleButton () {
+
   /**
      *
      * @param {*} accesstoken This is the access token of the user obtained from Google
      */
-  const responseGoogle = async (response) => {
+export const responseGoogle = async (response) => {
     // use this as accessToken from google: response.accessToken
     const profile = response.getBasicProfile()
     const userEmail = profile.getEmail()
@@ -51,15 +51,18 @@ function GoogleButton () {
     }
   }
 
-  const getUserInfo = async (email) => {
+export const getUserInfo = async (email) => {
     const request = 'http://localhost:8000/api/user/?email=' + email
     const res = await axios.get(request)
     return await res
   }
 
-  const handleLoginFailure = () => {
+ export const handleLoginFailure = () => {
     alert('Failed to log out')
   }
+
+export default function GoogleButton () {
+
 
   return (
     <div id='UltraBox'>
@@ -82,4 +85,3 @@ function GoogleButton () {
   )
 }
 
-export default GoogleButton
