@@ -25,27 +25,27 @@ class PersonalPage extends React.Component {
     }
   }
 
-  componentDidMount () {
-    // this.disableForms()
-    this.updateUserInfo()
+  componentDidMount = async () => {
+    this.disableForms()
+    await this.updateUserInfo()
   }
 
-  updateUserInfo () {
+  updateUserInfo = async () => {
     const id = Cookies.get('user_id')
-    axios.get('http://localhost:8000/api/user/' + id)
+    await axios.get('http://localhost:8000/api/user/' + id)
       .then(res => {
-        if (res.data.length !== 0) {
+      if (res.data) {
           this.setState({
-            credits: res.data[0].credits,
-            email: res.data[0].email,
-            user_id: res.data[0].id,
-            notes: res.data[0].notes,
-            favorites: res.data[0].favorites,
-            avatar: res.data[0].avatar,
-            nickname: res.data[0].nick_name,
-            comments: res.data[0].comments,
-            role: (res.data[0].is_superuser ? 'Administrator' : 'Client'),
-            nickNameInput: res.data[0].nick_name
+            credits: res.data.credits,
+            email: res.data.email,
+            user_id: res.data.id,
+            notes: res.data.notes,
+            favorites: res.data.favorites,
+            avatar: res.data.avatar,
+            nickname: res.data.nick_name,
+            comments: res.data.comments,
+            role: (res.data.is_superuser ? 'Administrator' : 'Client'),
+            nickNameInput: res.data.nick_name
           })
         }
       }).catch(err => { console.log(err.stack) })
@@ -213,24 +213,24 @@ class PersonalPage extends React.Component {
     return this.renderNoteList(this.state.notes)
   }
 
-  deleteComment = (id) => {
-    axios.delete('http://localhost:8000/api/comment/' + id)
+  deleteComment = async (id) => {
+    await axios.delete('http://localhost:8000/api/comment/' + id)
       .then(res => {
         this.updateUserInfo()
         return res
       }).catch(err => { console.log(err.stack) })
   }
 
-  deleteNote = (id) => {
-    axios.delete('http://localhost:8000/api/note/' + id)
+  deleteNote = async (id) => {
+    await axios.delete('http://localhost:8000/api/note/' + id)
       .then(res => {
         this.updateUserInfo()
         return res
       }).catch(err => { console.log(err.stack) })
   }
 
-  deleteFavorite = (id) => {
-    axios.delete('http://localhost:8000/api/favorite/' + id)
+  deleteFavorite = async (id) => {
+    await axios.delete('http://localhost:8000/api/favorite/' + id)
       .then(res => {
         this.updateUserInfo()
         return res
@@ -257,7 +257,7 @@ class PersonalPage extends React.Component {
               <Card border='info' style={{ textDecoration: 'none', width: '15rem', height: '13rem' }}>
 
                 <Card.Header><b className='pr-5'>{note.note_info ? note.note_info.course_number : note.course_number} </b>
-                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer' }} onClick={note.note_info ? () => { this.deleteFavorite(note.id) } : () => { this.deleteNote(note.id) }} />
+                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer' }} onClick={note.note_info ? async () => { await this.deleteFavorite(note.id) } : async () => {await this.deleteNote(note.id) }} />
                 </Card.Header>
                 <Link to={`/airnote/note/${note.note_info ? note.note_info.id : note.id}`}>
                   <Card.Body style={{ color: 'Black' }}>
@@ -281,7 +281,7 @@ class PersonalPage extends React.Component {
         <Row className='pb-4 ml-5 pl-5 mt-2 mb-4' key={comment.id} style={{ width: '60rem', height: '6.5rem' }}>
           <Card border='info' style={{ textDecoration: 'none', width: '60rem', height: '6.5rem' }}>
             <Card.Header style={{ height: '2.5rem' }}>{comment.time.slice(0, 10)}
-              <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer', float: 'right' }} onClick={() => { this.deleteComment(comment.id) }} />
+              <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer', float: 'right' }} onClick={async () => { await this.deleteComment(comment.id) }} />
             </Card.Header>
             <Link to={`/airnote/note/${comment.note_id}`}>
               <Card.Body style={{ color: 'Black' }}>
