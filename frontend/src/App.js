@@ -8,7 +8,7 @@ import LoginPage from './containers/googleLogin'
 import Cookies from 'js-cookie'
 
 function App () {
-  const [auth, setAuth] = useState(!!Cookies.get('user'))
+  const [auth, setAuth] = useState(Cookies.get('user') ? true : false)
 
   // TODO:
   // need to post token to backend to verify user
@@ -21,7 +21,7 @@ function App () {
   return (
     <div>
       <Router>
-        <Route exact path='/' component={LoginPage} onLeave={checkAuth()} />
+        <Route exact path='/' component={LoginPage} onEnter={checkAuth()} />
         {auth &&
           <Route path='/airnote'>
             <CustomLayout>
