@@ -7,7 +7,7 @@ export default function CourseAutoComplete (props) {
 
   const options = props.courses.map(course => course.course_number)
 
-  let changeSingleSelections = (option) => {
+  const changeSingleSelections = (option) => {
     setSingleSelections(option)
     props.handleSelectCourse(option)
   }

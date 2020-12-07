@@ -23,7 +23,7 @@ class CoursePage extends React.Component {
           this.setState({
             courses: res.data
           })
-        });
+        })
     } else {
       return axios.get(`http://localhost:8000/api/course/?department_name=${departmentName}`)
         .then(res => {
@@ -33,7 +33,7 @@ class CoursePage extends React.Component {
               url: res.data[0].department_info.url
             })
           }
-        });
+        })
     }
   }
 

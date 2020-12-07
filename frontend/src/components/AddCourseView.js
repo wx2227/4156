@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import axios from '../services/axios'
@@ -7,12 +7,12 @@ class AddCourseView extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      courseNumber: "",
-      courseName: "",
-      term: "2020 Fall",
-      departmentName: "Computer Science Department"
+      courseNumber: '',
+      courseName: '',
+      term: '2020 Fall',
+      departmentName: 'Computer Science Department'
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit (e) {
@@ -38,7 +38,7 @@ class AddCourseView extends React.Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <>
         <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -53,8 +53,10 @@ class AddCourseView extends React.Component {
                     <Form.Row className='pb-3'>
                       <Form.Label column='lg'>Course Number</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control required size='lg' placeholder='COMS 4156' id='course_number'
-                                      onChange={(e) => this.setState({ ...this.state, courseNumber: e.target.value })}/>
+                        <Form.Control
+                          required size='lg' placeholder='COMS 4156' id='course_number'
+                          onChange={(e) => this.setState({ ...this.state, courseNumber: e.target.value })}
+                        />
                       </Col>
                     </Form.Row>
                   </Form.Group>
@@ -62,8 +64,10 @@ class AddCourseView extends React.Component {
                     <Form.Row className='pb-3'>
                       <Form.Label column='lg'>Course Name</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control required size='lg' placeholder='Advanced Software Engineering' id='course_name'
-                                      onChange={(e) => this.setState({ ...this.state, courseName: e.target.value })}/>
+                        <Form.Control
+                          required size='lg' placeholder='Advanced Software Engineering' id='course_name'
+                          onChange={(e) => this.setState({ ...this.state, courseName: e.target.value })}
+                        />
                       </Col>
                     </Form.Row>
                   </Form.Group>
@@ -71,8 +75,10 @@ class AddCourseView extends React.Component {
                     <Form.Row className='pb-3'>
                       <Form.Label column='lg'>Term</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control size='lg' as='select' id='term'
-                                      onChange={(e) => this.setState({ ...this.state, term: e.target.value })}>
+                        <Form.Control
+                          size='lg' as='select' id='term'
+                          onChange={(e) => this.setState({ ...this.state, term: e.target.value })}
+                        >
                           <option>2020 Fall</option>
                           <option>2020 Summer</option>
                           <option>2020 Spring</option>
@@ -86,8 +92,10 @@ class AddCourseView extends React.Component {
                     <Form.Row className='pb-3'>
                       <Form.Label column='lg'>Department Name</Form.Label>
                       <Col className='col-md-9'>
-                        <Form.Control size='lg' as='select' id='department_name'
-                                      onChange={(e) => this.setState({ ...this.state, departmentName: e.target.value })}>
+                        <Form.Control
+                          size='lg' as='select' id='department_name'
+                          onChange={(e) => this.setState({ ...this.state, departmentName: e.target.value })}
+                        >
                           <option>Computer Science Department</option>
                           <option>Data Science</option>
                           <option>Electrical Engineering</option>
