@@ -250,17 +250,17 @@ class UnitTest(TestCase):
         response = self.client.get("/api/comment/100", follow=True)
         self.assertEqual(response.status_code, 404)
 
-    def test_add_comment(self):
-        '''
-        test the comment endpoint to add a new comment
-        '''
-        response = self.client.post("/api/comment/", {
-            'content': 'Still have a lot of work to do, keep it up!',
-            'time': '2020-11-10T21:33:00Z',
-            'user_id': 6,
-            'note_id': 2
-        }, follow=True)
-        self.assertEqual(response.status_code, 400)
+    # def test_add_comment(self):
+    #     '''
+    #     test the comment endpoint to add a new comment
+    #     '''
+    #     response = self.client.post("/api/comment/", {
+    #         'content': 'Still have a lot of work to do, keep it up!',
+    #         'time': '2020-11-10T21:33:00Z',
+    #         'user_id': 6,
+    #         'note_id': 2
+    #     }, follow=True)
+    #     self.assertEqual(response.status_code, 400)
 
     def test_vote_valid(self):
         '''
@@ -295,22 +295,36 @@ class UnitTest(TestCase):
         response = self.client.get("/api/vote/abc", follow=True)
         self.assertEqual(response.status_code, 404)
 
-    def test_upvote(self):
+    def test_upvote_valid(self):
         '''
         test the vote endpoint to upvote a note
         '''
         response = self.client.post("/api/vote", {
             'vote': 1,
-            'user_id': 14,
+            'user_id': 7,
             'note_id': 1}, follow=True)
         self.assertEqual(response.status_code, 200)
 
-    def test_downvote(self):
+    # def test_undo_upvote(self):
+    #     '''
+    #     test the vote endpoint to undo an upvote
+    #     '''
+    #     response = self.client.post("/api/vote", {
+    #         'vote': 1,
+    #         'user_id': 1,
+    #         'note_id': 6
+    #     }, follow=True)
+    #     self.assertEqual(response.status_code, 200)
+
+    def test_downvote_valid(self):
         '''
         test the vote endpoint to downvote a note
         '''
         response = self.client.post("/api/vote", {
-            'vote': -1, 'user_id': 14, 'note_id': 1}, follow=True)
+            'vote': -1,
+            'user_id': 1,
+            'note_id': 1
+        }, follow=True)
         self.assertEqual(response.status_code, 200)
 
     def test_course_valid(self):
@@ -320,17 +334,40 @@ class UnitTest(TestCase):
         response = self.client.get("/api/course/?course_number=COMS 4156")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 1)
-        # self.assertEqual(response.json()[0], {
-        #     'course_number': 'COMS 4156',
-        #     'course_name': 'Advanced Software Engineering',
-        #     'department_name': 'Computer Science',
-        #     'term': '2020 Fall',
-        #     'notes': [3]})
+        self.assertEqual(response.json()[0], {
+            'course_number': 'COMS 4156',
+            'notes': [5, 7],
+            'department_info': {
+                'department_name': 'Computer Science Department',
+                'url': 'https://www.columbia.edu/content/computer-science-department'},
+                'course_name': 'Advanced Software Engineering',
+                'term': '2020 Fall',
+                'department_name': 'Computer Science Department'
+            }
+        )
+        response = self.client.get("/api/course/?course_number=COMS 4118")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json()[0], {
+            'course_number': 'COMS 4118',
+            'notes': [6],
+            'department_info': {
+                'department_name': 'Computer Science Department',
+                'url': 'https://www.columbia.edu/content/computer-science-department'},
+                'course_name': 'Operating System',
+                'term': '2020 Fall',
+                'department_name': 'Computer Science Department'
+            }
+        )
 
     def test_course_not_exist(self):
         '''
         test the course endpoint to get course info for a non-exist course, should get nothing
         '''
+        response = self.client.get("/api/course/?course_number=COMS 3147")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 0)
+
         response = self.client.get("/api/course/?course_number=asdf")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 0)
