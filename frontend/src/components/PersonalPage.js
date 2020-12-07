@@ -26,13 +26,13 @@ class PersonalPage extends React.Component {
   }
 
   componentDidMount () {
-    // this.disableForms()
+    this.disableForms()
     this.updateUserInfo()
   }
 
   updateUserInfo () {
     const id = Cookies.get('user_id')
-    axios.get('http://localhost:8000/api/user/' + id)
+    axios.get('http://localhost:8000/api/user/?id=' + id)
       .then(res => {
         if (res.data.length !== 0) {
           this.setState({
