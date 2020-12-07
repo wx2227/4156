@@ -220,15 +220,27 @@ class UnitTest(TestCase):
         test the comment endpoint to get a comment,
         should return info of that comment
         '''
-        response = self.client.get("/api/comment/2", follow=True)
-        self.assertEqual(response.status_code, 404)
-        # self.assertEqual(response.json(), {
-        #     "id": 2,
-        #     "content": "comment1",
-        #     "time": "2020-11-22T01:59:50Z",
-        #     "user_id": 6,
-        #     "note_id": 2
-        # })
+        response = self.client.get("/api/comment/9", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 5)
+        self.assertEqual(response.json(), {
+            'id': 9,
+            'content': 'comment1',
+            'time': '2020-12-02T22:31:37Z',
+            'user_id': 2,
+            'note_id': 5
+        })
+        response = self.client.get("/api/comment/11", follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()), 5)
+        self.assertEqual(response.json(), {
+            'id': 11,
+            'content': 'comment1',
+            'time': '2020-12-02T22:48:45Z',
+            'user_id': 2,
+            'note_id': 6
+        })
+
 
     def test_comment_not_exist(self):
         '''
