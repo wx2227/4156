@@ -3,6 +3,14 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
 import AddNote from "../src/components/AddNote";
+import AddCourse from '../src/components/AddCourse'
+import { mount } from 'enzyme'
+
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    push: jest.fn()
+  }),
+}));
 
 let container = null;
 beforeEach(() => {
@@ -25,3 +33,16 @@ it("render button if admin", () => {
   const button = document.querySelector("Button");
   expect(button.innerHTML).toBe("+ Add Note");
 });
+
+describe('test add note button', () => {
+
+  it ('add note button work', () => {
+
+    const onClickSpy = jest.fn();
+    let wrapper = mount(<AddNote onClick={onClickSpy}/>)
+
+    wrapper.find('#button').find('button').simulate('click')
+
+    expect(onClickSpy).toHaveBeenCalled()
+  })
+})
