@@ -11,7 +11,7 @@ matrix:
 
     - language: node_js
       node_js:
-        - "15.1"
+        - "10.15.3"
       install:
         - cd frontend && npm install
       cache:
