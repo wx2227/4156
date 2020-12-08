@@ -2,6 +2,16 @@ import React from 'react'
 import CourseAutoComplete from '../src/components/CourseAutoComplete'
 import { shallow } from 'enzyme'
 
+beforeEach(() => {
+  jest.clearAllMocks();
+})
+
+afterAll(() => {
+  jest.clearAllMocks();
+})
+
+window.alert = jest.fn();
+
 describe( 'test course auto complete', () => {
 
   it ('test change action', () => {

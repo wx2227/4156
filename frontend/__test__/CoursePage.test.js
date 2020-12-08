@@ -6,6 +6,16 @@ const COURSES_ENDPOINT = 'http://localhost:8000/api/course/';
 const COURSE_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Computer Science Department'
 const ACCOUNT_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Account Division'
 
+beforeEach(() => {
+  jest.clearAllMocks();
+})
+
+afterAll(() => {
+  jest.clearAllMocks();
+})
+
+window.alert = jest.fn();
+
 jest.mock('axios', () => {
   const courses = {
     'data':

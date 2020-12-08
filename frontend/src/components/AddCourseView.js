@@ -2,6 +2,8 @@ import React from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import axios from '../services/axios'
+import { shallow } from 'enzyme'
+import DepartmentsListView from './DepartmentsListView'
 
 class AddCourseView extends React.Component {
   constructor (props) {
@@ -21,16 +23,17 @@ class AddCourseView extends React.Component {
 
     if (form.checkValidity() === false) {
       e.stopPropagation()
-    }
+    } else {
+      axios.post('http://127.0.0.1:8000/api/course/', {
+        course_number: this.state.courseNumber,
+        course_name: this.state.courseName,
+        term: this.state.term,
+        department_name: this.state.departmentName
+      }).then(res => {
 
-    return axios.post('http://127.0.0.1:8000/api/course/', {
-      course_number: this.state.courseNumber,
-      course_name: this.state.courseName,
-      term: this.state.term,
-      department_name: this.state.departmentName
-    }).then(res => {
-      history.push('/airnote/courses/' + res.data.department_name)
-    }).catch(() => alert('cannot delete note'))
+        history.push('/airnote/courses/' + res.data.department_name)
+      }).catch(() => alert('cannot delete note'))
+    }
   }
 
   render () {

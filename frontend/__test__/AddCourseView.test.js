@@ -2,17 +2,22 @@ import React from 'react'
 import { shallow, mount } from 'enzyme';
 import AddCourseView from '../src/components/AddCourseView'
 
-jest.mock('axios', () => {
-  return {
-    post: jest.fn(() => Promise.resolve())
-  };
-});
+window.alert = jest.fn();
+jest.mock('axios')
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn()
   }),
 }));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+})
+
+afterAll(() => {
+  jest.clearAllMocks();
+})
 
 const axios = require('axios')
 
@@ -49,6 +54,9 @@ describe('test submit form', () => {
 
   it ('submit button work', () => {
     const onSubmitSpy = jest.fn();
+
+    axios.post.mockImplementationOnce(() => Promise.resolve())
+
     wrapper = mount(<AddCourseView onSubmit={onSubmitSpy}/>)
 
     wrapper.find('#form').find('form').simulate('submit')
@@ -66,26 +74,16 @@ describe('test submit form', () => {
 
   it ('submit form not valid', () => {
 
-    const onSubmitSpy = jest.fn();
-    let wrapper = mount(<AddCourseView onSubmit={onSubmitSpy}/>)
+    let wrapper = shallow(<AddCourseView/>)
 
-    const mockvalidity = function() {
-      return true;
-    };
+    axios.post.mockImplementationOnce(() => Promise.resolve())
 
-    wrapper.find('#form').find('form').checkValidity = mockvalidity
-
-    // console.log(wrapper.find('#form').checkValidity.value)
-
-    wrapper.find('#form').find('form').simulate('submit', {
+    wrapper.instance().handleSubmit({
+      preventDefault: () => {},
+      stopPropagation: () => {},
       currentTarget: {
-        form: {
-          checkValidity: function() {
-            return true;
-          }
-        }
-      },
-      preventDefault: jest.fn(),
+        checkValidity: () => {return true}
+      }
     })
   })
 })

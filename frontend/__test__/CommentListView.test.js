@@ -18,6 +18,8 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
+window.alert = jest.fn();
+
 const comments = [
   {
     "id": 9,

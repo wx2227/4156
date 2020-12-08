@@ -1,7 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import CustomLayout from '../src/components/CustomLayout'
-import AddCourseView from '../src/components/AddCourseView'
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
@@ -16,6 +15,8 @@ beforeEach(() => {
 afterAll(() => {
   jest.clearAllMocks();
 })
+
+window.alert = jest.fn();
 
 let wrapper
 

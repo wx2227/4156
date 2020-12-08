@@ -40,12 +40,19 @@ jest.mock('axios', () => {
   };
 });
 
-const axios = require('axios');
+window.alert = jest.fn();
 
 let wrapper;
 beforeEach(() => {
+  jest.clearAllMocks();
   wrapper = shallow(<DepartmentsListView />)
 })
+
+afterAll(() => {
+  jest.clearAllMocks();
+})
+
+const axios = require('axios');
 
 describe('test DepartmentListView rendering', () => {
 
@@ -72,6 +79,15 @@ describe('test tab switch rendering', () => {
   it('handleChange', () => {
     wrapper.find('#group').simulate("change", 3)
     expect(wrapper.state('value')).toBe(3)
+  });
+
+  it('handleChange', () => {
+    const wrapper = shallow(<DepartmentsListView/>)
+
+    wrapper.instance().handleChange({
+      target: { value: 'test' } })
+
+    expect(wrapper.state('filtered')).toStrictEqual([])
   });
 
   it('ALL tab', () => {
@@ -101,5 +117,12 @@ describe('test tab switch rendering', () => {
     const event = {target: {id: "P-Z"}};
     wrapper.find('#P-Z').simulate("click", event)
     expect(wrapper.state('filtered')).toHaveLength(1)
+  });
+
+  it('not exist tab', () => {
+    const wrapper = shallow(<DepartmentsListView/>)
+
+    wrapper.instance().handleDepartments({
+      target: { id: 'test' } })
   });
 })

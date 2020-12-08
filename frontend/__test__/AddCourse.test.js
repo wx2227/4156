@@ -12,6 +12,16 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
+beforeEach(() => {
+  jest.clearAllMocks();
+})
+
+afterAll(() => {
+  jest.clearAllMocks();
+})
+
+window.alert = jest.fn();
+
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target

@@ -12,6 +12,8 @@ afterAll(() => {
   jest.clearAllMocks();
 })
 
+window.alert = jest.fn();
+
 const comment = {
   user_id: 1,
   note_id: 1,

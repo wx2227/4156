@@ -17,6 +17,16 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
+window.alert = jest.fn();
+
+beforeEach(() => {
+  jest.clearAllMocks();
+})
+
+afterAll(() => {
+  jest.clearAllMocks();
+})
+
 const axios = require('axios')
 
 let container = null;
