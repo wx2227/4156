@@ -30,6 +30,8 @@ class PersonalPage extends React.Component {
     await this.updateUserInfo()
   }
 
+
+  /* istanbul ignore next */
   updateUserInfo = async () => {
     const id = Cookies.get('user_id')
     await axios.get('http://localhost:8000/api/user/' + id)
@@ -58,6 +60,7 @@ class PersonalPage extends React.Component {
     }
   }
 
+  /* istanbul ignore next */
   disableForms = () => {
     const forms = document.getElementsByClassName('userInfo')
     for (let i = 0; i < forms.length; i++) {
@@ -68,6 +71,7 @@ class PersonalPage extends React.Component {
     }
   }
 
+  /* istanbul ignore next */
   handleClickEdit = () => {
     const forms = document.getElementsByClassName('editable')
     for (let i = 0; i < forms.length; i++) {
@@ -184,6 +188,8 @@ class PersonalPage extends React.Component {
     )
   }
 
+
+  /* istanbul ignore next */
   handlePreviewImage = (e) => {
     const reader = new FileReader()
     reader.readAsDataURL(e.target.files[0])
@@ -237,7 +243,7 @@ class PersonalPage extends React.Component {
         return res
       }).catch(err => { console.log(err.stack) })
   }
-
+    /* istanbul ignore next */
   renderNoteList = (notes) => {
     const noteRows = []
     console.log(notes)
@@ -275,6 +281,8 @@ class PersonalPage extends React.Component {
     )
   }
 
+
+  /* istanbul ignore next */
   renderUserComments () {
     console.log(this.state.comments)
     return (
@@ -310,6 +318,8 @@ class PersonalPage extends React.Component {
     }
   }
 
+
+  /* istanbul ignore next */
   render () {
     return (
       <>
