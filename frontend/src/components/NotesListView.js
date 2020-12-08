@@ -49,6 +49,7 @@ class NotesListView extends React.Component {
     const courseNumber = this.props.match.params.course_number
 
     if (prevProps.match.params.course_number !== this.props.match.params.course_number) {
+      /* istanbul ignore else  */
       if (this.state.notes.length !== 0 && courseNumber) {
         const filtered = this.state.notes.filter(note => note.course_info.course_number.toLowerCase().includes(courseNumber.toLowerCase()))
 
