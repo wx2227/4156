@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-
 import NotesListView from './components/NotesListView'
 import NoteDetailView from './components/NoteDetailView'
 import UploadForm from './components/UploadForm'
