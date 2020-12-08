@@ -2,8 +2,6 @@ import { mount, shallow } from 'enzyme'
 import CommentEditor from '../src/components/CommentEditor'
 import axios from 'axios'
 import React from 'react'
-import Cookies from 'js-cookie'
-import CommentListView from '../src/components/CommentListView'
 
 jest.mock('axios')
 beforeEach(() => {
