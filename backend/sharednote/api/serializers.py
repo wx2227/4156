@@ -202,4 +202,3 @@ class CourseSerializer(ModelSerializer):
         """
         data = DepartmentSerializer(obj.department_name).data
         return data
-''
