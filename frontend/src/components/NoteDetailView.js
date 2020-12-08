@@ -18,17 +18,18 @@ class NoteDetailView extends React.Component {
     }
   }
 
-  getData () {
+  getData = async () => {
     const noteID = this.props.match.params.noteID
-    axios.get(`http://127.0.0.1:8000/api/note/${noteID}`)
-      .then(res => {
+    await axios.get(`http://127.0.0.1:8000/api/note/${noteID}`)
+      .then(async (res) => {
+        /* istanbul ignore else  */
         if (res.data.length !== 0) {
           this.setState({
             note: res.data,
             comments: res.data.comments,
           })
-          axios.get(`http://127.0.0.1:8000/api/user/${res.data.user_id}`)
-            .then(res => {
+          await axios.get(`http://127.0.0.1:8000/api/user/${res.data.user_id}`)
+            .then(res => {        
               this.setState({
                 ...this.state,
                 first_name: res.data.first_name,
@@ -39,7 +40,7 @@ class NoteDetailView extends React.Component {
       }).catch(() => alert('cannot get note info.'))
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     this.getData()
   }
 
