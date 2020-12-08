@@ -4,10 +4,7 @@ import { mount, shallow } from 'enzyme'
 import App from './App'
 import LoginPage from './containers/googleLogin'
 import Cookie from 'js-cookie'
-import {Router, Route } from 'react-router-dom'
 import BaseRouter from './routes'
-import CustomLayout from './components/CustomLayout'
-import {Badge } from 'react-bootstrap'
 
 
 describe('routes using memory router', () => {

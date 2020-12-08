@@ -70,7 +70,7 @@ class CommentEditor extends React.Component {
         }
       })
 
-      axios.post('http://127.0.0.1:8000/api/comment/', {
+      return axios.post('http://127.0.0.1:8000/api/comment/', {
         content: this.state.value,
         user_id: this.state.comment.user_id,
         note_id: this.state.comment.note_id,

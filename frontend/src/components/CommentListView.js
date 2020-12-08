@@ -40,16 +40,13 @@ class CommentListView extends React.Component {
       <>
         <List
           pagination={{
-            onChange: page => {
-              console.log(page)
-            },
             pageSize: 5
           }}
           dataSource={this.state.comments}
           itemLayout='horizontal'
           renderItem={props => <Comment comment={props} />}
         />
-        <CommentEditor addComment={this.addComment} note={this.state.note} />
+        <CommentEditor addComment={this.addComment} note={this.state.note} id='editor'/>
       </>
     )
   }
