@@ -1,8 +1,6 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme';
 import AddCourseView from '../src/components/AddCourseView'
-import AddCourse from '../src/components/AddCourse'
-import { mock } from 'sinon'
 
 jest.mock('axios', () => {
   return {

@@ -1,7 +1,6 @@
 import React from "react";
 import { mount, shallow } from 'enzyme'
 import CommentListView from '../src/components/CommentListView'
-import CommentEditor from '../src/components/CommentEditor'
 import axios from 'axios'
 
 jest.mock('axios')
