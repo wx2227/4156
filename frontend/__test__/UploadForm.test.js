@@ -107,7 +107,5 @@ describe('Unit tests', () => {
   })
 
 
-    it('UploadFile should proceed with valid pdf' , async () => {
-
-  })
+    
 })
