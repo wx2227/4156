@@ -5,28 +5,27 @@ import CustomLayout from '../src/components/CustomLayout'
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn()
-  }),
-}));
+  })
+}))
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
 afterAll(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
-window.alert = jest.fn();
+window.alert = jest.fn()
 
 let wrapper
 
 describe('test custom layout', () => {
-
   beforeAll(() => {
-    wrapper = shallow(<CustomLayout/>)
+    wrapper = shallow(<CustomLayout />)
   })
 
-  it ('simulate change action', () => {
+  it('simulate change action', () => {
     wrapper.find('FormControl').simulate('change', {
       target: {
         value: 1
@@ -34,16 +33,16 @@ describe('test custom layout', () => {
     })
   })
 
-  it ('simulate change action without target', () => {
+  it('simulate change action without target', () => {
     wrapper.find('FormControl').simulate('change', {})
   })
 
-  it ('simulate click action with valid course', () => {
-    document.getElementById = jest.fn(() => {return {value: 'test'}})
+  it('simulate click action with valid course', () => {
+    document.getElementById = jest.fn(() => { return { value: 'test' } })
 
     wrapper.find('FormControl').simulate('change', {
       target: {
-        value: "1"
+        value: '1'
       }
     })
 
@@ -52,15 +51,15 @@ describe('test custom layout', () => {
     })
   })
 
-  it ('simulate click action with not valid course', () => {
-    wrapper = shallow(<CustomLayout/>)
+  it('simulate click action with not valid course', () => {
+    wrapper = shallow(<CustomLayout />)
 
     wrapper.find('Button').simulate('click', {
       preventDefault: () => {}
     })
   })
 
-  it ('test enable search with enter key press', () => {
+  it('test enable search with enter key press', () => {
     wrapper.find('FormControl').simulate('change', {
       target: {
         value: '1'
@@ -74,7 +73,7 @@ describe('test custom layout', () => {
     })
   })
 
-  it ('test enable search only with enter key press not other key', () => {
+  it('test enable search only with enter key press not other key', () => {
     wrapper.find('Button').simulate('keypress', {
       target: {
         charCode: 14

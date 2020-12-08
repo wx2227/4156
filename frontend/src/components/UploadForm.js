@@ -22,7 +22,7 @@ class UploadForm extends React.Component {
     })
   }
 
-  handleSelectCourse = (e) => {
+  onHandleSelectCourse = (e) => {
     console.log(e)
     if (e.length >= 1) {
       this.setState({
@@ -137,7 +137,7 @@ class UploadForm extends React.Component {
                 </div>
                 <div className='form-group p-1'>
                   <label htmlFor='courseNumber'>Course Number</label>
-                  <CourseAutoComplete courses={this.state.courses} handleSelectCourse={this.handleSelectCourse} />
+                  <CourseAutoComplete courses={this.state.courses} handleSelectCourse={this.onHandleSelectCourse} />
                   {/* <input className='form-control' type='text' placeholder='Course Number' id='courseNumber' required /> */}
                 </div>
               </div>

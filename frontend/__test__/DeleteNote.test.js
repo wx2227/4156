@@ -1,77 +1,74 @@
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import DeleteNote from "../src/components/DeleteNote";
+import React from 'react'
+import { render, unmountComponentAtNode } from 'react-dom'
+import { act } from 'react-dom/test-utils'
+import DeleteNote from '../src/components/DeleteNote'
 import { mount } from 'enzyme'
-import AddNote from '../src/components/AddNote'
 
 jest.mock('axios', () => {
   return {
     delete: jest.fn(() => Promise.resolve())
-  };
-});
+  }
+})
 
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn()
-  }),
-}));
+  })
+}))
 
-window.alert = jest.fn();
+window.alert = jest.fn()
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
 afterAll(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
 const axios = require('axios')
 
-let container = null;
+let container = null
 beforeEach(() => {
   // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
+  container = document.createElement('div')
+  document.body.appendChild(container)
   Object.defineProperty(window.document, 'cookie', {
     writable: true,
-    value: 'user_id=1',
-  });
-});
+    value: 'user_id=1'
+  })
+})
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
+  unmountComponentAtNode(container)
+  container.remove()
+  container = null
+})
 
-const testProps1 = {user_id: 1};
-const testProps2 = {user_id: 2};
+const testProps1 = { user_id: 1 }
+const testProps2 = { user_id: 2 }
 
-it("render PersonalPage fail", () => {
+it('render PersonalPage fail', () => {
   act(() => {
-    render(<DeleteNote note={testProps2}/>, container);
-  });
-  const div = document.querySelector("div");
-  expect(div.innerHTML).toBe("<div></div>");
-});
+    render(<DeleteNote note={testProps2} />, container)
+  })
+  const div = document.querySelector('div')
+  expect(div.innerHTML).toBe('<div></div>')
+})
 
-it("render PersonalPage", () => {
+it('render PersonalPage', () => {
   act(() => {
-    render(<DeleteNote note={testProps1}/>, container);
-  });
-  const Button = document.querySelector("Button");
-  expect(Button.innerHTML).toBe(" Delete File ");
-});
+    render(<DeleteNote note={testProps1} />, container)
+  })
+  const Button = document.querySelector('Button')
+  expect(Button.innerHTML).toBe(' Delete File ')
+})
 
 describe('test delete note button', () => {
-
-  it ('delete note button work', () => {
-
-    const onClickSpy = jest.fn();
-    let wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1}/>)
+  it('delete note button work', () => {
+    const onClickSpy = jest.fn()
+    const wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1} />)
 
     wrapper.find('#button').find('button').simulate('click')
 
@@ -79,10 +76,9 @@ describe('test delete note button', () => {
     expect(axios.delete).toHaveBeenCalled()
   })
 
-  it ('delete note button work', () => {
-
-    const onClickSpy = jest.fn();
-    let wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1}/>)
+  it('delete note button work', () => {
+    const onClickSpy = jest.fn()
+    const wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1} />)
 
     wrapper.find('#button').find('button').simulate('click')
 
@@ -90,12 +86,11 @@ describe('test delete note button', () => {
     expect(axios.delete).toHaveBeenCalled()
   })
 
-  it ('delete note button work', () => {
+  it('delete note button work', () => {
+    const onClickSpy = jest.fn()
+    const wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1} />)
 
-    const onClickSpy = jest.fn();
-    let wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1}/>)
-
-    axios.delete.mockRejectedValueOnce(new Error('error'));
+    axios.delete.mockRejectedValueOnce(new Error('error'))
 
     wrapper.find('#button').find('button').simulate('click')
 

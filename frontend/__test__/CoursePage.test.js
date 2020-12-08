@@ -1,46 +1,46 @@
 import CoursePage from '../src/containers/CoursePage'
 import React from 'react'
-import { shallow, mount } from 'enzyme';
+import { shallow, mount } from 'enzyme'
 
-const COURSES_ENDPOINT = 'http://localhost:8000/api/course/';
+const COURSES_ENDPOINT = 'http://localhost:8000/api/course/'
 const COURSE_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Computer Science Department'
 const ACCOUNT_ENDPOINT = 'http://localhost:8000/api/course/?department_name=Account Division'
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
 afterAll(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
-window.alert = jest.fn();
+window.alert = jest.fn()
 
 jest.mock('axios', () => {
   const courses = {
-    'data':
+    data:
       [
         {
-          "course_number": "COMS 4156",
-          "notes": [
+          course_number: 'COMS 4156',
+          notes: [
             5,
             7
           ],
-          "department_info": {
-            "department_name": "Computer Science Department",
-            "url": "https://www.columbia.edu/content/computer-science-department"
+          department_info: {
+            department_name: 'Computer Science Department',
+            url: 'https://www.columbia.edu/content/computer-science-department'
           },
-          "course_name": "Advanced Software Engineering",
-          "term": "2020 Fall",
-          "department_name": "Computer Science Department"
+          course_name: 'Advanced Software Engineering',
+          term: '2020 Fall',
+          department_name: 'Computer Science Department'
         }]
   }
   const course = courses
-  const none = {'data': []}
+  const none = { data: [] }
 
   return {
     get: jest.fn((url) => {
-      switch(url) {
+      switch (url) {
         case COURSES_ENDPOINT:
           return Promise.resolve(courses)
         case COURSE_ENDPOINT:
@@ -48,14 +48,13 @@ jest.mock('axios', () => {
         case ACCOUNT_ENDPOINT:
           return Promise.resolve(none)
       }
-    }),
-  };
-});
+    })
+  }
+})
 
-const axios = require('axios');
+const axios = require('axios')
 
 describe('test CoursePage rendering', () => {
-
   test('test basic CoursePage rendering', () => {
     const match = { params: { department_name: undefined } }
     const component = shallow(<CoursePage match={match} />)
@@ -64,9 +63,9 @@ describe('test CoursePage rendering', () => {
       .instance()
       .componentDidMount()
       .then(() => {
-        expect(axios.get).toHaveBeenCalled();
+        expect(axios.get).toHaveBeenCalled()
         component.update()
-        expect(component.debug()).toMatchSnapshot();
+        expect(component.debug()).toMatchSnapshot()
       })
   })
 
@@ -78,11 +77,11 @@ describe('test CoursePage rendering', () => {
       .instance()
       .componentDidMount()
       .then(() => {
-        expect(axios.get).toHaveBeenCalled();
+        expect(axios.get).toHaveBeenCalled()
         component.update()
-        expect(component.debug()).toMatchSnapshot();
+        expect(component.debug()).toMatchSnapshot()
       })
-  });
+  })
 
   it('CoursePage queryParams snapshot zero length test', () => {
     const match = { params: { department_name: 'Account Division' } }
@@ -92,8 +91,8 @@ describe('test CoursePage rendering', () => {
       .instance()
       .componentDidMount()
       .then(() => {
-        expect(axios.get).toHaveBeenCalled();
-        expect(component.find('h1').text()).toBe('Courses');
+        expect(axios.get).toHaveBeenCalled()
+        expect(component.find('h1').text()).toBe('Courses')
       })
-  });
+  })
 })

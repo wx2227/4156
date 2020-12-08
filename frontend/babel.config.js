@@ -3,20 +3,20 @@ module.exports = function (api) {
     '@babel/preset-env',
     '@babel/preset-react',
     '@babel/preset-flow'
-  ];
+  ]
   const plugins = [
     '@babel/plugin-transform-runtime',
     '@babel/plugin-proposal-class-properties'
-  ];
+  ]
 
   /** this is just for minimal working purposes,
      * for testing larger applications it is
      * advisable to cache the transpiled modules in
      * node_modules/.bin/.cache/@babel/register* */
-  api.cache(false);
+  api.cache(false)
 
   return {
     presets,
     plugins
-  };
-};
+  }
+}

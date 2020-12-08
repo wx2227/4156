@@ -9,7 +9,6 @@ beforeAll(() => {
 })
 
 describe('test dropdown component', () => {
-
   it('test logout button', () => {
     Cookies.set('user_id', 1)
     wrapper.instance().handleLogout()

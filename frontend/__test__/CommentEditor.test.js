@@ -5,14 +5,14 @@ import React from 'react'
 
 jest.mock('axios')
 beforeEach(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
 afterAll(() => {
-  jest.clearAllMocks();
+  jest.clearAllMocks()
 })
 
-window.alert = jest.fn();
+window.alert = jest.fn()
 
 const comment = {
   user_id: 1,
@@ -27,9 +27,8 @@ const note = {
 }
 
 describe('test comment editor', () => {
-
   beforeAll(() => {
-    Object.defineProperty(window, "matchMedia", {
+    Object.defineProperty(window, 'matchMedia', {
       writable: true,
       value: jest.fn().mockImplementation(query => ({
         matches: false,
@@ -39,13 +38,12 @@ describe('test comment editor', () => {
         removeListener: jest.fn(), // Deprecated
         addEventListener: jest.fn(),
         removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        dispatchEvent: jest.fn()
       }))
-    });
-  });
+    })
+  })
 
-  it ('test componentDidUpdate', () => {
-
+  it('test componentDidUpdate', () => {
     const props = {
       note: {
         id: 4,
@@ -57,29 +55,31 @@ describe('test comment editor', () => {
       note: note
     }
 
-    let wrapper = shallow(<CommentEditor {...props}/>)
+    const wrapper = shallow(<CommentEditor {...props} />)
 
     wrapper.instance().componentDidUpdate(prevProps)
 
     expect(wrapper.state('comment').note_id).toBe(4)
   })
 
-  it ('test enter comment in CommentEditor', () => {
+  it('test enter comment in CommentEditor', () => {
     const handleChange = jest.fn()
 
-    let editor = mount(<CommentEditor note={note} handleChange={handleChange}/>)
+    const editor = mount(<CommentEditor note={note} handleChange={handleChange} />)
 
-    editor.find('TextArea').simulate('change', {'target': {
-        'value': 'comment'
-      }})
+    editor.find('TextArea').simulate('change', {
+      target: {
+        value: 'comment'
+      }
+    })
     expect(editor.state('value')).toBe('comment')
   })
 
-  it ('test cannot submit blank comment', async () => {
-    let wrapper = shallow(<CommentEditor note={note}/>)
-    let instance = wrapper.instance()
+  it('test cannot submit blank comment', async () => {
+    const wrapper = shallow(<CommentEditor note={note} />)
+    const instance = wrapper.instance()
 
-    instance.setState({comment: comment})
+    instance.setState({ comment: comment })
 
     await instance.handleSubmit()
     expect(instance.state.comment).toStrictEqual({
@@ -90,22 +90,24 @@ describe('test comment editor', () => {
     })
   })
 
-  it ('test submit valid comment', async () => {
+  it('test submit valid comment', async () => {
     const addComment = jest.fn()
-    let wrapper = shallow(<CommentEditor note={note} addComment={addComment}/>)
-    let instance = wrapper.instance()
+    const wrapper = shallow(<CommentEditor note={note} addComment={addComment} />)
+    const instance = wrapper.instance()
 
-    instance.setState({comment: comment, value: 'comment'})
+    instance.setState({ comment: comment, value: 'comment' })
 
     axios.post.mockImplementationOnce((url) => {
-      if (url.startsWith("http://127.0.0.1:8000/api/comment/")) {
-        return Promise.resolve({ data: [{
+      if (url.startsWith('http://127.0.0.1:8000/api/comment/')) {
+        return Promise.resolve({
+          data: [{
             id: 4,
             user_id: 1,
             note_id: 1,
             time: null,
             content: 'comment'
-          }]})
+          }]
+        })
       }
     })
     await instance.handleSubmit()
@@ -117,16 +119,16 @@ describe('test comment editor', () => {
     })
   })
 
-  it ('test axios return error', async () => {
+  it('test axios return error', async () => {
     const addComment = jest.fn()
-    let wrapper = shallow(<CommentEditor note={note} addComment={addComment}/>)
-    let instance = wrapper.instance()
+    const wrapper = shallow(<CommentEditor note={note} addComment={addComment} />)
+    const instance = wrapper.instance()
 
-    instance.setState({comment: comment, value: 'comment', loading: true})
+    instance.setState({ comment: comment, value: 'comment', loading: true })
 
     axios.post.mockImplementationOnce((url) => {
-      if (url.startsWith("http://127.0.0.1:8000/api/comment/")) {
-        return Promise.resolve({error: 4})
+      if (url.startsWith('http://127.0.0.1:8000/api/comment/')) {
+        return Promise.resolve({ error: 4 })
       }
     })
     await instance.handleSubmit()
