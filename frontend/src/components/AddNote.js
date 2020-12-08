@@ -4,8 +4,14 @@ import { useHistory } from 'react-router-dom'
 
 function AddNote () {
 
+  const history = useHistory()
+
+  function handleClick() {
+    history.push('/airnote/upload')
+  }
+
   return (
-    <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={useHistory().push('/airnote/upload')} id='button'>+ Add Note</Button>
+    <Button variant='outline-success' style={{ marginRight: '10px' }} onClick={handleClick} id='button'>+ Add Note</Button>
   )
 }
 
