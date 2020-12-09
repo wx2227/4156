@@ -32,5 +32,3 @@ All files                |   99.73 |      100 |   99.35 |     100 |
  src/services            |     100 |      100 |     100 |     100 |
   googleLoginService.js  |     100 |      100 |     100 |     100 |                   
 -------------------------|---------|----------|---------|---------|-------------------
-
-Note: axios.js is utility class which simply import/export axios. So no test needed for this file
