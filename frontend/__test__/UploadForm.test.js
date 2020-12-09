@@ -33,7 +33,7 @@ describe('Unit tests', () => {
 
     const wrapper = shallow(<UploadForm />)
     const instance = wrapper.instance()
-    await instance.handleSelectCourse([2])
+    await instance.onHandleSelectCourse([2])
     expect(instance.state.selectedCourse).toBe(2)
   })
 
@@ -45,7 +45,7 @@ describe('Unit tests', () => {
     const wrapper = shallow(<UploadForm />)
     const instance = wrapper.instance()
     await instance.setState({ selectedCourse: 3 })
-    await instance.handleSelectCourse([])
+    await instance.onHandleSelectCourse([])
     expect(instance.state.selectedCourse).toBe(3)
   })
 
