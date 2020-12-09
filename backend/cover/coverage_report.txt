@@ -1,0 +1,18 @@
+.............................
+Name                                Stmts   Miss  Cover
+-------------------------------------------------------
+sharednote/__init__.py                  0      0   100%
+sharednote/admin.py                     9      9     0%
+sharednote/api/__init__.py              0      0   100%
+sharednote/api/serializers.py         100      0   100%
+sharednote/api/urls.py                 11      0   100%
+sharednote/api/views.py                75      0   100%
+sharednote/migrations/__init__.py       0      0   100%
+sharednote/models.py                   47     47     0%
+sharednote/views.py                     4      0   100%
+-------------------------------------------------------
+TOTAL                                 246     56    77%
+----------------------------------------------------------------------
+Ran 29 tests in 1.438s
+
+OK
