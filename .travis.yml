@@ -18,7 +18,8 @@ matrix:
         directories:
           - frontend/node_modules
       script:
-        - npm test
+        - npx jest
+        - npx jest --coverage
 notifications:
   email:
   - wx2227@columbia.edu
