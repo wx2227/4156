@@ -26,10 +26,10 @@ class NoteDetailView extends React.Component {
         if (res.data.length !== 0) {
           this.setState({
             note: res.data,
-            comments: res.data.comments,
+            comments: res.data.comments
           })
           await axios.get(`http://127.0.0.1:8000/api/user/${res.data.user_id}`)
-            .then(res => {        
+            .then(res => {
               this.setState({
                 ...this.state,
                 first_name: res.data.first_name,

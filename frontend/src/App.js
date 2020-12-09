@@ -8,7 +8,7 @@ import LoginPage from './containers/googleLogin'
 import Cookies from 'js-cookie'
 
 function App () {
-  const [auth, setAuth] = useState(Cookies.get('user') ? true : false)
+  const [auth, setAuth] = useState(!!Cookies.get('user'))
 
   // TODO:
   // need to post token to backend to verify user

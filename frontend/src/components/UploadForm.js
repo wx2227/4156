@@ -21,7 +21,7 @@ class UploadForm extends React.Component {
       })
     })
   }
-  
+
   handleSelectCourse = (e) => {
     console.log(e)
     if (e.length >= 1) {
@@ -31,15 +31,15 @@ class UploadForm extends React.Component {
       })
     }
   }
-  
-      /* istanbul ignore next */ 
+
+  /* istanbul ignore next */
   toBase64 : String = file => new Promise((resolve, reject) => {
     const reader = new FileReader()
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
     reader.readAsDataURL(file)
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
     reader.onload = () => resolve(reader.result)
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
     reader.onerror = error => reject(error)
   });
 
@@ -59,7 +59,7 @@ class UploadForm extends React.Component {
     })
   }
 
-  /* istanbul ignore next */ 
+  /* istanbul ignore next */
   async uploadFile () {
     if (document.getElementById('file').files.length === 0) {
       return alert('Please Select File')
@@ -84,8 +84,7 @@ class UploadForm extends React.Component {
     return response
   }
 
-
-  /* istanbul ignore next */ 
+  /* istanbul ignore next */
   async handleSubmit (event) {
     event.preventDefault()
     const userID = Cookies.get('user_id') - 0
@@ -121,7 +120,7 @@ class UploadForm extends React.Component {
       .catch(err => console.log(err))
   }
 
-  /* istanbul ignore next */ 
+  /* istanbul ignore next */
   render () {
     return (
       <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

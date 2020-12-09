@@ -64,7 +64,7 @@ class DepartmentsListView extends React.Component {
         ...this.state,
         filtered: filtered
       })
-    } else if (filter === 'P-Z'){
+    } else if (filter === 'P-Z') {
       filtered = departments.filter(department => this.startsWith2(department.department_name, ['P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']))
 
       this.setState({

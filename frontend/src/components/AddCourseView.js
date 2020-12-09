@@ -28,7 +28,6 @@ class AddCourseView extends React.Component {
         term: this.state.term,
         department_name: this.state.departmentName
       }).then(res => {
-
         history.push('/airnote/courses/' + res.data.department_name)
       }).catch(() => alert('cannot delete note'))
     }
@@ -102,10 +101,13 @@ class AddCourseView extends React.Component {
                   <Button variant='outline-success' className='w-100' type='submit' id='submit'>Submit</Button>{' '}
                 </Col>
                 <Col className='col-md-5'>
-                  <Button variant='outline-success' className='w-100' onClick={() => {
-                    this.props.onCancel()
-                    useHistory().push('/airnote/courses')
-                  }} id='cancel'>Cancel</Button>
+                  <Button
+                    variant='outline-success' className='w-100' onClick={() => {
+                      this.props.onCancel()
+                      useHistory().push('/airnote/courses')
+                    }} id='cancel'
+                  >Cancel
+                  </Button>
                 </Col>
               </Row>
             </div>

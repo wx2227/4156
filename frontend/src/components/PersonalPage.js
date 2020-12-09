@@ -30,14 +30,13 @@ class PersonalPage extends React.Component {
     await this.updateUserInfo()
   }
 
-
   /* istanbul ignore next */
   updateUserInfo = async () => {
     const id = Cookies.get('user_id')
     await axios.get('http://localhost:8000/api/user/' + id)
       .then(res => {
       // console.log(res.data)
-      if (res) {
+        if (res) {
           this.setState({
             credits: res.data.credits,
             email: res.data.email,
@@ -188,7 +187,6 @@ class PersonalPage extends React.Component {
     )
   }
 
-
   /* istanbul ignore next */
   handlePreviewImage = (e) => {
     const reader = new FileReader()
@@ -243,7 +241,8 @@ class PersonalPage extends React.Component {
         return res
       }).catch(err => { console.log(err.stack) })
   }
-    /* istanbul ignore next */
+
+  /* istanbul ignore next */
   renderNoteList = (notes) => {
     const noteRows = []
     console.log(notes)
@@ -264,7 +263,7 @@ class PersonalPage extends React.Component {
               <Card border='info' style={{ textDecoration: 'none', width: '15rem', height: '13rem' }}>
 
                 <Card.Header><b className='pr-5'>{note.note_info ? note.note_info.course_number : note.course_number} </b>
-                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer' }} onClick={note.note_info ? async () => { await this.deleteFavorite(note.id) } : async () => {await this.deleteNote(note.id) }} />
+                  <FontAwesomeIcon className='ml-5' icon={Trash} size='1x' style={{ color: '#FF0000', cursor: 'pointer' }} onClick={note.note_info ? async () => { await this.deleteFavorite(note.id) } : async () => { await this.deleteNote(note.id) }} />
                 </Card.Header>
                 <Link to={`/airnote/note/${note.note_info ? note.note_info.id : note.id}`}>
                   <Card.Body style={{ color: 'Black' }}>
@@ -280,7 +279,6 @@ class PersonalPage extends React.Component {
       )
     )
   }
-
 
   /* istanbul ignore next */
   renderUserComments () {
@@ -317,7 +315,6 @@ class PersonalPage extends React.Component {
       )
     }
   }
-
 
   /* istanbul ignore next */
   render () {

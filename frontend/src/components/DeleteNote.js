@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import axios from '../services/axios'
 
 function DeleteNote (props) {
-
   function handleClick () {
     props.onClick({})
     return axios.delete(`http://127.0.0.1:8000/api/note/${props.note.id}`)

@@ -46,7 +46,7 @@ class CommentListView extends React.Component {
           itemLayout='horizontal'
           renderItem={props => <Comment comment={props} />}
         />
-        <CommentEditor addComment={this.addComment} note={this.state.note} id='editor'/>
+        <CommentEditor addComment={this.addComment} note={this.state.note} id='editor' />
       </>
     )
   }

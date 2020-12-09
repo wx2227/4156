@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons'
 
 function CustomLayout (props) {
-  const [course, setCourse] = useState("")
+  const [course, setCourse] = useState('')
   const history = useHistory()
 
   function handleOnChange (e) {
@@ -17,7 +17,7 @@ function CustomLayout (props) {
 
   function handleClick (event) {
     event.preventDefault()
-    if (course !== "") {
+    if (course !== '') {
       document.getElementById('searchbar').value = ''
       history.push('/airnote/notes/' + course)
     } else {

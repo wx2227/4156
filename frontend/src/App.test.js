@@ -6,7 +6,6 @@ import LoginPage from './containers/googleLogin'
 import Cookie from 'js-cookie'
 import BaseRouter from './routes'
 
-
 describe('routes using memory router', () => {
   it('Should show CoursePage component for /airnote/courses router', () => {
     const component = mount(
@@ -16,32 +15,24 @@ describe('routes using memory router', () => {
     )
     expect(component.find(LoginPage)).toHaveLength(1)
   })
-
 })
 
-
-
 describe('Auth depends on cookies user_id and token', () => {
-
- 
-
   it('With no cookies, auth should be false', () => {
-   Cookie.get = jest.fn()
-    .mockImplementationOnce(() => null) // first time
- 
+    Cookie.get = jest.fn()
+      .mockImplementationOnce(() => null) // first time
+
     const wrapper = shallow(<App />)
     // console.log(wrapper.debug());
     expect(wrapper.contains(<BaseRouter />)).toEqual(false)
   })
 
-
-
   it('With cookies `User`, auth should be true', () => {
-   Cookie.get = jest.fn()
-    .mockImplementationOnce(() => null) // second time
-    .mockImplementationOnce(() => "user_id") // second time
-    .mockImplementationOnce(() => "token") // second time
- 
+    Cookie.get = jest.fn()
+      .mockImplementationOnce(() => null) // second time
+      .mockImplementationOnce(() => 'user_id') // second time
+      .mockImplementationOnce(() => 'token') // second time
+
     const wrapper = shallow(<App />)
     // console.log(wrapper.debug());
     expect(wrapper.contains(<BaseRouter />)).toEqual(true)
