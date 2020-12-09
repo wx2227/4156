@@ -1,0 +1,37 @@
+
+-------------------------|---------|----------|---------|---------|-------------------
+File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------|---------|----------|---------|---------|-------------------
+All files                |   99.73 |      100 |   99.35 |     100 |                   
+ src                     |     100 |      100 |     100 |     100 |                   
+  App.js                 |     100 |      100 |     100 |     100 |                   
+  routes.js              |     100 |      100 |     100 |     100 |                   
+ src/components          |   99.67 |      100 |   99.26 |     100 |                   
+  AddCourse.js           |     100 |      100 |     100 |     100 |                   
+  AddCourseView.js       |     100 |      100 |     100 |     100 |                   
+  AddNote.js             |     100 |      100 |     100 |     100 |                   
+  Comment.js             |     100 |      100 |     100 |     100 |                   
+  CommentEditor.js       |     100 |      100 |     100 |     100 |                   
+  CommentListView.js     |     100 |      100 |     100 |     100 |                   
+  CourseAutoComplete.js  |     100 |      100 |     100 |     100 |                   
+  CustomLayout.js        |     100 |      100 |     100 |     100 |                   
+  DeleteNote.js          |     100 |      100 |     100 |     100 |                   
+  DepartmentsListView.js |      98 |      100 |   94.74 |     100 |                   
+  DropDown.js            |     100 |      100 |     100 |     100 |                   
+  Favorite.js            |     100 |      100 |     100 |     100 |                   
+  NoteDetailView.js      |     100 |      100 |     100 |     100 |                   
+  Notes.js               |     100 |      100 |     100 |     100 |                   
+  NotesListView.js       |     100 |      100 |     100 |     100 |                   
+  PersonalPage.js        |     100 |      100 |     100 |     100 |                   
+  Preview.js             |     100 |      100 |     100 |     100 |                   
+  UploadForm.js          |     100 |      100 |     100 |     100 |                   
+  Vote.js                |     100 |      100 |     100 |     100 |                   
+ src/containers          |     100 |      100 |     100 |     100 |                   
+  CoursePage.js          |     100 |      100 |     100 |     100 |                   
+  googleLogin.js         |     100 |      100 |     100 |     100 |                   
+ src/services            |     100 |      100 |     100 |     100 |                   
+  axios.js               |       0 |        0 |       0 |       0 |                   
+  googleLoginService.js  |     100 |      100 |     100 |     100 |                   
+-------------------------|---------|----------|---------|---------|-------------------
+
+Note: axios.js is utility class which simply import/export axios. So no test needed for this file
