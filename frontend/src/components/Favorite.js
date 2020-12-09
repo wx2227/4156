@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import { Tooltip } from 'antd'
 import { faStar as StarFilled } from '@fortawesome/free-solid-svg-icons'
 import { faStar as StarOutlined } from '@fortawesome/free-regular-svg-icons'
-import axios from '../services/axios'
+import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Favorite extends React.Component {

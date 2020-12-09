@@ -2,7 +2,7 @@ import React from 'react'
 import Cookies from 'js-cookie'
 import moment from 'moment'
 import { Form } from 'react-bootstrap'
-import axios from '../services/axios'
+import axios from 'axios'
 import CourseAutoComplete from './CourseAutoComplete'
 
 class UploadForm extends React.Component {

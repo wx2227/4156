@@ -2,7 +2,7 @@ import React from 'react'
 import Cookies from 'js-cookie'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import axios from '../services/axios'
+import axios from 'axios'
 
 function DeleteNote (props) {
   function handleClick () {

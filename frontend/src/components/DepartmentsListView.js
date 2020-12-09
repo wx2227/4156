@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from '../services/axios'
+import axios from 'axios'
 import { Button, Card, Col, Row, ToggleButton, ToggleButtonGroup, Form, FormControl } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 

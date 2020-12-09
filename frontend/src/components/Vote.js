@@ -3,7 +3,7 @@ import 'antd/dist/antd.css'
 import { Tooltip } from 'antd'
 import { faThumbsUp as LikeFilled, faThumbsDown as DislikeFilled } from '@fortawesome/free-solid-svg-icons'
 import { faThumbsUp as LikeOutlined, faThumbsDown as DislikeOutlined } from '@fortawesome/free-regular-svg-icons'
-import axios from '../services/axios'
+import axios from 'axios'
 import Cookies from 'js-cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

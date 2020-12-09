@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import axios from '../services/axios'
+import axios from 'axios'
 
 class AddCourseView extends React.Component {
   constructor (props) {

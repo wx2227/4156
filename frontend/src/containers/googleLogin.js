@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import { GoogleLogin } from 'react-google-login'
-import axios from '../services/axios'
+import axios from 'axios'
 import Cookies from 'js-cookie'
 
 import './Login.css'

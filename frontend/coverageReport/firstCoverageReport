@@ -14,7 +14,6 @@ All files                |   46.25 |    54.76 |      50 |    44.9 |
  containers              |     100 |      100 |     100 |     100 |
   CoursePage.js          |     100 |      100 |     100 |     100 |
  services                |       0 |        0 |       0 |       0 |
-  axios.js               |       0 |        0 |       0 |       0 |
 -------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 2 failed, 8 passed, 10 total
 Tests:       18 passed, 18 total
