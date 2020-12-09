@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for sharednote/api/serializers.py: 94%</title>
+    <title>Coverage for sharednote/api/serializers.py: 100%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="jquery.hotkeys.js"></script>
@@ -17,13 +17,13 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>sharednote/api/serializers.py</b> :
-            <span class="pc_cov">94%</span>
+            <span class="pc_cov">100%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            101 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">95 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">6 missing</button>
+            100 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">100 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
     </div>
@@ -103,12 +103,12 @@
     <p id="t50" class="pln"><span class="n"><a href="#t50">50</a></span><span class="t"><span class="str">        :param validated_data: Dictionary containing the vote instance</span>&nbsp;</span><span class="r"></span></p>
     <p id="t51" class="pln"><span class="n"><a href="#t51">51</a></span><span class="t"><span class="str">        :return: A valid JSON object (a dictionary) containing votes information for a course</span>&nbsp;</span><span class="r"></span></p>
     <p id="t52" class="pln"><span class="n"><a href="#t52">52</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t53" class="mis show_mis"><span class="n"><a href="#t53">53</a></span><span class="t">        <span class="nam">vote</span> <span class="op">=</span> <span class="nam">validated_data</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'vote'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t54" class="mis show_mis"><span class="n"><a href="#t54">54</a></span><span class="t">        <span class="nam">obj</span><span class="op">,</span> <span class="nam">_</span> <span class="op">=</span> <span class="nam">Vote</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">update_or_create</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t53" class="run"><span class="n"><a href="#t53">53</a></span><span class="t">        <span class="nam">vote</span> <span class="op">=</span> <span class="nam">validated_data</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'vote'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t54" class="run"><span class="n"><a href="#t54">54</a></span><span class="t">        <span class="nam">obj</span><span class="op">,</span> <span class="nam">_</span> <span class="op">=</span> <span class="nam">Vote</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">update_or_create</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t55" class="pln"><span class="n"><a href="#t55">55</a></span><span class="t">            <span class="op">**</span><span class="nam">validated_data</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t56" class="pln"><span class="n"><a href="#t56">56</a></span><span class="t">            <span class="nam">defaults</span><span class="op">=</span><span class="op">{</span><span class="str">'vote'</span><span class="op">:</span> <span class="nam">vote</span><span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t57" class="pln"><span class="n"><a href="#t57">57</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t58" class="mis show_mis"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="key">return</span> <span class="nam">obj</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t58" class="run"><span class="n"><a href="#t58">58</a></span><span class="t">        <span class="key">return</span> <span class="nam">obj</span>&nbsp;</span><span class="r"></span></p>
     <p id="t59" class="pln"><span class="n"><a href="#t59">59</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t60" class="pln"><span class="n"><a href="#t60">60</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t61" class="run"><span class="n"><a href="#t61">61</a></span><span class="t"><span class="key">class</span> <span class="nam">NoteBaseSerializer</span><span class="op">(</span><span class="nam">ModelSerializer</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -134,12 +134,12 @@
     <p id="t81" class="pln"><span class="n"><a href="#t81">81</a></span><span class="t"><span class="str">        :param validated_data: Dictionary containing the vote instance</span>&nbsp;</span><span class="r"></span></p>
     <p id="t82" class="pln"><span class="n"><a href="#t82">82</a></span><span class="t"><span class="str">        :return: A valid JSON object (a dictionary) containing votes information for a favorite</span>&nbsp;</span><span class="r"></span></p>
     <p id="t83" class="pln"><span class="n"><a href="#t83">83</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t84" class="mis show_mis"><span class="n"><a href="#t84">84</a></span><span class="t">        <span class="nam">favorite</span> <span class="op">=</span> <span class="nam">validated_data</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'favorite'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t85" class="mis show_mis"><span class="n"><a href="#t85">85</a></span><span class="t">        <span class="nam">obj</span><span class="op">,</span> <span class="nam">_</span> <span class="op">=</span> <span class="nam">Favorite</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">update_or_create</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t84" class="run"><span class="n"><a href="#t84">84</a></span><span class="t">        <span class="nam">favorite</span> <span class="op">=</span> <span class="nam">validated_data</span><span class="op">.</span><span class="nam">pop</span><span class="op">(</span><span class="str">'favorite'</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t85" class="run"><span class="n"><a href="#t85">85</a></span><span class="t">        <span class="nam">obj</span><span class="op">,</span> <span class="nam">_</span> <span class="op">=</span> <span class="nam">Favorite</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">update_or_create</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t86" class="pln"><span class="n"><a href="#t86">86</a></span><span class="t">            <span class="op">**</span><span class="nam">validated_data</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t87" class="pln"><span class="n"><a href="#t87">87</a></span><span class="t">            <span class="nam">defaults</span><span class="op">=</span><span class="op">{</span><span class="str">'favorite'</span><span class="op">:</span> <span class="nam">favorite</span><span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t88" class="pln"><span class="n"><a href="#t88">88</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t89" class="mis show_mis"><span class="n"><a href="#t89">89</a></span><span class="t">        <span class="key">return</span> <span class="nam">obj</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t89" class="run"><span class="n"><a href="#t89">89</a></span><span class="t">        <span class="key">return</span> <span class="nam">obj</span>&nbsp;</span><span class="r"></span></p>
     <p id="t90" class="pln"><span class="n"><a href="#t90">90</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t91" class="pln"><span class="n"><a href="#t91">91</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t92" class="run"><span class="n"><a href="#t92">92</a></span><span class="t"><span class="key">class</span> <span class="nam">NoteSerializer</span><span class="op">(</span><span class="nam">ModelSerializer</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -255,13 +255,12 @@
     <p id="t202" class="pln"><span class="n"><a href="#t202">202</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
     <p id="t203" class="run"><span class="n"><a href="#t203">203</a></span><span class="t">        <span class="nam">data</span> <span class="op">=</span> <span class="nam">DepartmentSerializer</span><span class="op">(</span><span class="nam">obj</span><span class="op">.</span><span class="nam">department_name</span><span class="op">)</span><span class="op">.</span><span class="nam">data</span>&nbsp;</span><span class="r"></span></p>
     <p id="t204" class="run"><span class="n"><a href="#t204">204</a></span><span class="t">        <span class="key">return</span> <span class="nam">data</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t205" class="run"><span class="n"><a href="#t205">205</a></span><span class="t"><span class="str">''</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
-            created at 2020-12-07 20:16 +0000
+            created at 2020-12-08 23:57 +0000
         </p>
     </div>
 </div>
