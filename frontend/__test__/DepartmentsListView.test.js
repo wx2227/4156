@@ -1,6 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import DepartmentsListView from '../src/components/DepartmentsListView'
+import startsWith2 from '../src/components/helper'
+
+jest.mock('../src/components/helper')
 
 const departments = {
   data:
@@ -61,6 +64,10 @@ describe('test DepartmentListView rendering', () => {
       .componentDidMount()
       .catch(() => expect(axios.get).rejects.toThrow('error'))
   })
+
+  // it('test ', () => {
+  //   jest.mock('../src/components/helper')
+  // })
 
   it('basic rendering test', () => {
     wrapper

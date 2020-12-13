@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Button, Card, Col, Row, ToggleButton, ToggleButtonGroup, Form, FormControl } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import startsWith2 from './helper'
 
 class DepartmentsListView extends React.Component {
   constructor (props) {
@@ -25,14 +26,6 @@ class DepartmentsListView extends React.Component {
       }).catch(() => alert('cannot get department from server'))
   }
 
-  startsWith2 (haystack, needles) {
-    let i = needles.length
-    while (i-- > 0) {
-      if (haystack.lastIndexOf(needles[i], 0) === 0) { return true }
-    }
-    return false
-  }
-
   handleDepartments = (e) => {
     const filter = e.target.id
     const departments = this.state.departments
@@ -44,28 +37,28 @@ class DepartmentsListView extends React.Component {
         filtered: this.state.departments
       })
     } else if (filter === 'A-C') {
-      filtered = departments.filter(department => this.startsWith2(department.department_name, ['A', 'B', 'C']))
+      filtered = departments.filter(department => startsWith2(department.department_name, ['A', 'B', 'C']))
 
       this.setState({
         ...this.state,
         filtered: filtered
       })
     } else if (filter === 'D-F') {
-      filtered = departments.filter(department => this.startsWith2(department.department_name, ['D', 'E', 'F']))
+      filtered = departments.filter(department => startsWith2(department.department_name, ['D', 'E', 'F']))
 
       this.setState({
         ...this.state,
         filtered: filtered
       })
     } else if (filter === 'G-O') {
-      filtered = departments.filter(department => this.startsWith2(department.department_name, ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']))
+      filtered = departments.filter(department => startsWith2(department.department_name, ['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O']))
 
       this.setState({
         ...this.state,
         filtered: filtered
       })
     } else if (filter === 'P-Z') {
-      filtered = departments.filter(department => this.startsWith2(department.department_name, ['P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']))
+      filtered = departments.filter(department => startsWith2(department.department_name, ['P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']))
 
       this.setState({
         ...this.state,

@@ -90,11 +90,19 @@ class UploadForm extends React.Component {
     const userID = Cookies.get('user_id') - 0
 
     const fileName = document.getElementById('fileName').value
+    if (fileName.trim().length === 0) {
+      alert('The file name can not be empty')
+      return
+    }
     // const courseNumber = document.getElementById('courseNumber').value
     const courseNumber = this.state.selectedCourse
-    const description = document.getElementById('description').value
     if (!await this.isCourseNumberValid(courseNumber)) {
       alert('The course number is not valid')
+      return
+    }
+    const description = document.getElementById('description').value
+    if (description.trim().length === 0) {
+      alert('The description can not be empty')
       return
     }
     const uploadResponse = await this.uploadFile()

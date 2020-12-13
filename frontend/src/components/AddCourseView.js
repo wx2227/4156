@@ -1,6 +1,5 @@
 import React from 'react'
 import { Form, Button, Col, Row } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
 class AddCourseView extends React.Component {
@@ -12,6 +11,7 @@ class AddCourseView extends React.Component {
       term: '2020 Fall',
       departmentName: 'Computer Science Department'
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit (e) {
@@ -21,22 +21,22 @@ class AddCourseView extends React.Component {
 
     if (form.checkValidity() === false) {
       e.stopPropagation()
-    } else {
-      axios.post('http://127.0.0.1:8000/api/course/', {
-        course_number: this.state.courseNumber,
-        course_name: this.state.courseName,
-        term: this.state.term,
-        department_name: this.state.departmentName
-      }).then(res => {
-        history.push('/airnote/courses/' + res.data.department_name)
-      }).catch(() => alert('cannot delete note'))
     }
+    axios.post('http://127.0.0.1:8000/api/course/', {
+      course_number: this.state.courseNumber,
+      course_name: this.state.courseName,
+      term: this.state.term,
+      department_name: this.state.departmentName
+    }).then((res) => {
+      window.location.href = '/airnote/courses/' + res.data.department_name
+      // useHistory().push('/airnote/courses/' + res.data.department_name)
+    }).catch(() => alert('cannot add course'))
   }
 
   render () {
     return (
       <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} id='div'>
-        <Form className='card bg-white col-md-6' onSubmit={(e) => this.handleSubmit(e)} id='form'>
+        <Form className='card bg-white col-md-6' onSubmit={this.handleSubmit} id='form'>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#17A2B8', height: '80px' }}>
             <h1 className='text-white m-0 p-0'>Add Course</h1>
           </div>
@@ -103,8 +103,7 @@ class AddCourseView extends React.Component {
                 <Col className='col-md-5'>
                   <Button
                     variant='outline-success' className='w-100' onClick={() => {
-                      this.props.onCancel()
-                      useHistory().push('/airnote/courses')
+                      window.location.href = '/airnote/courses'
                     }} id='cancel'
                   >Cancel
                   </Button>
