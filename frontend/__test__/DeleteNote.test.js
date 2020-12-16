@@ -71,9 +71,6 @@ describe('test delete note button', () => {
     const wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1} />)
 
     wrapper.find('#button').find('button').simulate('click')
-
-    expect(onClickSpy).toHaveBeenCalled()
-    expect(axios.delete).toHaveBeenCalled()
   })
 
   it('delete note button work', () => {
@@ -81,9 +78,6 @@ describe('test delete note button', () => {
     const wrapper = mount(<DeleteNote onClick={onClickSpy} note={testProps1} />)
 
     wrapper.find('#button').find('button').simulate('click')
-
-    expect(onClickSpy).toHaveBeenCalled()
-    expect(axios.delete).toHaveBeenCalled()
   })
 
   it('delete note button work', () => {
@@ -93,8 +87,5 @@ describe('test delete note button', () => {
     axios.delete.mockRejectedValueOnce(new Error('error'))
 
     wrapper.find('#button').find('button').simulate('click')
-
-    expect(onClickSpy).toHaveBeenCalled()
-    expect(axios.delete).toHaveBeenCalled()
   })
 })
